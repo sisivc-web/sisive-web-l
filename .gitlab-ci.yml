@@ -1,0 +1,58 @@
+before_script:
+  - npm version
+  - ansible --version
+  
+variables:
+  PROJ_NAME : "immi-mall"
+  BACKUP_DIR : "/data/projects"
+  ## dev
+  DEV_HOST_IP : "47.52.109.131,"
+  DEV_HOST_USER : "immi-tes"
+  DEV_DEST_DIR : "/www/t-immi-mall"
+  ## dev
+  TES_HOST_IP : "47.52.109.131,"
+  TES_HOST_USER : "immi-tes"
+  TES_DEST_DIR : "/www/u-immi-mall"
+  ## pro
+  PRO_HOST_IP : "47.52.109.131,"
+  PRO_HOST_USER : "immi-pro"
+  PRO_DEST_DIR : "/www/immi-mall"
+cache:
+  paths: 
+    - node_modules/
+    - dist/
+
+stages:
+  - build
+  - deploy
+
+build_all:
+  stage: build
+  script:
+    - npm install
+    - npm run build
+  only:
+    - master
+
+deploy2dev:
+  stage: deploy
+  script:
+    - cp /data/autodeploy/launch_static.sh ./
+    - sh launch_static.sh dev dist/
+  only:
+    - master
+    
+deploy2tes:
+  stage: deploy
+  script:
+    - cp /data/autodeploy/launch_static.sh ./
+    - sh launch_static.sh tes dist/
+  when: manual
+    
+deploy2pro:
+  stage: deploy
+  script:
+    - cp /data/autodeploy/launch_static.sh ./
+    - sh launch_static.sh pro dist/
+  only:
+    - tags

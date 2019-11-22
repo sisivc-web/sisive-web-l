@@ -1,0 +1,62 @@
+@import 'variable.styl'
+@import 'base.styl'
+.resetEditor
+  padding 10px
+  p
+    line-height 30px
+  blockquote
+    border-left: 4px solid #ccc;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    padding-left: 16px;
+  .ql-syntax
+    line-height 22px
+    background-color $color-back-black_1
+    color $color-text-white_0
+    padding 0 10px
+    border-radius 3px
+  .ql-size-small
+    font-size: 0.75em
+  .ql-size-large
+    font-size: 1.5em
+  .ql-size-huge
+    font-size: 2.5em
+  h1
+    font-size: 2em
+  h2
+    font-size: 1.5em
+  h3
+    font-size: 1.17em
+  h4
+    font-size: 1em
+  h5
+    font-size: 0.83em
+  h6
+    font-size: 0.67em
+  .ql-font-serif
+    font-family: Georgia, Times New Roman, serif
+  .ql-font-monospace
+    font-family: Monaco, Courier New, monospace
+  .ql-align-center
+    text-align: center
+  .ql-align-right
+    text-align: right
+  a
+    text-decoration: underline
+    color: #06c
+  sup,
+  sub
+    font-size 0.5em
+  sup
+    position relative
+    top -3px
+  ol
+    padding-left 3em
+  ul
+    padding-left calc(3em - 10px)
+  ol>li
+    list-style-type: decimal
+  ul>li
+    &:before
+      content: "."
+      margin-right 7px

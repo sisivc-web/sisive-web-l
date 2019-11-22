@@ -1,0 +1,163 @@
+@import "variable.styl"
+
+body, html
+  line-height: 1
+  font-family: 'PingFang SC', 'STHeitiSC-Light', 'Helvetica-Light', arial, sans-serif, 'Droid Sans Fallback'
+  // user-select: none
+  -webkit-tap-highlight-color: transparent
+  background: $color-back-white_0
+  color: $color-text-black_0
+  -webkit-font-smoothing: antialiased // 抗锯齿渲染平滑处理
+*
+  box-sizing: border-box
+  
+input, select, textarea
+  outline:none
+
+input:-webkit-autofill
+  -webkit-box-shadow: 0 0 0 1000px white inset
+
+select::-ms-expand 
+  display: none
+
+button
+  outline:none
+  cursor: pointer
+  
+.flex
+  display: -webkit-box
+  display: -webkit-flex
+  display: -ms-flexbox
+  display: flex
+
+.disabled
+  pointer-events: none
+  cursor: default
+  // opacity: 0.6
+
+.colseTouch
+  pointer-events: none
+  cursor: default
+
+.flex-center
+  display: -webkit-box
+  display: -webkit-flex
+  display: -ms-flexbox
+  display: flex
+  justify-content: center
+  align-items: center
+
+.flex-start
+  display: -webkit-box
+  display: -webkit-flex
+  display: -ms-flexbox
+  display: flex
+  justify-content: flex-start
+  align-items: center
+
+.flex-end
+  display: -webkit-box
+  display: -webkit-flex
+  display: -ms-flexbox
+  display: flex
+  justify-content: flex-end
+  align-items: center
+
+.flex-around
+  display: -webkit-box
+  display: -webkit-flex
+  display: -ms-flexbox
+  display: flex
+  justify-content: space-around
+  align-items: center
+
+.flex-between
+  display: -webkit-box
+  display: -webkit-flex
+  display: -ms-flexbox
+  display: flex
+  justify-content: space-between
+  align-items: center
+
+.flex-row
+  flex-direction: row
+
+.flex-column
+  flex-direction: column
+
+.flex-top
+  align-items: flex-start
+
+.flex-bottom
+  align-items: flex-end
+
+.flex-baseline
+  align-items: baseline
+
+.pointer
+  cursor: pointer
+
+.no-warp
+	// text-overflow: ellipsis
+	// overflow: hidden d
+	white-space: nowrap
+
+/**  以下为element-ui覆盖样式 **/
+.personal-data
+  .el-input__inner
+    border: 1px solid $color-layer-gray_3 !important
+    width: 450px !important
+    border-radius: 2px !important
+  .el-icon-caret-top:before
+    color: $color-layer-gray_5 !important
+/** 以下为table 样式**/
+.m-table-div
+  width: 100%
+  overflow: auto
+  margin-top: 30px
+  table
+    color: $color-back-black_1
+    min-width: 100%
+    border: 1px solid $color-layer-gray_3
+    border-bottom: 0px
+    border-collapse: separate
+    thead
+      background-color: $color-back-gray_6
+      th
+        @extend .no-warp
+        color: $color-text-black_5
+        font-size: $font-size-level_2
+        padding: 0 20px
+        font-weight: bold
+        height: 40px
+        text-align: center
+        vertical-align: middle
+        .label
+          position: relative
+          top: -3px
+          left: 2px
+          color: red
+    tbody
+      font-size: $font-size-level_2
+      tr
+        &:hover
+          background-color: $color-back-blue_2
+        td
+          color: $color-text-black_4
+          font-size: $font-size-level_2
+          text-align: center
+          vertical-align: middle
+          padding: 0px 20px
+          height: 40px
+          border-top: 1px solid $color-layer-gray_3
+          border-bottom: 1px solid rgba(0, 0, 0, 0)
+        &:last-of-type
+          td
+            border-bottom: 1px solid $color-layer-gray_3
+      .lightTr
+        td
+          border-top: 1px solid $color-layer-blue_0 !important
+          border-bottom: 1px solid $color-layer-blue_0 !important
+      .lightTrNext
+          td
+            border-top: 1px solid rgba(0, 0, 0, 0) !important
