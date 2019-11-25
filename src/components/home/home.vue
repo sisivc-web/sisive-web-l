@@ -30,15 +30,17 @@
       </div> -->
       <m-anchor :contentDivClass="'home-anchor-container'" :anchorItem="'anchor-item'" :subNavList="[$t('subNavs.news'), $t('subNavs.awardMember'), $t('subNavs.judges'), $t('subNavs.contestant'), $t('subNavs.artist'), $t('subNavs.partner')]"></m-anchor>
       <div class="home-anchor-container">
-        <div class="block news-div anchor-item" >
+        <home-item-solt :itemName="'news-div'" :title="$t('newsList.new')" :isShowMore="true" :more="$t('newsList.more')">
+          <div slot="detail">
+        <!-- <div class="block news-div anchor-item" >
           <div class="header">
-            <!-- <p class="little"><span>2018</span>&nbsp;SISIVC</p> -->
+            <p class="little"><span>2018</span>&nbsp;SISIVC</p>
             <h3 class="title">{{$t("newsList.new")}}</h3>
             <div class="more">
               {{$t("newsList.more")}}
               <div class="arrow"></div>
             </div>
-          </div>
+          </div> -->
           <div class="details">
             <el-row>
               <el-col :span="12" v-for="(item, index) in newsList.slice(0, 1)" :key="index" class="left">
@@ -53,7 +55,7 @@
                   </div>
                   <el-card class="box-card award-list" :body-style="{ padding: '15px 0', paddingLeft: '0px',
       paddingRight: '0px' }">
-                    <div v-for="(el, i) in awardUserList" :key="i" style="font-size:14px;margin-bottom:10px">
+                    <div v-for="(el, i) in awardUserList" :key="i" style="font-size:13px;margin-bottom:10px;color: #4c4948;">
                       {{ el.awardName + '：' + el.userName + '（' + el.country + '）' }}
                     </div>
                   </el-card>
@@ -76,10 +78,14 @@
             </el-row>
           </div>
         </div>
-        <div class="block award-div anchor-item">
+        </home-item-solt>
+        <!-- </div> -->
+        <home-item-solt :itemName="'award-div'" :title="$t('prizeWinners')" :isShowMore="false">
+          <div slot="detail">
+        <!-- <div class="block award-div anchor-item">
           <div class="header">
             <h3 class="title">{{$t("prizeWinners")}}</h3>
-          </div>
+          </div> -->
           <div class="details">
             <el-row>
               <el-col :span="10" class="left">
@@ -104,13 +110,14 @@
               <el-col :span="14" class="right">
                 <transition name="fade">
                 <a href="javascript:;" class="animation hover-animation" style="display:block;width:calc(100% - 40px);height:auto;overflow:hiddden;margin-left:40px">
-                  <img :src="awardUserImgUrl" ref="awardImage" style="width:100%;height:auto;" class="award-img">
+                  <img :src="awardUserImgUrl" :alt="awardUserImgUrl" ref="awardImage" style="width:100%;height:auto;" class="award-img">
                 </a>
                 </transition>
               </el-col>
             </el-row>
           </div>
-        </div>
+          </div>
+        </home-item-solt>
         <!-- <div class="block award-div">
           <div class="header">
             <p class="little"><span>2018</span>&nbsp;SISIVC</p>
@@ -139,25 +146,22 @@
               </el-col>
             </el-row>
           </div>
-        </div> -->
-        <!-- <home-item-solt :itemName="'member-div'" :title="$t('judges')" :isShowMore="false">
-          <div solt="detail">
-            <div class="details">
-              <el-row>
-                <el-col :span="6" v-for="(item, index) in judgesList" :key="index">
-                  <member-item :item="item"></member-item>
-                </el-col>
-              </el-row>
-            </div>
-            <el-row>
-              <el-col :span="24">
-                <div :class="['more-div', 'judgesAnimationName']" @click="moreClick('judges')">
-                  <img src="static/image/sisivc/arrow2.png">
-                </div>
-              </el-col>
-            </el-row>
+        -->
+        <home-item-solt :itemName="'member-div'" :title="$t('judges')" :isShowMore="false">
+          <div slot="detail">
+            <member-container :data="judgesListSource" :typeName="'judges'"></member-container>
           </div>
-        </home-item-solt> -->
+        </home-item-solt>
+        <home-item-solt :itemName="'member-div'" :title="$t('players')" :isShowMore="false">
+          <div slot="detail">
+            <member-container :data="playersListSource" :typeName="'players'"></member-container>
+          </div>
+        </home-item-solt>
+        <home-item-solt :itemName="'member-div'" :title="$t('artists')" :isShowMore="false">
+          <div slot="detail">
+            <member-container :data="artistsListSource" :typeName="'artists'"></member-container>
+          </div>
+        </home-item-solt>
         <!-- <div class="block member-div anchor-item">
           <div class="header">
             <h3 class="title">{{$t("judges")}}</h3>
@@ -177,7 +181,7 @@
             </el-col>
           </el-row>
         </div> -->
-        <div class="block member-div anchor-item">
+        <!-- <div class="block member-div anchor-item">
           <div class="header">
             <h3 class="title">{{$t("players")}}</h3>
           </div>
@@ -200,10 +204,6 @@
             </el-col>
           </el-row>
         </div>
-        <!-- <home-item-solt :itemName="'member-div'" :title="$t('artists')" :isShowMore="false">
-          <div solt="detail">
-          </div>
-        </home-item-solt> -->
         <div class="block member-div anchor-item">
           <div class="header">
             <h3 class="title">{{$t("artists")}}</h3>
@@ -226,10 +226,10 @@
               <div :class="['more-div', animationName]" @click="moreClick('judges')"><img src="static/image/sisivc/arrow2.png"></div>
             </el-col>
           </el-row>
-        </div>
-        <!-- <home-item-solt :itemName="'parter-div'" :title="$t('partners')" :isShowMore="false">
-          <div solt="detail">
-            <div class="sub-item" style="margin-bottom: 50px;">
+        </div> -->
+        <home-item-solt :itemName="'parter-div'" :title="$t('partners')" :isShowMore="false">
+          <div slot="detail">
+            <!-- <div class="sub-item" style="margin-bottom: 50px;">
               <h3 class="sub-h3">首席合作伙伴</h3>
               <div style="border-top: 1px solid #80808030;padding-top:40px;">
                 <img src="static/image/sisivc/hezuo/1-1.jpg">
@@ -245,23 +245,27 @@
                 </p>
                 <p>太平洋保险以“做一家负责任的保险公司”为使命，以“诚信天下，稳健一生，追求卓越”为企业核心价值观，将企业社会责任全面融入公司的商业模式中，为客户、股东、员工、行业、社会、环境等利益相关方创造共享价值，受到广泛赞誉，连续六年获中国企业社会责任榜“杰出企业奖”。</p>
               </div>
-            </div>
-            <div class="sub-item">
-              <h3 class="sub-h3">白银级赞助</h3>
-              <div style="padding-top:0;">
+            </div> -->
+            <div class="sub-item" v-for="(el,i) in parterList" :key="i">
+              <h3 class="sub-h3">{{el.level}}</h3>
+              <div style="border-top: 1px solid #80808030;padding-top:40px;" v-if="el.levelId === 1">
+                <img :src="el.partnerVoList[0].logoUrl">
+                <div v-html="el.partnerVoList[0].description" class="desp"></div>
+              </div>
+              <div style="padding-top:0;" v-if="el.levelId > 1">
                 <el-row>
-                  <el-col :span="6" v-for="(item, index) in aParterList" :key="index">
+                  <el-col :span="el.levelId === 2 ? 6 : 3" v-for="(item, index) in el.partnerVoList" :key="index">
                     <el-card :body-style="{ padding: '0px', paddingBottom: '40px' }">
                       <div class="logo" style="background-image: url('static/image/sisivc/hezuo/0.png');">
-                        <img :src="item.imgUrl" style="width:100%;height:auto;">
+                        <img :src="item.logoUrl" style="width:100%;height:auto;">
                       </div>
-                      <div class="title">{{item.name}}</div>
+                      <div class="title">{{item.title}}</div>
                     </el-card>
                   </el-col>
                 </el-row>
               </div>
             </div>
-            <div class="sub-item">
+            <!-- <div class="sub-item">
               <h3>合作伙伴</h3>
               <div style="padding-top:0;">
                 <el-row>
@@ -305,10 +309,10 @@
                   </el-col>
                 </el-row>
               </div>
-            </div>
+            </div> -->
           </div>
-        </home-item-solt> -->
-        <div class="block parter-div anchor-item">
+        </home-item-solt>
+        <!-- <div class="block parter-div anchor-item">
           <div class="header">
             <h3 class="title">{{$t("partners")}}</h3>
           </div>
@@ -389,7 +393,7 @@
               </el-row>
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
     <!-- <m-anchor></m-anchor> -->
@@ -399,11 +403,13 @@
 <script type="text/ecmascript-6">
 import {kpiLogin, kpiHome} from 'apx'
 import MAnchor from 'components/m-anchor/m-anchor'
+import MemberContainer from 'components/commonComponents/member-container'
 import MemberItem from 'components/commonComponents/member-item'
 import HomeItemSolt from 'components/home/home-item-solt'
 export default {
   components: {
     MAnchor,
+    MemberContainer,
     MemberItem,
     HomeItemSolt
   },
@@ -478,7 +484,10 @@ export default {
         { awardName: '最佳中国作品演绎奖 —— “太平洋之星”', userName: '奥尔加·什劳布科娃', vedioUrl: '', imgUrl: 'static/image/sisivc/award/7.jpg', coverImgUrl: 'static/image/sisivc/award/0.jpg', country: '捷克'},
         { awardName: '艾萨克·斯特恩奖 —— 人文精神奖', userName: '周颖', vedioUrl: '', imgUrl: 'static/image/sisivc/award/0.jpg', coverImgUrl: 'static/image/sisivc/award/0.jpg', country: '美国'},
       ],
-      awardUserImgUrl: 'static/image/sisivc/award/0.jpg',
+      awardUserImgUrl: '',
+      // awardUserImgUrl: 'static/image/sisivc/award/0.jpg',
+      nowClickAward: '',
+      finalObj: [],
       judgesListSource: [
         {name: '大卫·斯特恩', country: '美国', imageUrl: 'static/image/sisivc/pingwei/1.jpg'},
         {name: '徐惟聆', country: '中国', imageUrl: 'static/image/sisivc/pingwei/2.jpg'},
@@ -492,6 +501,27 @@ export default {
         {name: '李伟纲', country: '美国', imageUrl: 'static/image/sisivc/pingwei/2.jpg'},
         {name: '吕思清', country: '中国', imageUrl: 'static/image/sisivc/pingwei/3.jpg'},
         {name: '多拉·施瓦茨贝尔格', country: '奥地利', imageUrl: 'static/image/sisivc/pingwei/2.jpg'},
+      ],
+      artistsListSource: [
+        {name: '大卫·斯特恩', country: '美国', imageUrl: 'static/image/sisivc/pingwei/1.jpg'},
+        {name: '徐惟聆', country: '中国', imageUrl: 'static/image/sisivc/pingwei/2.jpg'},
+        {name: '扎哈尔·布朗', country: '扎哈尔·布朗', imageUrl: 'static/image/sisivc/pingwei/3.jpg'},
+        {name: '马丁·坎贝尔-怀特', country: '英国', imageUrl: 'static/image/sisivc/pingwei/4.jpg'},
+        {name: '格伦·迪克特罗', country: '美国', imageUrl: 'static/image/sisivc/pingwei/1.jpg'},
+      ],
+      playersListSource: [
+        {name: '斯雷滕·克里斯蒂奇', country: '塞尔维亚/德国', imageUrl: 'static/image/sisivc/pingwei/1.jpg'},
+        {name: '李伟纲', country: '美国', imageUrl: 'static/image/sisivc/pingwei/2.jpg'},
+        {name: '吕思清', country: '中国', imageUrl: 'static/image/sisivc/pingwei/3.jpg'},
+        {name: '多拉·施瓦茨贝尔格', country: '奥地利', imageUrl: 'static/image/sisivc/pingwei/2.jpg'},
+        {name: '菲利普·塞策', country: '美国', imageUrl: 'static/image/sisivc/pingwei/3.jpg'},
+        {name: '马克西姆·文格洛夫', country: '摩洛哥', imageUrl: 'static/image/sisivc/pingwei/4.jpg'},
+        {name: '俞丽拿', country: '中国', imageUrl: 'static/image/sisivc/pingwei/1.jpg'},
+        {name: '多拉·施瓦茨贝尔格', country: '奥地利', imageUrl: 'static/image/sisivc/pingwei/2.jpg'},
+        {name: '菲利普·塞策', country: '美国', imageUrl: 'static/image/sisivc/pingwei/3.jpg'},
+        {name: '马克西姆·文格洛夫', country: '摩洛哥', imageUrl: 'static/image/sisivc/pingwei/4.jpg'},
+        {name: '俞丽拿', country: '中国', imageUrl: 'static/image/sisivc/pingwei/1.jpg'},
+        {name: '多拉·施瓦茨贝尔格', country: '奥地利', imageUrl: 'static/image/sisivc/pingwei/2.jpg'},
         {name: '菲利普·塞策', country: '美国', imageUrl: 'static/image/sisivc/pingwei/3.jpg'},
         {name: '马克西姆·文格洛夫', country: '摩洛哥', imageUrl: 'static/image/sisivc/pingwei/4.jpg'},
         {name: '俞丽拿', country: '中国', imageUrl: 'static/image/sisivc/pingwei/1.jpg'},
@@ -500,6 +530,7 @@ export default {
       artistsList: [],
       playersList: [],
       animationName: '',
+      parterList: [],
       aParterList: [
         {name: '中国海外能源有限公司', imgUrl: 'static/image/sisivc/hezuo/2-1.jpg'},
       ],
@@ -578,7 +609,10 @@ export default {
   methods: {
     awardItemLoad() {
       this.$nextTick(() => {
-        this.awardItemHeight = parseInt(this.$refs.awardImage.height - 9) / 8
+        let that = this
+        setTimeout(() => {
+          that.awardItemHeight = parseInt(that.$refs.awardImage.height - 9) / 8
+        }, 0)
       })
     },
     imgLoad() {
@@ -604,15 +638,12 @@ export default {
 
     },
     handleChange(val) {
-      this.awardUserImgUrl = val ? this.awardUserList[val - 1].imgUrl : this.awardUserList[0].coverImgUrl
+      this.nowClickAward = val ? val : this.nowClickAward
+      this.awardUserImgUrl = this.nowClickAward ? this.awardUserList[this.nowClickAward - 1].imgUrl : this.finalObj[0].imgUrl
     },
     moreClick(flag) {
       this[`${flag}List`] = this[`${flag}List`] .length > 8 ? this[`${flag}ListSource`].slice(0,8) : this[`${flag}ListSource`]
       this[`${flag}AnimationName`] = this[`${flag}List`].length > 8 ? 'rotate' : ''
-      // if(flag === 'judges') {
-      //   this.judgesList = this.judgesList.length > 8 ? this.judgesListSource.slice(0,8) : this.judgesListSource
-      //   this.judgesAnimationName = this.judgesList.length > 8 ? 'rotate' : ''
-      // }
     },
     _change(index) {
       this.carousellistIndex = index
@@ -637,6 +668,7 @@ export default {
         let tempPlayers = results.players
         let tempJurys = results.jurys
         let tempArtists = results.artists
+        let tempPartnerVos = results.partnerVos
         let tempEndings = results.endings
 
         this.carousellist = tempBanners.map(el => {
@@ -666,14 +698,39 @@ export default {
             country: el.playerNationality,
           }
         })
+        console.log('this.awardUserList--->', this.awardUserList)
+        this.finalObj = this.awardUserList.splice(this.awardUserList.length - 1, 1)
+        console.log('this.finalObj--->', this.finalObj[0].imgUrl)
+        this.$nextTick(() => {
+          this.awardUserImgUrl = this.finalObj[0].imgUrl
+          this.awardItemLoad()
+        })
 
-        // this.judgesListSource = tempJurys.map(el => {
-        //   return {
-        //     name: el.userName,
-        //     imageUrl: el.image,
-        //     country: el.nationality,
-        //   }
-        // })
+        this.judgesListSource = tempJurys.map(el => {
+          return {
+            name: el.userName,
+            imageUrl: el.image,
+            country: el.nationality,
+          }
+        })
+
+        this.playersListSource = tempPlayers.map(el => {
+          return {
+            name: el.userName,
+            imageUrl: el.image,
+            country: el.nationality,
+          }
+        })
+
+        this.artistsListSource = tempArtists.map(el => {
+          return {
+            name: el.userName,
+            imageUrl: el.image,
+            country: el.nationality,
+          }
+        })
+
+        this.parterList = tempPartnerVos
 
 
       })
@@ -807,10 +864,10 @@ export default {
           @extend .flex-row
           @extend .flex-between
           .time
-            color: #999;
+            color: #a0a0a1;
             font-size: 12px;
           .button
-            color: #808080;
+            color: #a0a0a1;
             font-size: 12px;
             margin: 0;
             text-align: right;
@@ -931,38 +988,38 @@ export default {
               // >>>.el-collapse-item__wrap
               //   background-color: #fff;
               //   border-bottom: none;
-    .member-div
-      .el-row
-        margin-left: -20px;
-        margin-right: -20px;
-        transition: height .3s ease-in-out;
-        .el-card
-          margin-bottom: 40px;
-          padding-left: 20px;
-          padding-right: 20px;
-          border: none;
-          border-radius: 0;
-          box-shadow: none;
-        .more-div
-          background-color: #222;
-          width: 60px;
-          height: 60px;
-          margin: 0 auto;
-          line-height: 60px;
-          border-radius: 30px;
-          text-align: center;
-          margin-top: 0;
-          margin-bottom: 30px;
-        .rotate
-          -webkit-transform: rotate(180deg);
-          -moz-transform: rotate(180deg);
-          -o-transform: rotate(180deg);
-          -ms-transform: rotate(180deg);
-          transform: rotate(180deg);
-          -webkit-transition: -webkit-transform .25s ease-in-out;
-          transition: -webkit-transform .25s ease-in-out;
-          transition: transform .25s ease-in-out;
-          transition: transform .25s ease-in-out,-webkit-transform .25s ease-in-out;
+    // .member-div
+    //   .el-row
+    //     margin-left: -20px;
+    //     margin-right: -20px;
+    //     transition: height .3s ease-in-out;
+    //     .el-card
+    //       margin-bottom: 40px;
+    //       padding-left: 20px;
+    //       padding-right: 20px;
+    //       border: none;
+    //       border-radius: 0;
+    //       box-shadow: none;
+    //     .more-div
+    //       background-color: #222;
+    //       width: 60px;
+    //       height: 60px;
+    //       margin: 0 auto;
+    //       line-height: 60px;
+    //       border-radius: 30px;
+    //       text-align: center;
+    //       margin-top: 0;
+    //       margin-bottom: 30px;
+    //     .rotate
+    //       -webkit-transform: rotate(180deg);
+    //       -moz-transform: rotate(180deg);
+    //       -o-transform: rotate(180deg);
+    //       -ms-transform: rotate(180deg);
+    //       transform: rotate(180deg);
+    //       -webkit-transition: -webkit-transform .25s ease-in-out;
+    //       transition: -webkit-transform .25s ease-in-out;
+    //       transition: transform .25s ease-in-out;
+    //       transition: transform .25s ease-in-out,-webkit-transform .25s ease-in-out;
     .parter-div
       padding-bottom:30px;
       .sub-item
@@ -976,11 +1033,12 @@ export default {
         .sub-h3
           padding-top: 40px;
           padding-bottom: 40px;
-        p
-          font-size: 12px;
+        p, .desp
+          font-size: 13px;
           margin: 1.6rem 0;
           line-height: 20px;
-          color: rgb(160, 160, 161);
+          color: #4c4948;
+          text-align:justify;
         .el-row
           border: none;
           .el-card
@@ -991,7 +1049,8 @@ export default {
               text-align: center;
               width: 100%;
               margin-top: 10px;
-              font-size: 12px;
+              font-size: 13px;
+              color: #4c4948;
 .consultant
   @extend .flex
   @extend .flex-row
@@ -1150,6 +1209,7 @@ export default {
       ellipsis(2)
       word-break keep-all
 a.animation
+  line-height: 0;
   img
     -webkit-transition: -webkit-transform 1s;
     -moz-transition: -moz-transform 1s;

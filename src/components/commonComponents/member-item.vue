@@ -23,6 +23,7 @@ export default {
   },
   methods: { 
     _gotoDetails(memberId) {
+      debugger
       this.$router.push({path: '/memberDetail', query: {memberId: memberId}})
     },
   }
@@ -39,6 +40,22 @@ export default {
     border: none
     border-radius: 0
     box-shadow: none
+    a.animation
+      line-height: 0;
+      img
+        -webkit-transition: -webkit-transform 1s;
+        -moz-transition: -moz-transform 1s;
+        -o-transition: -o-transform 1s;
+        transition: transform 1s;
+    a.hover-animation
+      overflow: hidden;
+      display: block;
+    a.hover-animation:hover img
+      -webkit-transform: scale(1.05);
+      -moz-transform: scale(1.05);
+      -ms-transform: scale(1.05);
+      -o-transform: scale(1.05);
+      transform: scale(1.05);
     .operate
         @extend .flex
         @extend .flex-row

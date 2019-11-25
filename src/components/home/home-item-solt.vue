@@ -8,16 +8,28 @@
         <div class="arrow"></div>
       </div>
     </div>
-    <solt name="detail"></solt>
+    <slot name="detail"></slot>
   </div>
 </template>
 <script type="text/ecmascript-6">
 export default {
   props: {
-    itemName: 'award-div',
-    title: '标题',
-    isShowMore: false,
-    more: '更多'
+    itemName: {
+      type: String,
+      default: 'award-div',
+    },
+    title: {
+      type: String,
+      default: '标题',
+    },
+    isShowMore: {
+      type: Boolean,
+      default: false,
+    },
+    more: {
+      type: String,
+      default: '更多',
+    },
   }
 }
 </script>
@@ -52,8 +64,8 @@ export default {
       @extend .flex-row
       @extend .flex-end
       height 16px
-      color $color-text-gray_2
-      font-size $font-size-level_2
+      color #a0a0a1
+      font-size 12px
       position absolute
       right 0
       bottom: 0
