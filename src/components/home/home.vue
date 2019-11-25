@@ -1265,7 +1265,19 @@ a.hover-animation:hover img
     }
 }
 /* 大屏幕 ：大于等于1200px*/
-@media (min-width: 1400px) {
+@media (min-width: 1920px)  {
+  .container .other .block {
+    width: 1560px;
+  }
+  .sub-nav ul {
+    width: 1560px;
+  }
+  .carousel{
+    width: 1920px!important;
+    margin: 0 auto;
+  }
+}
+@media (min-width: 1400px) and (max-width: 1920px)  {
   .container .other .block {
     width: calc(100% - 360px);
     min-width: 1140px;

@@ -256,7 +256,13 @@ export default {
     }
 }
 /* 大屏幕 ：大于等于1200px*/
-@media (min-width: 1400px) {
+@media (min-width: 1920px)  {
+  .sub-nav {
+    width: 1920px;
+    margin: 0 auto;
+  }
+}
+@media (min-width: 1400px) and (max-width: 1920px) {
   .sub-nav ul {
     width: calc(100% - 360px);
     min-width: 1140px;

@@ -135,19 +135,15 @@ export default {
     }
 }
 /* 大屏幕 ：大于等于1200px*/
-@media (min-width: 1400px) {
+@media (min-width: 1920px)  {
+  .nav .content {
+    width: 1560px;
+  }
+}
+@media (min-width: 1400px) and (max-width: 1920px)  {
   .nav .content {
     width: calc(100% - 360px);
     min-width: 1140px;
   }
-    // .news-div .left{
-    //     width:540px;
-    // }
-    // .news-div .right{
-    //     width:calc( 100% -540px);
-    // }
-    // .news-img {
-    //     width:100%;height: auto;
-    // }
 }
 </style>
