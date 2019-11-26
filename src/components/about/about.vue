@@ -47,7 +47,7 @@
        </div>
        <div class="perArard">
          <ul class="awardList">
-          <li v-for="(item,index) in awardsVoList.awardsVoList" :key="index" v-if="item.isGroup == 1">
+          <li v-for="(item,index) in awardsVoList.awardsVoList" :class="{'on':receiveIndex == index}" :key="index" v-if="item.isGroup == 1" @mouseenter="liShowHandle(index)">
              <p class="firstAr" v-if="item.tag">特设奖项</p>
              <h5>{{item.awardName}}</h5>
              <p>{{item.bonus}}</p>
@@ -126,8 +126,7 @@ export default {
       kpiAboutUs(param, this).then((res) => {
       // axios.get('sisivc/competition/competitionDetails?language=zh&id=1').then(function(res){
   
-        let data = res.data.data
-        console.log(data.committeeVoList);
+        let data = res.data.data        
         _this.awardsVoList = data
       })
     }
@@ -136,68 +135,67 @@ export default {
 </script>
 
 <style>
-  .containerA{width: 100%;}
-  .containerA .other .block {
-    width: 1200px;
-    margin: 0 auto;
-    padding: 50px 0 0;
-  }
-  @media (min-width: 1400px){
-    .containerA .other .block {
-        width: calc(100% - 360px);
-        min-width: 1200px;
-      }
-   }
-  .flexBox{display: flex;padding-bottom: 53px;}
-  .mainBox{width: 100%;}
-  .aItemG{width:500px;margin-right: 80px;}
-  .aItemG .img img{width: 500px;}
-  .aItemG h3,.nInfoNameSpec h3{padding:0 0 158px 0; color: #1e2022;font-size: 24px; font-weight: 700;}
-  .aInfo{width: 100%}
-  .aInfo p,.boxPanel .ItemLst p,.GamePlace .ItemLst p{font-size: 13px; margin: 1.6rem 0; line-height: 20px; color: #4c4948; text-align: justify;}
-  .nInfoNameSpec{margin:8rem 0 0 0}
-  .nInfoNameSpec h3{font-size:20px; padding:0 0 24px 0}
-
-  .downloadPoint{width:73px;margin:70px auto 90px; text-align: center;}
-  .downloadPoint .download{text-align: center;  margin:0 auto; background: url('~static/image/sisivc/about/img1.png') no-repeat -64px 0; width: 64px;height: 64px; display: block; background-size: cover;}
-  .downloadPoint .download:hover{background: url('~static/image/sisivc/about/img1.png') no-repeat;}
-  .downloadPoint p{padding-top: 8px;font-size: 12px; line-height: 22px; color: #a0a0a1; text-align: justify;}
-  /*---织织架构----*/
-  .ItemV{padding:65px 0 0 0}
-  .ItemV h3{color: #1e2022;font-size: 24px; font-weight: 700;padding-bottom: 35px;}
-  .ItemDl .ulLIst{display: grid;grid-template-columns:repeat(auto-fit,minmax(50px,1fr));margin-bottom:0;padding: 35px 0;width: 100%;padding: 35px 0;border-top: 1px solid hsla(0,0%,50%,.19)!important;border-bottom: 1px solid hsla(0,0%,50%,.19)!important;}
-  .ItemDl .ulLIst li{color: #a0a0a1;}
-  .ItemDl .ulLIst li h5{font-size: 16px;color: #222; font-weight: 700; padding:0 0 15px 0;}
-  .ItemDl .ulLIst li p{color: #a0a0a1;
-    font-size: 12px;}
-  /*---奖项*/
-  .ItemDl .awardList{display: grid;grid-template-columns:repeat(auto-fit,minmax(50px,1fr)); margin-bottom: 35px; grid-gap:60px;width: 100%;padding: 35px 0 0; border-top: 1px solid hsla(0,0%,50%,.19)!important; }
-  .ItemDl .awardList li,.perArard .awardList li{color: #a0a0a1; position: relative;text-align: center; padding-bottom: 35px; flex: 1; border-bottom: 1px solid hsla(0,0%,50%,.19)!important;}
-  .ItemDl .awardList li h5,.perArard .awardList li h5{font-size: 16px;color: #222; font-weight: 700; padding:0 0 15px 0;}
-  .ItemDl .awardList li p,.perArard .awardList p{font-size: 12px;line-height: 22px;color: #a0a0a1;}
-  .ItemDl .awardList li:after{content: '';display: block;width: 8%;position: absolute;background: #fff; right: 0;bottom: -38px; height: 5px;}
-  .ItemDl .awardList li.on:after{border-bottom: 1px solid #1e2022;width: 100%; bottom: -1px;position: absolute; left: 0;}
-  .colspanRow{display: grid;grid-template-columns:repeat(auto-fit,minmax(50px,1fr));margin-bottom: 0;padding-top: 10px;}
-  .colspanRow .left .ff{clear: both; padding:15px 0}
-  .colspanRow .left label,.colspanRow .left h5{font-size: 14px; color: #222;font-weight: 700; width: 110px; padding: 0 0 15px 0; float: left;}
-  .colspanRow .left .secName{float: left;color:#a0a0a1}
-  .colspanRow .left .secName p{padding-bottom: 8px;}
-  .colspanRow .left .ff h5{font-size: 16px;color: #222; font-weight: 700; display: inline-block;}
-
-  .perArard .awardList{display: grid;grid-template-columns:repeat(auto-fit,minmax(50px,1fr));margin-bottom: 55px;grid-gap:60px;padding: 35px 0;}
-  .ItemDl .awardList li{cursor: pointer;}
-  .perArard .awardList li p.firstAr{position: absolute; left: 50%; margin-left: -32px;top: -30px; font-size: 16px; color: #646464;}
-  .perArard .awardList li h5{padding-top: 20px;}
-  /* ----计分规则 */
-  .Point h2,.GamePlace h2{color: #1e2022;font-size: 24px; font-weight: 700;padding-bottom: 30px;}
-  .boxPanel {display: grid;grid-template-columns:repeat(auto-fit,minmax(50px,1fr));margin-bottom: 55px; grid-gap:60px}
-  .boxPanel .ItemLst h3{color: #1e2022; position: relative;text-align: left; font-size: 20px; font-weight: 700; padding-bottom: 20px; flex: 1; border-bottom: 1px solid hsla(0,0%,50%,.19)!important;}
-  .ruleContent{padding-top: 20px;}
-  .ruleContent span{display: inline-block;padding-left: 20px; line-height: 28px;}
-  .ruleContent dl dd,.ruleContent dl dt{ padding:8px 0 8px 15px; font-size: 13px; color: #4c4948;}
-  .ruleContent dl dt{padding-left:0}
-  /* ----比赛场地 */
-  .GamePlace .ItemLst h3{color: #222; position: relative;text-align: left; font-size: 14px; font-weight: 700; padding-bottom: 20px; }
-  .boxImg{position: relative; width: 100%;height: 100%;}
-  .boxImg img{width: 100%;height: 100%;}
+	.containerA{width: 100%;}
+	.containerA .other .block {
+	  width: 1200px;
+	  margin: 0 auto;
+	  padding: 50px 0 0;
+	}
+	@media (min-width: 1400px){
+	  .containerA .other .block {
+	      width: calc(100% - 360px);
+	      min-width: 1200px;
+	    }
+	 }
+	.flexBox{display: flex;padding-bottom: 53px;}
+	.mainBox{width: 100%;}
+	.aItemG{width:500px;margin-right: 80px;}
+	.aItemG .img img{width: 500px;}
+	.aItemG h3,.nInfoNameSpec h3{padding:0 0 158px 0; color: #1e2022;font-size: 24px; font-weight: 700;}
+	.aInfo{width: 100%}
+	.aInfo p,.boxPanel .ItemLst p,.GamePlace .ItemLst p{font-size: 14px; margin: 1.6rem 0; line-height: 24px; color: #4c4948; text-align: justify;}
+	.nInfoNameSpec{margin:8rem 0 0 0}
+	.nInfoNameSpec h3{font-size:20px; padding:0 0 24px 0}
+	
+	.downloadPoint{width:85px;margin:70px auto 90px; text-align: center;}
+	.downloadPoint .download{text-align: center;  margin:0 auto; background: url('~static/image/sisivc/about/img1.png') no-repeat -64px 0; width: 64px;height: 64px; display: block; background-size: cover;}
+	.downloadPoint .download:hover{background: url('~static/image/sisivc/about/img1.png') no-repeat;}
+	.downloadPoint p{padding-top: 8px;font-size: 14px; color: #4c4948; line-height: 22px;  text-align: justify;}
+	/*---织织架构----*/
+	.ItemV{padding:65px 0 0 0}
+	.ItemV h3{color: #1e2022;font-size: 24px; font-weight: 700;padding-bottom: 35px;}
+	.ItemDl .ulLIst{display: grid;grid-template-columns:repeat(auto-fit,minmax(50px,1fr));margin-bottom:0;padding: 35px 0;width: 100%;padding: 35px 0;border-top: 1px solid hsla(0,0%,50%,.19)!important;border-bottom: 1px solid hsla(0,0%,50%,.19)!important;}
+	.ItemDl .ulLIst li{color: #a0a0a1;}
+	.ItemDl .ulLIst li h5{font-size: 18px;color: #222; font-weight: 700; padding:0 0 15px 0;}
+	.ItemDl .ulLIst li p{color: #4c4948;line-height: 24px; font-size: 14px;}
+	/*---奖项*/
+	.ItemDl .awardList{display: grid;grid-template-columns:repeat(auto-fit,minmax(50px,1fr)); margin-bottom: 35px; grid-gap:60px;width: 100%;padding: 35px 0 0; border-top: 1px solid hsla(0,0%,50%,.19)!important; }
+	.ItemDl .awardList li,.perArard .awardList li{color: #a0a0a1; position: relative;text-align: center; padding-bottom: 35px; flex: 1; border-bottom: 1px solid hsla(0,0%,50%,.19)!important;}
+	.ItemDl .awardList li h5,.perArard .awardList li h5{font-size: 18px;color: #222; font-weight: 700; padding:0 0 15px 0;}
+	.ItemDl .awardList li p,.perArard .awardList p{font-size: 14px;line-height: 22px;color: #4c4948;}
+	.awardList li:after{content: '';display: block;width: 8%;position: absolute;background: #fff; right: 0;bottom: -38px; height: 5px;}
+	.awardList li.on:after{border-bottom: 1px solid #1e2022;width: 100%; bottom: -1px;position: absolute; left: 0;}
+	.colspanRow{display: grid;grid-template-columns:0.33fr 0.33fr;grid-template-rows:auto; padding-top: 10px;}
+	.colspanRow .left .ff{clear: both; padding:15px 0}
+	.colspanRow .left label,.colspanRow .left h5{font-size: 14px; color: #222;font-weight: 700; width: 110px; padding: 0 0 15px 0; float: left;}
+	.colspanRow .left .secName{float: left;color:#4c4948;font-size: 14px;}
+	.colspanRow .left .secName p{padding-bottom: 8px;font-size: 14px;}
+	.colspanRow .left .ff h5{font-size: 18px;color: #222; font-weight: 700; display: inline-block;}
+	
+	.perArard .awardList{display: grid;grid-template-columns:repeat(auto-fit,minmax(50px,1fr));margin-bottom: 55px;grid-gap:60px;padding: 35px 0;}
+	.ItemDl .awardList li{cursor: pointer;}
+	.perArard .awardList li p.firstAr{position: absolute; left: 50%; margin-left: -32px;top: -30px; font-size: 16px; color: #646464;}
+	.perArard .awardList li h5{padding-top: 20px;}
+	/* ----计分规则 */
+	.Point h2,.GamePlace h2{color: #1e2022;font-size: 24px; font-weight: 700;padding-bottom: 30px;}
+	.boxPanel {display: grid;grid-template-columns:repeat(auto-fit,minmax(50px,1fr));margin-bottom: 55px; grid-gap:60px}
+	.boxPanel .ItemLst h3{color: #222; position: relative;text-align: left; font-size: 18px; font-weight: 700; padding-bottom: 20px; flex: 1; border-bottom: 1px solid hsla(0,0%,50%,.19)!important;}
+	.ruleContent{padding-top: 20px;}
+	.ruleContent span{display: inline-block;padding-left: 20px; line-height: 28px;}
+	.ruleContent dl dd,.ruleContent dl dt{ padding:8px 0 8px 15px; font-size: 14px; color: #4c4948;}
+	.ruleContent dl dt{padding-left:0}
+	/* ----比赛场地 */
+	.GamePlace .ItemLst h3{color: #222; position: relative;text-align: left; font-size: 14px; font-weight: 700; padding-bottom: 20px; }
+	.boxImg{position: relative; width: 100%;height: 100%;}
+	.boxImg img{width: 100%;height: 100%;}	
 </style>
