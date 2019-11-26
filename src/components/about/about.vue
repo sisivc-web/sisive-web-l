@@ -98,6 +98,7 @@
 </template>
 
 <script>
+import { kpiAboutUs } from 'apx'
 import MAnchor from 'components/m-anchor/m-anchor'
 export default {
   components: {
@@ -118,7 +119,12 @@ export default {
     },
     showData(){
       let _this = this
-      axios.get('api/competition/competitionDetails?language=zh&id=1').then(function(res){
+      let param = {
+        id: '1',
+        language: JSON.parse(window.localStorage.getItem('immi_language'))
+      }
+      kpiAboutUs(param, this).then((res) => {
+      // axios.get('sisivc/competition/competitionDetails?language=zh&id=1').then(function(res){
   
         let data = res.data.data
         console.log(data.committeeVoList);
