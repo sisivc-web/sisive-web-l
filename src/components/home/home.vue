@@ -135,7 +135,9 @@
         </home-item-solt>
       </div>
     </div>
-    <video src="static/image/sisivc/SISIVC.mp4" width="100%" height="auto" controls="controls" poster="static/image/sisivc/poster.jpg" >您的浏览器不支持 video 标签。</video>
+    <div style="width:100%;overflow:hidden;">
+      <video src="static/image/sisivc/SISIVC.mp4" class="vedio-css" width="100%" height="auto" controls="controls" poster="static/image/sisivc/poster.jpg" >您的浏览器不支持 video 标签。</video>
+    </div>
   </div>
 </template>
 <script type="text/ecmascript-6">
@@ -699,9 +701,12 @@ a.hover-animation:hover img
   .sub-nav ul {
     width: 1560px;
   }
-  .carousel{
+  .carousel, .vedio-css {
     width: 1920px!important;
-    margin: 0 auto;
+    margin: 0 auto!important;
+  }
+  .vedio-css {
+    display: block;
   }
 }
 @media (min-width: 1400px) and (max-width: 1920px)  {
