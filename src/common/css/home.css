@@ -3,7 +3,7 @@
     margin:0;
     padding:0;
     color:#222;
-    font-family: Helvetica, Arial, "Microsoft YaHei", 微软雅黑, SimSun, 宋体, Heiti, 黑体, sans-serif;
+    /* font-family: Helvetica, Arial, "Microsoft YaHei", 微软雅黑, SimSun, 宋体, Heiti, 黑体, sans-serif; */
 }
 li {list-style:none}
 .flex {

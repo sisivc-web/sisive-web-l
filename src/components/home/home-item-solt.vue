@@ -50,12 +50,14 @@ export default {
     position relative
     font-family Helvetica
     .title
-      color: #1e2022;
-      font-size: 24px;
+      // color: #1e2022;
+      // font-size: 24px;
+      color: $color-item-title;
+      font-size: $font-size-item-title;
       font-weight: bold;
     .little
-      font-size: 12px;
-      color: #808080;
+      font-size: $font-size-item-little;
+      color: $color-item-more;
       margin-bottom: 20px;
       margin-top: -20px;
       padding-top: 20px;
@@ -64,8 +66,8 @@ export default {
       @extend .flex-row
       @extend .flex-end
       height 16px
-      color #a0a0a1
-      font-size 12px
+      color $color-item-more
+      font-size $font-size-item-little
       position absolute
       right 0
       bottom: 0
