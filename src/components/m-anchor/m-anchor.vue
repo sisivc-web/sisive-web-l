@@ -257,9 +257,9 @@ export default {
 }
 /* 大屏幕 ：大于等于1200px*/
 @media (min-width: 1920px)  {
-  .sub-nav {
-    width: 1920px;
-    margin: 0 auto;
+  .sub-nav ul {
+    width: 1560px;
+    min-width: 1140px;
   }
 }
 @media (min-width: 1400px) and (max-width: 1920px) {

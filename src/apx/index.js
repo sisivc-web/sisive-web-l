@@ -86,7 +86,6 @@ export function kpiLogin (data = {}, Vue) {
   return Request('/sisivc/user/login', 'post', undefined, data, Vue)
 }
 
-//
 /**
  * 首页信息
  * @param {*语言(en, zh_CN)} language
@@ -94,6 +93,31 @@ export function kpiLogin (data = {}, Vue) {
 export function kpiHome (params = {}, Vue) {
   return Request('/sisivc/home/getHome', 'get', params, undefined, Vue)
 }
+
+/**
+ * 关于我们信息
+ * @param {*语言(en, zh_CN)} language
+ */
+export function kpiAboutUs (params = {}, Vue) {
+  return Request('/sisivc/competition/competitionDetails', 'get', params, undefined, Vue)
+}
+
+/**
+ * 比赛场次详情
+ * @param {*语言(en, zh_CN)} language
+ */
+export function kpiWatchDetail (params = {}, Vue) {
+  return Request('/sisivc/competition/competitionRoundsByDate', 'get', params, undefined, Vue)
+}
+
+/**
+ * 比赛
+ * @param {*语言(en, zh_CN)} language
+ */
+export function kpiWatch (params = {}, Vue) {
+  return Request('/sisivc/competition/Spectators', 'get', params, undefined, Vue)
+}
+
 /**
  * 图片验证码
  */

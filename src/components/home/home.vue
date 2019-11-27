@@ -17,136 +17,84 @@
         </div>
       </div>
       <div class="arrow-div" v-show="!isFixed"></div>
-      <!-- <div :class="['sub-nav']" style="display: none" > -->
-      <!-- <div :class="['sub-nav', isFixed ? 'subNavFixed' : '']" style="display: block" >
-        <ul>
-          <li><a id="index1" class="active" @click="goAnchor('#anchor1')">{{$t("subNavs.news")}}</a></li>
-          <li><a id="index2" @click="goAnchor('#anchor2')">{{$t("subNavs.awardMember")}}</a></li>
-          <li><a id="index3" @click="goAnchor('#anchor3')">{{$t("subNavs.judges")}}</a></li>
-          <li><a id="index4" onclick="goAnchor('#anchor3')">{{$t("subNavs.contestant")}}</a></li>
-          <li><a id="index5" onclick="anchorTo(5, this)">{{$t("subNavs.artist")}}</a></li>
-          <li><a id="index6" onclick="anchorTo(6, this)">{{$t("subNavs.partner")}}</a></li>
-        </ul>
-      </div> -->
       <m-anchor :contentDivClass="'home-anchor-container'" :anchorItem="'anchor-item'" :subNavList="[$t('subNavs.news'), $t('subNavs.awardMember'), $t('subNavs.judges'), $t('subNavs.contestant'), $t('subNavs.artist'), $t('subNavs.partner')]"></m-anchor>
       <div class="home-anchor-container">
         <home-item-solt :itemName="'news-div'" :title="$t('newsList.new')" :isShowMore="true" :more="$t('newsList.more')">
           <div slot="detail">
-        <!-- <div class="block news-div anchor-item" >
-          <div class="header">
-            <p class="little"><span>2018</span>&nbsp;SISIVC</p>
-            <h3 class="title">{{$t("newsList.new")}}</h3>
-            <div class="more">
-              {{$t("newsList.more")}}
-              <div class="arrow"></div>
-            </div>
-          </div> -->
-          <div class="details">
-            <el-row>
-              <el-col :span="12" v-for="(item, index) in newsList.slice(0, 1)" :key="index" class="left">
-                <el-card :body-style="{ padding: '0px' }">
-                  <a href="javascript:;" class="animation hover-animation"><img :src="item.imageUrl" class="image" style="width:100%;height:auto;"></a>
-                  <div style="padding: 30px 0;padding-bottom:12px;">
-                    <span class="title">{{item.title}}</span>
-                    <div class="operate">
-                      <time class="time">{{item.date}}</time>
-                      <el-button type="text" class="button">阅读全文</el-button>
-                    </div>
-                  </div>
-                  <el-card class="box-card award-list" :body-style="{ padding: '15px 0', paddingLeft: '0px',
-      paddingRight: '0px' }">
-                    <div v-for="(el, i) in awardUserList" :key="i" style="font-size:13px;margin-bottom:10px;color: #4c4948;">
-                      {{ el.awardName + '：' + el.userName + '（' + el.country + '）' }}
-                    </div>
-                  </el-card>
-                </el-card>
-              </el-col>
-              <el-col :span="12" class="right">
-                <el-col :span="12" v-for="(item, index) in newsList.slice(1, 5)" :key="index">
+            <div class="details">
+              <el-row>
+                <el-col :span="10" v-for="(item, index) in newsList.slice(0, 1)" :key="index" class="left">
                   <el-card :body-style="{ padding: '0px' }">
                     <a href="javascript:;" class="animation hover-animation"><img :src="item.imageUrl" class="image" style="width:100%;height:auto;"></a>
-                    <div style="padding-top: 10px;">
+                    <div style="padding: 30px 0;padding-bottom:12px;">
                       <span class="title">{{item.title}}</span>
                       <div class="operate">
                         <time class="time">{{item.date}}</time>
                         <el-button type="text" class="button">阅读全文</el-button>
                       </div>
                     </div>
+                    <el-card class="box-card award-list" :body-style="{ padding: '15px 0', paddingLeft: '0px',
+        paddingRight: '0px' }">
+                      <div v-html="item.content" class="news-content">
+                      </div>
+                      <!-- <div v-for="(el, i) in awardUserList" :key="i" style="font-size:13px;margin-bottom:10px;color: #4c4948;">
+                        {{ el.awardName + '：' + el.userName + '（' + el.country + '）' }}
+                      </div> -->
+                    </el-card>
                   </el-card>
                 </el-col>
-              </el-col>
-            </el-row>
+                <el-col :span="14" class="right">
+                  <el-col :span="12" v-for="(item, index) in newsList.slice(1, 5)" :key="index">
+                    <el-card :body-style="{ padding: '0px' }">
+                      <a href="javascript:;" class="animation hover-animation"><img :src="item.imageUrl" class="image" style="width:100%;height:auto;"></a>
+                      <div style="padding-top: 10px;">
+                        <span class="title">{{item.title}}</span>
+                        <div class="operate">
+                          <time class="time">{{item.date}}</time>
+                          <el-button type="text" class="button">阅读全文</el-button>
+                        </div>
+                      </div>
+                    </el-card>
+                  </el-col>
+                </el-col>
+              </el-row>
+            </div>
           </div>
-        </div>
         </home-item-solt>
-        <!-- </div> -->
         <home-item-solt :itemName="'award-div'" :title="$t('prizeWinners')" :isShowMore="false">
           <div slot="detail">
-        <!-- <div class="block award-div anchor-item">
-          <div class="header">
-            <h3 class="title">{{$t("prizeWinners")}}</h3>
-          </div> -->
-          <div class="details">
-            <el-row>
-              <el-col :span="10" class="left">
-                <el-collapse accordion @change="handleChange">
-                  <el-collapse-item v-for="(item, index) in awardUserList" :key="index" :name="index + 1" >
-                    <template slot="title">
-                      <el-row ref="awardListItem" :style="{'width' : '100%', 'height' : `${awardItemHeight}` + 'px', 'lineHeight' : `${awardItemHeight}` + 'px'}">
-                        <el-col :span="12" class="left">
-                          <span :title="item.awardName">{{item.awardName}}</span>
-                        </el-col>
-                        <el-col :span="8" class="left">
-                          <span :title="item.userName">{{item.userName}}</span>
-                        </el-col>
-                        <el-col :span="4" class="left">
-                          <span :title="item.country">{{item.country}}</span>
-                        </el-col>
-                      </el-row>
-                    </template>
-                  </el-collapse-item>
-                </el-collapse>
-              </el-col>
-              <el-col :span="14" class="right">
-                <transition name="fade">
-                <a href="javascript:;" class="animation hover-animation" style="display:block;width:calc(100% - 40px);height:auto;overflow:hiddden;margin-left:40px">
-                  <img :src="awardUserImgUrl" :alt="awardUserImgUrl" ref="awardImage" style="width:100%;height:auto;" class="award-img">
-                </a>
-                </transition>
-              </el-col>
-            </el-row>
-          </div>
+            <div class="details">
+              <el-row>
+                <el-col :span="10" class="left">
+                  <el-collapse accordion @change="handleChange">
+                    <el-collapse-item v-for="(item, index) in awardUserList" :key="index" :name="index + 1" >
+                      <template slot="title">
+                        <el-row ref="awardListItem" :style="{'width' : '100%', 'height' : `${awardItemHeight}` + 'px', 'lineHeight' : `${awardItemHeight}` + 'px'}">
+                          <el-col :span="12" class="left">
+                            <span :title="item.awardName">{{item.awardName}}</span>
+                          </el-col>
+                          <el-col :span="8" class="left">
+                            <span :title="item.userName">{{item.userName}}</span>
+                          </el-col>
+                          <el-col :span="4" class="left">
+                            <span :title="item.country">{{item.country}}</span>
+                          </el-col>
+                        </el-row>
+                      </template>
+                    </el-collapse-item>
+                  </el-collapse>
+                </el-col>
+                <el-col :span="14" class="right">
+                  <transition name="fade">
+                  <a href="javascript:;" class="animation hover-animation" style="display:block;width:calc(100% - 40px);height:auto;overflow:hiddden;margin-left:40px">
+                    <img :src="awardUserImgUrl" :alt="awardUserImgUrl" ref="awardImage" style="width:100%;height:auto;" class="award-img">
+                  </a>
+                  </transition>
+                </el-col>
+              </el-row>
+            </div>
           </div>
         </home-item-solt>
-        <!-- <div class="block award-div">
-          <div class="header">
-            <p class="little"><span>2018</span>&nbsp;SISIVC</p>
-            <h3 class="title">{{$t("prizeWinners")}}</h3>
-          </div>
-          <div class="details">
-            <el-row>
-              <el-col :span="8" class="left">
-                <el-collapse accordion @change="handleChange">
-                  <el-collapse-item v-for="(item, index) in awardUserList" :key="index" :name="index + 1" >
-                    <template slot="title">
-                      <span class="title-name">{{item.awardName}}</span>
-                    </template>
-                    <h3 style="font-size: 26px;margin: 0;">{{item.userName}}</h3>
-                    <p style="font-size: 14px;font-weight: bold;">{{ item.country }}</p>
-                    <a class="vedio-btn" href="#">视频播放</a>
-                  </el-collapse-item>
-                </el-collapse>
-              </el-col>
-              <el-col :span="16" class="right">
-                <transition name="fade">
-                <a href="javascript:;" class="animation hover-animation" style="display:block;width:100%;height:auto;overflow:hiddden;padding-left:20px">
-                  <img :src="awardUserImgUrl" style="width:100%;height:auto;margin-top:-80px;">
-                </a>
-                </transition>
-              </el-col>
-            </el-row>
-          </div>
-        -->
         <home-item-solt :itemName="'member-div'" :title="$t('judges')" :isShowMore="false">
           <div slot="detail">
             <member-container :data="judgesListSource" :typeName="'judges'"></member-container>
@@ -162,90 +110,8 @@
             <member-container :data="artistsListSource" :typeName="'artists'"></member-container>
           </div>
         </home-item-solt>
-        <!-- <div class="block member-div anchor-item">
-          <div class="header">
-            <h3 class="title">{{$t("judges")}}</h3>
-          </div>
-          <div class="details">
-            <el-row>
-              <el-col :span="6" v-for="(item, index) in judgesList" :key="index">
-                <member-item :item="item"></member-item>
-              </el-col>
-            </el-row>
-          </div>
-          <el-row>
-            <el-col :span="24">
-              <div :class="['more-div', 'judgesAnimationName']" @click="moreClick('judges')">
-                <img src="static/image/sisivc/arrow2.png">
-              </div>
-            </el-col>
-          </el-row>
-        </div> -->
-        <!-- <div class="block member-div anchor-item">
-          <div class="header">
-            <h3 class="title">{{$t("players")}}</h3>
-          </div>
-          <div class="details">
-            <el-row>
-              <el-col :span="6" v-for="(item, index) in playersList" :key="index">
-                <el-card :body-style="{ padding: '0px' }" @click="_gotoDetails(item.index)">
-                  <a href="javascript:;" @click="_gotoDetails(item.index)" class="animation hover-animation"><img :src="item.imageUrl" class="image" style="width:100%;height:auto"></a>
-                  <div class="operate" style="padding: 10px 0;">
-                    <span style="color: #222;font-weight: bold;font-size: 14px;">{{item.name}}</span>
-                    <el-button type="text" class="button" style="font-size:12px;color:#a0a0a1;">{{item.country}}</el-button>
-                  </div>
-                </el-card>
-              </el-col>
-            </el-row>
-          </div>
-          <el-row>
-            <el-col :span="24">
-              <div :class="['more-div', animationName]" @click="moreClick('judges')"><img src="static/image/sisivc/arrow2.png"></div>
-            </el-col>
-          </el-row>
-        </div>
-        <div class="block member-div anchor-item">
-          <div class="header">
-            <h3 class="title">{{$t("artists")}}</h3>
-          </div>
-          <div class="details">
-            <el-row>
-              <el-col :span="6" v-for="(item, index) in artistsList" :key="index">
-                <el-card :body-style="{ padding: '0px' }" @click="_gotoDetails(item.index)">
-                  <a href="javascript:;" @click="_gotoDetails(item.index)" class="animation hover-animation"><img :src="item.imageUrl" class="image" style="width:100%;height:auto"></a>
-                  <div class="operate" style="padding: 10px 0;">
-                    <span style="color: #222;font-weight: bold;font-size: 14px;">{{item.name}}</span>
-                    <el-button type="text" class="button" style="font-size:12px;color:#a0a0a1;">{{item.country}}</el-button>
-                  </div>
-                </el-card>
-              </el-col>
-            </el-row>
-          </div>
-          <el-row>
-            <el-col :span="24">
-              <div :class="['more-div', animationName]" @click="moreClick('judges')"><img src="static/image/sisivc/arrow2.png"></div>
-            </el-col>
-          </el-row>
-        </div> -->
         <home-item-solt :itemName="'parter-div'" :title="$t('partners')" :isShowMore="false">
           <div slot="detail">
-            <!-- <div class="sub-item" style="margin-bottom: 50px;">
-              <h3 class="sub-h3">首席合作伙伴</h3>
-              <div style="border-top: 1px solid #80808030;padding-top:40px;">
-                <img src="static/image/sisivc/hezuo/1-1.jpg">
-                <h3>中国太平洋保险（集团）股份有限公司</h3>
-                <p>中国太平洋保险（集团）股份有限公司（以下简称“太平洋保险”、“公司”）是在1991年5月13日成立的中国太平洋保险公司的基础上组建而成的保险集团公司，总部设在上海，是国内领先的“A+H”股上市综合性保险集团。</p>
-                <p>太平洋保险以打造“在你身边的一流保险金融服务集团”为愿景，坚持“以客户需求为导向，专注保险主业，推动和实现可持续的价值增长”的经营理念，不断完善保险产业链全牌照布局，旗下拥有寿险、产险、资产管理、在线服务、养老保险、健康保险、农业保险等专业子公司，建立了覆盖全国的营销网络和多元化服务平台，提供全方位风险保障解决方案、投资理财和资产管理服务。
-                </p>
-                <p>2015年，太平洋保险实现营业收入达2472.02亿元，其中保险业务收入2033.05亿元；净利润达177.28亿元。2015年末，总资产达9238.43亿元，净资产达1333.36亿元，客户数9435.6万。截至2015年末，公司拥有近10万名员工和近60万名保险营销员。公司连续第五年入选财富世界500强榜单，排名第328位。在全球最大的品牌咨询公司Interbrand发布的“最佳中国品牌价值排行榜”中，公司品牌价值为241.39亿元，位列行业前三。
-                </p>
-                <p>  太平洋保险推进“以客户需求为导向”的战略转型，紧密围绕转型三大目标，坚持问题导向，推动转型成果落地：在关注客户需求方面，实现精准销售和精细服务；在改善客户界面方面，积极运用新技术，确保中后台支持前端；在提升客户体验方面，大力推动产品创新，将优质、便捷的保险服务带到客户身边，得到社会各界的广泛认同。
-                </p>
-                <p>太平洋保险严格遵守法律法规以及监管部门颁布的各项要求，结合公司实际情况，不断完善公司治理结构。公司通过不断优化集团化管理的架构，充分整合内部资源，加强与资本市场的交流沟通，形成了较为完善、相互制衡、相互协调的公司治理体系。公司董事会致力于治理结构和机制的不断完善，构建了较为完善的治理体系，并积极推动和实现了集团一体化管理架构下的子公司治理方案，同时通过各种制度保障和实际行动，积极建立了董事会和管理层之间的桥梁，为董事、监事履职创造条件，保障了董事、监事对公司事务的知情权。
-                </p>
-                <p>太平洋保险以“做一家负责任的保险公司”为使命，以“诚信天下，稳健一生，追求卓越”为企业核心价值观，将企业社会责任全面融入公司的商业模式中，为客户、股东、员工、行业、社会、环境等利益相关方创造共享价值，受到广泛赞誉，连续六年获中国企业社会责任榜“杰出企业奖”。</p>
-              </div>
-            </div> -->
             <div class="sub-item" v-for="(el,i) in parterList" :key="i">
               <h3 class="sub-h3">{{el.level}}</h3>
               <div style="border-top: 1px solid #80808030;padding-top:40px;" v-if="el.levelId === 1">
@@ -265,139 +131,13 @@
                 </el-row>
               </div>
             </div>
-            <!-- <div class="sub-item">
-              <h3>合作伙伴</h3>
-              <div style="padding-top:0;">
-                <el-row>
-                  <el-col :span="3" v-for="(item, index) in bParterList" :key="index">
-                    <el-card :body-style="{ padding: '0px', paddingBottom: '40px'  }">
-                      <div class="logo" style="background-image: url('static/image/sisivc/hezuo/0.png');">
-                        <img :src="item.imgUrl" style="width:100%;height:auto;">
-                      </div>
-                      <div class="title">{{item.name}}</div>
-                    </el-card>
-                  </el-col>
-                </el-row>
-              </div>
-            </div>
-            <div class="sub-item">
-              <h3 class="sub-h3">合作媒体</h3>
-              <div style="padding-top:0;">
-                <el-row>
-                  <el-col :span="3" v-for="(item, index) in cParterList" :key="index">
-                    <el-card :body-style="{ padding: '0px', paddingBottom: '40px'  }">
-                      <div class="logo" style="background-image: url('static/image/sisivc/hezuo/0.png');">
-                        <img :src="item.imgUrl" style="width:100%;height:auto;">
-                      </div>
-                      <div class="title">{{item.name}}</div>
-                    </el-card>
-                  </el-col>
-                </el-row>
-              </div>
-            </div>
-            <div class="sub-item">
-              <h3>合作剧场院团</h3>
-              <div style="padding-top:0;">
-                <el-row>
-                  <el-col :span="3" v-for="(item, index) in dParterList" :key="index">
-                    <el-card :body-style="{ padding: '0px', paddingBottom: '40px'  }">
-                      <div class="logo" style="background-image: url('static/image/sisivc/hezuo/0.png');">
-                        <img :src="item.imgUrl" style="width:100%;height:auto;">
-                      </div>
-                      <div class="title">{{item.name}}</div>
-                    </el-card>
-                  </el-col>
-                </el-row>
-              </div>
-            </div> -->
           </div>
         </home-item-solt>
-        <!-- <div class="block parter-div anchor-item">
-          <div class="header">
-            <h3 class="title">{{$t("partners")}}</h3>
-          </div>
-          <div class="sub-item" style="margin-bottom: 50px;">
-            <h3 class="sub-h3">首席合作伙伴</h3>
-            <div style="border-top: 1px solid #80808030;padding-top:40px;">
-              <img src="static/image/sisivc/hezuo/1-1.jpg">
-              <h3>中国太平洋保险（集团）股份有限公司</h3>
-              <p>中国太平洋保险（集团）股份有限公司（以下简称“太平洋保险”、“公司”）是在1991年5月13日成立的中国太平洋保险公司的基础上组建而成的保险集团公司，总部设在上海，是国内领先的“A+H”股上市综合性保险集团。</p>
-              <p>太平洋保险以打造“在你身边的一流保险金融服务集团”为愿景，坚持“以客户需求为导向，专注保险主业，推动和实现可持续的价值增长”的经营理念，不断完善保险产业链全牌照布局，旗下拥有寿险、产险、资产管理、在线服务、养老保险、健康保险、农业保险等专业子公司，建立了覆盖全国的营销网络和多元化服务平台，提供全方位风险保障解决方案、投资理财和资产管理服务。
-              </p>
-              <p>2015年，太平洋保险实现营业收入达2472.02亿元，其中保险业务收入2033.05亿元；净利润达177.28亿元。2015年末，总资产达9238.43亿元，净资产达1333.36亿元，客户数9435.6万。截至2015年末，公司拥有近10万名员工和近60万名保险营销员。公司连续第五年入选财富世界500强榜单，排名第328位。在全球最大的品牌咨询公司Interbrand发布的“最佳中国品牌价值排行榜”中，公司品牌价值为241.39亿元，位列行业前三。
-              </p>
-              <p>  太平洋保险推进“以客户需求为导向”的战略转型，紧密围绕转型三大目标，坚持问题导向，推动转型成果落地：在关注客户需求方面，实现精准销售和精细服务；在改善客户界面方面，积极运用新技术，确保中后台支持前端；在提升客户体验方面，大力推动产品创新，将优质、便捷的保险服务带到客户身边，得到社会各界的广泛认同。
-              </p>
-              <p>太平洋保险严格遵守法律法规以及监管部门颁布的各项要求，结合公司实际情况，不断完善公司治理结构。公司通过不断优化集团化管理的架构，充分整合内部资源，加强与资本市场的交流沟通，形成了较为完善、相互制衡、相互协调的公司治理体系。公司董事会致力于治理结构和机制的不断完善，构建了较为完善的治理体系，并积极推动和实现了集团一体化管理架构下的子公司治理方案，同时通过各种制度保障和实际行动，积极建立了董事会和管理层之间的桥梁，为董事、监事履职创造条件，保障了董事、监事对公司事务的知情权。
-              </p>
-              <p>太平洋保险以“做一家负责任的保险公司”为使命，以“诚信天下，稳健一生，追求卓越”为企业核心价值观，将企业社会责任全面融入公司的商业模式中，为客户、股东、员工、行业、社会、环境等利益相关方创造共享价值，受到广泛赞誉，连续六年获中国企业社会责任榜“杰出企业奖”。</p>
-            </div>
-          </div>
-          <div class="sub-item">
-            <h3 class="sub-h3">白银级赞助</h3>
-            <div style="padding-top:0;">
-              <el-row>
-                <el-col :span="6" v-for="(item, index) in aParterList" :key="index">
-                  <el-card :body-style="{ padding: '0px', paddingBottom: '40px' }">
-                    <div class="logo" style="background-image: url('static/image/sisivc/hezuo/0.png');">
-                      <img :src="item.imgUrl" style="width:100%;height:auto;">
-                    </div>
-                    <div class="title">{{item.name}}</div>
-                  </el-card>
-                </el-col>
-              </el-row>
-            </div>
-          </div>
-          <div class="sub-item">
-            <h3>合作伙伴</h3>
-            <div style="padding-top:0;">
-              <el-row>
-                <el-col :span="3" v-for="(item, index) in bParterList" :key="index">
-                  <el-card :body-style="{ padding: '0px', paddingBottom: '40px'  }">
-                    <div class="logo" style="background-image: url('static/image/sisivc/hezuo/0.png');">
-                      <img :src="item.imgUrl" style="width:100%;height:auto;">
-                    </div>
-                    <div class="title">{{item.name}}</div>
-                  </el-card>
-                </el-col>
-              </el-row>
-            </div>
-          </div>
-          <div class="sub-item">
-            <h3 class="sub-h3">合作媒体</h3>
-            <div style="padding-top:0;">
-              <el-row>
-                <el-col :span="3" v-for="(item, index) in cParterList" :key="index">
-                  <el-card :body-style="{ padding: '0px', paddingBottom: '40px'  }">
-                    <div class="logo" style="background-image: url('static/image/sisivc/hezuo/0.png');">
-                      <img :src="item.imgUrl" style="width:100%;height:auto;">
-                    </div>
-                    <div class="title">{{item.name}}</div>
-                  </el-card>
-                </el-col>
-              </el-row>
-            </div>
-          </div>
-          <div class="sub-item">
-            <h3>合作剧场院团</h3>
-            <div style="padding-top:0;">
-              <el-row>
-                <el-col :span="3" v-for="(item, index) in dParterList" :key="index">
-                  <el-card :body-style="{ padding: '0px', paddingBottom: '40px'  }">
-                    <div class="logo" style="background-image: url('static/image/sisivc/hezuo/0.png');">
-                      <img :src="item.imgUrl" style="width:100%;height:auto;">
-                    </div>
-                    <div class="title">{{item.name}}</div>
-                  </el-card>
-                </el-col>
-              </el-row>
-            </div>
-          </div>
-        </div> -->
       </div>
     </div>
-    <!-- <m-anchor></m-anchor> -->
-    <video src="static/image/sisivc/SISIVC.mp4" width="100%" height="auto" controls="controls" poster="static/image/sisivc/poster.jpg" >您的浏览器不支持 video 标签。</video>
+    <div style="width:100%;overflow:hidden;">
+      <video src="static/image/sisivc/SISIVC.mp4" class="vedio-css" width="100%" height="auto" controls="controls" poster="static/image/sisivc/poster.jpg" >您的浏览器不支持 video 标签。</video>
+    </div>
   </div>
 </template>
 <script type="text/ecmascript-6">
@@ -436,52 +176,12 @@ export default {
               user: '周颖',
               location: '美国'
             },
-            {
-              award: '二等奖',
-              user: '奥尔加·什劳布科娃',
-              location: '捷克'
-            },
-            {
-              award: '三等奖',
-              user: '戴安娜·季申科',
-              location: '乌克兰'
-            },
-            {
-              award: '一等奖',
-              user: '周颖',
-              location: '美国'
-            },
-            {
-              award: '二等奖',
-              user: '奥尔加·什劳布科娃',
-              location: '捷克'
-            },
-            {
-              award: '三等奖',
-              user: '戴安娜·季申科',
-              location: '乌克兰'
-            }
           ]
         },
-        {
-          title: '决赛入围选手名单',
-          imageUrl: 'static/image/sisivc/news/2.png',
-          date: '2019-10-03',
-          awardList: []
-        },
         { title: '评委增补公告', imageUrl: 'static/image/sisivc/news/3.png', date: '2019-10-03', awardList: [] },
-        { title: '半决赛入围选手名单', imageUrl: 'static/image/sisivc/news/4.png', date: '2019-10-03', awardList: [] },
-        { title: '四分之一决赛选手出场顺序', imageUrl: 'static/image/sisivc/news/5.png', date: '2019-10-09', awardList: [] },
       ],
       awardItemHeight: 50,
       awardUserList: [
-        { awardName: '一等奖', userName: '周颖', vedioUrl: '', imgUrl: 'static/image/sisivc/award/1.jpg', coverImgUrl: 'static/image/sisivc/award/0.jpg', country: '美国'},
-        { awardName: '二等奖', userName: '奥尔加·什劳布科娃', vedioUrl: '', imgUrl: 'static/image/sisivc/award/2.jpg', coverImgUrl: 'static/image/sisivc/award/0.jpg', country: '捷克'},
-        { awardName: '三等奖', userName: '戴安娜·季申科', vedioUrl: '', imgUrl: 'static/image/sisivc/award/3.jpg', coverImgUrl: 'static/image/sisivc/award/0.jpg', country: '俄罗斯和瑞士'},
-        { awardName: '四等奖', userName: '陈家怡', vedioUrl: '', imgUrl: 'static/image/sisivc/award/4.jpg', coverImgUrl: 'static/image/sisivc/award/0.jpg', country: '美国'},
-        { awardName: '五等奖', userName: '丁章媛', vedioUrl: '', imgUrl: 'static/image/sisivc/award/5.jpg', coverImgUrl: 'static/image/sisivc/award/0.jpg', country: '美国'},
-        { awardName: '六等奖', userName: '唐韵', vedioUrl: '', imgUrl: 'static/image/sisivc/award/6.jpg', coverImgUrl: 'static/image/sisivc/award/0.jpg', country: '美国'},
-        { awardName: '最佳中国作品演绎奖 —— “太平洋之星”', userName: '奥尔加·什劳布科娃', vedioUrl: '', imgUrl: 'static/image/sisivc/award/7.jpg', coverImgUrl: 'static/image/sisivc/award/0.jpg', country: '捷克'},
         { awardName: '艾萨克·斯特恩奖 —— 人文精神奖', userName: '周颖', vedioUrl: '', imgUrl: 'static/image/sisivc/award/0.jpg', coverImgUrl: 'static/image/sisivc/award/0.jpg', country: '美国'},
       ],
       awardUserImgUrl: '',
@@ -490,87 +190,19 @@ export default {
       finalObj: [],
       judgesListSource: [
         {name: '大卫·斯特恩', country: '美国', imageUrl: 'static/image/sisivc/pingwei/1.jpg'},
-        {name: '徐惟聆', country: '中国', imageUrl: 'static/image/sisivc/pingwei/2.jpg'},
-        {name: '扎哈尔·布朗', country: '扎哈尔·布朗', imageUrl: 'static/image/sisivc/pingwei/3.jpg'},
-        {name: '马丁·坎贝尔-怀特', country: '英国', imageUrl: 'static/image/sisivc/pingwei/4.jpg'},
-        {name: '格伦·迪克特罗', country: '美国', imageUrl: 'static/image/sisivc/pingwei/1.jpg'},
-        {name: '奥古斯丁·杜梅', country: '法国', imageUrl: 'static/image/sisivc/pingwei/2.jpg'},
-        {name: '丹尼尔·海菲兹', country: '美国', imageUrl: 'static/image/sisivc/pingwei/3.jpg'},
-        {name: '埃马纽埃尔·翁德雷', country: '法国', imageUrl: 'static/image/sisivc/pingwei/4.jpg'},
-        {name: '斯雷滕·克里斯蒂奇', country: '塞尔维亚/德国', imageUrl: 'static/image/sisivc/pingwei/1.jpg'},
-        {name: '李伟纲', country: '美国', imageUrl: 'static/image/sisivc/pingwei/2.jpg'},
-        {name: '吕思清', country: '中国', imageUrl: 'static/image/sisivc/pingwei/3.jpg'},
-        {name: '多拉·施瓦茨贝尔格', country: '奥地利', imageUrl: 'static/image/sisivc/pingwei/2.jpg'},
       ],
       artistsListSource: [
         {name: '大卫·斯特恩', country: '美国', imageUrl: 'static/image/sisivc/pingwei/1.jpg'},
-        {name: '徐惟聆', country: '中国', imageUrl: 'static/image/sisivc/pingwei/2.jpg'},
-        {name: '扎哈尔·布朗', country: '扎哈尔·布朗', imageUrl: 'static/image/sisivc/pingwei/3.jpg'},
-        {name: '马丁·坎贝尔-怀特', country: '英国', imageUrl: 'static/image/sisivc/pingwei/4.jpg'},
-        {name: '格伦·迪克特罗', country: '美国', imageUrl: 'static/image/sisivc/pingwei/1.jpg'},
       ],
       playersListSource: [
         {name: '斯雷滕·克里斯蒂奇', country: '塞尔维亚/德国', imageUrl: 'static/image/sisivc/pingwei/1.jpg'},
-        {name: '李伟纲', country: '美国', imageUrl: 'static/image/sisivc/pingwei/2.jpg'},
-        {name: '吕思清', country: '中国', imageUrl: 'static/image/sisivc/pingwei/3.jpg'},
-        {name: '多拉·施瓦茨贝尔格', country: '奥地利', imageUrl: 'static/image/sisivc/pingwei/2.jpg'},
-        {name: '菲利普·塞策', country: '美国', imageUrl: 'static/image/sisivc/pingwei/3.jpg'},
-        {name: '马克西姆·文格洛夫', country: '摩洛哥', imageUrl: 'static/image/sisivc/pingwei/4.jpg'},
-        {name: '俞丽拿', country: '中国', imageUrl: 'static/image/sisivc/pingwei/1.jpg'},
-        {name: '多拉·施瓦茨贝尔格', country: '奥地利', imageUrl: 'static/image/sisivc/pingwei/2.jpg'},
-        {name: '菲利普·塞策', country: '美国', imageUrl: 'static/image/sisivc/pingwei/3.jpg'},
-        {name: '马克西姆·文格洛夫', country: '摩洛哥', imageUrl: 'static/image/sisivc/pingwei/4.jpg'},
-        {name: '俞丽拿', country: '中国', imageUrl: 'static/image/sisivc/pingwei/1.jpg'},
-        {name: '多拉·施瓦茨贝尔格', country: '奥地利', imageUrl: 'static/image/sisivc/pingwei/2.jpg'},
-        {name: '菲利普·塞策', country: '美国', imageUrl: 'static/image/sisivc/pingwei/3.jpg'},
-        {name: '马克西姆·文格洛夫', country: '摩洛哥', imageUrl: 'static/image/sisivc/pingwei/4.jpg'},
-        {name: '俞丽拿', country: '中国', imageUrl: 'static/image/sisivc/pingwei/1.jpg'},
       ],
-      judgesList: [],
-      artistsList: [],
-      playersList: [],
       animationName: '',
       parterList: [],
-      aParterList: [
-        {name: '中国海外能源有限公司', imgUrl: 'static/image/sisivc/hezuo/2-1.jpg'},
-      ],
-      bParterList: [
-        {name: '中国海外能源有限公司', imgUrl: 'static/image/sisivc/hezuo/huoban/1.jpg'},
-        {name: '中国有限公司', imgUrl: 'static/image/sisivc/hezuo/huoban/2.jpg'},
-        {name: '中国有', imgUrl: 'static/image/sisivc/hezuo/huoban/3.jpg'},
-        {name: '中源有限公司', imgUrl: 'static/image/sisivc/hezuo/huoban/4.jpg'},
-        {name: '中国海外能源有限公司', imgUrl: 'static/image/sisivc/hezuo/huoban/5.jpg'},
-        {name: '中有限公司', imgUrl: 'static/image/sisivc/hezuo/huoban/6.jpg'},
-        {name: '中国海外公司', imgUrl: 'static/image/sisivc/hezuo/huoban/7.jpg'},
-        {name: '中国海外能源有司', imgUrl: 'static/image/sisivc/hezuo/huoban/8.jpg'}
-      ],
-      cParterList: [
-        {name: '中国海外能源有限公司', imgUrl: 'static/image/sisivc/hezuo/meiti/1.jpg'},
-        {name: '中国海外公司', imgUrl: 'static/image/sisivc/hezuo/meiti/2.jpg'},
-        {name: '限公司', imgUrl: 'static/image/sisivc/hezuo/meiti/3.jpg'},
-        {name: '中国海外能公司', imgUrl: 'static/image/sisivc/hezuo/meiti/4.jpg'},
-        {name: '中有限公司', imgUrl: 'static/image/sisivc/hezuo/meiti/5.jpg'},
-        {name: '中源有限公司', imgUrl: 'static/image/sisivc/hezuo/meiti/6.jpg'},
-        {name: '中国海外能源有限公司', imgUrl: 'static/image/sisivc/hezuo/meiti/7.jpg'},
-        {name: '中国海外能源有限公司', imgUrl: 'static/image/sisivc/hezuo/meiti/8.jpg'},
-        {name: '中国有限公司', imgUrl: 'static/image/sisivc/hezuo/meiti/9.jpg'},
-        {name: '中国海外限公司', imgUrl: 'static/image/sisivc/hezuo/meiti/10.jpg'},
-        {name: '中国海外能源有限公司', imgUrl: 'static/image/sisivc/hezuo/meiti/11.jpg'},
-        {name: '中国海外能源', imgUrl: 'static/image/sisivc/hezuo/meiti/12.jpg'},
-      ],
-      dParterList: [
-        {name: '中国海外能源有限公司', imgUrl: 'static/image/sisivc/hezuo/juyuan/1.jpg'},
-        {name: '中国海外能源有限公司', imgUrl: 'static/image/sisivc/hezuo/juyuan/2.jpg'},
-        {name: '中国海外能源有限公司', imgUrl: 'static/image/sisivc/hezuo/juyuan/3.jpg'},
-      ],
     }
   },
   created() {
-    // this._login()
     this._getData()
-    this.judgesList = this.judgesListSource.slice(0, 8)
-    this.playersList = this.judgesListSource.slice(0, 8)
-    this.artistsList = this.judgesListSource.slice(0, 8)
   },
   computed: {
     // carouselHeight: function() {
@@ -594,12 +226,6 @@ export default {
     /**通过给变成固定定位的元素添加一个同等高度的父元素，防止该元素变成固定定位时，脱离文档流导致的页面抖动 */
     // this.tabsHeight = this.$refs.elTabs.offsetHeight;
     window.addEventListener("scroll", this.handleScroll);
-
-    // let height = document.querySelector('.award-div .el-row').offsetHeight;
-    // let size = this.awardUserList.length
-    // let row = document.querySelector('.award-div >>>.el-collapse-item__header')
-    // rowHeight = (height - 1 - size) / size
-    // console.log('height--->', height)
 
   },
   destroyed() {
@@ -686,6 +312,7 @@ export default {
             targetUrl: el.externalLink,
             date: el.createOn,
             awardList: [],
+            content: el.content
           }
         })
 
@@ -747,17 +374,17 @@ export default {
   .other
     @extend .flex
     @extend .flex-column
-    .list
-      @extend .flex
-      @extend .flex-row
-      @extend .flex-center
-      width 100%
-      height 60px
-      p
-        @extend .pointer
-        color $color-text-black_11
-        font-size $font-size-level_3
-        margin 0 22px
+    // .list
+    //   @extend .flex
+    //   @extend .flex-row
+    //   @extend .flex-center
+    //   width 100%
+    //   height 60px
+    //   p
+    //     @extend .pointer
+    //     color $color-text-black_11
+    //     font-size $font-size-level_3
+    //     margin 0 22px
     .carousel
       width 100%
       position: relative
@@ -813,40 +440,40 @@ export default {
       width: 1140px
       margin: 0 auto
       padding: 50px 0 0
-      .header
-        @extend .flex
-        @extend .flex-column
-        @extend .flex-end
-        align-items: start;
-        width 100%
-        position relative
-        font-family Helvetica
-        .title
-          color: #1e2022;
-          font-size: 24px;
-          font-weight: bold;
-        .little
-          font-size: 12px;
-          color: #808080;
-          margin-bottom: 20px;
-          margin-top: -20px;
-          padding-top: 20px;
-        .more
-          @extend .flex
-          @extend .flex-row
-          @extend .flex-end
-          height 16px
-          color $color-text-gray_2
-          font-size $font-size-level_2
-          position absolute
-          right 0
-          bottom: 0
-          .arrow
-            width 6px
-            height 6px
-            background-size 100% 100%
-            background-image: url('~static/image/home/zs/more_arrow.png')
-            margin-left 4px
+      // .header
+      //   @extend .flex
+      //   @extend .flex-column
+      //   @extend .flex-end
+      //   align-items: start;
+      //   width 100%
+      //   position relative
+      //   font-family Helvetica
+      //   .title
+      //     color: #1e2022;
+      //     font-size: 24px;
+      //     font-weight: bold;
+      //   .little
+      //     font-size: 12px;
+      //     color: #808080;
+      //     margin-bottom: 20px;
+      //     margin-top: -20px;
+      //     padding-top: 20px;
+      //   .more
+      //     @extend .flex
+      //     @extend .flex-row
+      //     @extend .flex-end
+      //     height 16px
+      //     color $color-text-gray_2
+      //     font-size $font-size-level_2
+      //     position absolute
+      //     right 0
+      //     bottom: 0
+      //     .arrow
+      //       width 6px
+      //       height 6px
+      //       background-size 100% 100%
+      //       background-image: url('~static/image/home/zs/more_arrow.png')
+      //       margin-left 4px
       .details
         @extend .flex
         @extend .flex-row
@@ -864,20 +491,18 @@ export default {
           @extend .flex-row
           @extend .flex-between
           .time
-            color: #a0a0a1;
-            font-size: 12px;
+            // color: #a0a0a1;
+            // font-size: 12px;
+            color: $color-item-more;
+            font-size: $font-size-item-little;
           .button
-            color: #a0a0a1;
-            font-size: 12px;
+            // color: #a0a0a1;
+            // font-size: 12px;
+            color: $color-item-more;
+            font-size: $font-size-item-little;
             margin: 0;
             text-align: right;
         .left
-          // .award-list
-          //   border: none;
-          //   border-top: 1px solid rgba(128, 128, 128, 0.19)!important;
-          //   border-top-left-radius: 0;
-          //   border-top-right-radius: 0;
-          //   box-shadow: none;
           .el-card
             border: none;
             border-radius: 0;
@@ -889,20 +514,20 @@ export default {
             border: none;
             border-radius: 0;
             box-shadow: none;
-        .vedio-btn
-          display: block;
-          width: 60px;
-          height: 60px;
-          font-size: 12px;
-          color: #222;
-          padding-top: 35px;
-          background-image: url('~static/image/sisivc/vedio.png');
-          background-size: 30px 30px;
-          background-position: top left;
-          background-repeat: no-repeat;
-        .vedio-btn:hover
-          background-image: url('~static/image/sisivc/vedio2.png');
-          color: #193A80;
+        // .vedio-btn
+        //   display: block;
+        //   width: 60px;
+        //   height: 60px;
+        //   font-size: 12px;
+        //   color: #222;
+        //   padding-top: 35px;
+        //   background-image: url('~static/image/sisivc/vedio.png');
+        //   background-size: 30px 30px;
+        //   background-position: top left;
+        //   background-repeat: no-repeat;
+        // .vedio-btn:hover
+        //   background-image: url('~static/image/sisivc/vedio2.png');
+        //   color: #193A80;
     .news-div
       .left
         .award-list
@@ -911,6 +536,18 @@ export default {
           border-top-left-radius: 0;
           border-top-right-radius: 0;
           box-shadow: none;
+          .news-content
+            margin-bottom: 10px;
+            line-height: 25px;
+            font-size: $font-size-detail-content;
+            color: $color-detail-content;
+            // font-size: 13px;
+            // color: rgb(76, 73, 72);
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 4;
+            -webkit-box-orient: vertical;  
       .right
         .el-card
           margin-bottom: 30px!important;
@@ -920,13 +557,16 @@ export default {
         .left
           .el-collapse
             border: none;
-            border-top: 1px solid rgb(160, 160, 161);
+            border-top: 1px solid $color-item-more;
+            // border-top: 1px solid rgb(160, 160, 161);
             .el-collapse-item
               .title-name
                 border-bottom: none;
-                font-size: 14px;
+                // font-size: 14px;
+                font-size: $font-size-detail-title;
                 font-weight: bold;
-                color: #222;
+                color: $color-detail-title;
+                // color: #222;
               >>>.el-collapse-item__header__arrow
                 display: none;
               >>>.el-collapse-item__header
@@ -935,34 +575,19 @@ export default {
                 min-height: 50px;
                 position: relative; 
                 border-bottom: none;
-                color: #000000;
+                // color: #000000;
+                color: $color-detail-title;
                 border-bottom: none;
                 .el-col
                   padding-right: 5px;
                   overflow: hidden;
                   text-overflow: ellipsis;
                   white-space: nowrap;
-              // >>>.el-collapse-item__header:after
-              // >>>.el-collapse-item__header:before 
-              //   position: absolute;
-              //   top: 50%;
-              //   content: " ";
-              //   right: 20px;
-              //   margin-top: -1px;
-              //   width: 10px;
-              //   height: 2px;
-              //   background-color: #999;
-              // >>>.el-collapse-item__header:before 
-              //   -webkit-transform: rotate(90deg);
-              //   transform: rotate(90deg);
-              //   -webkit-transition: -webkit-transform .25s ease-in-out;
-              //   transition: -webkit-transform .25s ease-in-out;
-              //   transition: transform .25s ease-in-out;
-              //   transition: transform .25s ease-in-out,-webkit-transform .25s ease-in-out;
               >>>.el-collapse-item__content
                 padding: 0;
             .el-collapse-item
-              border-bottom: 1px solid rgb(160, 160, 161);
+              border-bottom: 1px solid $color-item-more;
+              // border-bottom: 1px solid rgb(160, 160, 161);
               >>>.el-collapse-item__wrap
                 border-bottom: none;
                 display: none;
@@ -974,52 +599,9 @@ export default {
               span
                 font-weight: bold!important;
               >>>.el-collapse-item__header
-                color: #000;
+                color: $color-detail-title;
               >>>.el-collapse-item__wrap
                 display: none
-              // >>>.el-collapse-item__header:before
-              //   -webkit-transform: rotate(0deg);
-              //   -ms-transform: rotate(0deg);
-              //   transform: rotate(0deg);
-              // >>>.el-collapse-item__header:after 
-              //   -webkit-transform: rotate(0deg);
-              //   -ms-transform: rotate(0deg);
-              //   transform: rotate(0deg);
-              // >>>.el-collapse-item__wrap
-              //   background-color: #fff;
-              //   border-bottom: none;
-    // .member-div
-    //   .el-row
-    //     margin-left: -20px;
-    //     margin-right: -20px;
-    //     transition: height .3s ease-in-out;
-    //     .el-card
-    //       margin-bottom: 40px;
-    //       padding-left: 20px;
-    //       padding-right: 20px;
-    //       border: none;
-    //       border-radius: 0;
-    //       box-shadow: none;
-    //     .more-div
-    //       background-color: #222;
-    //       width: 60px;
-    //       height: 60px;
-    //       margin: 0 auto;
-    //       line-height: 60px;
-    //       border-radius: 30px;
-    //       text-align: center;
-    //       margin-top: 0;
-    //       margin-bottom: 30px;
-    //     .rotate
-    //       -webkit-transform: rotate(180deg);
-    //       -moz-transform: rotate(180deg);
-    //       -o-transform: rotate(180deg);
-    //       -ms-transform: rotate(180deg);
-    //       transform: rotate(180deg);
-    //       -webkit-transition: -webkit-transform .25s ease-in-out;
-    //       transition: -webkit-transform .25s ease-in-out;
-    //       transition: transform .25s ease-in-out;
-    //       transition: transform .25s ease-in-out,-webkit-transform .25s ease-in-out;
     .parter-div
       padding-bottom:30px;
       .sub-item
@@ -1034,10 +616,12 @@ export default {
           padding-top: 40px;
           padding-bottom: 40px;
         p, .desp
-          font-size: 13px;
+          // font-size: 13px;
+          // color: #4c4948;
+          font-size: $font-size-detail-content;
+          color: $color-detail-content;
           margin: 1.6rem 0;
           line-height: 20px;
-          color: #4c4948;
           text-align:justify;
         .el-row
           border: none;
@@ -1049,165 +633,10 @@ export default {
               text-align: center;
               width: 100%;
               margin-top: 10px;
-              font-size: 13px;
-              color: #4c4948;
-.consultant
-  @extend .flex
-  @extend .flex-row
-  flex-wrap wrap
-  width 1200px
-  height 400px
-  padding 5px 38px
-  // background-color $color-back-white_0
-  border-radius 3px
-  color $color-text-black_0
-  font-size $font-size-level_4
-  .consultantCard
-    height 180px
-    width 360px
-    position relative
-    background-size 100% 100%
-  .mcard
-    margin-right 12px
-  .bcard
-    margin-right 0px
-.serviceCard
-  @extend .flex-column
-  @extend .flex-center
-  width 210px
-  height 200px
-  background-color $color-back-white_0
-  border-radius 105px
-  .logo
-    width 60px
-    height 60px
-    background-size 100% 100%
-  .title
-    color $color-text-gray_15
-    font-size 15px
-    margin-top 10px
-    line-height 18px
-    height 36px
-    text-align center
-.choicesCard
-  width 285px
-  height 360px
-  background-color $color-back-white_0
-  border 1px solid $color-layer-gray_3
-  overflow hidden
-  border-radius 3px
-  .logo
-    width 100%
-    height 150px
-    background-size 100% 100%
-  .middle
-    @extend .flex
-    @extend .flex-column
-    @extend .flex-around
-    @extend .flex-top
-    width 100%
-    height 180px
-    padding 13px
-    p
-      color $color-text-black_0
-      font-size $font-size-level_3
-      height 17px
-      ellipsis(1)
-  .more
-    @extend .flex
-    @extend .flex-row
-    @extend .flex-end
-    height 30px
-    width 100%
-    padding 0 13px
-    color $color-back-gray_1
-    font-size $font-size-level_1
-.whereCard
-  width 285px
-  height 150px
-  background-size 100% 100%
-.videoCard
-  width 285px
-  height 260px
-  background-color $color-back-white_0
-  border 1px solid $color-layer-gray_3
-  overflow hidden
-  border-radius 3px
-  .pic
-    width 100%
-    height 160px
-    background-size 100% 100%
-    border-bottom 1px solid $color-layer-gray_3
-    position relative
-    .time
-      color #FFFFFF
-      font-size $font-size-level_3
-      position absolute
-      right 13px
-      bottom 10px
-  .video-des
-    @extend .flex
-    @extend .flex-column
-    @extend .flex-between
-    width 100%
-    height calc(100% - 160px)
-    padding 12px
-    .des
-      color $color-text-black_11
-      font-size $font-size-level_3
-      ellipsis(2)
-      line-height 18px
-      height 36px
-    .btn
-      background-color $color-back-yellow_1
-      color $color-back-yellow_2
-      font-size $font-size-level_1
-      border-radius 3px
-      padding 4px
-    .btn-blue
-      background-color #C9E4FF
-      color #5989D1
-      font-size $font-size-level_1
-      border-radius 3px
-      padding 4px
-.boardCard
-  width 385px
-  height 470px
-  border-top 3px solid $color-back-blue_0
-  background-color $color-back-white_0
-  border-left 1px solid $color-layer-gray_3
-  border-right 1px solid $color-layer-gray_3
-  border-bottom 1px solid $color-layer-gray_3
-  overflow hidden
-  border-radius 3px
-  padding 0 18px
-  .boardCard-header
-    @extend .flex
-    @extend .flex-row
-    @extend .flex-start
-    color $color-text-black_13
-    font-size $font-size-level_4
-    width 100%
-    height 60px
-  .boardItem
-    @extend .flex
-    @extend .flex-row
-    @extend .flex-between
-    width 100%
-    height 80px
-    border-bottom 1px solid $color-layer-gray_3
-    .logo
-      width 60px
-      height 60px
-      background-size 100% 100%
-    .des
-      width calc(100% - 75px)
-      height 40px
-      line-height 20px
-      color $color-text-black_14
-      font-size $font-size-level_3
-      ellipsis(2)
-      word-break keep-all
+              // font-size: 13px;
+              // color: #4c4948;
+              font-size: $font-size-detail-content;
+              color: $color-detail-content;
 a.animation
   line-height: 0;
   img
@@ -1272,9 +701,15 @@ a.hover-animation:hover img
   .sub-nav ul {
     width: 1560px;
   }
-  .carousel{
+  .carousel, .vedio-css {
     width: 1920px!important;
-    margin: 0 auto;
+    margin: 0 auto!important;
+  }
+  .vedio-css {
+    display: block;
+  }
+  .news-content {
+    -webkit-line-clamp: 5!important;
   }
 }
 @media (min-width: 1400px) and (max-width: 1920px)  {
@@ -1286,5 +721,9 @@ a.hover-animation:hover img
     width: calc(100% - 360px);
     min-width: 1140px;
   }
+  .news-content {
+    -webkit-line-clamp: 5!important;
+  }
+    
 }
 </style>
