@@ -155,19 +155,27 @@
         <div class="mainBox block clearfix" v-if="!watchData">
            <h3 class="title">直播地址</h3>
            <ul class="Broad_add">
-             <li v-for="(item,index) in watchDataIndex.broadcastAddressVoList"><div class="Broad_add_div"><img :src="item.iconUrl" /><div class="fl" style="padding-left: 40px;"><p>{{item.title}}</p><p><a href="javascript:void(0)">{{item.description}}</a></p></div></div></li>
+              <li v-for="(item, index) in watchDataIndex.broadcastAddressVoList" :key="index">
+                <div class="Broad_add_div">
+                  <img :src="item.iconUrl" />
+                  <div class="fl" style="padding-left: 40px;">
+                    <p>{{item.title}}</p>
+                    <p><a href="javascript:void(0)">{{item.description}}</a></p>
+                  </div>
+                </div>
+              </li>
           </ul>
         </div>
        <!--观赛须知-->
        <div class="mainBox block clearfix guidelines" v-if="!watchData">
           <h3 class="title">观赛须知</h3><!--一级标题-->
-          <h4 v-for="(item,index) in watchDataIndex.noticeVoList" v-if="item.id == 1">{{item.content}}</h4><!--二级标题-->
-          <p v-for="(item,index) in watchDataIndex.noticeVoList" v-if="item.id !== 1">{{index}}.{{item.content}}</p>
+          <h4 v-for="(item, index) in watchDataIndex.noticeVoList" :key="index" v-if="item.id === 1">{{item.content}}</h4><!--二级标题-->
+          <p v-for="(item, index) in watchDataIndex.noticeVoList" :key="index" v-if="item.id != 1">{{index}}.{{item.content}}</p>
        </div>
        <!--订票方式-->
        <div class="mainBox block clearfix guidelines" v-if="!watchData" >
           <h3 class="title">订票方式</h3><!--一级标题-->
-          <div v-for="(item,index) in watchDataIndex.bookingWayVoList">
+          <div v-for="(item,index) in watchDataIndex.bookingWayVoList" :key="index">
           <h5 v-if="item.booking">{{item.booking}}</h5><!--二级标题-->
           <p v-if="item.content">{{item.content}}</p>
           <p v-if="item.date">工作时间：{{item.date}}</p>
@@ -190,7 +198,7 @@
             <ul class="dataUl">
               <li>
                 <h4>{{watchData.scheduleName}}</h4>
-                <div class="ListTBox" v-for="(item,index) in watchData.artists">
+                <div class="ListTBox" v-for="(item,index) in watchData.artists" :key="index">
                   <div class="imgItemCoumuns"><img :src="item.image" /></div>
                   <p class="ItemName">{{item.userName}}</p>
                 </div>
@@ -199,16 +207,16 @@
                   <p class="ItemName">{{watchData.groupTitle}}</p>
                 </div>
               </li>
-              <li v-for="(item,index) in watchData.competitionRoundVos">
+              <li v-for="(item,index) in watchData.competitionRoundVos" :key="index">
                 <div class="panelItem clearfix">
                   <h5><span>{{item.round}}</span><span class="time">时间：{{item.time}}</span></h5>
-                  <div class="panelSecond clearfix" v-for="(item1,index) in item.players">
+                  <div class="panelSecond clearfix" v-for="(item1,index) in item.players" :key="index">
                     <dl>
                       <dt><img :src= "item1.image" /></dt>
                       <dd>
                         <div class="ItemCoumnsHd"><span>{{item1.userName}}</span><span class="fm">{{item1.nationality}}</span></div>
                         <h6>曲目</h6>
-                        <div class="ItemCoumns" v-for="(item2,index) in item1.playerChapterVoList"><label>{{item2.composers}}：</label><span>{{item2.repertoire}}，{{item2.chapters}}</span></div>
+                        <div class="ItemCoumns" v-for="(item2,index) in item1.playerChapterVoList" :key="index"><label>{{item2.composers}}：</label><span>{{item2.repertoire}}，{{item2.chapters}}</span></div>
                       </dd>
                     </dl>
                   </div>
@@ -226,9 +234,12 @@
 </template>
 
 <script>
-  import { kpiAboutUs } from 'apx'
+  import { kpiWatchDetail, kpiWatch } from 'apx'
   import MAnchor from 'components/m-anchor/m-anchor'
   export default({
+    components: {
+      MAnchor
+    },
     data(){
       return{
         receiveIndex:0,
@@ -244,11 +255,12 @@
       DateItemLi(idx,date){
         let _this = this
         this.receiveIndex = idx
-		let param = {
-		  date: date,
-		  language: JSON.parse(window.localStorage.getItem('immi_language'))
-		}
-        kpiAboutUs(param, this).then((res) => {
+        let param = {
+          date: date,
+          id: '1',
+          language: JSON.parse(window.localStorage.getItem('immi_language'))
+        }
+        kpiWatchDetail(param, this).then((res) => {
           // console.log(res);
           let data = res.data.data
           // console.log(_this)
@@ -257,10 +269,11 @@
       },
       showData(){
         let _this = this
-		let param = {				 
-		  language: JSON.parse(window.localStorage.getItem('immi_language'))
-		}
-        kpiAboutUs(param, this).then((res) => {
+        let param = {	
+          id: '1',			 
+          language: JSON.parse(window.localStorage.getItem('immi_language'))
+        }
+        kpiWatch(param, this).then((res) => {
           let data = res.data.data
           console.log(res)
           _this.watchDataIndex = data
@@ -270,7 +283,7 @@
   })
 </script>
 
-<style>
+<style scoped>
   .containerA{width: 100%;}
   .containerA .other .block {
     width: 1200px;
