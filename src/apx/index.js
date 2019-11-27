@@ -95,7 +95,15 @@ export function kpiHome (params = {}, Vue) {
 }
 
 /**
- * 关于我们信息
+ * 首页信息
+ * @param {*语言(en, zh_CN)} language
+ */
+export function kpiMemberDetail (params = {}, Vue) {
+  return Request('/sisivc/personnal/personnalDetails', 'get', params, undefined, Vue)
+}
+
+/**
+ * 人员详情页
  * @param {*语言(en, zh_CN)} language
  */
 export function kpiAboutUs (params = {}, Vue) {

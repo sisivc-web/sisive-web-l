@@ -1,6 +1,6 @@
 <template>
     <div>
-        <el-card :body-style="{ padding: '0px' }" @click="_gotoDetails(item.index)" class="member-item">
+        <el-card :body-style="{ padding: '0px' }" @click="_gotoDetails(item.id)" class="member-item">
             <a href="javascript:;" @click="_gotoDetails(item.index)" class="animation hover-animation">
                 <img :src="item.imageUrl" class="image" style="width:100%;height:auto">
             </a>
@@ -23,7 +23,6 @@ export default {
   },
   methods: { 
     _gotoDetails(memberId) {
-      debugger
       this.$router.push({path: '/memberDetail', query: {memberId: memberId}})
     },
   }
