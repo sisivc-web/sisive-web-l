@@ -17,153 +17,87 @@
             <li :class="{'on' : receiveIndex == 0}" @click="DateItemLi(0,date)">
               <a href="javascript:void(0)" class="tag_color orange">
                 <p>Sat<i></i></p>
-                <p class="ipn">0</p>
+                <p class="ipn">11</p>
               </a>
               <span></span>
             </li>
             <li :class="{'on' : receiveIndex == 1}" @click="DateItemLi(1,date)">
               <a href="javascript:void(0)" class="tag_color orange">
-                <p>Sat<i></i></p>
-                <p class="ipn">1</p>
+                <p>Sun<i></i></p>
+                <p class="ipn">12</p>
               </a>
               <span></span>
             </li>
             <li>
               <a href="javascript:void(0)" class="tag_color orange">
-                <p>Sat<i></i></p>
-                <p>2</p>
+                <p>Mon<i></i></p>
+                <p>13</p>
                 <span></span>
               </a>
             </li>
            <li>
           <a href="javascript:void(0)" class="tag_color orange">
-            <p>Sat<i></i></p>
-            <p>3</p>
+            <p>Tue<i></i></p>
+            <p>14</p>
           </a>
           </li>
            <li>
           <a href="javascript:void(0)" class="tag_color grey">
-            <p>Sat</p>
-            <p>4</p>
-          </a>
-          </li>
-           <li>
-          <a href="javascript:void(0)" class="tag_color">
-            <p>Sat</p>
-            <p>5</p>
-          </a>
-          </li>
-           <li>
-          <a href="javascript:void(0)" class="tag_color">
-            <p>Sat</p>
-            <p>6</p>
-          </a>
-          </li>
-           <li>
-          <a href="javascript:void(0)" class="tag_color">
-            <p>Sat</p>
-            <p>7</p>
-          </a>
-          </li>
-           <li>
-          <a href="javascript:void(0)" class="tag_color blue">
-            <p>Sat</p>
-            <p>8</p>
-          </a>
-          </li>
-           <li>
-          <a href="javascript:void(0)" class="tag_color blue">
-            <p>Sat</p>
-            <p>9</p>
-          </a>
-          </li>
-           <li>
-          <a href="javascript:void(0)" class="tag_color blue">
-            <p>Sat</p>
-            <p>10</p>
-          </a>
-          </li>
-          <li>
-          <a href="javascript:void(0)" class="tag_color blue">
-            <p>Sat</p>
-            <p>11</p>
-          </a>
-          </li>
-          <li>
-          <a href="javascript:void(0)" class="tag_color blue">
-            <p>Sat</p>
-            <p>12</p>
-          </a>
-          </li>
-          <li>
-          <a href="javascript:void(0)" class="tag_color">
-            <p>Sat</p>
-            <p>13</p>
-          </a>
-          </li>
-          <li>
-          <a href="javascript:void(0)" class="tag_color">
-            <p>Sat</p>
-            <p>14</p>
-          </a>
-          </li>
-          <li>
-          <a href="javascript:void(0)" class="tag_color">
-            <p>Sat</p>
+            <p>Wed</p>
             <p>15</p>
           </a>
           </li>
-          <li>
+           <li>
           <a href="javascript:void(0)" class="tag_color">
-            <p>Sat</p>
+            <p>Thu</p>
             <p>16</p>
           </a>
           </li>
-          <li>
+           <li>
           <a href="javascript:void(0)" class="tag_color">
-            <p>Sat</p>
+            <p>Fri</p>
             <p>17</p>
           </a>
           </li>
-          <li>
+           <li>
           <a href="javascript:void(0)" class="tag_color">
             <p>Sat</p>
             <p>18</p>
           </a>
           </li>
-          <li>
-          <a href="javascript:void(0)" class="tag_color">
-            <p>Sat</p>
+           <li>
+          <a href="javascript:void(0)" class="tag_color blue">
+            <p>Sun</p>
             <p>19</p>
           </a>
           </li>
-          <li>
-          <a href="javascript:void(0)" class="tag_color">
-            <p>Sat</p>
+           <li>
+          <a href="javascript:void(0)" class="tag_color blue">
+            <p>Mon</p>
             <p>20</p>
           </a>
           </li>
-          <li>
-          <a href="javascript:void(0)" class="tag_color">
-            <p>Sat</p>
+           <li>
+          <a href="javascript:void(0)" class="tag_color blue">
+            <p>Tue</p>
             <p>21</p>
           </a>
           </li>
           <li>
-          <a href="javascript:void(0)" class="tag_color">
-            <p>Sat</p>
+          <a href="javascript:void(0)" class="tag_color blue">
+            <p>Wed</p>
             <p>22</p>
           </a>
           </li>
           <li>
-          <a href="javascript:void(0)" class="tag_color">
-            <p>Sat</p>
+          <a href="javascript:void(0)" class="tag_color blue">
+            <p>Thu</p>
             <p>23</p>
           </a>
           </li>
           <li>
           <a href="javascript:void(0)" class="tag_color">
-            <p>Sat</p>
+            <p>Fri</p>
             <p>24</p>
           </a>
           </li>
@@ -175,40 +109,40 @@
           </li>
           <li>
           <a href="javascript:void(0)" class="tag_color">
-            <p>Sat</p>
+            <p>Sun</p>
             <p>26</p>
           </a>
           </li>
           <li>
           <a href="javascript:void(0)" class="tag_color">
-            <p>Sat</p>
+            <p>Mon</p>
             <p>27</p>
           </a>
           </li>
           <li>
-          <a href="javascript:void(0)" class="tag_color red">
-            <p>Sat</p>
+          <a href="javascript:void(0)" class="tag_color">
+            <p>Tue</p>
             <p>28</p>
           </a>
           </li>
           <li>
-          <a href="javascript:void(0)" class="tag_color red">
-            <p>Sat</p>
+          <a href="javascript:void(0)" class="tag_color">
+            <p>Wed</p>
             <p>29</p>
           </a>
           </li>
           <li>
-          <a href="javascript:void(0)" class="tag_color red">
-            <p>Sat</p>
+          <a href="javascript:void(0)" class="tag_color">
+            <p>Thu</p>
             <p>30</p>
           </a>
           </li>
           <li>
-          <a href="javascript:void(0)" class="tag_color red">
-            <p>Sat</p>
+          <a href="javascript:void(0)" class="tag_color">
+            <p>Fri</p>
             <p>31</p>
           </a>
-          </li>
+          </li>         
           </ul>
         </div>
         <!-- {{}} -->
@@ -291,7 +225,7 @@
 </template>
 
 <script>
-  const axios = require('axios');
+  import { kpiAboutUs } from 'apx'
   export default({
     data(){
       return{
@@ -308,7 +242,11 @@
       DateItemLi(idx,date){
         let _this = this
         this.receiveIndex = idx
-        axios.get('api/competition/competitionRoundsByDate?language=zh&date='+date).then(function(res){
+		let param = {
+		  date: date,
+		  language: JSON.parse(window.localStorage.getItem('immi_language'))
+		}
+        kpiAboutUs(param, this).then((res) => {
           // console.log(res);
           let data = res.data.data
           // console.log(_this)
@@ -317,7 +255,10 @@
       },
       showData(){
         let _this = this
-        axios.get('api/competition/Spectators?language=zh').then(function(res){
+		let param = {				 
+		  language: JSON.parse(window.localStorage.getItem('immi_language'))
+		}
+        kpiAboutUs(param, this).then((res) => {
           let data = res.data.data
           console.log(res)
           _this.watchDataIndex = data
@@ -387,7 +328,7 @@
    .guidelines p{font-size: 13px;margin-bottom: 10px; color: #4c4948;}
    .guidelines h5{font-size: 14px; padding:25px 0 8px}
    .guidelines .grey{color: #a0a0a1;}
-   .guidelines .abuyTicket .buyTicket{background: url(../assets/img/about/icon@2x.png) no-repeat left top; display:block; width: 46px;height: 46px;}
+   .guidelines .abuyTicket .buyTicket{background: url('~static/image/sisivc/moreAdvisers/icon@2x.png') no-repeat left top; display:block; width: 46px;height: 46px;}
    .guidelines .abuyTicket:hover .buyTicket{background-position: -44px top;}
    .guidelines .abuyTicket{color: #a0a0a1; text-decoration: none; font-size: 12px;}
    .guidelines .abuyTicket:hover,.Broad_add li:hover .Broad_add_div p a {color: #222; font-size: 12px;}
