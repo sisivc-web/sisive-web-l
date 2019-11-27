@@ -1,28 +1,30 @@
 <template>
   <div class="container">
-    <el-row>
-        <el-col :span="8">
-            <image :src="userIfo.imageUrl" style="width:100%;height:auto;"></image>
-            <h2>{{userIfo.name}}</h2>
-            <p>{{userIfo.country}}</p>
-            <h3 v-if="userIfo.roleCode === '1'">{{userIfo.roleName}}</h3>
-            <a class="vedio-btn" href="#" v-if="userIfo.roleCode === '2'">视频播放</a>
-            <span>2018 上海艾萨克 ̇斯特恩国际小提琴比赛</span>
-        </el-col>
-        <el-col :span="8">
-            <h3>曲目</h3>
-            <el-card :body-style="{ padding: '0px' }" v-for="(item, index) in raceSongsList" :key="index">
-                <h3>{{item.raceName}}</h3>
-                <el-card :body-style="{ padding: '0px' }" v-for="(el, i) in item.songList" :key="i">
-                    <p>{{el.composer}}</p>
-                    <p>{{el.songName}} + ',' + {{el.chapter}}</p>
-                </el-card>
-            </el-card>
-        </el-col>
-        <el-col :span="userIfo.roleCode != '1' ? 16 : 8">
-            <div v-html="despContent"></div>
-        </el-col>
-    </el-row>
+    <div class="member-detail">
+      <el-row>
+          <el-col :span="8">
+              <img :src="userIfo.imageUrl" style="width:100%;height:auto;"/>
+              <h2>{{userIfo.name}}</h2>
+              <p>{{userIfo.country}}</p>
+              <h3 v-if="userIfo.roleCode === '1'">{{userIfo.roleName}}</h3>
+              <a class="vedio-btn" href="#" v-if="userIfo.roleCode === '2'">视频播放</a>
+              <span>2018 上海艾萨克 ̇斯特恩国际小提琴比赛</span>
+          </el-col>
+          <el-col :span="8" v-if="userIfo.roleCode === '1'">
+              <h3>曲目</h3>
+              <el-card :body-style="{ padding: '0px' }" v-for="(item, index) in raceSongsList" :key="index">
+                  <h3>{{item.raceName}}</h3>
+                  <el-card :body-style="{ padding: '0px' }" v-for="(el, i) in item.songList" :key="i">
+                      <p>{{el.composer}}</p>
+                      <p>{{el.songName}} + ',' + {{el.chapter}}</p>
+                  </el-card>
+              </el-card>
+          </el-col>
+          <el-col :span="userIfo.roleCode != '1' ? 16 : 8">
+              <div v-html="despContent"></div>
+          </el-col>
+      </el-row>
+    </div>
   </div>
 </template>
 <script type="text/ecmascript-6">
@@ -195,7 +197,7 @@ export default {
 <style lang="stylus" scoped rel="stylesheet/stylus">
 @import "~common/stylus/base"
 @import "~common/stylus/variable"
-.container 
+.member-detail 
     width: calc(100% - 360px)
     min-width: 1140px
     margin: 0 auto
@@ -216,4 +218,27 @@ export default {
 //   align-content: flex-start
 //   .item
 //     margin-bottom: 13.33px
+/* 大屏幕 ：大于等于1200px*/
+@media (min-width: 1920px)  {
+  .container .other .block {
+    width: 1560px;
+  }
+  .sub-nav ul {
+    width: 1560px;
+  }
+  .carousel{
+    width: 1920px!important;
+    margin: 0 auto;
+  }
+}
+@media (min-width: 1400px) and (max-width: 1920px)  {
+  .container .other .block {
+    width: calc(100% - 360px);
+    min-width: 1140px;
+  }
+  .sub-nav ul {
+    width: calc(100% - 360px);
+    min-width: 1140px;
+  }
+}
 </style>
