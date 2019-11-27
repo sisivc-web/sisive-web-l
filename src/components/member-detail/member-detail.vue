@@ -2,7 +2,7 @@
   <div class="container">
     <el-row>
         <el-col :span="8">
-            <image :src="userIfo.imageUrl" style="width:100%;height:auto;"></image>
+            <img :src="userIfo.imageUrl" style="width:100%;height:auto;"/>
             <h2>{{userIfo.name}}</h2>
             <p>{{userIfo.country}}</p>
             <h3 v-if="userIfo.roleCode === '1'">{{userIfo.roleName}}</h3>
