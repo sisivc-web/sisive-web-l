@@ -23,7 +23,7 @@
           <div slot="detail">
             <div class="details">
               <el-row>
-                <el-col :span="12" v-for="(item, index) in newsList.slice(0, 1)" :key="index" class="left">
+                <el-col :span="10" v-for="(item, index) in newsList.slice(0, 1)" :key="index" class="left">
                   <el-card :body-style="{ padding: '0px' }">
                     <a href="javascript:;" class="animation hover-animation"><img :src="item.imageUrl" class="image" style="width:100%;height:auto;"></a>
                     <div style="padding: 30px 0;padding-bottom:12px;">
@@ -43,7 +43,7 @@
                     </el-card>
                   </el-card>
                 </el-col>
-                <el-col :span="12" class="right">
+                <el-col :span="14" class="right">
                   <el-col :span="12" v-for="(item, index) in newsList.slice(1, 5)" :key="index">
                     <el-card :body-style="{ padding: '0px' }">
                       <a href="javascript:;" class="animation hover-animation"><img :src="item.imageUrl" class="image" style="width:100%;height:auto;"></a>
@@ -546,7 +546,7 @@ export default {
             overflow: hidden;
             text-overflow: ellipsis;
             display: -webkit-box;
-            -webkit-line-clamp: 5;
+            -webkit-line-clamp: 4;
             -webkit-box-orient: vertical;  
       .right
         .el-card
@@ -708,6 +708,9 @@ a.hover-animation:hover img
   .vedio-css {
     display: block;
   }
+  .news-content {
+    -webkit-line-clamp: 5!important;
+  }
 }
 @media (min-width: 1400px) and (max-width: 1920px)  {
   .container .other .block {
@@ -718,5 +721,9 @@ a.hover-animation:hover img
     width: calc(100% - 360px);
     min-width: 1140px;
   }
+  .news-content {
+    -webkit-line-clamp: 5!important;
+  }
+    
 }
 </style>
