@@ -1,5 +1,6 @@
 <template>
   <div class="containerA">
+	  <m-anchor :contentDivClass="'AboutGame'" :anchorItem="'anchor-item'" :subNavList="[$t('subNavs.aboutUs1'), $t('subNavs.aboutUs2'), $t('subNavs.aboutUs3'), $t('subNavs.aboutUs4'), $t('subNavs.aboutUs5')]"></m-anchor>  
       <div class="other" >
         <div class="header">
           <div class="mainBox block clearfix">
@@ -226,6 +227,7 @@
 
 <script>
   import { kpiAboutUs } from 'apx'
+  import MAnchor from 'components/m-anchor/m-anchor'
   export default({
     data(){
       return{
