@@ -307,7 +307,13 @@
 	       margin: 0 auto;
 	   }
 	   }
-	
+		.clearfix:after {
+		    content: '';
+		    display: block;
+		    height: 0;
+		    clear: both;
+		    visibility: hidden;
+		}
 	
 	   .header{background: #e3364a;height: 150px;}
 	   .mainBox .title{color: #1e2022;font-size: 24px;font-weight: 700; padding-bottom: 40px;}
@@ -315,10 +321,10 @@
 	   .date .dat_list{display: grid;grid-template-columns:repeat(auto-fit,minmax(50px,1fr));  grid-template-rows:repeat(2,40px);}
 	   .date .dat_list li{text-align: center; position: relative;}
 	   .date .dat_list li:hover i{position: absolute;display: block;width:20px; height: 1px; background: #f49950; left: 50%; bottom: 0; margin-left: -10px;}
-	   .date .dat_list li.on span{display: block;width:100%; height: 40px;  background: #f49950; position: absolute;bottom: -40px;left: 0;}
+	   .date .dat_list li.on span{display: block;width:100%; height: 40px;  background: #f49950; position: absolute;bottom: -37px;left: 0;}
 	    .date .dat_list li.on p.ipn{color: #fff;z-index: 999;}
 	   .date .dat_list li a{color: #c8c8c8; text-decoration: none;}
-	   .date .dat_list li p{border-bottom: 1px solid #e5e5e5;padding:10px 0; position: relative;font-size: 12px; height: 19px;}
+	   .date .dat_list li p{border-bottom: 1px solid #e5e5e5;padding:10px 0; position: relative;font-size: 12px; height: 40px;}
 	   .date .dat_list li p.first{font-size: 12px;}
 	   .date .dat_list li p.last{font-size: 14px;}
 	   .date .dat_list li a.orange{color: #f49950;}
@@ -372,7 +378,7 @@
 	   .dataUl li h4{padding-bottom: 17px;}
 	   .dataUl li .ItemName{color: #4c4849;font-size: 14px; padding-top:9px;font-weight: 700;}
 	   .dataUl li .ListTBox{margin-bottom:90px;}
-	   .panelSecond{margin-bottom:60px;min-height: 247px;}
+	   .panelSecond{margin-bottom:60px;}
 	   .dataUl li .panelItem h5 span,.panelSecond dl dd .ItemCoumnsHd span{display: inline-block;color: #222;font-size: 14px;font-weight: 700;}
 	   .panelSecond dl dd .ItemCoumnsHd span{font-size: 18px;}
 	   .dataUl li .panelItem h5 span.time{padding-left: 10px;}

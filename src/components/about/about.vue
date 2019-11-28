@@ -152,6 +152,13 @@ export default {
 	     margin: 0 auto;
 	 }
 	 }
+	 .clearfix:after {
+	     content: '';
+	     display: block;
+	     height: 0;
+	     clear: both;
+	     visibility: hidden;
+	 }
 	.flexBox{display: flex;}
 	.mainBox{width: 100%;}
 	.aItemG{width:500px;margin-right: 80px;}
