@@ -375,7 +375,7 @@
    .panelSecond dl dt,.panelSecond dl dd{float: left;}
    .panelSecond dl dt{width: 140px;}
    .panelSecond dl dt img{width: 120px; height: 120px; object-fit: cover;}
-   .panelSecond dl dd{font-size: 14px;margin-bottom: 10px; color: #4c4948;width: 295px;}
+   .panelSecond dl dd{font-size: 14px;margin-bottom: 10px; color: #4c4948;width: 290px;}
    .panelSecond dl dd .ItemCoumnsHd{border-bottom: 1px solid hsla(0,0%,50%,.19)!important; padding-bottom: 8px;}
    .panelSecond dl dd .ItemCoumnsHd .fm{float: right;font-size: 12px; color: rgb(160, 160, 161);font-weight: normal; margin-top: 8px;;}
    .panelSecond dl dd h6{font-size: 14px;font-weight: 700; padding:5px 0;color: #4c4948;}
