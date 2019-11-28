@@ -337,7 +337,7 @@
    .Broad_add li .Broad_add_div .iconVideo{background-position: left -101px;}
    .Broad_add li:hover .Broad_add_div .iconAdd{background-position:-64px -209px;}
    .Broad_add li:hover .Broad_add_div .iconVideo{background-position:-64px -99px;} */
-   .Broad_add li .Broad_add_div img{float: left;margin-top: 41px; margin-left:-50px; display: inline-block;opacity:1;transition:opacity .35s ease-out;background-color:#fff;pointer-events:auto!important;-webkit-transition: all .2s ease-in-out 0s;
+   .Broad_add li .Broad_add_div img{float: left;margin-top: 41px; margin-left:-90px; display: inline-block;opacity:1;transition:opacity .35s ease-out;background-color:#fff;pointer-events:auto!important;-webkit-transition: all .2s ease-in-out 0s;
 	transition: all .2s ease-in-out 0s}
    .Broad_add li:hover .Broad_add_div img{opacity:.75!important;-webkit-transform: scale(1.1) translateZ(0);
 	-webkit-transform-origin: 50%;
