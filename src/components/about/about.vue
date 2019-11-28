@@ -64,7 +64,7 @@
            <h3>{{item.scheduleName}}</h3>
            <div class="ruleContent">
                <dl v-for="(item1,index) in item.scoringRulesVos">
-                 <dt>{{item1.rules}}</dt>
+                 <dt>{{index+1}}.{{item1.rules}}</dt>
                  <dd v-for="(item2,index) in item1.sonScoringRulesVos" v-if="item1.id == item2.rulesPid">{{item2.rules}}</dd>
                </dl>
            </div>
