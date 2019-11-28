@@ -151,8 +151,46 @@
         <div class="boxImg" v-if="!watchData">
           <img :src="watchDataIndex.scheduleVoList[0].image">
         </div>
+		<!--点日期显示下面的数据-->
+		<!-- {{watchData}} -->
+		<div class="mainBox block clearfix" v-if="watchData">
+		  <div class="minLeft">
+		    <div class="boxL">
+		      <ul class="dataUl">
+		        <li>
+		          <h4>{{watchData.scheduleName}}</h4>
+		          <div class="ListTBox" v-for="(item,index) in watchData.artists" :key="index">
+		            <div class="imgItemCoumuns"><img :src="item.image" /></div>
+		            <p class="ItemName">{{item.userName}}</p>
+		          </div>
+		          <div class="ListTBox">
+		            <div class="imgItemCoumuns"><img :src="watchData.groupUrl" /></div>
+		            <p class="ItemName">{{watchData.groupTitle}}</p>
+		          </div>
+		        </li>
+		        <li v-for="(item,index) in watchData.competitionRoundVos" :key="index">
+		          <div class="panelItem clearfix">
+		            <h5><span>{{item.round}}</span><span class="time">时间：{{item.time}}</span></h5>
+		            <div class="panelSecond clearfix" v-for="(item1,index) in item.players" :key="index">
+		              <dl>
+		                <dt><img :src= "item1.image" /></dt>
+		                <dd>
+		                  <div class="ItemCoumnsHd"><span>{{item1.userName}}</span><span class="fm">{{item1.nationality}}</span></div>
+		                  <h6>曲目</h6>
+		                  <div class="ItemCoumns" v-for="(item2,index) in item1.playerChapterVoList" :key="index"><label>{{item2.composers}}：</label><span>{{item2.repertoire}}，{{item2.chapters}}</span></div>
+		                </dd>
+		              </dl>
+		            </div>
+		          </div>
+		
+		        </li>
+		
+		      </ul>
+		    </div>
+		  </div>
+		</div>
         <!--直播地址-->
-        <div class="mainBox block clearfix" v-if="!watchData">
+        <div class="mainBox block clearfix">
            <h3 class="title">直播地址</h3>
            <ul class="Broad_add">
               <li v-for="(item, index) in watchDataIndex.broadcastAddressVoList" :key="index">
@@ -167,13 +205,13 @@
           </ul>
         </div>
        <!--观赛须知-->
-       <div class="mainBox block clearfix guidelines" v-if="!watchData">
+       <div class="mainBox block clearfix guidelines">
           <h3 class="title">观赛须知</h3><!--一级标题-->
           <h4 v-for="(item, index) in watchDataIndex.noticeVoList" :key="index" v-if="item.id === 1">{{item.content}}</h4><!--二级标题-->
           <p v-for="(item, index) in watchDataIndex.noticeVoList" :key="index" v-if="item.id != 1">{{index}}.{{item.content}}</p>
        </div>
        <!--订票方式-->
-       <div class="mainBox block clearfix guidelines" v-if="!watchData" >
+       <div class="mainBox block clearfix guidelines">
           <h3 class="title">订票方式</h3><!--一级标题-->
           <div v-for="(item,index) in watchDataIndex.bookingWayVoList" :key="index">
           <h5 v-if="item.booking">{{item.booking}}</h5><!--二级标题-->
@@ -190,44 +228,7 @@
           <p>地址：上海市徐汇区复兴中路1380号 售票中心。</p> -->
        </div>
        </div>
-      <!--点日期显示下面的数据-->
-      <!-- {{watchData}} -->
-      <div class="mainBox block clearfix" v-if="watchData">
-        <div class="minLeft">
-          <div class="boxL">
-            <ul class="dataUl">
-              <li>
-                <h4>{{watchData.scheduleName}}</h4>
-                <div class="ListTBox" v-for="(item,index) in watchData.artists" :key="index">
-                  <div class="imgItemCoumuns"><img :src="item.image" /></div>
-                  <p class="ItemName">{{item.userName}}</p>
-                </div>
-                <div class="ListTBox">
-                  <div class="imgItemCoumuns"><img :src="watchData.groupUrl" /></div>
-                  <p class="ItemName">{{watchData.groupTitle}}</p>
-                </div>
-              </li>
-              <li v-for="(item,index) in watchData.competitionRoundVos" :key="index">
-                <div class="panelItem clearfix">
-                  <h5><span>{{item.round}}</span><span class="time">时间：{{item.time}}</span></h5>
-                  <div class="panelSecond clearfix" v-for="(item1,index) in item.players" :key="index">
-                    <dl>
-                      <dt><img :src= "item1.image" /></dt>
-                      <dd>
-                        <div class="ItemCoumnsHd"><span>{{item1.userName}}</span><span class="fm">{{item1.nationality}}</span></div>
-                        <h6>曲目</h6>
-                        <div class="ItemCoumns" v-for="(item2,index) in item1.playerChapterVoList" :key="index"><label>{{item2.composers}}：</label><span>{{item2.repertoire}}，{{item2.chapters}}</span></div>
-                      </dd>
-                    </dl>
-                  </div>
-                </div>
-
-              </li>
-
-            </ul>
-          </div>
-        </div>
-      </div>
+      
      </div>
     <!--end-->
   </div>
