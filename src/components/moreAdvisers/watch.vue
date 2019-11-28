@@ -4,7 +4,7 @@
       <div class="other" >
         <div class="header">
           <div class="mainBox block clearfix">
-            <h3 class="title">比赛日程</h3>
+            <h3 class="title" style="padding-top: 21px; padding-bottom: 12px;">比赛日程</h3>
           </div>
           <!--日期-->
           <dl class="MinMon clearfix">
@@ -17,131 +17,136 @@
           <ul class="dat_list">
             <li :class="{'on' : receiveIndex == 0}" @click="DateItemLi(0,date)">
               <a href="javascript:void(0)" class="tag_color orange">
-                <p>Sat<i></i></p>
-                <p class="ipn">11</p>
+                <p>Sat</p>
+                <p class="ipn last">11</p>
               </a>
+			  <i></i>
               <span></span>
             </li>
             <li :class="{'on' : receiveIndex == 1}" @click="DateItemLi(1,date)">
               <a href="javascript:void(0)" class="tag_color orange">
-                <p>Sun<i></i></p>
-                <p class="ipn">12</p>
+                <p>Sun</p>
+                <p class="ipn last">12</p>
               </a>
+              <i></i>
               <span></span>
             </li>
             <li>
               <a href="javascript:void(0)" class="tag_color orange">
-                <p>Mon<i></i></p>
-                <p>13</p>
-                <span></span>
+                <p>Mon</p>
+                <p class="last">13</p>                
               </a>
+			  <i></i>
+			  <span></span>
             </li>
            <li>
           <a href="javascript:void(0)" class="tag_color orange">
-            <p>Tue<i></i></p>
-            <p>14</p>
+            <p>Tue</p>
+            <p class="last">14</p>
           </a>
+		  <i></i>
+		  <span></span>
           </li>
            <li>
           <a href="javascript:void(0)" class="tag_color grey">
             <p>Wed</p>
-            <p>15</p>
+            <p class="last">15</p>
           </a>
           </li>
            <li>
           <a href="javascript:void(0)" class="tag_color">
             <p>Thu</p>
-            <p>16</p>
+            <p class="last">16</p>
           </a>
           </li>
            <li>
           <a href="javascript:void(0)" class="tag_color">
             <p>Fri</p>
-            <p>17</p>
+            <p class="last">17</p>
           </a>
           </li>
            <li>
           <a href="javascript:void(0)" class="tag_color">
             <p>Sat</p>
-            <p>18</p>
+            <p class="last">18</p>
           </a>
           </li>
            <li>
           <a href="javascript:void(0)" class="tag_color blue">
             <p>Sun</p>
-            <p>19</p>
+            <p class="last">19</p>
           </a>
           </li>
            <li>
           <a href="javascript:void(0)" class="tag_color blue">
             <p>Mon</p>
-            <p>20</p>
+            <p class="last">20</p>
           </a>
           </li>
            <li>
           <a href="javascript:void(0)" class="tag_color blue">
             <p>Tue</p>
-            <p>21</p>
+            <p class="last">21</p>
           </a>
           </li>
           <li>
           <a href="javascript:void(0)" class="tag_color blue">
             <p>Wed</p>
-            <p>22</p>
+            <p class="last">22</p>
           </a>
           </li>
           <li>
           <a href="javascript:void(0)" class="tag_color blue">
             <p>Thu</p>
-            <p>23</p>
+            <p class="last">23</p>
           </a>
           </li>
           <li>
           <a href="javascript:void(0)" class="tag_color">
             <p>Fri</p>
-            <p>24</p>
+            <p class="last">24</p>
           </a>
           </li>
           <li>
           <a href="javascript:void(0)" class="tag_color">
             <p>Sat</p>
-            <p>25</p>
+            <p class="last">25</p>
           </a>
           </li>
           <li>
           <a href="javascript:void(0)" class="tag_color">
             <p>Sun</p>
-            <p>26</p>
+            <p class="last">26</p>
           </a>
           </li>
           <li>
           <a href="javascript:void(0)" class="tag_color">
             <p>Mon</p>
-            <p>27</p>
+            <p class="last">27</p>
           </a>
           </li>
           <li>
           <a href="javascript:void(0)" class="tag_color">
             <p>Tue</p>
-            <p>28</p>
+            <p class="last">28</p>
           </a>
           </li>
           <li>
           <a href="javascript:void(0)" class="tag_color">
             <p>Wed</p>
-            <p>29</p>
+            <p class="last">29</p>
           </a>
           </li>
           <li>
           <a href="javascript:void(0)" class="tag_color">
             <p>Thu</p>
-            <p>30</p>
+            <p class="last">30</p>
           </a>
           </li>
           <li>
           <a href="javascript:void(0)" class="tag_color">
             <p>Fri</p>
-            <p>31</p>
+            <p class="last">31</p>
           </a>
           </li>         
           </ul>
@@ -177,7 +182,7 @@
 		                <dd>
 		                  <div class="ItemCoumnsHd"><span>{{item1.userName}}</span><span class="fm">{{item1.nationality}}</span></div>
 		                  <h6>曲目</h6>
-		                  <div class="ItemCoumns" v-for="(item2,index) in item1.playerChapterVoList" :key="index"><label>{{item2.composers}}：</label><span>{{item2.repertoire}}，{{item2.chapters}}</span></div>
+		                  <div class="ItemCoumns" v-for="(item2,index) in item1.playerChapterVoList" :key="index"><label>{{item2.composers}}：</label><span>{{item2.chapters}}，{{item2.repertoire}}</span></div>
 		                </dd>
 		              </dl>
 		            </div>
@@ -191,12 +196,12 @@
 		</div>
         <!--直播地址-->
         <div class="mainBox block clearfix">
-           <h3 class="title">直播地址</h3>
+           <h3 class="title" style="padding-bottom: 33px;">直播地址</h3>
            <ul class="Broad_add">
               <li v-for="(item, index) in watchDataIndex.broadcastAddressVoList" :key="index">
                 <div class="Broad_add_div">
                   <img :src="item.iconUrl" />
-                  <div class="fl">
+                  <div class="fl" style="padding-left: 40px;">
                     <p>{{item.title}}</p>
                     <p><router-link tag="a" :to ="item.externalLink">{{item.description}}</router-link></p>
                   </div>
@@ -206,13 +211,13 @@
         </div>
        <!--观赛须知-->
        <div class="mainBox block clearfix guidelines">
-          <h3 class="title">观赛须知</h3><!--一级标题-->
+          <h3 class="title" style="padding:80px 0 26px 0;">观赛须知</h3><!--一级标题-->
           <h4 v-for="(item, index) in watchDataIndex.noticeVoList" :key="index" v-if="item.id === 1">{{item.content}}</h4><!--二级标题-->
           <p v-for="(item, index) in watchDataIndex.noticeVoList" :key="index" v-if="item.id != 1">{{index}}.{{item.content}}</p>
        </div>
        <!--订票方式-->
        <div class="mainBox block clearfix guidelines">
-          <h3 class="title">订票方式</h3><!--一级标题-->
+          <h3 class="title" style="padding:63px 0 7px 0;">订票方式</h3><!--一级标题-->
           <div v-for="(item,index) in watchDataIndex.bookingWayVoList" :key="index">
           <h5 v-if="item.booking">{{item.booking}}</h5><!--二级标题-->
           <p v-if="item.content">{{item.content}}</p>
@@ -284,102 +289,101 @@
   })
 </script>
 
-<style scoped>
-  .containerA{width: 100%;}
-  .containerA .other .block{width: 1140px; margin: 0 auto; padding: 50px 0 0;}
-   /* 大屏幕 ：大于等于1200px*/
-   @media (min-width: 1920px) {
-   .containerA .other .block {
-       width: 1560px;
-       margin: 0 auto;
-       padding-top: 50px;
-   }
-   }
-   @media (min-width: 1400px) and (max-width: 1920px) {
-   .containerA .other .block {
-       width: calc(100% - 360px);
-       min-width: 1140px;
-       margin: 0 auto;
-   }
-   }
-	 .clearfix:after {
-	     content: '';
-	     display: block;
-	     height: 0;
-	     clear: both;
-	     visibility: hidden;
-	 }
-	 .fl{float:left}
-   .header{background: #e3364a;}
-   .mainBox .title{color: #1e2022;font-size: 24px;font-weight: 700; padding-bottom: 35px;}
-
-   .date .dat_list{display: grid;grid-template-columns:repeat(auto-fit,minmax(50px,1fr));  grid-template-rows:repeat(2,40px);}
-   .date .dat_list li{text-align: center; position: relative;}
-   .date .dat_list li:hover p i{position: absolute;display: block;width:20px; height: 1px; background: #f49950; left: 50%; bottom: -1px; margin-left: -10px;}
-   .date .dat_list li.on span{display: block;width:100%; height: 40px;  background: #f49950; position: absolute;bottom: -37px;left: 0;}
-    .date .dat_list li.on p.ipn{color: #fff;z-index: 999; font-size: 14px;}
-   .date .dat_list li a{color: #c8c8c8; text-decoration: none;font-size: 14px;}
-   .date .dat_list li p{border-bottom: 1px solid #e5e5e5;padding:12px 0; position: relative;font-size: 14px;}
-   .date .dat_list li a.orange{color: #f49950;}
-   .date .dat_list li a.grey{color: #bebebe;}
-   .date .dat_list li a.blue{color: #1a3880;}
-   .date .dat_list li a.red{color: #e5354c;}
-   .MinMon{position: relative; height: 45px;}
-   .MinMon .FullYear{position: absolute; left: 30px; top: 0; color: #c8c8c8;}
-   .MinMon .Prev_month{position: absolute; left: 30px; top: 20px; font-weight: 700;}
-   .MinMon .Next_month{position: absolute; right: 30px;top: 20px;font-weight: 700;}
-   .header .mainBox .title,.header .MinMon,.header .MinMon .FullYear{color: #fff;}
-   /*----直播地址*/
-   .Broad_add{display: grid;grid-template-columns:0.5fr 0.5fr;grid-template-rows:auto;}
-   .Broad_add li{border-right: 1px solid #e5e5e5; border-top: 1px solid #e5e5e5; border-bottom: 1px solid #e5e5e5;  height: 140px; position: relative;}
-   .Broad_add li:last-child{border-right: 0;}
-/*   .Broad_add li .Broad_add_div i{background: url(../assets/img/about/icon@2x.png) no-repeat; float: left; display: inline-block; width: 64px;height: 64px; margin-top: 41px;}
-   .Broad_add li .Broad_add_div .iconAdd{background-position: left -209px;}
-   .Broad_add li .Broad_add_div .iconVideo{background-position: left -101px;}
-   .Broad_add li:hover .Broad_add_div .iconAdd{background-position:-64px -209px;}
-   .Broad_add li:hover .Broad_add_div .iconVideo{background-position:-64px -99px;} */
-   .Broad_add li .Broad_add_div img{float: left;margin-top: 41px; margin-left:-90px; display: inline-block;opacity:1;transition:opacity .35s ease-out;background-color:#fff;pointer-events:auto!important;-webkit-transition: all .2s ease-in-out 0s;
-	transition: all .2s ease-in-out 0s}
-   .Broad_add li:hover .Broad_add_div img{opacity:.75!important;-webkit-transform: scale(1.1) translateZ(0);
-	-webkit-transform-origin: 50%;
-	transform: scale(1.1) translateZ(0);
-	transform-origin: 50%;
-	image-rendering: -webkit-optimize-contrast;
-	image-rendering: crisp-edges}
-   .Broad_add li .Broad_add_div{position: absolute;left: 50%; width: 360px; margin-left: -200px; margin:0 auto}
-   .Broad_add li .Broad_add_div p{padding-top:50px; text-align: left;color: #222;font-size: 14px;font-weight: 700;}
-   .Broad_add li a{color: #1E2022;text-decoration: none;}
-   .Broad_add li .Broad_add_div p:last-child,.Broad_add li .Broad_add_div p:last-child a{padding-top:8px;font-weight: normal; color: #a0a0a1;font-size: 12px;}
-   .boxImg{position: relative; width: 100%;height: 100%;}
-   .boxImg img{width: 100%;height: 100%;}
-   /*----观赛须知*/
-   .guidelines h4,.guidelines h5{font-size: 15px; color: #222; font-weight: 700; padding:5px 0 20px 0}
-   .guidelines p{font-size: 13px;margin-bottom: 10px; color: #4c4948;}
-   .guidelines h5{font-size: 14px; padding:25px 0 8px}
-   .guidelines .grey{color: #a0a0a1;}
-   .guidelines .abuyTicket .buyTicket{background: url('~static/image/sisivc/moreAdvisers/icon@2x.png') no-repeat left top; display:block; width: 46px;height: 46px;}
-   .guidelines .abuyTicket:hover .buyTicket{background-position: -44px top;}
-   .guidelines .abuyTicket{color: #a0a0a1; text-decoration: none; font-size: 12px;}
-   .guidelines .abuyTicket:hover,.Broad_add li:hover .Broad_add_div p a {color: #222; font-size: 12px;}
-   /*----数据显示*/
-   .dataUl{display: grid;grid-template-columns:0.1fr 0.33fr 0.33fr 0.33fr;grid-template-rows:auto; grid-gap:40px; grid-template-rows:auto;}
-   .dataUl h4{color: #1e2022;font-size: 20px;font-weight: 700;}
-   .ListTBox .imgItemCoumuns img{width: 120px;height: 80px; object-fit: cover;}
-   .dataUl li .panelItem{margin-bottom: 37px;}
-   .dataUl li .panelItem h5{padding-bottom: 20px;}
-   .dataUl li h4{padding-bottom: 10px;}
-   .dataUl li .ItemName{color: #4c4948;font-size: 14px; padding-top: 5px;color: #4c4948;}
-   .dataUl li .ListTBox{margin-bottom: 90px;}
-   .panelSecond{margin-bottom:60px}
-   .dataUl li .panelItem h5 span,.panelSecond dl dd .ItemCoumnsHd span{display: inline-block;color: #1e2022;font-size: 14px;font-weight: 700;}
-   .dataUl li .panelItem h5 span.time{padding-left: 10px;}
-   .panelSecond dl dt,.panelSecond dl dd{float: left;}
-   .panelSecond dl dt{width: 140px;}
-   .panelSecond dl dt img{width: 120px; height: 120px; object-fit: cover;}
-   .panelSecond dl dd{font-size: 14px;margin-bottom: 10px; color: #4c4948;width: 290px;}
-   .panelSecond dl dd .ItemCoumnsHd{border-bottom: 1px solid hsla(0,0%,50%,.19)!important; padding-bottom: 8px;}
-   .panelSecond dl dd .ItemCoumnsHd .fm{float: right;font-size: 12px; color: rgb(160, 160, 161);font-weight: normal; margin-top: 8px;;}
-   .panelSecond dl dd h6{font-size: 14px;font-weight: 700; padding:5px 0;color: #4c4948;}
-   .panelSecond dl dd .ItemCoumns{padding-bottom: 6px;}
+<style>
+	.containerA{width: 100%;}
+	  .containerA .other .block{width: 1140px; margin: 0 auto; padding: 50px 0 0;}
+	   /* 大屏幕 ：大于等于1200px*/
+	   @media (min-width: 1920px) {
+	   .containerA .other .block {
+	       width: 1560px;
+	       margin: 0 auto;
+	       padding-top: 34px;
+	   }
+	   }
+	   @media (min-width: 1400px) and (max-width: 1920px) {
+	   .containerA .other .block {
+	       width: calc(100% - 360px);
+	       min-width: 1140px;
+	       margin: 0 auto;
+	   }
+	   }
+	
+	
+	   .header{background: #e3364a;height: 150px;}
+	   .mainBox .title{color: #1e2022;font-size: 24px;font-weight: 700; padding-bottom: 40px;}
+	
+	   .date .dat_list{display: grid;grid-template-columns:repeat(auto-fit,minmax(50px,1fr));  grid-template-rows:repeat(2,40px);}
+	   .date .dat_list li{text-align: center; position: relative;}
+	   .date .dat_list li:hover i{position: absolute;display: block;width:20px; height: 1px; background: #f49950; left: 50%; bottom: 0; margin-left: -10px;}
+	   .date .dat_list li.on span{display: block;width:100%; height: 40px;  background: #f49950; position: absolute;bottom: -40px;left: 0;}
+	    .date .dat_list li.on p.ipn{color: #fff;z-index: 999;}
+	   .date .dat_list li a{color: #c8c8c8; text-decoration: none;}
+	   .date .dat_list li p{border-bottom: 1px solid #e5e5e5;padding:10px 0; position: relative;font-size: 12px; height: 19px;}
+	   .date .dat_list li p.first{font-size: 12px;}
+	   .date .dat_list li p.last{font-size: 14px;}
+	   .date .dat_list li a.orange{color: #f49950;}
+	   .date .dat_list li a.grey{color: #bebebe;}
+	   .date .dat_list li a.blue{color: #1a3880;}
+	   .date .dat_list li a.red{color: #e5354c;}
+	   .MinMon{position: relative; height: 45px;}
+	   .MinMon .FullYear{position: absolute; left: 30px; top: 0; color: #c8c8c8;}
+	   .MinMon .Prev_month{position: absolute; left: 30px; top: 20px; font-weight: 700;}
+	   .MinMon .Next_month{position: absolute; right: 30px;top: 20px;font-weight: 700;}
+	   .header .mainBox .title,.header .MinMon,.header .MinMon .FullYear{color: #fff;}
+	   /*----直播地址*/
+	   .Broad_add{display: grid;grid-template-columns:0.5fr 0.5fr;grid-template-rows:auto;}
+	   .Broad_add li{border-right: 1px solid #e5e5e5; border-top: 1px solid #e5e5e5; border-bottom: 1px solid #e5e5e5;  height: 140px; position: relative;}
+	   .Broad_add li:last-child{border-right: 0;}
+	/*   .Broad_add li .Broad_add_div i{background: url(../assets/img/about/icon@2x.png) no-repeat; float: left; display: inline-block; width: 64px;height: 64px; margin-top: 41px;}
+	   .Broad_add li .Broad_add_div .iconAdd{background-position: left -209px;}
+	   .Broad_add li .Broad_add_div .iconVideo{background-position: left -101px;}
+	   .Broad_add li:hover .Broad_add_div .iconAdd{background-position:-64px -209px;}
+	   .Broad_add li:hover .Broad_add_div .iconVideo{background-position:-64px -99px;} */
+	   .Broad_add li .Broad_add_div img{float: left;margin-top: 41px; margin-left: -50px; display: inline-block;opacity:1;transition:opacity .35s ease-out;background-color:#fff;pointer-events:auto!important;-webkit-transition: all .2s ease-in-out 0s;
+		transition: all .2s ease-in-out 0s}
+	   .Broad_add li:hover .Broad_add_div img{opacity:.75!important;-webkit-transform: scale(1.1) translateZ(0);
+		-webkit-transform-origin: 50%;
+		transform: scale(1.1) translateZ(0);
+		transform-origin: 50%;
+		image-rendering: -webkit-optimize-contrast;
+		image-rendering: crisp-edges}
+	   .Broad_add li .Broad_add_div{position: absolute;left: 50%; width: 360px; margin-left: -200px; margin:0 auto}
+	   .Broad_add li .Broad_add_div p{padding-top: 50px; text-align: left;color: #4c4849;font-size: 14px;font-weight: 700;}
+	   .Broad_add li a{color: #1E2022;text-decoration: none;}
+	   .Broad_add li .Broad_add_div p:last-child,.Broad_add li .Broad_add_div p:last-child a{padding-top:4px;font-weight: normal; color: #4c4849;font-size: 14px;}
+	   .boxImg{position: relative; width: 100%;height: 100%;}
+	   .boxImg img{width: 100%;height: 100%;}
+	   /*----观赛须知*/
+	   .guidelines h4,.guidelines h5{font-size: 15px; color: #222; font-weight: 700; padding:5px 0 34px 0}
+	   .guidelines p{font-size: 14px; line-height: 24px; padding-bottom: 7px; color: #4c4948;}
+	   .guidelines h5{font-size: 14px; padding:39px 0 8px;color: #4c4948;}
+	   .guidelines .grey{color: #a0a0a1;}
+	   .guidelines .abuyTicket .buyTicket{background: url('~static/image/sisivc/moreAdvisers/icon@2x.png') no-repeat left top; display:block; width: 46px;height: 46px;}
+	   .guidelines .abuyTicket:hover .buyTicket{background-position: -44px top;}
+	   .guidelines .abuyTicket{color: #a0a0a1; text-decoration: none; font-size: 12px;}
+	   .guidelines .abuyTicket:hover,.Broad_add li:hover .Broad_add_div p a {color: #222; font-size: 12px;}
+	    .Broad_add li:hover .Broad_add_div p a{font-size: 14px;}
+	   /*----数据显示*/
+	   .dataUl{display: grid;grid-template-columns:0.1fr 0.33fr 0.33fr 0.33fr;grid-template-rows:auto; grid-gap:40px; grid-template-rows:auto;}
+	   .dataUl h4{color: #222;font-size: 18px;font-weight: 700;}
+	   .ListTBox .imgItemCoumuns img{width: 132px;height: 80px; object-fit: cover;}
+	   .dataUl li .panelItem{margin-bottom: 37px; padding-top: 4px;}
+	   .dataUl li .panelItem h5{padding-bottom: 19px;}
+	   .dataUl li h4{padding-bottom: 17px;}
+	   .dataUl li .ItemName{color: #4c4849;font-size: 14px; padding-top:9px;font-weight: 700;}
+	   .dataUl li .ListTBox{margin-bottom:90px;}
+	   .panelSecond{margin-bottom:60px;min-height: 247px;}
+	   .dataUl li .panelItem h5 span,.panelSecond dl dd .ItemCoumnsHd span{display: inline-block;color: #222;font-size: 14px;font-weight: 700;}
+	   .panelSecond dl dd .ItemCoumnsHd span{font-size: 18px;}
+	   .dataUl li .panelItem h5 span.time{padding-left: 10px;}
+	   .panelSecond dl dt,.panelSecond dl dd{float: left;}
+	   .panelSecond dl dt{width: 140px;}
+	   .panelSecond dl dt img{width: 120px; height: 120px; object-fit: cover;}
+	   .panelSecond dl dd{font-size: 14px;margin-bottom: 10px; color: #4c4948; width: 295px;}
+	   .panelSecond dl dd .ItemCoumnsHd{border-bottom: 1px solid #e5e5e5; padding-bottom: 10px;}
+	   .panelSecond dl dd .ItemCoumnsHd .fm{float: right;font-size: 12px; color: rgb(160, 160, 161);font-weight: normal; margin-top: 8px;;}
+	   .panelSecond dl dd h6{font-size: 14px;font-weight: 700; padding:5px 0;color: #222;}
+	   .panelSecond dl dd .ItemCoumns{line-height: 24px; padding-bottom: 7px;}
+	   .panelSecond dl dd .ItemCoumns label{color: #4c4849;font-size: 14px;font-weight: 700;}
 
 </style>

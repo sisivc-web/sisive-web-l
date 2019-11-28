@@ -35,7 +35,7 @@
      </div>
      </div>
      <!--组织架构-->
-     <div class="ItemV">
+     <div class="ItemV" style="padding-top: 103px;">
        <h3>奖项</h3>
        <div class="ItemDl">
          <ul class="awardList">
@@ -152,7 +152,7 @@ export default {
 	     margin: 0 auto;
 	 }
 	 }
-	.flexBox{display: flex;padding-bottom: 53px;}
+	.flexBox{display: flex;}
 	.mainBox{width: 100%;}
 	.aItemG{width:500px;margin-right: 80px;}
 	.aItemG .img img{width: 500px;}
@@ -162,16 +162,16 @@ export default {
 	.nInfoNameSpec{margin:8rem 0 0 0}
 	.nInfoNameSpec h3{font-size:20px; padding:0 0 24px 0}
 	
-	.downloadPoint{width:85px;margin:70px auto 90px; text-align: center;}
+	.downloadPoint{width:72px;margin:70px auto 120px; text-align: center;}
 	.downloadPoint .download{text-align: center;  margin:0 auto; background: url('~static/image/sisivc/about/img1.png') no-repeat -64px 0; width: 64px;height: 64px; display: block; background-size: cover;}
 	.downloadPoint .download:hover{background: url('~static/image/sisivc/about/img1.png') no-repeat;}
-	.downloadPoint p{padding-top: 8px;font-size: 14px; color: #4c4948; line-height: 22px;  text-align: justify;}
+	.downloadPoint p{padding-top: 8px;font-size: 12px; color: #A0A0A1; line-height: 22px;  text-align: justify;}
 	/*---织织架构----*/
-	.ItemV{padding:65px 0 0 0}
+	.ItemV{padding:111px 0 0 0}
 	.ItemV h3{color: #1e2022;font-size: 24px; font-weight: 700;padding-bottom: 35px;}
 	.ItemDl .ulLIst{display: grid;grid-template-columns:repeat(auto-fit,minmax(50px,1fr));margin-bottom:0;padding: 35px 0;width: 100%;padding: 35px 0;border-top: 1px solid hsla(0,0%,50%,.19)!important;border-bottom: 1px solid hsla(0,0%,50%,.19)!important;}
 	.ItemDl .ulLIst li{color: #a0a0a1;}
-	.ItemDl .ulLIst li h5{font-size: 18px;color: #222; font-weight: 700; padding:0 0 15px 0;}
+	.ItemDl .ulLIst li h5{font-size: 18px;color: #222; font-weight: 700; padding:0 0 11px 0;}
 	.ItemDl .ulLIst li p{color: #4c4948;line-height: 24px; font-size: 14px;}
 	/*---奖项*/
 	.ItemDl .awardList{display: grid;grid-template-columns:repeat(auto-fit,minmax(50px,1fr)); margin-bottom: 35px; grid-gap:60px;width: 100%;padding: 35px 0 0; border-top: 1px solid hsla(0,0%,50%,.19)!important; }
@@ -181,8 +181,8 @@ export default {
 	.awardList li:after{content: '';display: block;width: 8%;position: absolute;background: #fff; right: 0;bottom: -38px; height: 5px;}
 	.awardList li.on:after{border-bottom: 1px solid #1e2022;width: 100%; bottom: -1px;position: absolute; left: 0;}
 	.colspanRow{display: grid;grid-template-columns:0.33fr 0.33fr;grid-template-rows:auto; padding-top: 10px;}
-	.colspanRow .left .ff{clear: both; padding:15px 0}
-	.colspanRow .left label,.colspanRow .left h5{font-size: 14px; color: #222;font-weight: 700; width: 110px; padding: 0 0 15px 0; float: left;}
+	.colspanRow .left .ff{clear: both; padding:27px 0 15px}
+	.colspanRow .left label,.colspanRow .left h5{font-size: 14px; color: #222;font-weight: 700; width: 110px; padding: 0 0 4px 0; float: left;}
 	.colspanRow .left .secName{float: left;color:#4c4948;font-size: 14px;}
 	.colspanRow .left .secName p{padding-bottom: 8px;font-size: 14px;}
 	.colspanRow .left .ff h5{font-size: 18px;color: #222; font-weight: 700; display: inline-block;}
@@ -195,12 +195,13 @@ export default {
 	.Point h2,.GamePlace h2{color: #1e2022;font-size: 24px; font-weight: 700;padding-bottom: 30px;}
 	.boxPanel {display: grid;grid-template-columns:repeat(auto-fit,minmax(50px,1fr));margin-bottom: 55px; grid-gap:60px}
 	.boxPanel .ItemLst h3{color: #222; position: relative;text-align: left; font-size: 18px; font-weight: 700; padding-bottom: 20px; flex: 1; border-bottom: 1px solid hsla(0,0%,50%,.19)!important;}
-	.ruleContent{padding-top: 20px;}
+	
 	.ruleContent span{display: inline-block;padding-left: 20px; line-height: 28px;}
 	.ruleContent dl dd,.ruleContent dl dt{ padding:8px 0 8px 15px; font-size: 14px; color: #4c4948;}
 	.ruleContent dl dt{padding-left:0}
 	/* ----比赛场地 */
-	.GamePlace .ItemLst h3{color: #222; position: relative;text-align: left; font-size: 14px; font-weight: 700; padding-bottom: 20px; }
+	.GamePlace .ItemLst h3{color: #4c4849; position: relative;text-align: left; font-size: 14px; font-weight: 700;}
+	.GamePlace .ItemLst p{margin-top: 12px;}
 	.boxImg{position: relative; width: 100%;height: 100%;}
 	.boxImg img{width: 100%;height: 100%;}	
 </style>
