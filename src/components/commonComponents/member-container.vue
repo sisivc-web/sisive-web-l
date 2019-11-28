@@ -42,20 +42,6 @@ export default {
         type: Array,
         default: [
             {name: '大卫·斯特恩', country: '美国', imageUrl: 'static/image/sisivc/pingwei/1.jpg'},
-            {name: '徐惟聆', country: '中国', imageUrl: 'static/image/sisivc/pingwei/2.jpg'},
-            {name: '扎哈尔·布朗', country: '扎哈尔·布朗', imageUrl: 'static/image/sisivc/pingwei/3.jpg'},
-            {name: '马丁·坎贝尔-怀特', country: '英国', imageUrl: 'static/image/sisivc/pingwei/4.jpg'},
-            {name: '格伦·迪克特罗', country: '美国', imageUrl: 'static/image/sisivc/pingwei/1.jpg'},
-            {name: '奥古斯丁·杜梅', country: '法国', imageUrl: 'static/image/sisivc/pingwei/2.jpg'},
-            {name: '丹尼尔·海菲兹', country: '美国', imageUrl: 'static/image/sisivc/pingwei/3.jpg'},
-            {name: '埃马纽埃尔·翁德雷', country: '法国', imageUrl: 'static/image/sisivc/pingwei/4.jpg'},
-            {name: '斯雷滕·克里斯蒂奇', country: '塞尔维亚/德国', imageUrl: 'static/image/sisivc/pingwei/1.jpg'},
-            {name: '李伟纲', country: '美国', imageUrl: 'static/image/sisivc/pingwei/2.jpg'},
-            {name: '吕思清', country: '中国', imageUrl: 'static/image/sisivc/pingwei/3.jpg'},
-            {name: '多拉·施瓦茨贝尔格', country: '奥地利', imageUrl: 'static/image/sisivc/pingwei/2.jpg'},
-            {name: '菲利普·塞策', country: '美国', imageUrl: 'static/image/sisivc/pingwei/3.jpg'},
-            {name: '马克西姆·文格洛夫', country: '摩洛哥', imageUrl: 'static/image/sisivc/pingwei/4.jpg'},
-            {name: '俞丽拿', country: '中国', imageUrl: 'static/image/sisivc/pingwei/1.jpg'},
         ]
     }
   },

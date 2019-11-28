@@ -277,10 +277,9 @@ export default {
     carouselNavClick(index) {
       this.$refs.carousel.setActiveItem(index)
     },
-    _gotoDetails(memberId) {
-      debugger
-      this.$router.push({path: '/memberDetail', query: {memberId: memberId}})
-    },
+    // _gotoDetails(memberId) {
+    //   this.$router.push({path: '/memberDetail', query: {memberId: memberId}})
+    // },
     _getData() {
       let param = {
         competitionId: '1',
@@ -325,9 +324,7 @@ export default {
             country: el.playerNationality,
           }
         })
-        console.log('this.awardUserList--->', this.awardUserList)
         this.finalObj = this.awardUserList.splice(this.awardUserList.length - 1, 1)
-        console.log('this.finalObj--->', this.finalObj[0].imgUrl)
         this.$nextTick(() => {
           this.awardUserImgUrl = this.finalObj[0].imgUrl
           this.awardItemLoad()
@@ -335,6 +332,7 @@ export default {
 
         this.judgesListSource = tempJurys.map(el => {
           return {
+            id: el.id,
             name: el.userName,
             imageUrl: el.image,
             country: el.nationality,
@@ -343,6 +341,7 @@ export default {
 
         this.playersListSource = tempPlayers.map(el => {
           return {
+            id: el.id,
             name: el.userName,
             imageUrl: el.image,
             country: el.nationality,
@@ -351,12 +350,12 @@ export default {
 
         this.artistsListSource = tempArtists.map(el => {
           return {
+            id: el.id,
             name: el.userName,
             imageUrl: el.image,
             country: el.nationality,
           }
         })
-
         this.parterList = tempPartnerVos
 
 

@@ -1,11 +1,11 @@
 <template>
     <div>
-        <el-card :body-style="{ padding: '0px' }" @click="_gotoDetails(item.id)" class="member-item">
-            <a href="javascript:;" @click="_gotoDetails(item.index)" class="animation hover-animation">
+        <el-card :body-style="{ padding: '0px' }" class="member-item">
+            <a href="javascript:;" @click="_gotoDetails(item.id)" class="animation hover-animation">
                 <img :src="item.imageUrl" class="image" style="width:100%;height:auto">
             </a>
-            <div class="operate" style="padding: 10px 0;">
-                <span style="color: #222;font-weight: bold;font-size: 14px;">{{item.name}}</span>
+            <div class="operate" style="padding: 10px 0;" @click="_gotoDetails(item.id)">
+                <span style="color: #222;font-weight: bold;font-size: 14px;">{{item.name}}{{item.id}}</span>
                 <el-button type="text" class="button" style="font-size:12px;color:#a0a0a1;">{{item.country}}</el-button>
             </div>
         </el-card>  

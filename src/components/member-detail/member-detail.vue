@@ -8,17 +8,17 @@
               <h2 class="name-css">{{userIfo.name}}</h2>
               <p class="contry-css">{{userIfo.country}}</p>
               <h3 v-if="userIfo.roleCode === '3'" class="role-css">{{userIfo.roleName}}</h3>
-              <a class="vedio-btn" href="#" v-if="userIfo.roleCode === '2'">视频播放</a>
+              <a class="vedio-btn" :href="userIfo.vedioUrl" v-if="userIfo.roleCode === '2'">视频播放</a>
               <span class="little">2018 上海艾萨克 ̇斯特恩国际小提琴比赛</span>
             </div>
           </el-col>
           <el-col :span="8" v-if="userIfo.roleCode === '2'" class="display-div">
             <h3 class="display-title">曲目</h3>
             <el-card :body-style="{ padding: '0px' }" v-for="(item, index) in raceSongsList" :key="index">
-                <h3 class="song-title">{{item.raceName}}</h3>
-                <el-card :body-style="{ padding: '0px' }" v-for="(el, i) in item.songList" :key="i">
-                    <p class="song">{{el.composer}}</p>
-                    <p class="song">{{el.songName}} + ',' + {{el.chapter}}</p>
+                <h3 class="song-title">{{item.scheduleName}}</h3>
+                <el-card :body-style="{ padding: '0px' }" v-for="(el, i) in item.playerChapterVoList" :key="i">
+                    <p class="song">{{el.composers}}：</p>
+                    <p class="song">{{el.repertoire + '，' + el.chapters}}</p>
                 </el-card>
             </el-card>
           </el-col>
@@ -30,12 +30,13 @@
   </div>
 </template>
 <script type="text/ecmascript-6">
-// import {kpiProductPage} from 'apx'
+import {kpiMemberDetail} from 'apx'
 export default {
   components: {
   },
   created() {
-    // this._getData()
+    this._getURLQuery()
+    this._getData()
   },
   mounted() {
     // window.addEventListener('scroll', this._getDataMore)
@@ -60,7 +61,7 @@ export default {
           name: '荒井优利奈',
           imageUrl: 'static/image/sisivc/pingwei/1.jpg',
           country: '日本',
-          roleCode: '1',
+          roleCode: '2',
           roleName: '',
           vedioUrl: 'static/image/sisivc/SISIVC.mp4',
       },
@@ -96,21 +97,9 @@ export default {
 获得音乐硕士学位。
 </p>`,
       raceSongsList: [
-        { raceId:'1', raceName: '四分之一决赛', songList:[ 
-            { songId: '1', songName: '第十八号G大调莫扎特小提琴奏鸣曲', composer: '莫扎特', chapter: 'K. 301' }, 
-            { songId: '2', songName: 'g小调第一无伴奏小提琴奏鸣曲', composer: '巴赫', chapter: 'BWV 1001' }, 
-            { songId: '3', songName: 'e小调第四小提琴无伴奏奏鸣曲', composer: '伊萨伊', chapter: '作品27' }, 
-            { songId: '4', songName: '小提琴随想曲', composer: '帕格尼尼', chapter: '作品1之1、11' }, ] 
-        },
-        { raceId:'2', raceName: '半决赛', songList:[ 
-            { songId: '1', songName: 'd小调第二弦乐四重奏，作品76“五度”', composer: '海顿', chapter: '第一乐章' }, 
-            { songId: '2', songName: 'A大调第二小提琴奏鸣曲', composer: '勃拉姆斯', chapter: '作品100' }, 
-            { songId: '3', songName: '宣叙调与谐谑随想曲', composer: '伊克莱斯勒萨伊', chapter: '作品6' }, 
-            { songId: '4', songName: 'A大调第五小提琴协奏曲，', composer: '莫扎特', chapter: 'K. 219' }, ] 
-        },
-        { raceId:'3', raceName: '决赛', songList:[ 
-            { songId: '1', songName: '《悲喜同源》', composer: '陈其钢', chapter: 'K. 301' }, 
-            { songId: '2', songName: 'D大调小提琴协奏曲', composer: '勃拉姆斯', chapter: '作品77' } ] 
+        { scheduleId:'1', scheduleName: '四分之一决赛', playerChapterVoList:[ 
+            { repertoire: '第十八号G大调莫扎特小提琴奏鸣曲', composers: '莫扎特', chapters: 'K. 301' }, 
+          ]
         }
       ],
     }
@@ -124,11 +113,24 @@ export default {
     },
     _getData() {
       let param = {
-        personnalId: '1',
+        personnalId: this.personnalId,
         language: JSON.parse(window.localStorage.getItem('immi_language'))
       }
-      kpiHome(param, this).then((res) => {
-
+      kpiMemberDetail(param, this).then((res) => {
+        debugger
+        let el = res.data.data
+        this.userIfo = {
+          name: el.userName,
+          imageUrl: el.image,
+          country: el.nationality,
+          roleCode: el.type,
+          roleName: el.title,
+          // roleName: el.type === '1' ? '评委' : el.type==='2'?'参赛选手' : '艺术家',
+          vedioUrl: el.externalLink,
+        }
+        console.log(this.userIfo)
+        this.despContent = el.description
+        this.raceSongsList = el.personnelScheduleVoList
       })
     },
   }
@@ -178,21 +180,26 @@ export default {
     font-size: $font-size-item-little;
     color: $color-item-more;
   .display-div
+    .el-card
+      border: none;
+      border-radius: 0;
+      overflow: hidden;
+      box-shadow: none;
     .display-title
       color: $color-item-title;
       font-size: $font-size-song-item-title 
       font-weight: bold
-      margin-bottom: 30px
     .song-title
       color: $font-size-detail-title
       font-size: $font-size-song-item-title
       font-weight: bold
-      margin-bottom: 20px
+      margin-top: 30px
+      margin-bottom: 15px
     .song 
       font-size: $font-size-detail-content!important;
       color: $color-detail-content!important;
       line-height: 20px;
-      margin-bottom: 10px;
+      margin-bottom: 5px
   .content-css {
     -webkit-column-count: 2;  /* 分3列 */
     column-count: 2;

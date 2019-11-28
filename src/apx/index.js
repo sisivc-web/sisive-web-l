@@ -95,7 +95,7 @@ export function kpiHome (params = {}, Vue) {
 }
 
 /**
- * 首页信息
+ * 人员详情页
  * @param {*语言(en, zh_CN)} language
  */
 export function kpiMemberDetail (params = {}, Vue) {
@@ -103,7 +103,7 @@ export function kpiMemberDetail (params = {}, Vue) {
 }
 
 /**
- * 人员详情页
+ * 关于我们
  * @param {*语言(en, zh_CN)} language
  */
 export function kpiAboutUs (params = {}, Vue) {
