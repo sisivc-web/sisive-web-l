@@ -351,7 +351,7 @@
 	   .Broad_add li .Broad_add_div p{padding-top: 50px; text-align: left;color: #4c4849;font-size: 14px;font-weight: 700;}
 	   .Broad_add li a{color: #1E2022;text-decoration: none;}
 	   .Broad_add li .Broad_add_div p:last-child,.Broad_add li .Broad_add_div p:last-child a{padding-top:4px;font-weight: normal; color: #4c4849;font-size: 14px;}
-	   .boxImg{position: relative; width: 100%;height: 100%;}
+	   .boxImg{position: relative; width: 100%;height: 100%; margin-bottom: 78px;}
 	   .boxImg img{width: 100%;height: 100%;}
 	   /*----观赛须知*/
 	   .guidelines h4,.guidelines h5{font-size: 15px; color: #222; font-weight: 700; padding:5px 0 34px 0}
