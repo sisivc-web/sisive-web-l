@@ -136,16 +136,21 @@ export default {
 
 <style>
 	.containerA{width: 100%;}
-	.containerA .other .block {
-	  width: 1200px;
-	  margin: 0 auto;
-	  padding: 50px 0 0;
-	}
-	@media (min-width: 1400px){
-	  .containerA .other .block {
-	      width: calc(100% - 360px);
-	      min-width: 1200px;
-	    }
+	.containerA .other .block{width: 1140px; margin: 0 auto; padding: 50px 0 0;}
+	 /* 大屏幕 ：大于等于1200px*/
+	 @media (min-width: 1920px) {
+	 .containerA .other .block {
+	     width: 1560px;
+	     margin: 0 auto;
+	     padding-top: 50px;
+	 }
+	 }
+	 @media (min-width: 1400px) and (max-width: 1920px) {
+	 .containerA .other .block {
+	     width: calc(100% - 360px);
+	     min-width: 1140px;
+	     margin: 0 auto;
+	 }
 	 }
 	.flexBox{display: flex;padding-bottom: 53px;}
 	.mainBox{width: 100%;}

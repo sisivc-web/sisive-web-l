@@ -270,29 +270,42 @@
   })
 </script>
 
-<style>
+<style scoped>
   .containerA{width: 100%;}
-  .containerA .other .block {
-    width: 1200px;
-    margin: 0 auto;
-    padding: 50px 0 0;
-  }
-  @media (min-width: 1400px){
-    .containerA .other .block {
-        width: calc(100% - 360px);
-        min-width: 1200px;
-      }
+  .containerA .other .block{width: 1140px; margin: 0 auto; padding: 50px 0 0;}
+   /* 大屏幕 ：大于等于1200px*/
+   @media (min-width: 1920px) {
+   .containerA .other .block {
+       width: 1560px;
+       margin: 0 auto;
+       padding-top: 50px;
    }
+   }
+   @media (min-width: 1400px) and (max-width: 1920px) {
+   .containerA .other .block {
+       width: calc(100% - 360px);
+       min-width: 1140px;
+       margin: 0 auto;
+   }
+   }
+	 .clearfix:after {
+	     content: '';
+	     display: block;
+	     height: 0;
+	     clear: both;
+	     visibility: hidden;
+	 }
+	 .fl{float:left}
    .header{background: #e3364a;}
    .mainBox .title{color: #1e2022;font-size: 24px;font-weight: 700; padding-bottom: 35px;}
 
    .date .dat_list{display: grid;grid-template-columns:repeat(auto-fit,minmax(50px,1fr));  grid-template-rows:repeat(2,40px);}
    .date .dat_list li{text-align: center; position: relative;}
    .date .dat_list li:hover p i{position: absolute;display: block;width:20px; height: 1px; background: #f49950; left: 50%; bottom: -1px; margin-left: -10px;}
-   .date .dat_list li.on span{display: block;width:100%; height: 40px;  background: #f49950; position: absolute;bottom: -40px;left: 0;}
+   .date .dat_list li.on span{display: block;width:100%; height: 40px;  background: #f49950; position: absolute;bottom: -37px;left: 0;}
     .date .dat_list li.on p.ipn{color: #fff;z-index: 999; font-size: 14px;}
-   .date .dat_list li a{color: #c8c8c8; text-decoration: none;}
-   .date .dat_list li p{border-bottom: 1px solid #e5e5e5;padding:10px 0; position: relative;}
+   .date .dat_list li a{color: #c8c8c8; text-decoration: none;font-size: 14px;}
+   .date .dat_list li p{border-bottom: 1px solid #e5e5e5;padding:12px 0; position: relative;font-size: 14px;}
    .date .dat_list li a.orange{color: #f49950;}
    .date .dat_list li a.grey{color: #bebebe;}
    .date .dat_list li a.blue{color: #1a3880;}
@@ -311,7 +324,7 @@
    .Broad_add li .Broad_add_div .iconVideo{background-position: left -101px;}
    .Broad_add li:hover .Broad_add_div .iconAdd{background-position:-64px -209px;}
    .Broad_add li:hover .Broad_add_div .iconVideo{background-position:-64px -99px;} */
-   .Broad_add li .Broad_add_div img{float: left;margin-top: 41px; display: inline-block;opacity:1;transition:opacity .35s ease-out;background-color:#fff;pointer-events:auto!important;-webkit-transition: all .2s ease-in-out 0s;
+   .Broad_add li .Broad_add_div img{float: left;margin-top: 41px; margin-left:-50px; display: inline-block;opacity:1;transition:opacity .35s ease-out;background-color:#fff;pointer-events:auto!important;-webkit-transition: all .2s ease-in-out 0s;
 	transition: all .2s ease-in-out 0s}
    .Broad_add li:hover .Broad_add_div img{opacity:.75!important;-webkit-transform: scale(1.1) translateZ(0);
 	-webkit-transform-origin: 50%;
@@ -319,8 +332,8 @@
 	transform-origin: 50%;
 	image-rendering: -webkit-optimize-contrast;
 	image-rendering: crisp-edges}
-   .Broad_add li .Broad_add_div{position: absolute;left: 50%; width: 400px; margin-left: -200px;}
-   .Broad_add li .Broad_add_div p{padding-top: 47px; text-align: left;color: #222;font-size: 14px;font-weight: 700;}
+   .Broad_add li .Broad_add_div{position: absolute;left: 50%; width: 360px; margin-left: -200px; margin:0 auto}
+   .Broad_add li .Broad_add_div p{padding-top:50px; text-align: left;color: #222;font-size: 14px;font-weight: 700;}
    .Broad_add li a{color: #1E2022;text-decoration: none;}
    .Broad_add li .Broad_add_div p:last-child,.Broad_add li .Broad_add_div p:last-child a{padding-top:8px;font-weight: normal; color: #a0a0a1;font-size: 12px;}
    .boxImg{position: relative; width: 100%;height: 100%;}
@@ -335,7 +348,7 @@
    .guidelines .abuyTicket{color: #a0a0a1; text-decoration: none; font-size: 12px;}
    .guidelines .abuyTicket:hover,.Broad_add li:hover .Broad_add_div p a {color: #222; font-size: 12px;}
    /*----数据显示*/
-   .dataUl{display: grid;grid-template-columns:0.1fr 0.33fr 0.33fr 0.33fr;grid-template-rows:auto; grid-gap:80px; grid-template-rows:auto;}
+   .dataUl{display: grid;grid-template-columns:0.1fr 0.33fr 0.33fr 0.33fr;grid-template-rows:auto; grid-gap:40px; grid-template-rows:auto;}
    .dataUl h4{color: #1e2022;font-size: 20px;font-weight: 700;}
    .ListTBox .imgItemCoumuns img{width: 120px;height: 80px; object-fit: cover;}
    .dataUl li .panelItem{margin-bottom: 37px;}
@@ -344,12 +357,12 @@
    .dataUl li .ItemName{color: #4c4948;font-size: 14px; padding-top: 5px;color: #4c4948;}
    .dataUl li .ListTBox{margin-bottom: 83px;}
    .panelSecond{margin-bottom:60px}
-   .dataUl li .panelItem h5 span,.panelSecond dl dd .ItemCoumnsHd span{display: inline-block;color: #1e2022;font-size: 18px;font-weight: 700;}
+   .dataUl li .panelItem h5 span,.panelSecond dl dd .ItemCoumnsHd span{display: inline-block;color: #1e2022;font-size: 14px;font-weight: 700;}
    .dataUl li .panelItem h5 span.time{padding-left: 10px;}
    .panelSecond dl dt,.panelSecond dl dd{float: left;}
    .panelSecond dl dt{width: 140px;}
    .panelSecond dl dt img{width: 120px; height: 120px; object-fit: cover;}
-   .panelSecond dl dd{font-size: 14px;margin-bottom: 10px; color: #4c4948;}
+   .panelSecond dl dd{font-size: 14px;margin-bottom: 10px; color: #4c4948;width: 295px;}
    .panelSecond dl dd .ItemCoumnsHd{border-bottom: 1px solid hsla(0,0%,50%,.19)!important; padding-bottom: 8px;}
    .panelSecond dl dd .ItemCoumnsHd .fm{float: right;font-size: 12px; color: rgb(160, 160, 161);font-weight: normal; margin-top: 8px;;}
    .panelSecond dl dd h6{font-size: 14px;font-weight: 700; padding:5px 0;color: #4c4948;}
