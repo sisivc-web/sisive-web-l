@@ -158,7 +158,7 @@
               <li v-for="(item, index) in watchDataIndex.broadcastAddressVoList" :key="index">
                 <div class="Broad_add_div">
                   <img :src="item.iconUrl" />
-                  <div class="fl" style="padding-left: 40px;">
+                  <div class="fl">
                     <p>{{item.title}}</p>
                     <p><a href="javascript:void(0)">{{item.description}}</a></p>
                   </div>
@@ -368,7 +368,7 @@
    .dataUl li .panelItem h5{padding-bottom: 20px;}
    .dataUl li h4{padding-bottom: 10px;}
    .dataUl li .ItemName{color: #4c4948;font-size: 14px; padding-top: 5px;color: #4c4948;}
-   .dataUl li .ListTBox{margin-bottom: 83px;}
+   .dataUl li .ListTBox{margin-bottom: 90px;}
    .panelSecond{margin-bottom:60px}
    .dataUl li .panelItem h5 span,.panelSecond dl dd .ItemCoumnsHd span{display: inline-block;color: #1e2022;font-size: 14px;font-weight: 700;}
    .dataUl li .panelItem h5 span.time{padding-left: 10px;}
