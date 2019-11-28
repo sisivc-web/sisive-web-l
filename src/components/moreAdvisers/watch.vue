@@ -324,7 +324,7 @@
 	   .date .dat_list li.on span{display: block;width:100%; height: 40px;  background: #f49950; position: absolute;bottom: -37px;left: 0;}
 	    .date .dat_list li.on p.ipn{color: #fff;z-index: 999;}
 	   .date .dat_list li a{color: #c8c8c8; text-decoration: none;}
-	   .date .dat_list li p{border-bottom: 1px solid #e5e5e5;padding:10px 0; position: relative;font-size: 12px; height: 40px;}
+	   .date .dat_list li p{border-bottom: 1px solid #e5e5e5; line-height: 40px; position: relative;font-size: 12px; height: 40px;}
 	   .date .dat_list li p.first{font-size: 12px;}
 	   .date .dat_list li p.last{font-size: 14px;}
 	   .date .dat_list li a.orange{color: #f49950;}
