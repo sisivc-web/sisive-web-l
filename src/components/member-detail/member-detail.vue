@@ -5,25 +5,25 @@
           <el-col :span="8">
             <div style="margin-right: 80px">
               <img :src="userIfo.imageUrl" style="width:100%;height:auto;"/>
-              <h2>{{userIfo.name}}</h2>
-              <p>{{userIfo.country}}</p>
-              <h3 v-if="userIfo.roleCode === '1'">{{userIfo.roleName}}</h3>
+              <h2 class="name-css">{{userIfo.name}}</h2>
+              <p class="contry-css">{{userIfo.country}}</p>
+              <h3 v-if="userIfo.roleCode === '3'" class="role-css">{{userIfo.roleName}}</h3>
               <a class="vedio-btn" href="#" v-if="userIfo.roleCode === '2'">视频播放</a>
-              <span>2018 上海艾萨克 ̇斯特恩国际小提琴比赛</span>
+              <span class="little">2018 上海艾萨克 ̇斯特恩国际小提琴比赛</span>
             </div>
           </el-col>
-          <el-col :span="8" v-if="userIfo.roleCode === '1'">
-              <h3>曲目</h3>
-              <el-card :body-style="{ padding: '0px' }" v-for="(item, index) in raceSongsList" :key="index">
-                  <h3>{{item.raceName}}</h3>
-                  <el-card :body-style="{ padding: '0px' }" v-for="(el, i) in item.songList" :key="i">
-                      <p>{{el.composer}}</p>
-                      <p>{{el.songName}} + ',' + {{el.chapter}}</p>
-                  </el-card>
-              </el-card>
+          <el-col :span="8" v-if="userIfo.roleCode === '2'" class="display-div">
+            <h3 class="display-title">曲目</h3>
+            <el-card :body-style="{ padding: '0px' }" v-for="(item, index) in raceSongsList" :key="index">
+                <h3 class="song-title">{{item.raceName}}</h3>
+                <el-card :body-style="{ padding: '0px' }" v-for="(el, i) in item.songList" :key="i">
+                    <p class="song">{{el.composer}}</p>
+                    <p class="song">{{el.songName}} + ',' + {{el.chapter}}</p>
+                </el-card>
+            </el-card>
           </el-col>
-          <el-col :span="userIfo.roleCode != '1' ? 16 : 8">
-              <div v-html="despContent" class="content-css"></div>
+          <el-col :span="userIfo.roleCode != '2' ? 16 : 8">
+              <div v-html="despContent" :class="userIfo.roleCode != '2' ? 'content-css' : 'content-css-8'"></div>
           </el-col>
       </el-row>
     </div>
@@ -60,7 +60,7 @@ export default {
           name: '荒井优利奈',
           imageUrl: 'static/image/sisivc/pingwei/1.jpg',
           country: '日本',
-          roleCode: '2',
+          roleCode: '1',
           roleName: '',
           vedioUrl: 'static/image/sisivc/SISIVC.mp4',
       },
@@ -142,21 +142,77 @@ export default {
     min-width: 1140px
     margin: 0 auto
     margin-top: 60px
-.content-css {
-  -webkit-column-count: 2;  /* 分3列 */
-  column-count: 2;
-  column-rule: none;  /* 列之间的分隔线 */
-  column-gap: 40px;          /* 列之间的间距 */
-}
-.content-css 
-  >>>p {
-  font-size: $font-size-detail-content!important;
-  color: $color-detail-content!important;
-  line-height: 22px;
-  margin-bottom: 30px;
-  text-align:justify;
-}
-
+  .name-css {
+    color: $color-item-title;
+    font-size: $font-size-item-title;
+    margin-top: 60px;
+    font-weight: bold
+  }
+  .contry-css {
+    color: $color-item-title;
+    font-size: $font-size-item-little;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    font-weight: bold
+  }
+  .role-css {
+    color: $color-item-title;
+    font-size: $font-size-song-item-title
+    font-weight: bold 
+  }
+  .vedio-btn
+    display: block;
+    width: 60px;
+    height: 60px;
+    font-size: $font-size-item-little;
+    color: $color-item-more;
+    padding-top: 35px;
+    background-image: url('~static/image/sisivc/vedio.png');
+    background-size: 30px 30px;
+    background-position: top left;
+    background-repeat: no-repeat;
+  .vedio-btn:hover
+    background-image: url('~static/image/sisivc/vedio2.png');
+    color: #193A80;
+  .little
+    font-size: $font-size-item-little;
+    color: $color-item-more;
+  .display-div
+    .display-title
+      color: $color-item-title;
+      font-size: $font-size-song-item-title 
+      font-weight: bold
+      margin-bottom: 30px
+    .song-title
+      color: $font-size-detail-title
+      font-size: $font-size-song-item-title
+      font-weight: bold
+      margin-bottom: 20px
+    .song 
+      font-size: $font-size-detail-content!important;
+      color: $color-detail-content!important;
+      line-height: 20px;
+      margin-bottom: 10px;
+  .content-css {
+    -webkit-column-count: 2;  /* 分3列 */
+    column-count: 2;
+    column-rule: none;  /* 列之间的分隔线 */
+    column-gap: 40px;          /* 列之间的间距 */
+  }
+  .content-css-8 {
+    -webkit-column-count: 1;  /* 分3列 */
+    column-count: 1;
+    column-rule: none;  /* 列之间的分隔线 */
+    column-gap: 0;          /* 列之间的间距 */
+    margin-left: 40px;
+  }
+  .content-css >>>p, .content-css-8 >>>p {
+      font-size: $font-size-detail-content!important;
+      color: $color-detail-content!important;
+      line-height: 22px;
+      margin-bottom: 30px;
+      text-align:justify;
+    }
 @media (min-width: 1920px)  {
   .container .other .block {
     width: 1560px;
