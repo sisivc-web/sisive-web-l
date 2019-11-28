@@ -30,7 +30,7 @@
        <div class="colspanRow">
          <div class="left" v-for="(item,index) in awardsVoList.committeeVoList" v-if="item.isUnit == 0 && item.parentId == 0" :key="index">
            <div class="ff"><h5>{{item.title}}</h5></div>
-           <div class="ff" v-for="(item1,index) in item.sonCommitteeVos" v-if="item.id == item1.parentId"><label>{{item1.title}}</label><div class="secName" v-for="(item2,index) in item1.sonCommitteeVos" v-if="item1.id == item2.parentId"><p>{{item2.title}}</p></div></div>
+           <div class="ff" v-for="(item1,index) in item.sonCommitteeVos" v-if="item.id == item1.parentId"><label>{{item1.title}}</label><div class="secName"><p v-for="(item2,index) in item1.sonCommitteeVos" v-if="item1.id == item2.parentId">{{item2.title}}</p></div></div>
           </div>
      </div>
      </div>
