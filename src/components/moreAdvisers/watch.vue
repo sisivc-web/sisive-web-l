@@ -146,7 +146,7 @@
           </li>         
           </ul>
         </div>
-        <!-- {{}} -->
+        <!-- {{watchDataIndex}} -->
         <!--观赛banner-->
         <div class="boxImg" v-if="!watchData">
           <img :src="watchDataIndex.scheduleVoList[0].image">
@@ -160,7 +160,7 @@
                   <img :src="item.iconUrl" />
                   <div class="fl">
                     <p>{{item.title}}</p>
-                    <p><a href="javascript:void(0)">{{item.description}}</a></p>
+                    <p><router-link tag="a" :to ="item.externalLink">{{item.description}}</router-link></p>
                   </div>
                 </div>
               </li>
