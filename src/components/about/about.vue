@@ -20,7 +20,7 @@
      <div class="ItemV">
        <h3>织织架构</h3>
        <div class="ItemDl">
-         <ul class="ulLIst clearfix">
+         <ul class="ulLIst">
            <li v-for="(item,index) in awardsVoList.committeeVoList" v-if="item.isUnit == 1 && item.parentId == 0" :key="index">
              <h5>{{item.title}}</h5>
              <p v-for="(item1,index) in item.sonCommitteeVos" v-if="item1.parentId == item.id">{{item1.title}}</p>
@@ -85,7 +85,7 @@
        <div class="GameTitBox">
          <div class="fl ItemLst">
            <h3>{{awardsVoList.venueTitle}}</h3>
-           <div class="ruleContent">
+           <div class="ruleContent" style="padding-top:20px">
                <p>{{awardsVoList.venueDescription}}</p>
  
             </div>
