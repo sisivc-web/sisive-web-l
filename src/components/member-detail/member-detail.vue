@@ -3,7 +3,7 @@
     <div class="member-detail">
       <el-row>
           <el-col :span="8">
-            <div style="margin-right: 80px">
+            <div style="margin-right: 130px">
               <img :src="userIfo.imageUrl" style="width:100%;height:auto;"/>
               <h2 class="name-css">{{userIfo.name}}</h2>
               <p class="contry-css">{{userIfo.country}}</p>
@@ -145,16 +145,16 @@ export default {
     margin: 0 auto
     margin-top: 60px
   .name-css {
-    color: $color-item-title;
+    color: $color-detail-title;
     font-size: $font-size-item-title;
-    margin-top: 60px;
+    margin-top: 40px;
     font-weight: bold
   }
   .contry-css {
-    color: $color-item-title;
-    font-size: $font-size-item-little;
-    margin-top: 30px;
-    margin-bottom: 30px;
+    color: $color-detail-title;
+    font-size: $font-size-detail-title;
+    margin-top: 20px;
+    margin-bottom: 40px;
     font-weight: bold
   }
   .role-css {
@@ -166,7 +166,7 @@ export default {
     display: block;
     width: 60px;
     height: 60px;
-    font-size: $font-size-item-little;
+    font-size: $font-size-detail-content;
     color: $color-item-more;
     padding-top: 35px;
     background-image: url('~static/image/sisivc/vedio.png');
@@ -186,12 +186,12 @@ export default {
       overflow: hidden;
       box-shadow: none;
     .display-title
-      color: $color-item-title;
+      color: $color-detail-title;
       font-size: $font-size-song-item-title 
       font-weight: bold
     .song-title
-      color: $font-size-detail-title
-      font-size: $font-size-song-item-title
+      color: $color-detail-title
+      font-size: $font-size-detail-title
       font-weight: bold
       margin-top: 30px
       margin-bottom: 15px

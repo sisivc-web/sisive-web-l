@@ -61,6 +61,12 @@
             </div>
           </div>
         </home-item-solt>
+        <divider :height="30"></divider>
+        <!-- <home-item-solt :itemName="'award-div'" :title="$t('prizeWinners')" :isShowMore="false">
+          <div slot="detail">
+            <award-list :awardUserList="awardUserList"></award-list>
+          </div>
+        </home-item-solt> -->
         <home-item-solt :itemName="'award-div'" :title="$t('prizeWinners')" :isShowMore="false">
           <div slot="detail">
             <div class="details">
@@ -95,21 +101,25 @@
             </div>
           </div>
         </home-item-solt>
+        <divider :height="60"></divider>
         <home-item-solt :itemName="'member-div'" :title="$t('judges')" :isShowMore="false">
           <div slot="detail">
             <member-container :data="judgesListSource" :typeName="'judges'"></member-container>
           </div>
         </home-item-solt>
+        <divider :height="20"></divider>
         <home-item-solt :itemName="'member-div'" :title="$t('players')" :isShowMore="false">
           <div slot="detail">
             <member-container :data="playersListSource" :typeName="'players'"></member-container>
           </div>
         </home-item-solt>
+        <divider :height="20"></divider>
         <home-item-solt :itemName="'member-div'" :title="$t('artists')" :isShowMore="false">
           <div slot="detail">
             <member-container :data="artistsListSource" :typeName="'artists'"></member-container>
           </div>
         </home-item-solt>
+        <divider :height="20"></divider>
         <home-item-solt :itemName="'parter-div'" :title="$t('partners')" :isShowMore="false">
           <div slot="detail">
             <div class="sub-item" v-for="(el,i) in parterList" :key="i">
@@ -146,12 +156,16 @@ import MAnchor from 'components/m-anchor/m-anchor'
 import MemberContainer from 'components/commonComponents/member-container'
 import MemberItem from 'components/commonComponents/member-item'
 import HomeItemSolt from 'components/home/home-item-solt'
+import Divider from 'base/divider/divider'
+import AwardList from 'components/home/award-list'
 export default {
   components: {
     MAnchor,
     MemberContainer,
     MemberItem,
-    HomeItemSolt
+    HomeItemSolt,
+    Divider,
+    AwardList
   },
   data() {
     return {
@@ -183,6 +197,8 @@ export default {
       awardItemHeight: 50,
       awardUserList: [
         { awardName: '艾萨克·斯特恩奖 —— 人文精神奖', userName: '周颖', vedioUrl: '', imgUrl: 'static/image/sisivc/award/0.jpg', coverImgUrl: 'static/image/sisivc/award/0.jpg', country: '美国'},
+        { awardName: '艾萨克·斯特恩奖 —— 人文精神奖1', userName: '周颖1', vedioUrl: '', imgUrl: 'static/image/sisivc/award/0.jpg', coverImgUrl: 'static/image/sisivc/award/0.jpg', country: '美国'},
+        { awardName: '艾萨克·斯特恩奖 —— 人文精神奖2', userName: '周颖2', vedioUrl: '', imgUrl: 'static/image/sisivc/award/0.jpg', coverImgUrl: 'static/image/sisivc/award/0.jpg', country: '美国'},
       ],
       awardUserImgUrl: '',
       // awardUserImgUrl: 'static/image/sisivc/award/0.jpg',
@@ -435,10 +451,10 @@ export default {
       -o-animation: myfirst 2s infinite;
       animation: myfirst 2s infinite;
       z-index: 999;
-    .block
-      width: 1140px
-      margin: 0 auto
-      padding: 50px 0 0
+    // .block
+    //   width: 1140px
+    //   margin: 0 auto
+    //   padding: 50px 0 0
       // .header
       //   @extend .flex
       //   @extend .flex-column
