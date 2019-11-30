@@ -127,6 +127,22 @@ export function kpiWatch (params = {}, Vue) {
 }
 
 /**
+ * 新闻列表
+ * @param {*语言(en, zh_CN)} language
+ */
+export function kpiNews (params = {}, Vue) {
+  return Request('/sisivc/competition/queryNews', 'get', params, undefined, Vue)
+}
+
+/**
+ * 新闻详情
+ * @param {*语言(en, zh_CN)} language
+ */
+export function kpiQueryNewDetail (params = {}, Vue) {
+  return Request('/sisivc/competition/queryNewDetail', 'get', params, undefined, Vue)
+}
+
+/**
  * 图片验证码
  */
 export function kpiPicVerifyCode (params = {}, Vue) {

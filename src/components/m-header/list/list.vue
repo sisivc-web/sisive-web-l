@@ -21,14 +21,14 @@
       >{{$t("view")}}
       </span>
     </router-link>
-    <router-link to="/moreServices">
+    <router-link to="/news">
       <span
         class="plate"
         :style="{color: color}"
       >{{$t("media")}}
       </span>
     </router-link>
-    <router-link to="/moreStudents">
+    <router-link to="/historys">
       <span
         class="plate"
         :style="{color: color}"
