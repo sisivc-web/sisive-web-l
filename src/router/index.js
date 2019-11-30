@@ -47,9 +47,9 @@ export default new Router({
           component: () => import('components/about/about')
         },
         {
-          path: 'moreAdvisers',
+          path: 'watch',
           // component: MAnchor
-          component: () => import('components/moreAdvisers/watch')
+          component: () => import('components/watch/watch')
         }
       ]
     },

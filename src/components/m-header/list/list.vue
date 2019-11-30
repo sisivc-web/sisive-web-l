@@ -14,7 +14,7 @@
       >{{$t("aboutus")}}
       </span>
     </router-link>
-    <router-link to="/moreAdvisers">
+    <router-link to="/watch">
       <span
         class="plate"
         :style="{color: color}"

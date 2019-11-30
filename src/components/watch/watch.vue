@@ -289,7 +289,7 @@
   })
 </script>
 
-<style>
+<style scoped>
 	.containerA{width: 100%;}
 	  .containerA .other .block{width: 1140px; margin: 0 auto; padding: 50px 0 0;}
 	   /* 大屏幕 ：大于等于1200px*/
