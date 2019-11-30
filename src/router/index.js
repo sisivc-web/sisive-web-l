@@ -29,6 +29,14 @@ export default new Router({
           component: () => import('components/news/news-detail')
         },
         {
+          path: 'historys',
+          component: () => import('components/history/historys')
+        },
+        {
+          path: 'historyDetail',
+          component: () => import('components/history/history-detail')
+        },
+        {
           path: 'mAnchor',
           // component: MAnchor
           component: () => import('components/m-anchor/m-anchor')
