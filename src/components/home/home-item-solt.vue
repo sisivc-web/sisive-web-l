@@ -40,7 +40,7 @@ export default {
 .block
   width: 1140px
   margin: 0 auto
-  padding: 50px 0 0
+  padding: 60px 0 0
   .header
     @extend .flex
     @extend .flex-column
