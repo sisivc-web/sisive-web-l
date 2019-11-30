@@ -15,12 +15,18 @@ export default new Router({
         {
           path: 'home',
           component: () => import('components/home/home')
-          // component: Home
         },
         {
           path: 'memberDetail',
-          // component: MemberDetail
           component: () => import('components/member-detail/member-detail')
+        },
+        {
+          path: 'news',
+          component: () => import('components/news/news')
+        },
+        {
+          path: 'newsDetail',
+          component: () => import('components/news/news-detail')
         },
         {
           path: 'mAnchor',

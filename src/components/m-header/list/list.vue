@@ -21,7 +21,7 @@
       >{{$t("view")}}
       </span>
     </router-link>
-    <router-link to="/moreServices">
+    <router-link to="/news">
       <span
         class="plate"
         :style="{color: color}"
