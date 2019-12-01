@@ -1,8 +1,25 @@
 <template>
   <div class="container">
-    <div>
-    新闻xiangqingye
-    </div>
+    <el-card :body-style="{ padding: '0px' }" style="padding: 40px 100px 0px 100px; box-shadow: none; border: none;">
+      <div style="width:30%; float:left;">
+        <div style="height:50px;">
+          <span style="color: #222;font-weight: bold;font-size: 16px;">{{newsDetail.title}}</span>
+        </div>
+        <div style="height:30px;">  
+          <span style="color: #a0a0a1;font-size: 14px;">{{newsDetail.createOn}}</span>
+        </div>
+
+        <div>
+          <a :href="newsDetail.externalLink" class="animation hover-animation">
+              <img :src="newsDetail.partnerLogoUrl" class="image" style="width:100%;height:auto">
+          </a>
+        </div>
+      </div>
+      <div v-html='newsDetail.content' style="width:70%; float:right; padding:0px 20px 20px 20px;">
+
+      </div>
+    </el-card>
+  
   </div>
 </template>
 <script type="text/ecmascript-6">
@@ -16,7 +33,7 @@ export default {
   },
   data() {
     return {
-      data: [],
+      newsDetail: {},
       newsId: 3,
     }
   },
@@ -33,7 +50,7 @@ export default {
         language: JSON.parse(window.localStorage.getItem('immi_language'))
       }
       kpiQueryNewDetail(param, this).then((res) => {
-        this.data = res.data.data
+        this.newsDetail = res.data.data
       })
     },
   }
