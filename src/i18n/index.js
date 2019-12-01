@@ -126,7 +126,13 @@ const messages = {
       aboutUs2: 'Origanization',
       aboutUs3: 'Awards',
       aboutUs4: 'Rule',
-      aboutUs5: 'Address'
+      aboutUs5: 'Address',
+      enroll1: 'Brief Introduction',
+      enroll2: 'Competition Schedule',
+      enroll3: 'Competition Track',
+      enroll4: 'Entry Information',
+      enroll5: 'The Jury',
+      enroll6: 'OrganizationCommittee',
     },
     newsList: {
       new: 'NEWS',
@@ -487,7 +493,13 @@ const messages = {
       aboutUs2: '织织架构',
       aboutUs3: '奖项',
       aboutUs4: '评分规则',
-      aboutUs5: '比赛场地'
+      aboutUs5: '比赛场地',
+      enroll1: '简介',
+      enroll2: '比赛日程',
+      enroll3: '比赛曲目',
+      enroll4: '参赛须知',
+      enroll5: '评审委员会',
+      enroll6: '组织委员会',
     },
     newsList: {
       new: '新闻',

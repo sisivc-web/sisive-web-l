@@ -86,4 +86,17 @@ export default {
         background-size 100% 100%
         background-image: url('~static/image/home/zs/more_arrow.png')
         margin-left 4px
+/* 大屏幕 ：大于等于1200px*/
+@media (min-width: 1920px)  {
+  .block {
+    width: 1560px;
+  }
+}
+@media (min-width: 1400px) and (max-width: 1920px)  {
+  .block {
+    width: calc(100% - 360px);
+    min-width: 1140px;
+  }
+    
+}
 </style>

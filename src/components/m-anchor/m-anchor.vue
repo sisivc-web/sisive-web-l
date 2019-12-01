@@ -1,42 +1,10 @@
 <template>
   <div>
-    <!-- 内容区域 -->
-    <!-- <div :class="contentDivClass">
-      <div id="home0" :class="anchorItem">
-        content-0
-      </div>
-      <div id="home1" :class="anchorItem">
-        content-1
-      </div>
-      <div id="home2" :class="anchorItem">
-        content-2
-      </div>
-      <div id="home3" :class="anchorItem">
-        content-3
-      </div>
-      <div id="home4" :class="anchorItem">
-        content-4
-      </div>
-    </div> -->
-    <!-- 导航区域 -->
-    
     <div :class="['sub-nav', isFixed ? 'subNavFixed' : '']">
         <ul>
             <li v-for="(item, index) in subNavList" :key="index">
                 <a :class="{active: active===index}" @click="scrollTo(index)">{{item}}</a>
             </li>
-            <!-- <li>
-                <a :class="{active: active===1}" @click="scrollTo(1)">content-1</a>
-            </li>
-            <li>
-                <a :class="{active: active===2}" @click="scrollTo(2)">content-2</a>
-            </li>
-            <li>
-                <a :class="{active: active===3}" @click="scrollTo(3)">content-3</a>
-            </li>
-            <li>
-                <a :class="{active: active===4}" @click="scrollTo(4)">content-4</a>
-            </li> -->
         </ul>
     </div>
   </div>

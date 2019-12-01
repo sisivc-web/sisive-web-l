@@ -5,10 +5,8 @@
         <el-carousel :interval="80000" :height="carouselHeight + 'px'" arrow="never" indicator-position="none" @change="_change" ref="carousel">
           <el-carousel-item v-for="(item, index) in carousellist" :key="index" name="index">
             <div class="carousel_img">
-            <!-- <div class="carousel_img" :style="{'background-image': `url(${item.imageUrl})`}"> -->
-              <h1 class="desp-word">{{item.desp}}</h1>
+              <!-- <h1 class="desp-word">{{item.desp}}</h1> -->
               <img :src="item.imageUrl" ref="carouselHeight" width="100%" @load="imgLoad">
-              <!-- <video src="http://116.62.103.169:8080/sisivc/resource/201910271449065951.mp4" width="100%" height="auto" controls="controls" poster="static/image/sisivc/poster.jpg" >您的浏览器不支持 video 标签。</video> -->
             </div>
           </el-carousel-item>
         </el-carousel>
@@ -17,7 +15,7 @@
         </div>
       </div>
       <div class="arrow-div" v-show="!isFixed"></div>
-      <m-anchor :contentDivClass="'home-anchor-container'" :anchorItem="'anchor-item'" :subNavList="[$t('subNavs.news'), $t('subNavs.awardMember'), $t('subNavs.judges'), $t('subNavs.contestant'), $t('subNavs.artist'), $t('subNavs.partner')]"></m-anchor>
+      <m-anchor :contentDivClass="'home-anchor-container'" :anchorItem="'anchor-item'" :subNavList="[$t('subNavs.enroll1'), $t('subNavs.enroll2'), $t('subNavs.enroll3'), $t('subNavs.enroll4'), $t('subNavs.enroll5'), $t('subNavs.enroll6')]"></m-anchor>
       <div class="home-anchor-container">
         <home-item-solt :itemName="'news-div'" :title="$t('newsList.new')" :isShowMore="true" :more="$t('newsList.more')" @gotoMore="gotoMore" :marginBottom="'60px'">
           <div slot="detail">

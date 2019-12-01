@@ -2,15 +2,17 @@
     <div>
         <div class="details">
             <el-row>
-                <el-col :span="6" v-for="(item, index) in data" :key="index" v-if="index < count">
-                    <member-item :item="item"></member-item>
+                <el-col :span="span" v-for="(item, index) in data" :key="index" v-if="index < count">
+                    <slot name="item" :item="item"></slot>
+                    <!-- <member-item :item="item"></member-item> -->
                 </el-col>
             </el-row>
             <div :style="{height: nowHeight + 'px', overflow: 'hidden'}" class="more-css">
                 <div ref="moreItems">
                     <el-row>
                         <el-col :span="6"  v-for="(item, index) in data" :key="index" v-if="index >= count">
-                            <member-item :item="item"></member-item>
+                            <slot name="item" :item="item"></slot>
+                            <!-- <member-item :item="item"></member-item> -->
                         </el-col>
                     </el-row>
                 </div>
@@ -42,7 +44,12 @@ export default {
     count: {
         type: Number,
         default: 8
+    },
+    span: {
+        type: Number,
+        default: 6
     }
+
   },
   components: {
     MemberItem

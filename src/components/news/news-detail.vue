@@ -45,6 +45,7 @@ export default {
       }
     },
     _getData() {
+      debugger
       let param = {
         id: this.newsId,
         language: JSON.parse(window.localStorage.getItem('immi_language'))
