@@ -19,7 +19,7 @@
       <div class="arrow-div" v-show="!isFixed"></div>
       <m-anchor :contentDivClass="'home-anchor-container'" :anchorItem="'anchor-item'" :subNavList="[$t('subNavs.news'), $t('subNavs.awardMember'), $t('subNavs.judges'), $t('subNavs.contestant'), $t('subNavs.artist'), $t('subNavs.partner')]"></m-anchor>
       <div class="home-anchor-container">
-        <home-item-solt :itemName="'news-div'" :title="$t('newsList.new')" :isShowMore="true" :more="$t('newsList.more')">
+        <home-item-solt :itemName="'news-div'" :title="$t('newsList.new')" :isShowMore="true" :more="$t('newsList.more')" @gotoMore="gotoMore" :marginBottom="'60px'">
           <div slot="detail">
             <div class="details">
               <el-row>
@@ -30,16 +30,13 @@
                       <span class="title">{{item.title}}</span>
                       <div class="operate">
                         <time class="time">{{item.date}}</time>
-                        <el-button type="text" class="button">阅读全文</el-button>
+                        <el-button type="text" class="button" style="opacity:0">阅读全文</el-button>
                       </div>
                     </div>
                     <el-card class="box-card award-list" :body-style="{ padding: '15px 0', paddingLeft: '0px',
         paddingRight: '0px' }">
                       <div v-html="item.content" class="news-content">
                       </div>
-                      <!-- <div v-for="(el, i) in awardUserList" :key="i" style="font-size:13px;margin-bottom:10px;color: #4c4948;">
-                        {{ el.awardName + '：' + el.userName + '（' + el.country + '）' }}
-                      </div> -->
                     </el-card>
                   </el-card>
                 </el-col>
@@ -59,15 +56,17 @@
                 </el-col>
               </el-row>
             </div>
+            <div class="temp-read">
+              <el-button type="text" class="button">阅读全文</el-button>
+            </div>
           </div>
         </home-item-solt>
-        <divider :height="30"></divider>
         <!-- <home-item-solt :itemName="'award-div'" :title="$t('prizeWinners')" :isShowMore="false">
           <div slot="detail">
             <award-list :awardUserList="awardUserList"></award-list>
           </div>
         </home-item-solt> -->
-        <home-item-solt :itemName="'award-div'" :title="$t('prizeWinners')" :isShowMore="false">
+        <home-item-solt :itemName="'award-div'" :title="$t('prizeWinners')" :isShowMore="false" :marginBottom="'60px'">
           <div slot="detail">
             <div class="details">
               <el-row>
@@ -101,25 +100,21 @@
             </div>
           </div>
         </home-item-solt>
-        <divider :height="60"></divider>
-        <home-item-solt :itemName="'member-div'" :title="$t('judges')" :isShowMore="false">
+        <home-item-solt :itemName="'member-div'" :title="$t('judges')" :isShowMore="false" :marginBottom="'30px'">
           <div slot="detail">
             <member-container :data="judgesListSource" :typeName="'judges'"></member-container>
           </div>
         </home-item-solt>
-        <divider :height="20"></divider>
-        <home-item-solt :itemName="'member-div'" :title="$t('players')" :isShowMore="false">
+        <home-item-solt :itemName="'member-div'" :title="$t('players')" :isShowMore="false" :marginBottom="'30px'">
           <div slot="detail">
             <member-container :data="playersListSource" :typeName="'players'"></member-container>
           </div>
         </home-item-solt>
-        <divider :height="20"></divider>
-        <home-item-solt :itemName="'member-div'" :title="$t('artists')" :isShowMore="false">
+        <home-item-solt :itemName="'member-div'" :title="$t('artists')" :isShowMore="false" :marginBottom="'30px'">
           <div slot="detail">
             <member-container :data="artistsListSource" :typeName="'artists'"></member-container>
           </div>
         </home-item-solt>
-        <divider :height="20"></divider>
         <home-item-solt :itemName="'parter-div'" :title="$t('partners')" :isShowMore="false">
           <div slot="detail">
             <div class="sub-item" v-for="(el,i) in parterList" :key="i">
@@ -156,7 +151,7 @@ import MAnchor from 'components/m-anchor/m-anchor'
 import MemberContainer from 'components/commonComponents/member-container'
 import MemberItem from 'components/commonComponents/member-item'
 import HomeItemSolt from 'components/home/home-item-solt'
-import Divider from 'base/divider/divider'
+// import Divider from 'base/divider/divider'
 import AwardList from 'components/home/award-list'
 export default {
   components: {
@@ -164,12 +159,11 @@ export default {
     MemberContainer,
     MemberItem,
     HomeItemSolt,
-    Divider,
     AwardList
   },
   data() {
     return {
-      carouselHeight: '',
+      carouselHeight: '980',
       carousellist: [
         {desp:'你好呀', imageUrl: 'static/image/home/zs/carousel_01.jpeg', targetUrl: ''},
         {desp:'两只老虎爱跳舞', imageUrl: 'static/image/home/zs/carousel_03.jpeg', targetUrl: ''},
@@ -200,8 +194,8 @@ export default {
         { awardName: '艾萨克·斯特恩奖 —— 人文精神奖1', userName: '周颖1', vedioUrl: '', imgUrl: 'static/image/sisivc/award/0.jpg', coverImgUrl: 'static/image/sisivc/award/0.jpg', country: '美国'},
         { awardName: '艾萨克·斯特恩奖 —— 人文精神奖2', userName: '周颖2', vedioUrl: '', imgUrl: 'static/image/sisivc/award/0.jpg', coverImgUrl: 'static/image/sisivc/award/0.jpg', country: '美国'},
       ],
-      awardUserImgUrl: '',
-      // awardUserImgUrl: 'static/image/sisivc/award/0.jpg',
+      // awardUserImgUrl: '',
+      awardUserImgUrl: 'static/image/sisivc/award/0.jpg',
       nowClickAward: '',
       finalObj: [],
       judgesListSource: [
@@ -276,8 +270,8 @@ export default {
         // $arrowDiv.css("display", "block");
       }
     },
-    goAnchor(selector, index) {
-
+    gotoMore() {
+      this.$router.push({path: '/news'})
     },
     handleChange(val) {
       this.nowClickAward = val ? val : this.nowClickAward
@@ -561,11 +555,19 @@ export default {
             overflow: hidden;
             text-overflow: ellipsis;
             display: -webkit-box;
-            -webkit-line-clamp: 4;
+            -webkit-line-clamp: 3;
             -webkit-box-orient: vertical;  
       .right
         .el-card
           margin-bottom: 30px!important;
+      .temp-read
+        margin-top: -62px;
+        position: relative;
+        .button
+          color: $color-item-more;
+          font-size: $font-size-item-little;
+          margin: 0;
+          text-align: right;
     .award-div
       .el-row
         width: 100%
@@ -723,9 +725,6 @@ a.hover-animation:hover img
   .vedio-css {
     display: block;
   }
-  .news-content {
-    -webkit-line-clamp: 5!important;
-  }
 }
 @media (min-width: 1400px) and (max-width: 1920px)  {
   .container .other .block {
@@ -735,9 +734,6 @@ a.hover-animation:hover img
   .sub-nav ul {
     width: calc(100% - 360px);
     min-width: 1140px;
-  }
-  .news-content {
-    -webkit-line-clamp: 5!important;
   }
     
 }

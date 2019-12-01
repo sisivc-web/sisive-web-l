@@ -5,23 +5,26 @@
     <div :style="{'min-height': `calc(${height} - ${navHeight} - ${tabbarHeight})`}">
       <router-view class="content"></router-view>
     </div>
-    <m-footer></m-footer>
+    <m-footer v-if="!this.GLOBAL.isDetailFoot"></m-footer>
+    <detail-footer v-if="this.GLOBAL.isDetailFoot"></detail-footer>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
 import MHeader from 'components/m-header/m-header'
 import MFooter from 'components/m-footer/m-footer'
+import DetailFooter from 'components/m-footer/m-detail-footer'
 export default {
   components: {
     MHeader,
-    MFooter
+    MFooter,
+    DetailFooter,
   },
   data() {
     return {
       height: `100vh`,
       navHeight: '70px',
-      tabbarHeight: '280px'
+      tabbarHeight: '280px',
     }
   }
 }

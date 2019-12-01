@@ -35,6 +35,7 @@ export default {
   components: {
   },
   created() {
+    this.GLOBAL.setIsDetailFoot(true)
     this._getURLQuery()
     this._getData()
   },
@@ -44,15 +45,13 @@ export default {
   beforeDestroy() {
     // window.removeEventListener('scroll', this._getDataMore)
   },
+  destroyed() {
+    //离开该页面需要移除这个监听的事件
+    this.GLOBAL.setIsDetailFoot(false)
+  },
   watch: {
-    productName() {
-    //   this._advancedSearch()
-    }
   },
   computed: {
-    productName() {
-    //   return this.$route.query.name
-    }
   },
   data() {
     return {
@@ -117,7 +116,6 @@ export default {
         language: JSON.parse(window.localStorage.getItem('immi_language'))
       }
       kpiMemberDetail(param, this).then((res) => {
-        debugger
         let el = res.data.data
         this.userIfo = {
           name: el.userName,

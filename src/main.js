@@ -20,6 +20,9 @@ import QRCode from 'qrcode'
 
 // 工具类
 import Utility from './common/utility/index.js'
+import GLOBAL from 'common/js/global_variable'
+
+Vue.prototype.GLOBAL = GLOBAL
 
 Vue.use(VueI18n)
 Vue.use(ElementUI)

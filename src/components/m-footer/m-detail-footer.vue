@@ -15,9 +15,8 @@ export default {
 }
 </script>
 <style lang="stylus" rel="stylesheet/stylus" scoped>
-* {
-  font-family: Helvetica, Arial, "Microsoft YaHei", 微软雅黑, SimSun, 宋体, Heiti, 黑体, sans-serif;
-}
+@import "~common/stylus/base"
+@import "~common/stylus/variable"
 .foot 
   @extend .flex
   @extend .flex-row

@@ -2,25 +2,20 @@
     <div>
         <div class="details">
             <el-row>
-                <el-col :span="6" v-for="(item, index) in data" :key="index" v-if="index < 8">
+                <el-col :span="6" v-for="(item, index) in data" :key="index" v-if="index < count">
                     <member-item :item="item"></member-item>
                 </el-col>
-                <transition name="toTop" class="toTop" v-for="(item, index) in data" :key="index">
-                    <el-col :span="6" v-show="showMoreList" v-if="index >= 8">
-                        <member-item :item="item"></member-item>
-                    </el-col>
-                </transition>
             </el-row>
+            <div :style="{height: nowHeight + 'px', overflow: 'hidden'}" class="more-css">
+                <div ref="moreItems">
+                    <el-row>
+                        <el-col :span="6"  v-for="(item, index) in data" :key="index" v-if="index >= count">
+                            <member-item :item="item"></member-item>
+                        </el-col>
+                    </el-row>
+                </div>
+            </div>
         </div>
-        <!-- <div class="details">
-            <transition name="draw" class="draw" >
-                <el-row>
-                    <el-col :span="6" v-for="(item, index) in data.slice(8, data.length - 8)" :key="index" v-show="showMoreList">
-                        <member-item :item="item"></member-item>
-                    </el-col>
-                </el-row>
-            </transition>
-        </div> -->
         <el-row v-if="data.length > 8">
             <el-col :span="24">
             <div :class="['more-div', nowType===typeName && showMoreList?'rotate':'']" @click="moreClick(typeName)">
@@ -43,6 +38,10 @@ export default {
         default: [
             {name: '大卫·斯特恩', country: '美国', imageUrl: 'static/image/sisivc/pingwei/1.jpg'},
         ]
+    },
+    count: {
+        type: Number,
+        default: 8
     }
   },
   components: {
@@ -51,13 +50,19 @@ export default {
   data() {
     return {
         showMoreList: false,
-        nowType: ''
+        nowType: '',
+        nowHeight: 0,
     }
+  },
+  mounted() {
   },
   methods: { 
     moreClick(flag) {
       this.nowType = flag
       this.showMoreList = !this.showMoreList
+      console.log("old--", this)
+      this.nowHeight = this.nowHeight ? 0 : this.$refs.moreItems.offsetHeight
+      console.log("new--", this.nowHeight)
     },
   }
 }
@@ -67,9 +72,9 @@ export default {
 @import '~common/stylus/base'
 @import "~common/stylus/mixin"
 .details
-    @extend .flex
-    @extend .flex-row
-    @extend .flex-between
+    // @extend .flex
+    // @extend .flex-row
+    // @extend .flex-between
     width 100%
     margin-top 40px
     .el-row
@@ -95,24 +100,10 @@ export default {
     -o-transform: rotate(180deg);
     -ms-transform: rotate(180deg);
     transform: rotate(180deg);
-.toTop-enter-active {
-  animation: identifier .3s;
+.more-css {
+    transition:height 2s;
+    -moz-transition:height 2s; /* Firefox 4 */
+    -webkit-transition:height 2s; /* Safari and Chrome */
+    -o-transition:height 2s; /* Opera */
 }
-.toTop-leave-active {
-  animation: against .3s ;
-}
-@keyframes identifier {
- from {transform: translateY(100%);}
- to {transform: translateY(0%);}
-}
-@keyframes against {
- from {transform: translateY(0%);}
- to {transform: translateY(100%);}
-}
-// .draw-enter-active, .draw-leave-active {
-//     transition: all 1s ease;
-// }
-// .draw-enter, .draw-leave-to /* .fade-leave-active below version 2.1.8 */ {
-//     height: 0;
-// }
 </style>

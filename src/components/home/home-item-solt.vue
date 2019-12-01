@@ -1,11 +1,11 @@
 <template>
-  <div :class="['block', 'anchor-item', itemName]">
+  <div :class="['block', 'anchor-item', itemName]" :style="{marginBottom: marginBottom}">
     <div class="header">
       <!-- <p class="little"><span>2018</span>&nbsp;SISIVC</p> -->
       <h3 class="title">{{title}}</h3>
       <div class="more" v-if="isShowMore">
-        {{more}}
-        <div class="arrow"></div>
+        <!-- {{more}} -->
+        <div class="el-icon-more" @click="gotoMore"></div>
       </div>
     </div>
     <slot name="detail"></slot>
@@ -30,7 +30,16 @@ export default {
       type: String,
       default: '更多',
     },
-  }
+    marginBottom: {
+      type: String,
+      default: '0px',
+    },
+  },
+  methods: {
+    gotoMore() {
+      this.$emit('gotoMore')
+    },
+  },
 }
 </script>
 <style lang="stylus" scoped rel="stylesheet/stylus">
@@ -66,8 +75,8 @@ export default {
       @extend .flex-row
       @extend .flex-end
       height 16px
-      color $color-item-more
-      font-size $font-size-item-little
+      color: $color-item-title;
+      font-size: $font-size-item-title;
       position absolute
       right 0
       bottom: 0
