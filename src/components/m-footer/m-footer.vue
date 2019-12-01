@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div class="foot">
+    <div class="foot" id="foot">
       <div class="foot-item">
         <div class="left">
           <div class="plate" style="background-image: url(static/image/sisivc/foot/address@4x.png);">

@@ -35,13 +35,12 @@
       >{{$t("history")}}
       </span>
     </router-link>
-    <router-link to="/moreStudents">
-      <span
-        class="plate"
-        :style="{color: color}"
-      >{{$t("contactus")}}
-      </span>
-    </router-link>
+    <span
+      class="plate"
+      :style="{color: color}"
+      @click="goFootAnchor('#foot')"
+    >{{$t("contactus")}}
+    </span>
     <span class="plate" @click="_changeLanguage" :style="{color: color}">{{$t("message.language")}}</span>
   </div>
 </template>
@@ -58,7 +57,11 @@ export default {
       this.$i18n.locale = this.$i18n.locale === 'en' ? 'zh_CN' : 'en'
       window.localStorage.setItem('immi_language', JSON.stringify(this.$i18n.locale))
       window.location.reload()
-    }
+    },
+    goFootAnchor(selector) {
+     var anchor =  document.querySelector(selector)
+     document.documentElement.scrollTop = anchor.offsetTop
+  }
   }
 }
 </script>
