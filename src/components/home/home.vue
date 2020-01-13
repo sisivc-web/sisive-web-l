@@ -2,7 +2,7 @@
   <div class="container">
     <div class="other">
       <div class="carousel">
-        <el-carousel :interval="80000" :height="carouselHeight + 'px'" arrow="never" indicator-position="none" @change="_change" ref="carousel">
+        <el-carousel :interval="5000" :height="carouselHeight + 'px'" arrow="never" indicator-position="none" @change="_change" ref="carousel">
           <el-carousel-item v-for="(item, index) in carousellist" :key="index" name="index">
             <div class="carousel_img">
             <!-- <div class="carousel_img" :style="{'background-image': `url(${item.imageUrl})`}"> -->
@@ -61,11 +61,11 @@
             </div>
           </div>
         </home-item-solt>
-        <!-- <home-item-solt :itemName="'award-div'" :title="$t('prizeWinners')" :isShowMore="false">
+        <home-item-solt :itemName="'award-div'" :title="$t('prizeWinners')" :isShowMore="false">
           <div slot="detail">
             <award-list :awardUserList="awardUserList"></award-list>
           </div>
-        </home-item-solt> -->
+        </home-item-solt>
         <home-item-solt :itemName="'award-div'" :title="$t('prizeWinners')" :isShowMore="false" :marginBottom="'60px'">
           <div slot="detail">
             <div class="details">
@@ -133,7 +133,7 @@
               <h3 class="sub-h3">{{el.level}}</h3>
               <div style="border-top: 1px solid #80808030;padding-top:40px;" v-if="el.levelId === 1">
                 <img :src="el.partnerVoList[0].logoUrl">
-                <div v-html="el.partnerVoList[0].description" class="desp"></div>
+                <!-- <div v-html="el.partnerVoList[0].description" class="ql-snow ql-editor desp"></div> -->
               </div>
               <div style="padding-top:0;" v-if="el.levelId > 1">
                 <el-row>
@@ -380,6 +380,7 @@ export default {
   .other
     @extend .flex
     @extend .flex-column
+    overflow: hidden;
     // .list
     //   @extend .flex
     //   @extend .flex-row

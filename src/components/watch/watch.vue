@@ -1,201 +1,201 @@
 <template>
   <div class="containerA">
-	  <m-anchor :contentDivClass="'AboutGame'" :anchorItem="'anchor-item'" :subNavList="[$t('subNavs.aboutUs1'), $t('subNavs.aboutUs2'), $t('subNavs.aboutUs3'), $t('subNavs.aboutUs4'), $t('subNavs.aboutUs5')]"></m-anchor>  
-      <div class="other" >
-        <div class="header">
-          <div class="mainBox block clearfix">
-            <h3 class="title" style="padding-top: 21px; padding-bottom: 12px;">比赛日程</h3>
+	  <m-anchor :contentDivClass="'Watch'" :anchorItem="'anchor-item'" :subNavList="[$t('subNavs.watch1'), $t('subNavs.watch2'), $t('subNavs.watch3'), $t('subNavs.watch4')]"></m-anchor>  
+      <div class="other Watch" >
+        <div class="anchor-item">
+          <div class="header">
+            <div class="mainBox block clearfix">
+              <h3 class="title" style="padding-top: 21px; padding-bottom: 12px;">比赛日程</h3>
+            </div>
+            <!--日期-->
+            <dl class="MinMon clearfix">
+              <dt class="FullYear">2018</dt>
+              <dd class="Prev_month">8月</dd>
+              <dd class="Next_month">9月</dd>
+            </dl>
           </div>
-          <!--日期-->
-          <dl class="MinMon clearfix">
-            <dt class="FullYear">2018</dt>
-            <dd class="Prev_month">8月</dd>
-            <dd class="Next_month">9月</dd>
-          </dl>
-        </div>
-        <div class="date">
-          <ul class="dat_list">
-            <li :class="{'on' : receiveIndex == 0}" @click="DateItemLi(0,date)">
-              <a href="javascript:void(0)" class="tag_color orange">
-                <p>Sat</p>
-                <p class="ipn last">11</p>
-              </a>
-			  <i></i>
-              <span></span>
-            </li>
-            <li :class="{'on' : receiveIndex == 1}" @click="DateItemLi(1,date)">
-              <a href="javascript:void(0)" class="tag_color orange">
-                <p>Sun</p>
-                <p class="ipn last">12</p>
-              </a>
-              <i></i>
-              <span></span>
-            </li>
+          <div class="date">
+            <ul class="dat_list">
+              <li :class="{'on' : receiveIndex == 0}" @click="DateItemLi(0,date)">
+                <a href="javascript:void(0)" class="tag_color orange">
+                  <p>Sat</p>
+                  <p class="ipn last">11</p>
+                </a>
+                <i></i>
+                <span></span>
+              </li>
+              <li :class="{'on' : receiveIndex == 1}" @click="DateItemLi(1,date)">
+                <a href="javascript:void(0)" class="tag_color orange">
+                  <p>Sun</p>
+                  <p class="ipn last">12</p>
+                </a>
+                <i></i>
+                <span></span>
+              </li>
+              <li>
+                <a href="javascript:void(0)" class="tag_color orange">
+                  <p>Mon</p>
+                  <p class="last">13</p>                
+                </a>
+                <i></i>
+                <span></span>
+              </li>
+              <li>
+                <a href="javascript:void(0)" class="tag_color orange">
+                  <p>Tue</p>
+                  <p class="last">14</p>
+                </a>
+                <i></i>
+                <span></span>
+              </li>
+              <li>
+                <a href="javascript:void(0)" class="tag_color grey">
+                  <p>Wed</p>
+                  <p class="last">15</p>
+                </a>
+              </li>
+              <li>
+                <a href="javascript:void(0)" class="tag_color">
+                  <p>Thu</p>
+                  <p class="last">16</p>
+                </a>
+              </li>
+              <li>
+                <a href="javascript:void(0)" class="tag_color">
+                  <p>Fri</p>
+                  <p class="last">17</p>
+                </a>
+              </li>
+              <li>
+                <a href="javascript:void(0)" class="tag_color">
+                  <p>Sat</p>
+                  <p class="last">18</p>
+                </a>
+              </li>
+              <li>
+                <a href="javascript:void(0)" class="tag_color blue">
+                  <p>Sun</p>
+                  <p class="last">19</p>
+                </a>
+              </li>
+              <li>
+                <a href="javascript:void(0)" class="tag_color blue">
+                  <p>Mon</p>
+                  <p class="last">20</p>
+                </a>
+              </li>
             <li>
-              <a href="javascript:void(0)" class="tag_color orange">
-                <p>Mon</p>
-                <p class="last">13</p>                
+                <a href="javascript:void(0)" class="tag_color blue">
+                  <p>Tue</p>
+                  <p class="last">21</p>
+                </a>
+              </li>
+              <li>
+                <a href="javascript:void(0)" class="tag_color blue">
+                  <p>Wed</p>
+                  <p class="last">22</p>
+                </a>
+              </li>
+              <li>
+                <a href="javascript:void(0)" class="tag_color blue">
+                  <p>Thu</p>
+                  <p class="last">23</p>
+                </a>
+              </li>
+              <li>
+              <a href="javascript:void(0)" class="tag_color">
+                <p>Fri</p>
+                <p class="last">24</p>
               </a>
-			  <i></i>
-			  <span></span>
-            </li>
-           <li>
-          <a href="javascript:void(0)" class="tag_color orange">
-            <p>Tue</p>
-            <p class="last">14</p>
-          </a>
-		  <i></i>
-		  <span></span>
-          </li>
-           <li>
-          <a href="javascript:void(0)" class="tag_color grey">
-            <p>Wed</p>
-            <p class="last">15</p>
-          </a>
-          </li>
-           <li>
-          <a href="javascript:void(0)" class="tag_color">
-            <p>Thu</p>
-            <p class="last">16</p>
-          </a>
-          </li>
-           <li>
-          <a href="javascript:void(0)" class="tag_color">
-            <p>Fri</p>
-            <p class="last">17</p>
-          </a>
-          </li>
-           <li>
-          <a href="javascript:void(0)" class="tag_color">
-            <p>Sat</p>
-            <p class="last">18</p>
-          </a>
-          </li>
-           <li>
-          <a href="javascript:void(0)" class="tag_color blue">
-            <p>Sun</p>
-            <p class="last">19</p>
-          </a>
-          </li>
-           <li>
-          <a href="javascript:void(0)" class="tag_color blue">
-            <p>Mon</p>
-            <p class="last">20</p>
-          </a>
-          </li>
-           <li>
-          <a href="javascript:void(0)" class="tag_color blue">
-            <p>Tue</p>
-            <p class="last">21</p>
-          </a>
-          </li>
-          <li>
-          <a href="javascript:void(0)" class="tag_color blue">
-            <p>Wed</p>
-            <p class="last">22</p>
-          </a>
-          </li>
-          <li>
-          <a href="javascript:void(0)" class="tag_color blue">
-            <p>Thu</p>
-            <p class="last">23</p>
-          </a>
-          </li>
-          <li>
-          <a href="javascript:void(0)" class="tag_color">
-            <p>Fri</p>
-            <p class="last">24</p>
-          </a>
-          </li>
-          <li>
-          <a href="javascript:void(0)" class="tag_color">
-            <p>Sat</p>
-            <p class="last">25</p>
-          </a>
-          </li>
-          <li>
-          <a href="javascript:void(0)" class="tag_color">
-            <p>Sun</p>
-            <p class="last">26</p>
-          </a>
-          </li>
-          <li>
-          <a href="javascript:void(0)" class="tag_color">
-            <p>Mon</p>
-            <p class="last">27</p>
-          </a>
-          </li>
-          <li>
-          <a href="javascript:void(0)" class="tag_color">
-            <p>Tue</p>
-            <p class="last">28</p>
-          </a>
-          </li>
-          <li>
-          <a href="javascript:void(0)" class="tag_color">
-            <p>Wed</p>
-            <p class="last">29</p>
-          </a>
-          </li>
-          <li>
-          <a href="javascript:void(0)" class="tag_color">
-            <p>Thu</p>
-            <p class="last">30</p>
-          </a>
-          </li>
-          <li>
-          <a href="javascript:void(0)" class="tag_color">
-            <p>Fri</p>
-            <p class="last">31</p>
-          </a>
-          </li>         
-          </ul>
+              </li>
+              <li>
+              <a href="javascript:void(0)" class="tag_color">
+                <p>Sat</p>
+                <p class="last">25</p>
+              </a>
+              </li>
+              <li>
+              <a href="javascript:void(0)" class="tag_color">
+                <p>Sun</p>
+                <p class="last">26</p>
+              </a>
+              </li>
+              <li>
+              <a href="javascript:void(0)" class="tag_color">
+                <p>Mon</p>
+                <p class="last">27</p>
+              </a>
+              </li>
+              <li>
+              <a href="javascript:void(0)" class="tag_color">
+                <p>Tue</p>
+                <p class="last">28</p>
+              </a>
+              </li>
+              <li>
+              <a href="javascript:void(0)" class="tag_color">
+                <p>Wed</p>
+                <p class="last">29</p>
+              </a>
+              </li>
+              <li>
+              <a href="javascript:void(0)" class="tag_color">
+                <p>Thu</p>
+                <p class="last">30</p>
+              </a>
+              </li>
+              <li>
+              <a href="javascript:void(0)" class="tag_color">
+                <p>Fri</p>
+                <p class="last">31</p>
+              </a>
+              </li>         
+              </ul>
+            </div>
+            <!-- {{watchDataIndex}} -->
+            <!--观赛banner-->
+            <div class="boxImg" v-if="!watchData">
+              <img :src="watchDataIndex.scheduleVoList[0].image">
+            </div>
+            <!--点日期显示下面的数据-->
+            <!-- {{watchData}} -->
+            <div class="mainBox block clearfix" v-if="watchData">
+              <div class="minLeft">
+                <div class="boxL">
+                  <ul class="dataUl">
+                    <li>
+                      <h4>{{watchData.scheduleName}}</h4>
+                      <div class="ListTBox" v-for="(item,index) in watchData.artists" :key="index">
+                        <div class="imgItemCoumuns"><img :src="item.image" /></div>
+                        <p class="ItemName">{{item.userName}}</p>
+                      </div>
+                      <div class="ListTBox">
+                        <div class="imgItemCoumuns"><img :src="watchData.groupUrl" /></div>
+                        <p class="ItemName">{{watchData.groupTitle}}</p>
+                      </div>
+                    </li>
+                    <li v-for="(item,index) in watchData.competitionRoundVos" :key="index">
+                      <div class="panelItem clearfix">
+                        <h5><span>{{item.round}}</span><span class="time">时间：{{item.time}}</span></h5>
+                        <div class="panelSecond clearfix" v-for="(item1,index) in item.players" :key="index">
+                          <dl>
+                            <dt><img :src= "item1.image" /></dt>
+                            <dd>
+                              <div class="ItemCoumnsHd"><span>{{item1.userName}}</span><span class="fm">{{item1.nationality}}</span></div>
+                              <h6>曲目</h6>
+                              <div class="ItemCoumns" v-for="(item2,index) in item1.playerChapterVoList" :key="index"><label>{{item2.composers}}：</label><span>{{item2.repertoire}}，{{item2.chapters}}</span></div>
+                            </dd>
+                          </dl>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
         </div>
-        <!-- {{watchDataIndex}} -->
-        <!--观赛banner-->
-        <div class="boxImg" v-if="!watchData">
-          <img :src="watchDataIndex.scheduleVoList[0].image">
-        </div>
-		<!--点日期显示下面的数据-->
-		<!-- {{watchData}} -->
-		<div class="mainBox block clearfix" v-if="watchData">
-		  <div class="minLeft">
-		    <div class="boxL">
-		      <ul class="dataUl">
-		        <li>
-		          <h4>{{watchData.scheduleName}}</h4>
-		          <div class="ListTBox" v-for="(item,index) in watchData.artists" :key="index">
-		            <div class="imgItemCoumuns"><img :src="item.image" /></div>
-		            <p class="ItemName">{{item.userName}}</p>
-		          </div>
-		          <div class="ListTBox">
-		            <div class="imgItemCoumuns"><img :src="watchData.groupUrl" /></div>
-		            <p class="ItemName">{{watchData.groupTitle}}</p>
-		          </div>
-		        </li>
-		        <li v-for="(item,index) in watchData.competitionRoundVos" :key="index">
-		          <div class="panelItem clearfix">
-		            <h5><span>{{item.round}}</span><span class="time">时间：{{item.time}}</span></h5>
-		            <div class="panelSecond clearfix" v-for="(item1,index) in item.players" :key="index">
-		              <dl>
-		                <dt><img :src= "item1.image" /></dt>
-		                <dd>
-		                  <div class="ItemCoumnsHd"><span>{{item1.userName}}</span><span class="fm">{{item1.nationality}}</span></div>
-		                  <h6>曲目</h6>
-		                  <div class="ItemCoumns" v-for="(item2,index) in item1.playerChapterVoList" :key="index"><label>{{item2.composers}}：</label><span>{{item2.chapters}}，{{item2.repertoire}}</span></div>
-		                </dd>
-		              </dl>
-		            </div>
-		          </div>
-		
-		        </li>
-		
-		      </ul>
-		    </div>
-		  </div>
-		</div>
         <!--直播地址-->
-        <div class="mainBox block clearfix">
+        <div class="mainBox block clearfix anchor-item">
            <h3 class="title" style="padding-bottom: 33px;">直播地址</h3>
            <ul class="Broad_add">
               <li v-for="(item, index) in watchDataIndex.broadcastAddressVoList" :key="index">
@@ -209,14 +209,14 @@
               </li>
           </ul>
         </div>
-       <!--观赛须知-->
-       <div class="mainBox block clearfix guidelines">
-          <h3 class="title" style="padding:80px 0 26px 0;">观赛须知</h3><!--一级标题-->
-          <h4 v-for="(item, index) in watchDataIndex.noticeVoList" :key="index" v-if="item.id === 1">{{item.content}}</h4><!--二级标题-->
-          <p v-for="(item, index) in watchDataIndex.noticeVoList" :key="index" v-if="item.id != 1">{{index}}.{{item.content}}</p>
-       </div>
-       <!--订票方式-->
-       <div class="mainBox block clearfix guidelines">
+        <!--观赛须知-->
+        <div class="mainBox block clearfix guidelines anchor-item">
+            <h3 class="title" style="padding:80px 0 26px 0;">观赛须知</h3><!--一级标题-->
+            <h4 v-for="(item, index) in watchDataIndex.noticeVoList" :key="index" v-if="item.id === 1">{{item.content}}</h4><!--二级标题-->
+            <p v-for="(item, index) in watchDataIndex.noticeVoList" :key="index" v-if="item.id != 1">{{index}}.{{item.content}}</p>
+        </div>
+        <!--订票方式-->
+        <div class="mainBox block clearfix guidelines anchor-item">
           <h3 class="title" style="padding:63px 0 7px 0;">订票方式</h3><!--一级标题-->
           <div v-for="(item,index) in watchDataIndex.bookingWayVoList" :key="index">
           <h5 v-if="item.booking">{{item.booking}}</h5><!--二级标题-->
@@ -231,8 +231,8 @@
           <p>您也可前往上海交响乐团售票中心购票。</p>
           <p>工作时间：9:00-20:00。</p>
           <p>地址：上海市徐汇区复兴中路1380号 售票中心。</p> -->
-       </div>
-       </div>
+        </div>
+      </div>
       
      </div>
     <!--end-->

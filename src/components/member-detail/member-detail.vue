@@ -27,12 +27,15 @@
           </el-col>
       </el-row>
     </div>
+    <detail-footer v-if="this.GLOBAL.isDetailFoot"></detail-footer>
   </div>
 </template>
 <script type="text/ecmascript-6">
 import {kpiMemberDetail} from 'apx'
+import DetailFooter from 'components/m-footer/m-detail-footer'
 export default {
   components: {
+    DetailFooter,
   },
   created() {
     this.GLOBAL.setIsDetailFoot(true)
@@ -47,7 +50,7 @@ export default {
   },
   destroyed() {
     //离开该页面需要移除这个监听的事件
-    this.GLOBAL.setIsDetailFoot(false)
+    this.$route.meta.footShow = false
   },
   watch: {
   },
@@ -199,12 +202,20 @@ export default {
       line-height: 20px;
       margin-bottom: 5px
   .content-css {
+    font-size: $font-size-detail-content!important;
+    color: $color-detail-content!important;
+    line-height: 22px;
+    text-align:justify;
     -webkit-column-count: 2;  /* 分3列 */
     column-count: 2;
     column-rule: none;  /* 列之间的分隔线 */
     column-gap: 40px;          /* 列之间的间距 */
   }
   .content-css-8 {
+    font-size: $font-size-detail-content!important;
+    color: $color-detail-content!important;
+    line-height: 22px;
+    text-align:justify;
     -webkit-column-count: 1;  /* 分3列 */
     column-count: 1;
     column-rule: none;  /* 列之间的分隔线 */

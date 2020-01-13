@@ -10,7 +10,9 @@ export default new Router({
       path: '/',
       redirect: '/home',
       component: () => import('components/main/main_home'),
-      // component: MainHome,
+      meta: {
+        footShow: true, // true显示，false隐藏
+      },
       children: [
         {
           path: 'home',
@@ -18,7 +20,10 @@ export default new Router({
         },
         {
           path: 'memberDetail',
-          component: () => import('components/member-detail/member-detail')
+          component: () => import('components/member-detail/member-detail'),
+          meta: {
+           footShow: false, // true显示，false隐藏
+          }
         },
         {
           path: 'news',

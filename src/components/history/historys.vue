@@ -1,10 +1,10 @@
 <template>
   <div class="container">
     <div class="mainBox">
-      <a href="javascript:;" @click="_gotoDetails(index)" class="animation hover-animation">
+      <!-- <a href="javascript:;" @click="_gotoDetails(index)" class="animation hover-animation">
           <img src="static/image/sisivc/award/0.jpg" class="image" style="width:100%;height:auto">
-      </a>
-
+      </a> -->
+      <history-carousel></history-carousel>
       <hr/><br/><br/>
       <div class="flexBox">
        <div class="fl aItemG">
@@ -24,9 +24,11 @@
 
 import { kpiNews }from 'apx'
 import MAnchor from 'components/m-anchor/m-anchor'
+import HistoryCarousel from './history-carousel'
 export default {
   components: {
-    MAnchor
+    MAnchor,
+    HistoryCarousel
   },
   created() {
     // this._getURLQuery()
@@ -88,7 +90,7 @@ export default {
 }
 
 .flexBox{display: flex;}
-.mainBox{width: 80%;}
+.mainBox{width: 100%;}
 .aItemG{width:500px;margin-right: 80px;}
 .aItemG .img img{width: 500px;}
 .aItemG h3,.nInfoNameSpec h3{padding:0 0 158px 0; color: #1e2022;font-size: 24px; font-weight: 700;}

@@ -133,6 +133,11 @@ const messages = {
       enroll4: 'Entry Information',
       enroll5: 'The Jury',
       enroll6: 'OrganizationCommittee',
+      watch1: 'Competition Schedule',
+      watch2: 'Live Address',
+      watch3: 'Rule',
+      watch4: 'Booking Method'
+
     },
     newsList: {
       new: 'NEWS',
@@ -500,6 +505,10 @@ const messages = {
       enroll4: '参赛须知',
       enroll5: '评审委员会',
       enroll6: '组织委员会',
+      watch1: '比赛日程',
+      watch2: '直播地址',
+      watch3: '观赛须知',
+      watch4: '订票方式'
     },
     newsList: {
       new: '新闻',
