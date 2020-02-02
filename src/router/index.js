@@ -55,6 +55,11 @@ export default new Router({
           path: 'watch',
           // component: MAnchor
           component: () => import('components/watch/watch')
+        },
+        {
+          path: 'currentmatch',
+          // component: MAnchor
+          component: () => import('components/currentmatch/currentmatch')
         }
       ]
     },

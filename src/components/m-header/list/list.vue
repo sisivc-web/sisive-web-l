@@ -7,11 +7,11 @@
       >{{$t("home")}}
       </span>
     </router-link>
-    <router-link to="/about">
+    <router-link to="/currentmatch">
       <span
         class="plate"
         :style="{color: color}"
-      >{{$t("aboutus")}}
+      >{{(new Date()).getFullYear()}} SISIVC
       </span>
     </router-link>
     <router-link to="/watch">
@@ -33,6 +33,13 @@
         class="plate"
         :style="{color: color}"
       >{{$t("history")}}
+      </span>
+    </router-link>
+    <router-link to="/about">
+      <span
+        class="plate"
+        :style="{color: color}"
+      >{{$t("aboutus")}}
       </span>
     </router-link>
     <span
