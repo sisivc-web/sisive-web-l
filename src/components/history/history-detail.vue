@@ -1,14 +1,16 @@
 <template>
   <div class="container">
     <div>
-    往届回顾xiangqingye
+      <home></home>
     </div>
   </div>
 </template>
 <script type="text/ecmascript-6">
 import {kpiQueryNewDetail} from 'apx'
+import Home from 'components/home/home'
 export default {
   components: {
+    Home,
   },
   created() {
     this._getURLQuery()

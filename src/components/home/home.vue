@@ -19,7 +19,7 @@
       <div class="arrow-div" v-show="!isFixed"></div>
       <m-anchor :contentDivClass="'home-anchor-container'" :anchorItem="'anchor-item'" :subNavList="[$t('subNavs.news'), $t('subNavs.awardMember'), $t('subNavs.judges'), $t('subNavs.contestant'), $t('subNavs.artist'), $t('subNavs.partner')]"></m-anchor>
       <div class="home-anchor-container">
-        <home-item-solt :itemName="'news-div'" :title="$t('newsList.new')" :isShowMore="true" :more="$t('newsList.more')" @gotoMore="gotoMore" :marginBottom="'60px'">
+        <home-item-solt :itemName="'news-div'" :title="$t('newsList.new')" :isShowMore="true" :more="$t('newsList.more')" @gotoMore="gotoMore" :marginBottom="'60px'" v-if="newsList.length > 0">
           <div slot="detail">
             <div class="details">
               <el-row>
@@ -61,12 +61,12 @@
             </div>
           </div>
         </home-item-solt>
-        <home-item-solt :itemName="'award-div'" :title="$t('prizeWinners')" :isShowMore="false">
+        <home-item-solt :itemName="'award-div'" :title="$t('prizeWinners')" :isShowMore="false" :marginBottom="'60px'" v-if="awardUserList.length > 0">
           <div slot="detail">
-            <award-list :awardUserList="awardUserList"></award-list>
+            <award-list :awardUserList="awardUserList" :awardUserImgUrl="awardUserImgUrl" @handleChange="handleChange"></award-list>
           </div>
         </home-item-solt>
-        <home-item-solt :itemName="'award-div'" :title="$t('prizeWinners')" :isShowMore="false" :marginBottom="'60px'">
+        <!-- <home-item-solt :itemName="'award-div'" :title="$t('prizeWinners')" :isShowMore="false" :marginBottom="'60px'">
           <div slot="detail">
             <div class="details">
               <el-row>
@@ -91,16 +91,16 @@
                 </el-col>
                 <el-col :span="14" class="right">
                   <transition name="fade">
-                  <a href="javascript:;" class="animation hover-animation" style="display:block;width:calc(100% - 40px);height:auto;overflow:hiddden;margin-left:40px">
-                    <img :src="awardUserImgUrl" :alt="awardUserImgUrl" ref="awardImage" style="width:100%;height:auto;" class="award-img">
-                  </a>
+                    <a href="javascript:;" class="animation hover-animation" style="display:block;width:calc(100% - 40px);height:auto;overflow:hiddden;margin-left:40px">
+                      <img :src="awardUserImgUrl" :alt="awardUserImgUrl" ref="awardImage" style="width:100%;height:auto;" class="award-img">
+                    </a>
                   </transition>
                 </el-col>
               </el-row>
             </div>
           </div>
-        </home-item-solt>
-        <home-item-solt :itemName="'member-div'" :title="$t('judges')" :isShowMore="false" :marginBottom="'30px'">
+        </home-item-solt> -->
+        <home-item-solt :itemName="'member-div'" :title="$t('judges')" :isShowMore="false" :marginBottom="'30px'" v-if="judgesListSource.length > 0">
           <div slot="detail">
             <member-container :data="judgesListSource" :typeName="'judges'">
               <template slot="item" slot-scope="props">
@@ -109,7 +109,7 @@
             </member-container>
           </div>
         </home-item-solt>
-        <home-item-solt :itemName="'member-div'" :title="$t('players')" :isShowMore="false" :marginBottom="'30px'">
+        <home-item-solt :itemName="'member-div'" :title="$t('players')" :isShowMore="false" :marginBottom="'30px'" v-if="playersListSource.length > 0">
           <div slot="detail">
             <member-container :data="playersListSource" :typeName="'players'">
               <template slot="item" slot-scope="props">
@@ -118,7 +118,7 @@
             </member-container>
           </div>
         </home-item-solt>
-        <home-item-solt :itemName="'member-div'" :title="$t('artists')" :isShowMore="false" :marginBottom="'30px'">
+        <home-item-solt :itemName="'member-div'" :title="$t('artists')" :isShowMore="false" :marginBottom="'30px'" v-if="artistsListSource.length > 0">
           <div slot="detail">
             <member-container :data="artistsListSource" :typeName="'artists'">
               <template slot="item" slot-scope="props">
@@ -127,13 +127,13 @@
             </member-container>
           </div>
         </home-item-solt>
-        <home-item-solt :itemName="'parter-div'" :title="$t('partners')" :isShowMore="false">
+        <home-item-solt :itemName="'parter-div'" :title="$t('partners')" :isShowMore="false" v-if="judgesListSource.length > 0">
           <div slot="detail">
             <div class="sub-item" v-for="(el,i) in parterList" :key="i">
               <h3 class="sub-h3">{{el.level}}</h3>
               <div style="border-top: 1px solid #80808030;padding-top:40px;" v-if="el.levelId === 1">
                 <img :src="el.partnerVoList[0].logoUrl">
-                <!-- <div v-html="el.partnerVoList[0].description" class="ql-snow ql-editor desp"></div> -->
+                <div v-html="el.partnerVoList[0].description" class="desp"></div>
               </div>
               <div style="padding-top:0;" v-if="el.levelId > 1">
                 <el-row>
@@ -186,7 +186,7 @@ export default {
       carousellistIndex: 0,
       isFixed: false,
       newsList: [],
-      awardItemHeight: 50,
+      // awardItemHeight: 50,
       awardUserList: [],
       // awardUserImgUrl: '',
       awardUserImgUrl: 'static/image/sisivc/award/0.jpg',
@@ -219,12 +219,12 @@ export default {
   },
   mounted() {
     this.imgLoad()
-    this.awardItemLoad()
+    // this.awardItemLoad()
     // 2、挂载 reisze 事件 → 屏幕缩放时监听宽度变化
     window.onresize = () => {
       return (() => {
         this.carouselHeight = this.$refs.carouselHeight[0].height
-        this.awardItemHeight = parseInt(this.$refs.awardImage.height - 9) / 8
+        // this.awardItemHeight = parseInt(this.$refs.awardImage.height - 9) / 8
       })()
     }
     /**通过给变成固定定位的元素添加一个同等高度的父元素，防止该元素变成固定定位时，脱离文档流导致的页面抖动 */
@@ -237,14 +237,14 @@ export default {
     window.removeEventListener("scroll", this.handleScroll);
   },
   methods: {
-    awardItemLoad() {
-      this.$nextTick(() => {
-        let that = this
-        setTimeout(() => {
-          that.awardItemHeight = parseInt(that.$refs.awardImage.height - 9) / 8
-        }, 0)
-      })
-    },
+    // awardItemLoad() {
+    //   this.$nextTick(() => {
+    //     let that = this
+    //     setTimeout(() => {
+    //       that.awardItemHeight = parseInt(that.$refs.awardImage.height - 9) / 8
+    //     }, 0)
+    //   })
+    // },
     imgLoad() {
       this.$nextTick(() => {
         this.carouselHeight = this.$refs.carouselHeight[0].height
@@ -282,7 +282,6 @@ export default {
       this.$refs.carousel.setActiveItem(index)
     },
     _gotoNewsDetails(newsId) {
-      debugger
       this.$router.push({path: '/newsDetail', query: {newsId: newsId}})
     },
     _getData() {
@@ -301,15 +300,15 @@ export default {
         let tempPartnerVos = results.partnerVos
         let tempEndings = results.endings
 
-        this.carousellist = tempBanners.map(el => {
+        this.carousellist = tempBanners ? tempBanners.map(el => {
           return {
             desp: el.title,
             imageUrl: el.bannerUrl,
             targetUrl: el.externalLink
           }
-        })
+        }) : []
 
-        this.newsList = tempNews.map(el => {
+        this.newsList = tempNews ? tempNews.map(el => {
           return {
             id: el.id,
             title: el.title,
@@ -319,10 +318,9 @@ export default {
             awardList: [],
             content: el.content
           }
-        })
-        console.log(this.newsList)
+        }) : []
 
-        this.awardUserList = tempWinners.map(el => {
+        this.awardUserList = tempWinners ? tempWinners.map(el => {
           return {
             awardName: el.awardName,
             userName: el.playerName,
@@ -330,42 +328,43 @@ export default {
             coverImgUrl: el.winnerShow,
             country: el.playerNationality,
           }
-        })
-        this.finalObj = this.awardUserList.splice(this.awardUserList.length - 1, 1)
-        this.$nextTick(() => {
-          this.awardUserImgUrl = this.finalObj[0].imgUrl
-          this.awardItemLoad()
-        })
+        }) : []
+        //最后一个元素为封面
+        if(this.awardUserList.length > 0) {
+          this.finalObj = this.awardUserList.splice(this.awardUserList.length - 1, 1)
+          this.$nextTick(() => {
+            this.awardUserImgUrl = this.finalObj[0].imgUrl
+            // this.awardItemLoad()
+          })
+        }
 
-        this.judgesListSource = tempJurys.map(el => {
+        this.judgesListSource = tempJurys ? tempJurys.map(el => {
           return {
             id: el.id,
             name: el.userName,
             imageUrl: el.image,
             country: el.nationality,
           }
-        })
+        }) : []
 
-        this.playersListSource = tempPlayers.map(el => {
+        this.playersListSource = tempPlayers ? tempPlayers.map(el => {
           return {
             id: el.id,
             name: el.userName,
             imageUrl: el.image,
             country: el.nationality,
           }
-        })
+        }) : []
 
-        this.artistsListSource = tempArtists.map(el => {
+        this.artistsListSource = tempArtists ? tempArtists.map(el => {
           return {
             id: el.id,
             name: el.userName,
             imageUrl: el.image,
             country: el.nationality,
           }
-        })
-        this.parterList = tempPartnerVos
-
-
+        }) : []
+        this.parterList = tempPartnerVos ? tempPartnerVos : []
       })
     },
   }

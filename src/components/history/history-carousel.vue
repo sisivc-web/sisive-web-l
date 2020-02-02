@@ -1,5 +1,5 @@
 <template>
-  <el-carousel :interval="15000" arrow="always" height="482px"> 
+  <el-carousel :interval="15000" arrow="always" height="488px" indicator-position="none"> 
     <el-carousel-item v-for="(item, index) in data" :key="index" v-if="index%4 == 0">
       <!-- <h3>{{ item }}</h3> -->
       <el-row :gutter="10"  v-if="index%4 == 0" style="height:100%;">
@@ -59,8 +59,8 @@ export default {
         }
     },
     methods: {
-        goHistoryDetail() {
-            
+        goHistoryDetail() { 
+          this.$router.push({path: '/historyDetail', query: {newsId: 3}})
         }
     }
 }
@@ -69,7 +69,7 @@ export default {
 <style scoped>  
   .el-carousel {
     width: 1140px;
-    height: 482px;
+    height: 488px;
     margin: 0 auto;
   }
   .el-carousel .grid-content {

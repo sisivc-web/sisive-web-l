@@ -5,7 +5,7 @@
           <img src="static/image/sisivc/award/0.jpg" class="image" style="width:100%;height:auto">
       </a> -->
       <history-carousel></history-carousel>
-      <hr/><br/><br/>
+      <!-- <hr/><br/><br/>
       <div class="flexBox">
        <div class="fl aItemG">
          <h3>回顾总结</h3>
@@ -16,7 +16,7 @@
         首届比赛的圆满举办也意味着国际音乐赛事的历史长河中增添了一笔浓厚的中国印记，让我们共同期待下一届会更好！ 
        </div>
      </div>
-     <br/><br/><hr/>
+     <br/><br/><hr/> -->
     </div>
   </div>
 </template>
