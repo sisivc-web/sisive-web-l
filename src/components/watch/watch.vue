@@ -1,162 +1,45 @@
 <template>
   <div class="containerA">
 	  <m-anchor :contentDivClass="'Watch'" :anchorItem="'anchor-item'" :subNavList="[$t('subNavs.watch1'), $t('subNavs.watch2'), $t('subNavs.watch3'), $t('subNavs.watch4')]"></m-anchor>  
-      <div class="other Watch" >
+      <div class="other Watch">
         <div class="anchor-item">
           <div class="header">
             <div class="mainBox block clearfix">
               <h3 class="title" style="padding-top: 21px; padding-bottom: 12px;">比赛日程</h3>
+              <div class="flex-start">
+                <div class="flex-start item">
+                  <div class="circle quarter"></div><div>四分之一决赛</div>
+                </div>
+                <div class="flex-start item">
+                  <div class="circle half"></div><div>半决赛</div>
+                </div>
+                <div class="flex-start item">
+                  <div class="circle final"></div><div>决赛</div>
+                </div>
+              </div>
             </div>
-            <!--日期-->
-            <dl class="MinMon clearfix">
-              <dt class="FullYear">2018</dt>
-              <dd class="Prev_month">8月</dd>
-              <dd class="Next_month">9月</dd>
-            </dl>
+          </div>
+          <div style="padding: 10px 50px;">
+            <FullCalendar
+              defaultView="dayGridMonth"
+              :header="{
+                left: 'prev next today',
+                center: 'title',
+                right: ''
+              }"
+              locale="zh-cn"
+              :events="calendarEvents"
+              @dateClick="handleDateClick"
+              @eventClick="handleEventClick"
+              :plugins="calendarPlugins" />
           </div>
           <div class="date">
-            <ul class="dat_list">
-              <li :class="{'on' : receiveIndex == 0}" @click="DateItemLi(0,date)">
-                <a href="javascript:void(0)" class="tag_color orange">
-                  <p>Sat</p>
-                  <p class="ipn last">11</p>
-                </a>
-                <i></i>
-                <span></span>
-              </li>
-              <li :class="{'on' : receiveIndex == 1}" @click="DateItemLi(1,date)">
-                <a href="javascript:void(0)" class="tag_color orange">
-                  <p>Sun</p>
-                  <p class="ipn last">12</p>
-                </a>
-                <i></i>
-                <span></span>
-              </li>
-              <li>
-                <a href="javascript:void(0)" class="tag_color orange">
-                  <p>Mon</p>
-                  <p class="last">13</p>                
-                </a>
-                <i></i>
-                <span></span>
-              </li>
-              <li>
-                <a href="javascript:void(0)" class="tag_color orange">
-                  <p>Tue</p>
-                  <p class="last">14</p>
-                </a>
-                <i></i>
-                <span></span>
-              </li>
-              <li>
-                <a href="javascript:void(0)" class="tag_color grey">
-                  <p>Wed</p>
-                  <p class="last">15</p>
-                </a>
-              </li>
-              <li>
-                <a href="javascript:void(0)" class="tag_color">
-                  <p>Thu</p>
-                  <p class="last">16</p>
-                </a>
-              </li>
-              <li>
-                <a href="javascript:void(0)" class="tag_color">
-                  <p>Fri</p>
-                  <p class="last">17</p>
-                </a>
-              </li>
-              <li>
-                <a href="javascript:void(0)" class="tag_color">
-                  <p>Sat</p>
-                  <p class="last">18</p>
-                </a>
-              </li>
-              <li>
-                <a href="javascript:void(0)" class="tag_color blue">
-                  <p>Sun</p>
-                  <p class="last">19</p>
-                </a>
-              </li>
-              <li>
-                <a href="javascript:void(0)" class="tag_color blue">
-                  <p>Mon</p>
-                  <p class="last">20</p>
-                </a>
-              </li>
-            <li>
-                <a href="javascript:void(0)" class="tag_color blue">
-                  <p>Tue</p>
-                  <p class="last">21</p>
-                </a>
-              </li>
-              <li>
-                <a href="javascript:void(0)" class="tag_color blue">
-                  <p>Wed</p>
-                  <p class="last">22</p>
-                </a>
-              </li>
-              <li>
-                <a href="javascript:void(0)" class="tag_color blue">
-                  <p>Thu</p>
-                  <p class="last">23</p>
-                </a>
-              </li>
-              <li>
-              <a href="javascript:void(0)" class="tag_color">
-                <p>Fri</p>
-                <p class="last">24</p>
-              </a>
-              </li>
-              <li>
-              <a href="javascript:void(0)" class="tag_color">
-                <p>Sat</p>
-                <p class="last">25</p>
-              </a>
-              </li>
-              <li>
-              <a href="javascript:void(0)" class="tag_color">
-                <p>Sun</p>
-                <p class="last">26</p>
-              </a>
-              </li>
-              <li>
-              <a href="javascript:void(0)" class="tag_color">
-                <p>Mon</p>
-                <p class="last">27</p>
-              </a>
-              </li>
-              <li>
-              <a href="javascript:void(0)" class="tag_color">
-                <p>Tue</p>
-                <p class="last">28</p>
-              </a>
-              </li>
-              <li>
-              <a href="javascript:void(0)" class="tag_color">
-                <p>Wed</p>
-                <p class="last">29</p>
-              </a>
-              </li>
-              <li>
-              <a href="javascript:void(0)" class="tag_color">
-                <p>Thu</p>
-                <p class="last">30</p>
-              </a>
-              </li>
-              <li>
-              <a href="javascript:void(0)" class="tag_color">
-                <p>Fri</p>
-                <p class="last">31</p>
-              </a>
-              </li>         
-              </ul>
             </div>
             <!-- {{watchDataIndex}} -->
             <!--观赛banner-->
-            <div class="boxImg" v-if="!watchData">
+            <!-- <div class="boxImg" v-if="!watchData">
               <img :src="watchDataIndex.scheduleVoList[0].image">
-            </div>
+            </div> -->
             <!--点日期显示下面的数据-->
             <!-- {{watchData}} -->
             <div class="mainBox block clearfix" v-if="watchData">
@@ -242,22 +125,36 @@
 <script>
   import { kpiWatchDetail, kpiWatch } from 'apx'
   import MAnchor from 'components/m-anchor/m-anchor'
+  import FullCalendar from '@fullcalendar/vue'
+  import dayGridPlugin from '@fullcalendar/daygrid'
+  import interactionPlugin from '@fullcalendar/interaction'
   export default({
     components: {
-      MAnchor
+      MAnchor,
+      FullCalendar
     },
-    data(){
-      return{
+    data() {
+      return {
         receiveIndex:0,
         watchData:'',//观赛详情
         watchDataIndex:'',//观赛主页
-        date:'2019-11-22'
+        date:'2019-11-22',
+        calendarEvents: [ // initial event data
+          { title: '第一场 时间: 10:00', start: new Date(), color: '#46A58F' }
+        ],
+        calendarPlugins: [ dayGridPlugin, interactionPlugin ]
       }
     },
     mounted:function(){
       this.showData()
     },
     methods:{
+      handleDateClick (v) {
+        console.log(v)
+      },
+      handleEventClick (evt) {
+        console.log(evt)
+      },
       DateItemLi(idx,date){
         let _this = this
         this.receiveIndex = idx
@@ -289,57 +186,68 @@
   })
 </script>
 
+<style scoped lang='scss'>
+
+@import '~@fullcalendar/core/main.css';
+@import '~@fullcalendar/daygrid/main.css';
+
+</style>
+
 <style scoped>
 	.containerA{width: 100%;}
-	  .containerA .other .block{width: 1140px; margin: 0 auto; padding: 50px 0 0;}
-	   /* 大屏幕 ：大于等于1200px*/
-	   @media (min-width: 1920px) {
-	   .containerA .other .block {
-	       width: 1560px;
-	       margin: 0 auto;
-	       padding-top: 34px;
-	   }
-	   }
-	   @media (min-width: 1400px) and (max-width: 1920px) {
-	   .containerA .other .block {
-	       width: calc(100% - 360px);
-	       min-width: 1140px;
-	       margin: 0 auto;
-	   }
-	   }
-		.clearfix:after {
-		    content: '';
-		    display: block;
-		    height: 0;
-		    clear: both;
-		    visibility: hidden;
-		}
+  .containerA .other .block{width: 1140px; margin: 0 auto; padding: 50px 0 0;}
+    /* 大屏幕 ：大于等于1200px*/
+    @media (min-width: 1920px) {
+    .containerA .other .block {
+        width: 1560px;
+        margin: 0 auto;
+        padding-top: 34px;
+    }
+    }
+    @media (min-width: 1400px) and (max-width: 1920px) {
+      .containerA .other .block {
+          width: calc(100% - 360px);
+          min-width: 1140px;
+          margin: 0 auto;
+      }
+    }
+  .clearfix:after {
+      content: '';
+      display: block;
+      height: 0;
+      clear: both;
+      visibility: hidden;
+  }
 	
-	   .header{background: #e3364a;height: 150px;}
-	   .mainBox .title{color: #1e2022;font-size: 24px;font-weight: 700; padding-bottom: 40px;}
-	
-	   .date .dat_list{display: grid;grid-template-columns:repeat(auto-fit,minmax(50px,1fr));  grid-template-rows:repeat(2,40px);}
-	   .date .dat_list li{text-align: center; position: relative;}
-	   .date .dat_list li:hover i{position: absolute;display: block;width:20px; height: 1px; background: #f49950; left: 50%; bottom: 0; margin-left: -10px;}
-	   .date .dat_list li.on span{display: block;width:100%; height: 40px;  background: #f49950; position: absolute;bottom: -40px;left: 0;}
-	    .date .dat_list li.on p.ipn{color: #fff;z-index: 999;}
-	   .date .dat_list li a{color: #c8c8c8; text-decoration: none;}
-	   .date .dat_list li p{border-bottom: 1px solid #e5e5e5; line-height: 40px; position: relative;font-size: 12px; height: 40px;}
-	   .date .dat_list li p.first{font-size: 12px;}
-	   .date .dat_list li p.last{font-size: 14px;}
-	   .date .dat_list li a.orange{color: #f49950;}
-	   .date .dat_list li a.grey{color: #bebebe;}
-	   .date .dat_list li a.blue{color: #1a3880;}
-	   .date .dat_list li a.red{color: #e5354c;}
-	   .MinMon{position: relative; height: 45px;}
-	   .MinMon .FullYear{position: absolute; left: 30px; top: 0; color: #c8c8c8;}
-	   .MinMon .Prev_month{position: absolute; left: 30px; top: 20px; font-weight: 700;}
-	   .MinMon .Next_month{position: absolute; right: 30px;top: 20px;font-weight: 700;}
-	   .header .mainBox .title,.header .MinMon,.header .MinMon .FullYear{color: #fff;}
-	   /*----直播地址*/
-	   .Broad_add{display: grid;grid-template-columns:0.5fr 0.5fr;grid-template-rows:auto;}
-	   .Broad_add li{border-right: 1px solid #e5e5e5; border-top: 1px solid #e5e5e5; border-bottom: 1px solid #e5e5e5;  height: 140px; position: relative;}
-	   .Broad_add li:last-child{border-right: 0;}
+  .header{background: white;height: 150px;}
+  .mainBox .title{color: #1e2022;font-size: 24px;font-weight: 700; padding-bottom: 40px;}
+  .item{width: 120px; font-size: 12px;font-weight: bold;margin-right: 54px;}
+  .circle{width: 10px;height: 10px;border-radius: 50%;margin-right: 10px;}
+  .quarter{background-color: #46A58F;}
+  .half{background-color: #EB5F53;}
+  .final{background-color: #EF7D30;}
+  .date .dat_list{display: grid;grid-template-columns:repeat(auto-fit,minmax(50px,1fr));  grid-template-rows:repeat(2,40px);}
+  .date .dat_list li{text-align: center; position: relative;}
+  .date .dat_list li:hover i{position: absolute;display: block;width:20px; height: 1px; background: #f49950; left: 50%; bottom: 0; margin-left: -10px;}
+  .date .dat_list li.on span{display: block;width:100%; height: 40px;  background: #f49950; position: absolute;bottom: -40px;left: 0;}
+  .date .dat_list li.on p.ipn{color: #fff;z-index: 999;}
+  .date .dat_list li a{color: #c8c8c8; text-decoration: none;}
+  .date .dat_list li p{border-bottom: 1px solid #e5e5e5; line-height: 40px; position: relative;font-size: 12px; height: 40px;}
+  .date .dat_list li p.first{font-size: 12px;}
+  .date .dat_list li p.last{font-size: 14px;}
+  .date .dat_list li a.orange{color: #f49950;}
+  .date .dat_list li a.grey{color: #bebebe;}
+  .date .dat_list li a.blue{color: #1a3880;}
+  .date .dat_list li a.red{color: #e5354c;}
+  .MinMon{position: relative; height: 45px;}
+  .MinMon .FullYear{position: absolute; left: 30px; top: 0; color: #c8c8c8;}
+  .MinMon .Prev_month{position: absolute; left: 30px; top: 20px; font-weight: 700;}
+  .MinMon .Next_month{position: absolute; right: 30px;top: 20px;font-weight: 700;}
+  .header .mainBox .title,.header .MinMon,.header .MinMon .FullYear{color: #fff;}
+  /*----直播地址*/
+  .Broad_add{display: grid;grid-template-columns:0.5fr 0.5fr;grid-template-rows:auto;}
+  .Broad_add li{border-right: 1px solid #e5e5e5; border-top: 1px solid #e5e5e5; border-bottom: 1px solid #e5e5e5;  height: 140px; position: relative;}
+  .Broad_add li:last-child{border-right: 0;}
 	/*   .Broad_add li .Broad_add_div i{background: url(../assets/img/about/icon@2x.png) no-repeat; float: left; display: inline-block; width: 64px;height: 64px; margin-top: 41px;}
 	   .Broad_add li .Broad_add_div .iconAdd{background-position: left -209px;}
 	   .Broad_add li .Broad_add_div .iconVideo{background-position: left -101px;}
