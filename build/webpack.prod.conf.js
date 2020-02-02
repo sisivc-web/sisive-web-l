@@ -25,9 +25,9 @@ var webpackConfig = merge(baseWebpackConfig, {
     chunkFilename: utils.assetsPath('js/[id].[chunkhash].js')
   },
   plugins: [
-    new webpack.ProvidePlugin({
-      'window.Quill': 'quill'
-    }),
+    // new webpack.ProvidePlugin({
+    //   'window.Quill': 'quill'
+    // }),
     new webpack.DefinePlugin({
       'process.env': env
     }),

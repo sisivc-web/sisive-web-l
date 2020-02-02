@@ -33,9 +33,9 @@ Vue.use(QRCode)
 
 import 'common/stylus/index.styl'
 // vue-quill-editor 富文本 require styles
-import 'quill/dist/quill.core.css'
-import 'quill/dist/quill.snow.css'
-import 'quill/dist/quill.bubble.css'
+// import 'quill/dist/quill.core.css'
+// import 'quill/dist/quill.snow.css'
+// import 'quill/dist/quill.bubble.css'
 
 fastclick.attach(document.body)
 
