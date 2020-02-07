@@ -23,8 +23,8 @@
             <FullCalendar
               defaultView="dayGridMonth"
               :header="{
-                left: 'prev next today',
-                center: 'title',
+                left: '',
+                center: 'prev title next',
                 right: ''
               }"
               locale="zh-cn"
@@ -140,7 +140,7 @@
         watchDataIndex:'',//观赛主页
         date:'2019-11-22',
         calendarEvents: [ // initial event data
-          { title: '第一场 时间: 10:00', start: new Date(), color: '#46A58F' }
+          { title: '第一场 时间: 10:00', start: new Date(), color: '#46A58F', allDay: true }
         ],
         calendarPlugins: [ dayGridPlugin, interactionPlugin ]
       }
@@ -186,10 +186,23 @@
   })
 </script>
 
-<style scoped lang='scss'>
+<style lang='scss'>
 
 @import '~@fullcalendar/core/main.css';
 @import '~@fullcalendar/daygrid/main.css';
+
+.fc-toolbar.fc-header-toolbar {
+  background-color: #E9E9E9;
+}
+.fc-toolbar.fc-header-toolbar h2 {
+  font-size: 1.2em;
+}
+.fc-center {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
 
 </style>
 
