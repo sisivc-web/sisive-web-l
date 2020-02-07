@@ -72,7 +72,7 @@ export default {
   methods: { 
     onClick(val) {
       this.clickIndex = val
-      this.$emit('handleChange', val)
+      this.$emit('handleChange', val+1)
     },
   }
 }
@@ -88,6 +88,7 @@ export default {
     width 100%
     margin-top 40px
     .equal-height
+      width: 100%;
       display: flex;
       display: -webkit-flex;
       align-items: stretch;
