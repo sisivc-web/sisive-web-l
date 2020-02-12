@@ -69,7 +69,9 @@ export default {
     scrollTo(index) {
       // 获取目标的 offsetTop
       // css选择器是从 1 开始计数，我们是从 0 开始，所以要 +1
-      const targetOffsetTop = document.querySelector(`.${this.contentDivClass} div.${this.anchorItem}:nth-child(${index + 1})`).offsetTop
+      // const targetOffsetTop = document.querySelector(`.${this.contentDivClass} div.${this.anchorItem}:nth-child(${index + 1})`).offsetTop
+      let allSelector = document.querySelectorAll(`.${this.contentDivClass} div.${this.anchorItem}`)
+      const targetOffsetTop = allSelector[index].offsetTop
       //获取页面滚动条的高度
       // 获取当前 offsetTop
       let scrollTop =  window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop

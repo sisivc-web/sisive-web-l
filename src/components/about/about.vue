@@ -1,97 +1,97 @@
 <template>
 <div class="containerA">
   <m-anchor :contentDivClass="'AboutGame'" :anchorItem="'anchor-item'" :subNavList="[$t('subNavs.aboutUs1'), $t('subNavs.aboutUs2'), $t('subNavs.aboutUs3'), $t('subNavs.aboutUs4'), $t('subNavs.aboutUs5')]"></m-anchor>  
- <div class="AboutGame other">
-   <div class="mainBox block clearfix">
-     <div class="flexBox">
-       <div class="fl aItemG">
-         <h3>关于比赛</h3>
-         <div class="img">
-           <img :src="awardsVoList.image" />
-         </div>
-       </div>
-       <div class="aInfo">
-         <div class="Desc">
-             <p>{{awardsVoList.description}}</P> 
-          </div>          
-       </div>
-     </div>
-     <!--关于比赛-->
-     <div class="ItemV">
-       <h3>织织架构</h3>
-       <div class="ItemDl">
-         <ul class="ulLIst">
-           <li v-for="(item,index) in awardsVoList.committeeVoList" v-if="item.isUnit == 1 && item.parentId == 0" :key="index">
-             <h5>{{item.title}}</h5>
-             <p v-for="(item1,index) in item.sonCommitteeVos" v-if="item1.parentId == item.id">{{item1.title}}</p>
-           </li>
-         </ul>
-       </div>
-       <div class="colspanRow">
-         <div class="left" v-for="(item,index) in awardsVoList.committeeVoList" v-if="item.isUnit == 0 && item.parentId == 0" :key="index">
-           <div class="ff"><h5>{{item.title}}</h5></div>
-           <div class="ff" v-for="(item1,index) in item.sonCommitteeVos" v-if="item.id == item1.parentId"><label>{{item1.title}}</label><div class="secName"><p v-for="(item2,index) in item1.sonCommitteeVos" v-if="item1.id == item2.parentId">{{item2.title}}</p></div></div>
+  <div class="AboutGame other">
+    <div class="mainBox block clearfix">
+      <div class="flexBox anchor-item">
+        <div class="fl aItemG">
+          <h3>关于比赛</h3>
+          <div class="img">
+            <img :src="awardsVoList.image" />
           </div>
-     </div>
-     </div>
-     <!--组织架构-->
-     <div class="ItemV" style="padding-top: 103px;">
-       <h3>奖项</h3>
-       <div class="ItemDl">
-         <ul class="awardList">
-           <li v-for="(list,index) in awardsVoList.awardsVoList" v-if="list.isGroup == 0" :class="{'on':receiveIndex == index}" :key="index" @mouseenter="liShowHandle(index)">
-             <h5>{{list.awardName}}</h5>
-             <p>{{list.bonus}}</p>
-           </li>
-         </ul>
-       </div>
-       <div class="perArard">
-         <ul class="awardList">
-          <li v-for="(item,index) in awardsVoList.awardsVoList" :class="{'on':receiveIndex == index}" :key="index" v-if="item.isGroup == 1" @mouseenter="liShowHandle(index)">
-             <p class="firstAr" v-if="item.tag">特设奖项</p>
-             <h5>{{item.awardName}}</h5>
-             <p>{{item.bonus}}</p>
-           </li>
-         </ul>
-       </div>
-     </div>
-     <!--奖项-->
-     <div class="Point">
-       <h2>评分规则</h2>
-       <div class="boxPanel">
-         <!-- {{awardsVoList.rulesScheduleVos}} -->
-         <div class="fl ItemLst" v-for="(item,index) in awardsVoList.rulesScheduleVos" :key="index">
-           <h3>{{item.scheduleName}}</h3>
-           <div class="ruleContent">
-               <dl v-for="(item1,index) in item.scoringRulesVos">
-                 <dt>{{index+1}}.{{item1.rules}}</dt>
-                 <dd v-for="(item2,index) in item1.sonScoringRulesVos" v-if="item1.id == item2.rulesPid">{{item2.rules}}</dd>
-               </dl>
-           </div>
- 
-         </div>
-       </div>
-       <div class="downloadPoint"><router-link tag="a" to="/download" class="download"></router-link><p>下载评分规则</p></div>
-     </div>
+        </div>
+        <div class="aInfo">
+          <div class="Desc">
+            <p>{{awardsVoList.description}}</P> 
+          </div>          
+        </div>
       </div>
-      <!--图片-->
-     <div class="boxImg">
-       <img :src="awardsVoList.venueImage">
-     </div>
-     <!--奖项-->
-     <div class="mainBox block clearfix">
-     <div class="GamePlace">
-       <h2>比赛场地</h2>
-       <div class="GameTitBox">
-         <div class="fl ItemLst">
-           <h3>{{awardsVoList.venueTitle}}</h3>
-           <div class="ruleContent" style="padding-top:20px">
-               <p>{{awardsVoList.venueDescription}}</p>
- 
+      <!--关于比赛-->
+      <div class="ItemV anchor-item">
+        <h3>织织架构</h3>
+        <div class="ItemDl">
+          <ul class="ulLIst">
+            <li v-for="(item,index) in awardsVoList.committeeVoList" v-if="item.isUnit == 1 && item.parentId == 0" :key="index">
+              <h5>{{item.title}}</h5>
+              <p v-for="(item1,index) in item.sonCommitteeVos" v-if="item1.parentId == item.id" :key="index">{{item1.title}}</p>
+            </li>
+          </ul>
+        </div>
+        <div class="colspanRow">
+          <div class="left" v-for="(item,index) in awardsVoList.committeeVoList" v-if="item.isUnit == 0 && item.parentId == 0" :key="index">
+            <div class="ff"><h5>{{item.title}}</h5></div>
+            <div class="ff" v-for="(item1,index) in item.sonCommitteeVos" v-if="item.id == item1.parentId" :key="index"><label>{{item1.title}}</label><div class="secName"><p v-for="(item2,index) in item1.sonCommitteeVos" v-if="item1.id == item2.parentId">{{item2.title}}</p></div></div>
             </div>
-         </div>
-         </div>
-     </div>
+        </div>
+      </div>
+      <!--组织架构-->
+      <div class="ItemV anchor-item" style="padding-top: 103px;">
+        <h3>奖项</h3>
+        <div class="ItemDl">
+          <ul class="awardList">
+            <li v-for="(list,index) in awardsVoList.awardsVoList" v-if="list.isGroup == 0" :class="{'on':receiveIndex == index}" :key="index" @mouseenter="liShowHandle(index)">
+              <h5>{{list.awardName}}</h5>
+              <p>{{list.bonus}}</p>
+            </li>
+          </ul>
+        </div>
+        <div class="perArard">
+          <ul class="awardList">
+            <li v-for="(item,index) in awardsVoList.awardsVoList" :class="{'on':receiveIndex == index}" :key="index" v-if="item.isGroup == 1" @mouseenter="liShowHandle(index)">
+              <p class="firstAr" v-if="item.tag">特设奖项</p>
+              <h5>{{item.awardName}}</h5>
+              <p>{{item.bonus}}</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <!--奖项-->
+      <div class="Point anchor-item">
+        <h2>评分规则</h2>
+        <div class="boxPanel">
+          <!-- {{awardsVoList.rulesScheduleVos}} -->
+          <div class="fl ItemLst" v-for="(item,index) in awardsVoList.rulesScheduleVos" :key="index">
+            <h3>{{item.scheduleName}}</h3>
+            <div class="ruleContent">
+                <dl v-for="(item1,index) in item.scoringRulesVos">
+                  <dt>{{index+1}}.{{item1.rules}}</dt>
+                  <dd v-for="(item2,index) in item1.sonScoringRulesVos" v-if="item1.id == item2.rulesPid">{{item2.rules}}</dd>
+                </dl>
+            </div>
+  
+          </div>
+        </div>
+        <div class="downloadPoint"><router-link tag="a" to="/download" class="download"></router-link><p>下载评分规则</p></div>
+      </div>
+    </div>
+    <!--图片-->
+    <div class="boxImg">
+      <img :src="awardsVoList.venueImage">
+    </div>
+    <!--奖项-->
+    <div class="mainBox block clearfix anchor-item">
+      <div class="GamePlace">
+        <h2>比赛场地</h2>
+        <div class="GameTitBox">
+          <div class="fl ItemLst">
+            <h3>{{awardsVoList.venueTitle}}</h3>
+            <div class="ruleContent" style="padding-top:20px">
+                <p>{{awardsVoList.venueDescription}}</p>
+  
+              </div>
+          </div>
+          </div>
+      </div>
     </div>
  </div>
 </div>
