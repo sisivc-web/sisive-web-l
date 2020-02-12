@@ -5,7 +5,7 @@
         <div class="anchor-item">
           <div class="header">
             <div class="mainBox block clearfix">
-              <h3 class="title" style="padding-top: 21px; padding-bottom: 12px;">比赛日程</h3>
+              <h3 class="title" style="padding: 10px 0 12px;color:#222222;font-size:16px;font-weight:bold;">比赛日程</h3>
               <div class="flex-start">
                 <div class="flex-start item">
                   <div class="circle quarter"></div><div>四分之一决赛</div>
@@ -21,10 +21,11 @@
           </div>
           <div style="padding: 10px 50px;">
             <FullCalendar
+              ref="calendar"
               defaultView="dayGridMonth"
               :header="{
-                left: 'prev next today',
-                center: 'title',
+                left: '',
+                center: 'prev title next',
                 right: ''
               }"
               locale="zh-cn"
@@ -140,7 +141,7 @@
         watchDataIndex:'',//观赛主页
         date:'2019-11-22',
         calendarEvents: [ // initial event data
-          { title: '第一场 时间: 10:00', start: new Date(), color: '#46A58F' }
+          { title: '第一场 时间: 10:00', start: new Date(), color: '#46A58F', allDay: true }
         ],
         calendarPlugins: [ dayGridPlugin, interactionPlugin ]
       }
@@ -154,6 +155,7 @@
       },
       handleEventClick (evt) {
         console.log(evt)
+        // evt
       },
       DateItemLi(idx,date){
         let _this = this
@@ -186,10 +188,23 @@
   })
 </script>
 
-<style scoped lang='scss'>
+<style lang='scss'>
 
 @import '~@fullcalendar/core/main.css';
 @import '~@fullcalendar/daygrid/main.css';
+
+.fc-toolbar.fc-header-toolbar {
+  background-color: #E9E9E9;
+}
+.fc-toolbar.fc-header-toolbar h2 {
+  font-size: 1.2em;
+}
+.fc-center {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
 
 </style>
 
@@ -219,7 +234,7 @@
       visibility: hidden;
   }
 	
-  .header{background: white;height: 150px;}
+  .header{background: white;height: 100px;}
   .mainBox .title{color: #1e2022;font-size: 24px;font-weight: 700; padding-bottom: 40px;}
   .item{width: 120px; font-size: 12px;font-weight: bold;margin-right: 54px;}
   .circle{width: 10px;height: 10px;border-radius: 50%;margin-right: 10px;}
