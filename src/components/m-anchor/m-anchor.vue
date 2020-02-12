@@ -191,18 +191,22 @@ export default {
   display: block!important
 @-webkit-keyframes hdnav2-show1 {
     0% {
-        top: 70px
+        opacity: 1;
+        top: 70px;
     }
     100% {
-        top: -42px
+        opacity: 0;
+        top: 70px;
     }
 }
 @keyframes hdnav2-show1 {
     0% {
+      opacity: 1;
       top: 70px
     }
     100% {
-      top: -42px
+      opacity: 0;
+      top: 70px
     }
 }
 @-webkit-keyframes hdnav2-show2 {

@@ -67,9 +67,7 @@ export default {
     moreClick(flag) {
       this.nowType = flag
       this.showMoreList = !this.showMoreList
-      console.log("old--", this)
       this.nowHeight = this.nowHeight ? 0 : this.$refs.moreItems.offsetHeight
-      console.log("new--", this.nowHeight)
     },
   }
 }
