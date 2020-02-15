@@ -8,7 +8,7 @@ import store from './store'
 import VueI18n from 'vue-i18n'
 import messages from './i18n'
 import ElementUI from 'element-ui'
-import 'element-ui/lib/theme-default/index.css'
+import 'element-ui/lib/theme-chalk/index.css'
 
 import Toast from './plugins/toast'
 import Loading from './plugins/loading'
