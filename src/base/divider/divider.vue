@@ -1,5 +1,5 @@
 <template>
-  <div style="margin: 8px 0px;" :style="{width: '100%', height: `${height}px`, backgroundColor: color}"></div>
+  <div style="margin: 10px 0px;" :style="{width: '100%', height: `${height}px`, backgroundColor: color}"></div>
 </template>
 <script type="text/ecmascript-6">
 export default {
