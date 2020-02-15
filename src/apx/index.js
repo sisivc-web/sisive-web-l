@@ -115,7 +115,7 @@ export function kpiAboutUs (params = {}, Vue) {
  * @param {*语言(en, zh_CN)} language
  */
 export function kpiWatchDetail (params = {}, Vue) {
-  return Request('/sisivc/competition/competitionRoundsByDate', 'get', params, undefined, Vue)
+  return Request('/sisivc/competition/competitionRoundsById', 'get', params, undefined, Vue)
 }
 
 /**

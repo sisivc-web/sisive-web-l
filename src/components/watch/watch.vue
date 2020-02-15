@@ -7,14 +7,9 @@
             <div class="mainBox block clearfix">
               <h3 class="title" style="padding: 10px 0 12px;color:#222222;font-size:16px;font-weight:bold;">比赛日程</h3>
               <div class="flex-start">
-                <div class="flex-start item">
-                  <div class="circle quarter"></div><div>四分之一决赛</div>
-                </div>
-                <div class="flex-start item">
-                  <div class="circle half"></div><div>半决赛</div>
-                </div>
-                <div class="flex-start item">
-                  <div class="circle final"></div><div>决赛</div>
+                <div class="flex-start item" v-for="(item, index) in watchDataIndex.scheduleVoList" :key="index">
+                  <div class="circle" :style="{background:item.themeColor}"></div>
+                  <div>{{item.scheduleName}}</div>
                 </div>
               </div>
             </div>
@@ -33,9 +28,58 @@
               @dateClick="handleDateClick"
               @eventClick="handleEventClick"
               :plugins="calendarPlugins" />
+              <eventpopover
+                ref="popper"
+                :reference="eventEl"
+                placement="right-start"
+                v-on:hide="popoverVisible=false"
+                :themeColor="themeColor"
+                :visible.sync="popoverVisible">
+                <!-- <el-table
+                  :data="watchData.players"
+                  :show-header="false"
+                  :row-style="{backgroundColor:'transparent',border:'none'}"
+                  style="width: 100%;background-color:transparent;">
+                  <el-table-column
+                    prop="userName"
+                    label="name"
+                    min-width="100">
+                  </el-table-column>
+                  <el-table-column
+                    prop="nationality"
+                    label="nationality"
+                    width="80">
+                  </el-table-column>
+                  <el-table-column
+                    prop="address"
+                    label="地址">
+                  </el-table-column>
+                </el-table> -->
+                <div v-for="player in watchData.players" :key="player.id">
+                  <div style="margin: 12px 0;" class="flex-between">
+                    <div>{{player.userName}}</div>
+                    <div>{{player.nationality}}</div>
+                    <div><i class="el-icon-view"></i></div>
+                  </div>
+                </div>
+                <divider :height="1"></divider>
+                <div v-for="artist in watchData.artists" :key="artist.id">
+                  <div style="margin: 12px 0;" class="flex-between">
+                    <div>{{artist.userName}}</div>
+                    <div>{{artist.nationality}}</div>
+                    <div><i class="el-icon-view"></i></div>
+                  </div>
+                </div>
+                <div v-for="group in watchData.groups" :key="group.id">
+                  <div style="margin: 12px 0;" class="flex-between">
+                    <span>{{group.orchestraTitle}}</span>
+                    <span>{{group.type || '乐团'}}</span>
+                    <div><i class="el-icon-view"></i></div>
+                  </div>
+                </div>
+              </eventpopover>
           </div>
-          <div class="date">
-            </div>
+          <div class="date"></div>
             <!-- {{watchDataIndex}} -->
             <!--观赛banner-->
             <!-- <div class="boxImg" v-if="!watchData">
@@ -46,7 +90,7 @@
             <div class="mainBox block clearfix" v-if="watchData">
               <div class="minLeft">
                 <div class="boxL">
-                  <ul class="dataUl">
+                  <!-- <ul class="dataUl">
                     <li>
                       <h4>{{watchData.scheduleName}}</h4>
                       <div class="ListTBox" v-for="(item,index) in watchData.artists" :key="index">
@@ -73,7 +117,7 @@
                         </div>
                       </div>
                     </li>
-                  </ul>
+                  </ul> -->
                 </div>
               </div>
             </div>
@@ -129,10 +173,14 @@
   import FullCalendar from '@fullcalendar/vue'
   import dayGridPlugin from '@fullcalendar/daygrid'
   import interactionPlugin from '@fullcalendar/interaction'
+  import eventpopover from './event-popover'
+  import divider from '../../base/divider/divider'
   export default({
     components: {
       MAnchor,
-      FullCalendar
+      divider,
+      FullCalendar,
+      eventpopover
     },
     data() {
       return {
@@ -140,9 +188,11 @@
         watchData:'',//观赛详情
         watchDataIndex:'',//观赛主页
         date:'2019-11-22',
-        calendarEvents: [ // initial event data
-          { title: '第一场 时间: 10:00', start: new Date(), color: '#46A58F', allDay: true }
-        ],
+        eventEl: null,
+        themeColor: '',
+        popoverVisible: false,
+        calendarEvents: [],
+        roundList: [],
         calendarPlugins: [ dayGridPlugin, interactionPlugin ]
       }
     },
@@ -151,18 +201,22 @@
     },
     methods:{
       handleDateClick (v) {
-        console.log(v)
+        // console.log(v)
       },
       handleEventClick (evt) {
         console.log(evt)
         // evt
+        this.popoverVisible = true
+        this.eventEl = evt.el // 这里不会更新Popper绑定的reference？
+        this.themeColor = evt.event.backgroundColor
+        this.$refs.popper.show()
+        this.getEventDetail(evt.event.id)
       },
-      DateItemLi(idx,date){
+      getEventDetail(idx,date){
         let _this = this
-        this.receiveIndex = idx
+        // this.receiveIndex = idx
         let param = {
-          date: date,
-          id: '1',
+          id: idx,
           language: JSON.parse(window.localStorage.getItem('immi_language'))
         }
         kpiWatchDetail(param, this).then((res) => {
@@ -175,13 +229,22 @@
       showData(){
         let _this = this
         let param = {	
-          id: '1',			 
+          // id: '1',			 
           language: JSON.parse(window.localStorage.getItem('immi_language'))
         }
         kpiWatch(param, this).then((res) => {
           let data = res.data.data
           console.log(res)
           _this.watchDataIndex = data
+          data.competitionRoundVoList.forEach(e => {
+            _this.calendarEvents.push({
+              id: e.id,
+              title: e.round + ' ' + e.time,
+              start: new Date(e.date),
+              color: e.themeColor, //'#46A58F',
+              allDay: true
+            })
+          })
         })
       }
     }
@@ -205,6 +268,32 @@
   justify-content: center;
   align-items: center;
 }
+.fc-button-primary {
+  color: #A0A0A0;
+  background-color: #E9E9E9;
+  border-color: #E9E9E9;
+}
+.fc-button-primary:hover {
+  color: #A0A0A0;
+  background-color: #E9E9E9;
+  border-color: #E9E9E9;
+}
+.fc-button-primary:not(:disabled):active,
+.fc-button-primary:not(:disabled).fc-button-active {
+  color: #A0A0A0;
+  background-color: #E9E9E9;
+  border-color: #E9E9E9;
+}
+.fc-button-primary:focus {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.fc-button-primary:not(:disabled):active:focus,
+.fc-button-primary:not(:disabled).fc-button-active:focus {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
 
 </style>
 
