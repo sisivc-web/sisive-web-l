@@ -128,7 +128,7 @@ export default {
   line-height: 42px;
   background-color: #222;
   position: fixed;
-  top: -42px;
+  top: 70px;
   z-index: 997;
   -webkit-animation: hdnav2-show1 .3s;
   -moz-animation: hdnav2-show1 .3s;

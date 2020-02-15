@@ -67,7 +67,7 @@ export default {
     },
     goFootAnchor(selector) {
      var anchor =  document.querySelector(selector)
-     document.documentElement.scrollTop = anchor.offsetTop
+     document.documentElement.scrollTop = anchor.offsetTop - 70 - 42
   }
   }
 }
