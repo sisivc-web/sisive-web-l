@@ -1,5 +1,5 @@
 <template>
-  <el-carousel :interval="15000" arrow="always" height="488px" indicator-position="none"> 
+  <el-carousel :interval="15000" arrow="always" :height="carouselHeight + 'px'" indicator-position="none"> 
     <el-carousel-item v-for="(item, index) in data" :key="index" v-if="index%4 == 0">
       <!-- <h3>{{ item }}</h3> -->
       <el-row :gutter="10"  v-if="index%4 == 0" style="height:100%;">
@@ -58,6 +58,15 @@ export default {
             data: data,
         }
     },
+
+    computed: {
+      carouselHeight: function() {
+        console.log('computed')
+        let width = document.body.clientWidth
+        let height = Math.floor(width * 330 / 750)
+        return height
+      },
+    },
     methods: {
         goHistoryDetail() { 
           this.$router.push({path: '/historyDetail', query: {newsId: 3}})
@@ -69,8 +78,9 @@ export default {
 <style scoped>  
   .el-carousel {
     width: 1140px;
-    height: 488px;
+    height: auto;
     margin: 0 auto;
+    overflow: hidden;
   }
   .el-carousel .grid-content {
     width:100%;
