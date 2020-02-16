@@ -3,7 +3,7 @@
     ref="popper"
     style="width:220px;"
     class="item-popover"
-    v-show="visible"
+    v-show="showPopper"
     :style="{backgroundColor: themeColor, borderColor: themeColor}">
     <slot></slot>
     <div class="item__arrow" :style="{borderRightColor: themeColor}"></div>
@@ -17,7 +17,7 @@ export default {
   name: 'eventpopover',
   mixins: [Popper],
   props: {
-    visible: Boolean,
+    // visible: Boolean,
     themeColor: {
       type: String,
       default: '#46A58F'
@@ -28,22 +28,39 @@ export default {
       
     }
   },
+  watch: {
+    showPopper (val) {
+      if (!val) {
+       this.$emit('hide') 
+      }
+    },
+    reference (val) {
+      console.log('watch::::', val)
+      
+    }
+  },
   created () {
     // this.placement = 'right'
-    this.popper = this.$refs.popper
+    // this.popper = this.$refs.popper
   },
   mounted() {
-    let reference = this.referenceElm = this.reference || this.$refs.reference;
-    const popper = this.popper || this.$refs.popper;
+    let reference = this.referenceElm = this.reference || this.$refs.reference
+    const popper = this.popper || this.$refs.popper
     on(document, 'click', this.handleDocumentClick)
   },
   destroyed () {
+    console.log('destroyed--------')
+    this.doDestroy()
     off(document, 'click', this.handleDocumentClick)
   },
   methods: {
     show (element) {
       //this.reference = element
-      this.showPopper = true
+      // this.showPopper = true
+      console.log('----show')
+      console.log(this.popper)
+      console.log('----show：reference')
+      console.log(this.referenceElm)
     },
     handleDocumentClick(e) {
       let reference = this.reference || this.$refs.reference;
@@ -59,7 +76,8 @@ export default {
         !popper ||
         popper.contains(e.target)) return
       this.showPopper = false
-      this.$emit('hide')
+      // this.$emit('hide')
+      // this.doDestroy()
     }
   }
 }
