@@ -27,7 +27,6 @@ export default {
     NewsItem
   },
   async created() {
-    debugger
     this._getURLQuery()
     await this.getNewsYearList()
     this._getData(this.year)
@@ -36,7 +35,7 @@ export default {
     return {
       newsList: [],
       year: (new Date()).getFullYear(),
-      subNavList: ['2019', '2018'],
+      subNavList: [],
     }
   },
   methods: {
@@ -44,7 +43,6 @@ export default {
       this.$router.push({path: '/newsDetail', query: {newsId: 3, nowSelYear: this.year}})
     },
     _getURLQuery() {
-      debugger
       const query = this.$route.query
       if(query) {
         this.year = query.nowSelYear ? query.nowSelYear : this.subNavList[0]
@@ -56,7 +54,6 @@ export default {
       })
     },
     _getData(year) {
-      debugger
       this.year = year
       let param = {
         year: year ? year : this.year,

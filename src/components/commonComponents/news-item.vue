@@ -14,7 +14,7 @@
                     <span class="news-time">{{item.createOn}}</span>
                 </div>
                 <div style="width: 80%; height: 70px; overflow: hidden;">
-                    <p class="news-desp">{{item.content}}</p>
+                    <p class="news-desp" v-html="item.content"></p>
                 </div>
                 <el-button type="text" class="button">阅读全文</el-button>
             </div>
@@ -71,6 +71,25 @@ export default {
       display: -webkit-box;
       -webkit-line-clamp: 3;
       -webkit-box-orient: vertical; 
+      >>>div, >>>span, >>>h1, >>>h2, >>>h3, 
+      >>>h4, >>>h5, >>>h6, >>>p, >>>blockquote, >>>pre,
+      >>>a, >>>abbr, >>>acronym, >>>address, >>>big, >>>cite, >>>code,
+      >>>del, >>>dfn, >>>em, >>>img, >>>ins, >>>kbd, >>>q, >>>s, >>>samp,
+      >>>small, >>>strike, >>>strong, >>>sub, >>>sup, >>>tt, >>>var,
+      >>>b, >>>u, >>>i, >>>center,
+      >>>dl, >>>dt, >>>dd, >>>ol, >>>ul, >>>li,
+      >>>fieldset, >>>form, >>>label, >>>legend,
+      >>>table, >>>caption, >>>tbody, >>>tfoot, >>>thead, >>>tr, >>>th, >>>td,
+      >>>article, >>>aside, >>>canvas, >>>details, >>>embed,
+      >>>figure, >>>figcaption, >>>footer, >>>header,
+      >>>menu, >>>nav, >>>output, >>>ruby, >>>section, >>>summary,
+      >>>time, >>>mark, >>>audio, >>>video, >>>input
+        margin: 0
+        padding: 0
+        border: 0
+        font-size: 100%
+        font-weight: normal
+        vertical-align: baseline
     .button
       color: $color-item-more;
       font-size: $font-size-item-little;
