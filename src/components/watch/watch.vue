@@ -34,27 +34,7 @@
                 placement="right-start"
                 v-on:hide="popoverVisible=false"
                 :themeColor="themeColor"
-                :visible.sync="popoverVisible">
-                <!-- <el-table
-                  :data="watchData.players"
-                  :show-header="false"
-                  :row-style="{backgroundColor:'transparent',border:'none'}"
-                  style="width: 100%;background-color:transparent;">
-                  <el-table-column
-                    prop="userName"
-                    label="name"
-                    min-width="100">
-                  </el-table-column>
-                  <el-table-column
-                    prop="nationality"
-                    label="nationality"
-                    width="80">
-                  </el-table-column>
-                  <el-table-column
-                    prop="address"
-                    label="地址">
-                  </el-table-column>
-                </el-table> -->
+                v-model="popoverVisible">
                 <div v-for="player in watchData.players" :key="player.id">
                   <div style="margin: 12px 0;" class="flex-between">
                     <div>{{player.userName}}</div>
@@ -79,48 +59,7 @@
                 </div>
               </eventpopover>
           </div>
-          <div class="date"></div>
-            <!-- {{watchDataIndex}} -->
-            <!--观赛banner-->
-            <!-- <div class="boxImg" v-if="!watchData">
-              <img :src="watchDataIndex.scheduleVoList[0].image">
-            </div> -->
-            <!--点日期显示下面的数据-->
-            <!-- {{watchData}} -->
-            <div class="mainBox block clearfix" v-if="watchData">
-              <div class="minLeft">
-                <div class="boxL">
-                  <!-- <ul class="dataUl">
-                    <li>
-                      <h4>{{watchData.scheduleName}}</h4>
-                      <div class="ListTBox" v-for="(item,index) in watchData.artists" :key="index">
-                        <div class="imgItemCoumuns"><img :src="item.image" /></div>
-                        <p class="ItemName">{{item.userName}}</p>
-                      </div>
-                      <div class="ListTBox">
-                        <div class="imgItemCoumuns"><img :src="watchData.groupUrl" /></div>
-                        <p class="ItemName">{{watchData.groupTitle}}</p>
-                      </div>
-                    </li>
-                    <li v-for="(item,index) in watchData.competitionRoundVos" :key="index">
-                      <div class="panelItem clearfix">
-                        <h5><span>{{item.round}}</span><span class="time">时间：{{item.time}}</span></h5>
-                        <div class="panelSecond clearfix" v-for="(item1,index) in item.players" :key="index">
-                          <dl>
-                            <dt><img :src= "item1.image" /></dt>
-                            <dd>
-                              <div class="ItemCoumnsHd"><span>{{item1.userName}}</span><span class="fm">{{item1.nationality}}</span></div>
-                              <h6>曲目</h6>
-                              <div class="ItemCoumns" v-for="(item2,index) in item1.playerChapterVoList" :key="index"><label>{{item2.composers}}：</label><span>{{item2.repertoire}}，{{item2.chapters}}</span></div>
-                            </dd>
-                          </dl>
-                        </div>
-                      </div>
-                    </li>
-                  </ul> -->
-                </div>
-              </div>
-            </div>
+          <!-- <div class="date"></div> -->
         </div>
         <!--直播地址-->
         <div class="mainBox block clearfix anchor-item">
@@ -138,10 +77,10 @@
           </ul>
         </div>
         <!--观赛须知-->
-        <div class="mainBox block clearfix guidelines anchor-item">
-            <h3 class="title" style="padding:80px 0 26px 0;">观赛须知</h3><!--一级标题-->
-            <h4 v-for="(item, index) in watchDataIndex.noticeVoList" :key="index" v-if="item.id === 1">{{item.content}}</h4><!--二级标题-->
-            <p v-for="(item, index) in watchDataIndex.noticeVoList" :key="index" v-if="item.id != 1">{{index}}.{{item.content}}</p>
+        <div v-if="watchDataIndex.noticeVoList" class="mainBox block clearfix guidelines anchor-item">
+          <h3 class="title" style="padding:80px 0 26px 0;">观赛须知</h3><!--一级标题-->
+          <h4 v-if="watchDataIndex.noticeVoList.length>0">{{watchDataIndex.noticeVoList[0].content}}</h4><!--二级标题-->
+          <p v-for="(item, index) in watchDataIndex.noticeVoList.slice(1)" :key="index">{{index+1}}.{{item.content}}</p>
         </div>
         <!--订票方式-->
         <div class="mainBox block clearfix guidelines anchor-item">
@@ -192,7 +131,6 @@
         themeColor: '',
         popoverVisible: false,
         calendarEvents: [],
-        roundList: [],
         calendarPlugins: [ dayGridPlugin, interactionPlugin ]
       }
     },
@@ -209,7 +147,7 @@
         this.popoverVisible = true
         this.eventEl = evt.el // 这里不会更新Popper绑定的reference？
         this.themeColor = evt.event.backgroundColor
-        this.$refs.popper.show()
+        // this.$refs.popper.show()
         this.getEventDetail(evt.event.id)
       },
       getEventDetail(idx,date){
