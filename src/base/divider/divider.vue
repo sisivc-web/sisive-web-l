@@ -1,5 +1,5 @@
 <template>
-  <div :style="{width: '100%', height: `${height}px`}"></div>
+  <div style="margin: 10px 0px;" :style="{width: '100%', height: `${height}px`, backgroundColor: color}"></div>
 </template>
 <script type="text/ecmascript-6">
 export default {
@@ -7,6 +7,10 @@ export default {
     height: {
       type: Number,
       default: 80
+    },
+    color: {
+      type: String,
+      default: 'white'
     }
   }
 }
