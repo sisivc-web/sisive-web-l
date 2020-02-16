@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <sub-nav :subNavList="subNavList" @changeData="_getData"></sub-nav> 
+    <sub-nav :subNavList="subNavList" :nowClickYear="year" @changeData="_getData"></sub-nav> 
     <home-item-solt :itemName="'parter-div'" :title="$t('newsList.new')" :isShowMore="false">
       <div slot="detail">
       </div>
@@ -10,19 +10,11 @@
         <news-item :item="props.item"></news-item>
       </template>
     </member-container>
-    <!-- <div style="height:80px; padding-left: 100px; padding-top:30px; border-bottom: 1px solid #F5F5F5;">
-      <span style="font-size:25px; font-weight: bold;">新闻</span>
-    </div>
-    <div>
-      <el-card :body-style="{ padding: '0px' }" v-for="(item, index) in newsList" :key="index" class="news-item">
-            <news-item :item="item"></news-item>
-        </el-card>  
-    </div> -->
   </div>
 </template>
 <script type="text/ecmascript-6">
 
-import { kpiNews }from 'apx'
+import { kpiYears, kpiNews }from 'apx'
 import SubNav from 'components/sub-nav/sub-nav'
 import HomeItemSolt from 'components/home/home-item-solt'
 import MemberContainer from 'components/commonComponents/member-container'
@@ -34,9 +26,11 @@ export default {
     MemberContainer,
     NewsItem
   },
-  created() {
-    // this._getURLQuery()
-    this._getData()
+  async created() {
+    debugger
+    this._getURLQuery()
+    await this.getNewsYearList()
+    this._getData(this.year)
   },
   data() {
     return {
@@ -47,15 +41,23 @@ export default {
   },
   methods: {
     _gotoDetails(newsId) {
-      this.$router.push({path: '/newsDetail', query: {newsId: 3}})
+      this.$router.push({path: '/newsDetail', query: {newsId: 3, nowSelYear: this.year}})
     },
     _getURLQuery() {
+      debugger
       const query = this.$route.query
       if(query) {
-        this.personnalId = query.memberId
+        this.year = query.nowSelYear ? query.nowSelYear : this.subNavList[0]
       }
     },
+    getNewsYearList() {
+      kpiYears({}, this).then((res) => {
+        this.subNavList = res.data.data
+      })
+    },
     _getData(year) {
+      debugger
+      this.year = year
       let param = {
         year: year ? year : this.year,
         language: JSON.parse(window.localStorage.getItem('immi_language'))

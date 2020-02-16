@@ -19,6 +19,10 @@ export default {
       type: Array,
       default: () => ['content-0', 'ctttt-1', 'conthhhent-2', 'content-3', 'content-4']
     },
+    nowClickYear: {
+      type: [Number, String],
+      default: ''
+    }
   },
   data() {
     return {
@@ -27,6 +31,7 @@ export default {
     }
   },
   mounted() {
+    this.active = this.nowClickYear
     // 监听滚动事件
     window.addEventListener('scroll', this.onScroll, false)
   },
@@ -43,7 +48,7 @@ export default {
       this.isFixed = scrollTop > 10 ? true : false
     },
     handleChange(item, index) {
-      this.active = incex
+      this.active = index
       this.$emit('changeData', item)      
     } 
   }
@@ -57,9 +62,9 @@ export default {
   height: 42px;
   line-height: 42px;
   background-color: #222;
-  position: fixed;
-  top: -42px;
-  z-index: 997;
+  // position: fixed;
+  // top: 70px;
+  // z-index: 997;
   -webkit-animation: hdnav2-show1 .3s;
   -moz-animation: hdnav2-show1 .3s;
   -o-animation: hdnav2-show1 .3s;
@@ -76,7 +81,6 @@ export default {
       display: -ms-flexbox;
       display: flex;
       justify-content: start;
-      overflow: scroll;
       li
         margin-right: 90px
         a
@@ -131,7 +135,7 @@ export default {
         top: 70px
     }
     100% {
-        top: -42px
+        top: 70px
     }
 }
 @keyframes hdnav2-show1 {
@@ -139,7 +143,7 @@ export default {
       top: 70px
     }
     100% {
-      top: -42px
+      top: 70px
     }
 }
 @-webkit-keyframes hdnav2-show2 {

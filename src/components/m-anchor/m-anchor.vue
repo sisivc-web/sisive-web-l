@@ -127,9 +127,9 @@ export default {
   height: 42px;
   line-height: 42px;
   background-color: #222;
-  position: fixed;
-  top: 70px;
-  z-index: 997;
+  // position: fixed;
+  // top: 70px;
+  // z-index: 997;
   -webkit-animation: hdnav2-show1 .3s;
   -moz-animation: hdnav2-show1 .3s;
   -o-animation: hdnav2-show1 .3s;
@@ -193,21 +193,17 @@ export default {
   display: block!important
 @-webkit-keyframes hdnav2-show1 {
     0% {
-        opacity: 1;
         top: 70px;
     }
     100% {
-        opacity: 0;
         top: 70px;
     }
 }
 @keyframes hdnav2-show1 {
     0% {
-      opacity: 1;
       top: 70px
     }
     100% {
-      opacity: 0;
       top: 70px
     }
 }

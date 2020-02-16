@@ -1,6 +1,7 @@
 <template>
   <div class="container">
-    <el-card :body-style="{ padding: '0px' }" style="padding: 40px 100px 0px 100px; box-shadow: none; border: none;">
+    <sub-nav :subNavList="subNavList" :nowClickYear="nowSelYear" @changeData="_getNews"></sub-nav>
+    <el-card :body-style="{ padding: '0px' }" style="width: 1140px; margin:0 auto;padding: 40px 0 0;box-shadow: none; border: none;">
       <div style="width:30%; float:left;">
         <div style="height:50px;">
           <span style="color: #222;font-weight: bold;font-size: 16px;">{{newsDetail.title}}</span>
@@ -23,11 +24,14 @@
   </div>
 </template>
 <script type="text/ecmascript-6">
-import {kpiQueryNewDetail} from 'apx'
+import {kpiYears, kpiNews, kpiQueryNewDetail} from 'apx'
+import SubNav from 'components/sub-nav/sub-nav'
 export default {
   components: {
+    SubNav
   },
-  created() {
+  async created() {
+    await this.getNewsYearList()
     this._getURLQuery()
     this._getData()
   },
@@ -35,6 +39,8 @@ export default {
     return {
       newsDetail: {},
       newsId: 3,
+      subNavList: ['2019', '2018'],
+      nowSelYear: '',
     }
   },
   methods: {
@@ -42,10 +48,10 @@ export default {
       const query = this.$route.query
       if(query) {
         this.newsId = query.newsId
+        this.nowSelYear = query.nowSelYear
       }
     },
     _getData() {
-      debugger
       let param = {
         id: this.newsId,
         language: JSON.parse(window.localStorage.getItem('immi_language'))
@@ -53,6 +59,14 @@ export default {
       kpiQueryNewDetail(param, this).then((res) => {
         this.newsDetail = res.data.data
       })
+    },
+    getNewsYearList() {
+      kpiYears({}, this).then((res) => {
+        this.subNavList = res.data.data
+      })
+    },
+    _getNews(year) {
+      this.$router.push({path: '/news', query: {nowSelYear: year}})
     },
   }
 }
@@ -65,7 +79,7 @@ export default {
   .container .other .block {
     width: 1560px;
   }
-  .sub-nav ul {
+  .container .el-card {
     width: 1560px;
   }
   .carousel{
@@ -78,7 +92,7 @@ export default {
     width: calc(100% - 360px);
     min-width: 1140px;
   }
-  .sub-nav ul {
+  .container .el-card {
     width: calc(100% - 360px);
     min-width: 1140px;
   }

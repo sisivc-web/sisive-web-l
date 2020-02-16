@@ -59,7 +59,7 @@ export default {
     width: 1560px;
   }
   .carousel{
-    width: 1920px!important;
+    width: 1560!important;
     margin: 0 auto;
   }
 }
@@ -69,6 +69,10 @@ export default {
     min-width: 1140px;
   }
   .sub-nav ul {
+    width: calc(100% - 360px);
+    min-width: 1140px;
+  }
+  .carousel{
     width: calc(100% - 360px);
     min-width: 1140px;
   }

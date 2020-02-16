@@ -5,8 +5,7 @@
     <div :style="{'min-height': `calc(${height} - ${navHeight} - ${tabbarHeight})`}">
       <router-view class="content"></router-view>
     </div>
-    <m-footer v-if="!$route.meta.footShow"></m-footer>
-    <detail-footer v-if="$route.meta.footShow"></detail-footer>
+    <m-footer></m-footer>
   </div>
 </template>
 

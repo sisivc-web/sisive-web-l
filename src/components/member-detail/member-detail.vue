@@ -50,7 +50,6 @@ export default {
   },
   destroyed() {
     //离开该页面需要移除这个监听的事件
-    this.$route.meta.footShow = false
   },
   watch: {
   },
