@@ -32,11 +32,13 @@ export default {
     showPopper (val) {
       if (!val) {
         this.$emit('hide')
+        this.doDestroy()
       }
     },
     reference (val) {
       // 可以监听到reference有改变，难道需要重新创建Popper？
       console.log('watch::::', val)
+      // this.updatePopper()
     }
   },
   mounted() {
@@ -76,11 +78,13 @@ export default {
     position: absolute;
     /* background: #46A58F; */
     min-width: 250px;
+    max-height: 300px;
     border-radius: 2px;
     border: 1px solid transparent;
-    padding: 10px;
+    padding: 0px;
     z-index: 2000;
     font-size: 12px;
+    /* overflow: scroll; */
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .12), 0 0 6px 0 rgba(0, 0, 0, .04)
   }
 
