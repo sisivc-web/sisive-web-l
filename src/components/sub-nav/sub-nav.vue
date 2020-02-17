@@ -49,6 +49,7 @@ export default {
       this.isFixed = scrollTop > 10 ? true : false
     },
     handleChange(item, index) {
+      debugger
       this.active = index
       this.$emit('changeData', item)      
     } 

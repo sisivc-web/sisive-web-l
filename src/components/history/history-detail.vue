@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="other">
-      <sub-nav :subNavList="subNavList" :nowClickYear="nowSelYear" @changeData="_getData()"></sub-nav>
+      <sub-nav :subNavList="subNavList" :nowClickYear="reviewId" @changeData="_getData"></sub-nav>
       <div class="home-anchor-container">
         <home-item-solt :itemName="'award-div'" :title="$t('prizeWinners')" :isShowMore="false" :marginBottom="'60px'" v-if="awardUserList.length > 0">
           <div slot="detail">
@@ -35,18 +35,20 @@
             </member-container>
           </div>
         </home-item-solt>
+        <instersting-news :newsDetail="data"></instersting-news>
       </div>
     </div>
   </div>
 </template>
 <script type="text/ecmascript-6">
-import {kpiHistoryDetail} from 'apx'
+import {kpiHistory, kpiHistoryDetail} from 'apx'
 import MAnchor from 'components/m-anchor/m-anchor'
 import MemberContainer from 'components/commonComponents/member-container'
 import MemberItem from 'components/commonComponents/member-item'
 import HomeItemSolt from 'components/home/home-item-solt'
 import AwardList from 'components/home/award-list'
 import SubNav from 'components/sub-nav/sub-nav'
+import InsterstingNews from 'components/history/instersting-news'
 export default {
   components: {
     MAnchor,
@@ -54,10 +56,12 @@ export default {
     MemberItem,
     HomeItemSolt,
     AwardList,
-    SubNav
+    SubNav,
+    InsterstingNews
   },
   data() {
     return {
+      data: {},
       isFixed: false,
       awardUserList: [],
       // awardUserImgUrl: '',
@@ -86,7 +90,7 @@ export default {
   computed: {
   },
   mounted() {
-
+    this._getHistoryData()
   },
   destroyed() {
     //离开该页面需要移除这个监听的事件
@@ -103,7 +107,21 @@ export default {
         this.reviewId = query.reviewId
       }
     },
+    _getHistoryData() {
+      let param = {
+        language: JSON.parse(window.localStorage.getItem('immi_language'))
+      }
+      kpiHistory(param, this).then((res) => {
+        this.subNavList = res.data.data.map((el) => {
+          return {
+            name: el.year,
+            id: el.id
+          }
+        })
+      })
+    },
     _getData(year) {
+      debugger
       let param = {
         reviewId: year ? year : this.reviewId,
         language: JSON.parse(window.localStorage.getItem('immi_language'))
@@ -115,7 +133,7 @@ export default {
         let tempJurys = results.jurys
         let tempArtists = results.artists
 
-        
+        this.data = results
 
         this.awardUserList = tempWinners ? tempWinners.map(el => {
           return {
