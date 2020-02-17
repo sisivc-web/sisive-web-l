@@ -3,38 +3,38 @@
     <div class="foot" id="foot">
       <div class="foot-item">
         <div class="left">
-          <div class="plate" style="background-image: url(static/image/sisivc/foot/address@4x.png);">
+          <div class="plate" style="background-image: url(../../../static/image/sisivc/foot/address@4x.png);">
             <h3>地址</h3>
             <p>中国·上海市徐汇区复兴中路1380号</p>
           </div>
-          <div class="plate" style="background-image: url(static/image/sisivc/foot/email@4x.png);margin-top:40px;">
+          <div class="plate" style="background-image: url(../../../static/image/sisivc/foot/email@4x.png);margin-top:40px;">
             <h3>邮箱</h3>
             <p>adminoffice@Competition.com</p>
           </div>
         </div>
-        <div class="center plate" style="background-image: url(static/image/sisivc/foot/subway@4x.png);">
+        <div class="center plate" style="background-image: url(../../../static/image/sisivc/foot/subway@4x.png);">
           <h3>地铁</h3>
           <ul>
             <li>
-              <img src="static/image/sisivc/foot/1@4x.png">
+              <img src="../../../static/image/sisivc/foot/1@4x.png">
               <p>1号线</p>
               <p>常熟路站 </p>
               <p>4号口</p>
             </li>        
             <li>
-              <img src="static/image/sisivc/foot/7@4x.png">
+              <img src="../../../static/image/sisivc/foot/7@4x.png">
               <p>7号线 </p>
               <p>常熟路站 </p>
               <p>6/7号口</p>
             </li>
             <li>
-              <img src="static/image/sisivc/foot/10@4x.png">
+              <img src="../../../static/image/sisivc/foot/10@4x.png">
               <p>10号线 </p>
               <p>陕西南路站</p>
               <p>7号口</p>
             </li>        
             <li>
-              <img src="static/image/sisivc/foot/12@4x.png">
+              <img src="../../../static/image/sisivc/foot/12@4x.png">
               <p>12号线 </p>
               <p>陕西南路站 </p>
               <p>7号口</p>
@@ -42,22 +42,22 @@
           </ul>
         </div>
         <div class="right" style="padding-left:60px">
-          <div class="plate" style="background-image: url(static/image/sisivc/foot/bus@4x.png);">
+          <div class="plate" style="background-image: url(../../../static/image/sisivc/foot/bus@4x.png);">
             <h3>公交</h3>
             <p>15/26/42/45/49/96/167/198/315/320<br>327/824/830/911/920/926/927</p>
           </div>
         </div>
       </div>
       <div class="link-div">
-        <a style="background-image: url(static/image/sisivc/foot/w0.png);">
+        <a style="background-image: url(../../../static/image/sisivc/foot/w0.png);">
           <div class="hover-div"></div>
         </a>
-        <a style="background-image: url(static/image/sisivc/foot/b0.png);">
-          <div class="hover-div" style="background-image: url(static/image/sisivc/foot/wechat.jpg);"></div>
+        <a style="background-image: url(../../../static/image/sisivc/foot/b0.png);">
+          <div class="hover-div" style="background-image: url(../../../static/image/sisivc/foot/wechat.jpg);"></div>
         </a>
-        <a style="background-image: url(static/image/sisivc/foot/f0.png);"></a>
-        <a style="background-image: url(static/image/sisivc/foot/tw0.png);"></a>
-        <a style="background-image: url(static/image/sisivc/foot/ins0.png);"></a>
+        <a style="background-image: url(../../../static/image/sisivc/foot/f0.png);"></a>
+        <a style="background-image: url(../../../static/image/sisivc/foot/tw0.png);"></a>
+        <a style="background-image: url(../../../static/image/sisivc/foot/ins0.png);"></a>
       </div>
     </div>
     <div class="foot-black">
@@ -89,7 +89,7 @@ export default {
   display: -ms-flexbox;
   display: flex;
   justify-content: space-between;
-  align-items: start;
+  align-items: flex-start;
   height:200px;
 }
 .foot .left,.foot .right {
@@ -102,7 +102,7 @@ export default {
   padding: 10px;
   padding-left: 30px;
   padding-top: 15px;
-  background-image: url('~static/image/sisivc/foot/email@4x.png');
+  background-image: url('../../../static/image/sisivc/foot/email@4x.png');
   background-repeat: no-repeat;
   background-position: 0 10px;
   background-size: 26px auto;
@@ -125,7 +125,7 @@ export default {
   display: -ms-flexbox;
   display: flex;
   justify-content: space-between;
-  align-items: start;
+  align-items: flex-start;
   padding: 0;
   font-size: 14px;
   padding-top: 5px;
@@ -144,7 +144,7 @@ export default {
   width: 40px;
   height: 40px;
   display: inline-block;
-  background-image: url('~static/image/sisivc/foot/f.png');
+  background-image: url('../../../static/image/sisivc/foot/f.png');
   background-repeat: no-repeat;
   background-size: 40px 40px;
   margin-right:75px;
@@ -165,7 +165,7 @@ li {list-style: none}
   display: -ms-flexbox;
   display: flex;
   justify-content: space-between;
-  align-items: start;
+  align-items: flex-start;
   font-size: 12px;
 }
 .foot-black div{
@@ -184,7 +184,7 @@ li {list-style: none}
   position:absolute;
   width:100px;
   height:100px;
-  background-image: url('~static/image/sisivc/foot/wechat.jpg');
+  background-image: url('../../../static/image/sisivc/foot/wechat.jpg');
   background-size:100px 100px;
   background-repeat: no-repeat;
   top:-100px;
@@ -192,25 +192,25 @@ li {list-style: none}
   display: none;
 }
 .link-div a:nth-child(1):hover {
-  background-image: url('~static/image/sisivc/foot/w.png')!important;
+  background-image: url('../../../static/image/sisivc/foot/w.png')!important;
 } 
 .link-div a:nth-child(2):hover {
-  background-image: url('~static/image/sisivc/foot/b.png')!important;
+  background-image: url('../../../static/image/sisivc/foot/b.png')!important;
 } 
 .link-div a:nth-child(3):hover {
-  background-image: url('~static/image/sisivc/foot/f.png')!important;
+  background-image: url('../../../static/image/sisivc/foot/f.png')!important;
 } 
 .link-div a:nth-child(4):hover {
-  background-image: url('~static/image/sisivc/foot/tw.png')!important;
+  background-image: url('../../../static/image/sisivc/foot/tw.png')!important;
 } 
 .link-div a:nth-child(5):hover {
-  background-image: url('~static/image/sisivc/foot/ins.png')!important;
+  background-image: url('../../../static/image/sisivc/foot/ins.png')!important;
 } 
 .link-div a:nth-child(1):hover .hover-div {
-  background-image: url('~static/image/sisivc/foot/wechat.jpg')!important;
+  background-image: url('../../../static/image/sisivc/foot/wechat.jpg')!important;
 } 
 .link-div a:nth-child(2):hover  .hover-div{
-  background-image: url('~static/image/sisivc/foot/weibo.jpg')!important;
+  background-image: url('../../../static/image/sisivc/foot/weibo.jpg')!important;
 } 
 .link-div a:hover .hover-div  {
   display: block;

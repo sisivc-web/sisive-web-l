@@ -89,7 +89,7 @@ export default {
         height 55px
         margin-right 120px
         background-size 100% 100%
-        background-image: url('~static/image/header/logo.png')
+        background-image: url('../../../static/image/header/logo.png')
       .language
         color $color-text-gray_1
         font-size $font-size-level_3

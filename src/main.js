@@ -1,4 +1,4 @@
-import 'babel-polyfill'
+// import 'babel-polyfill'
 import Vue from 'vue'
 import App from './App'
 import router from './router'
@@ -16,11 +16,13 @@ import './plugins/toast/toast.css'
 import './plugins/loading/loading.css'
 
 // 二维码生成
-import QRCode from 'qrcode'
+// import QRCode from 'qrcode'
 
 // 工具类
 import Utility from './common/utility/index.js'
 import GLOBAL from 'common/js/global_variable'
+
+import 'common/stylus/index.styl'
 
 Vue.prototype.GLOBAL = GLOBAL
 
@@ -29,9 +31,7 @@ Vue.use(ElementUI)
 Vue.use(Loading)
 Vue.use(Toast)
 Vue.use(Utility)
-Vue.use(QRCode)
-
-import 'common/stylus/index.styl'
+// Vue.use(QRCode)
 
 fastclick.attach(document.body)
 
@@ -42,7 +42,7 @@ Vue.use(VueLazyload, {
 })
 
 const i18n = new VueI18n({
-  locale: JSON.parse(window.localStorage.getItem('immi_language')) === 'zh_CN' ? 'zh_CN' : 'en',    // 语言标识,默认为en
+  locale: JSON.parse(window.localStorage.getItem('immi_language')) === 'zh_CN' ? 'zh_CN' : 'en', // 语言标识,默认为en
   messages
 })
 window.localStorage.setItem('immi_language', JSON.stringify(i18n.locale))

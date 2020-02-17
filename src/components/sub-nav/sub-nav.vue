@@ -81,7 +81,7 @@ export default {
       display: -webkit-flex;
       display: -ms-flexbox;
       display: flex;
-      justify-content: start;
+      justify-content: flex-start;
       li
         margin-right: 90px
         a
