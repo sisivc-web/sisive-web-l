@@ -31,17 +31,13 @@ export default {
   watch: {
     showPopper (val) {
       if (!val) {
-       this.$emit('hide') 
+        this.$emit('hide')
       }
     },
     reference (val) {
+      // 可以监听到reference有改变，难道需要重新创建Popper？
       console.log('watch::::', val)
-      
     }
-  },
-  created () {
-    // this.placement = 'right'
-    // this.popper = this.$refs.popper
   },
   mounted() {
     let reference = this.referenceElm = this.reference || this.$refs.reference
@@ -54,14 +50,6 @@ export default {
     off(document, 'click', this.handleDocumentClick)
   },
   methods: {
-    show (element) {
-      //this.reference = element
-      // this.showPopper = true
-      console.log('----show')
-      console.log(this.popper)
-      console.log('----show：reference')
-      console.log(this.referenceElm)
-    },
     handleDocumentClick(e) {
       let reference = this.reference || this.$refs.reference;
       const popper = this.popper || this.$refs.popper;
