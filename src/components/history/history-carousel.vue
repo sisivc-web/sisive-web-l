@@ -1,47 +1,53 @@
 <template>
-  <el-carousel :interval="15000" arrow="always" height="488px" indicator-position="none"> 
-    <el-carousel-item v-for="(item, index) in data" :key="index" v-if="index%4 == 0">
-      <!-- <h3>{{ item }}</h3> -->
-      <el-row :gutter="10"  v-if="index%4 == 0" style="height:100%;">
-        <el-col :span="6" style="height:100%;">
-            <div class="grid-content" :style="{background:index < data.length ? data[index].color : item.bgImg, backgroundSize: '100% auto'}">
-                <div v-if="index < data.length" class="history-item">
-                    <p>{{data[index].year}}</p>
-                    <p>{{data[index].title}}</p>
-                    <el-button type="text" class="button">详细信息</el-button>
-                </div>
-            </div>
-        </el-col>
-        <el-col :span="6" style="height:100%;">
-            <div class="grid-content" :style="{background:index+1 < data.length ? data[index+1].color : item.bgImg, backgroundSize: '100% auto'}">
-                <div v-if="index+1 < data.length" class="history-item">
-                    <p>{{data[index+1].year}}</p>
-                    <p>{{data[index+1].title}}</p>
-                    <el-button type="text" class="button">详细信息</el-button>
-                </div>
-            </div>
-        </el-col>
-        <el-col :span="6" style="height:100%;">
-            <div class="grid-content" :style="{background:index+2 < data.length ? data[index+2].color : item.bgImg, backgroundSize: '100% auto'}">
-              <div v-if="index+2 < data.length" class="history-item">
-                <p>{{data[index+2].year}}</p>
-                <p>{{data[index+2].title}}</p>
-                <el-button type="text" class="button" @click="goHistoryDetail()">详细信息</el-button>
-              </div>  
-            </div>
-        </el-col>
-        <el-col :span="6" style="height:100%;">
-            <div class="grid-content" :style="{background:index+3 < data.length ? data[index+3].color : item.bgImg, backgroundSize: '100% auto'}">
-              <div v-if="index+3 < data.length" class="history-item">
-                <p>{{data[index+3].year}}</p>
-                <p>{{data[index+3].title}}</p>
-                <el-button type="text" class="button">详细信息</el-button>
-              </div>  
-            </div>
-        </el-col>
-      </el-row>
-    </el-carousel-item>
-  </el-carousel>
+  <div style="position:relative">
+    <el-carousel ref="historyCarousel" arrow="never" :interval="15000" :height="carouselHeight + 'px'" indicator-position="none"> 
+      <el-carousel-item v-for="(item, index) in data" :key="index" v-if="index%4 == 0">
+        <!-- <h3>{{ item }}</h3> -->
+        <el-row :gutter="10"  v-if="index%4 == 0" style="height:100%;">
+          <el-col :span="6" style="height:100%;">
+              <div class="grid-content" :style="{background:index < data.length ? data[index].themeColor : item.bgImg, backgroundSize: '100% auto'}">
+                  <div v-if="index < data.length" class="history-item">
+                      <p>{{data[index].year}}</p>
+                      <p>{{data[index].competitionName}}</p>
+                      <el-button type="text" class="button" @click="goHistoryDetail(data[index].id)">详细信息</el-button>
+                  </div>
+              </div>
+          </el-col>
+          <el-col :span="6" style="height:100%;">
+              <div class="grid-content" :style="{background:index+1 < data.length ? data[index+1].themeColor : item.bgImg, backgroundSize: '100% auto'}">
+                  <div v-if="index+1 < data.length" class="history-item">
+                      <p>{{data[index+1].year}}</p>
+                      <p>{{data[index+1].competitionName}}</p>
+                      <el-button type="text" class="button" @click="goHistoryDetail(data[index+1].id)">详细信息</el-button>
+                  </div>
+              </div>
+          </el-col>
+          <el-col :span="6" style="height:100%;">
+              <div class="grid-content" :style="{background:index+2 < data.length ? data[index+2].themeColor : item.bgImg, backgroundSize: '100% auto'}">
+                <div v-if="index+2 < data.length" class="history-item">
+                  <p>{{data[index+2].year}}</p>
+                  <p>{{data[index+2].competitionName}}</p>
+                  <el-button type="text" class="button" @click="goHistoryDetail(data[index+2].id)">详细信息</el-button>
+                </div>  
+              </div>
+          </el-col>
+          <el-col :span="6" style="height:100%;">
+              <div class="grid-content" :style="{background:index+3 < data.length ? data[index+3].themeColor : item.bgImg, backgroundSize: '100% auto'}">
+                <div v-if="index+3 < data.length" class="history-item">
+                  <p>{{data[index+3].year}}</p>
+                  <p>{{data[index+3].competitionName}}</p>
+                  <el-button type="text" class="button" @click="goHistoryDetail(data[index+3].id)">详细信息</el-button>
+                </div>  
+              </div>
+          </el-col>
+        </el-row>
+      </el-carousel-item>
+    </el-carousel>
+    <div class="arrow-div" v-if="this.data.length > 4">
+      <button type="button" class="el-carousel__arrow el-carousel__arrow--left" @click="prev"><i class="el-icon-arrow-left"></i></button>
+      <button type="button" class="el-carousel__arrow el-carousel__arrow--right" @click="next"><i class="el-icon-arrow-right"></i></button>
+    </div>
+  </div>
 </template>
 <script>
 var data = [
@@ -55,13 +61,43 @@ var data = [
 export default {
     data() {
         return {
-            data: data,
+          // data: data,
+          carouselHeight: 482,
         }
     },
+    props: {
+      data: {
+          type: Array,
+          default: []
+      },
+    },
+    mounted() {
+      this.$nextTick(() => {
+        this.computerHeight()
+      })
+      // 2、挂载 reisze 事件 → 屏幕缩放时监听宽度变化
+      window.onresize = () => {
+        return (() => {
+          this.computerHeight()
+        })()
+      }
+    },
     methods: {
-        goHistoryDetail() { 
-          this.$router.push({path: '/historyDetail', query: {newsId: 3}})
-        }
+      //计算轮播高度
+      computerHeight() {
+        let containerWidth = document.body.clientWidth
+        let width = containerWidth >= 1920 ? 1560 : containerWidth > 1500 && containerWidth < 1920 ? containerWidth - 360 : 1140
+        this.carouselHeight = Math.floor(width * 330 / 780)
+      },
+      prev() {
+        this.$refs.historyCarousel.prev()
+      },
+      next() {
+        this.$refs.historyCarousel.next()
+      },
+      goHistoryDetail(val) { 
+        this.$router.push({path: '/historyDetail', query: {reviewId: val}})
+      }
     }
 }
 </script>>
@@ -69,30 +105,30 @@ export default {
 <style scoped>  
   .el-carousel {
     width: 1140px;
-    height: 488px;
+    height: auto;
     margin: 0 auto;
+    overflow: hidden;
   }
   .el-carousel .grid-content {
     width:100%;
     height: 100%;
     position: relative;
   }
-  /* .el-carousel__arrow--left {
-    left: -52px;
-  }
-  .el-carousel__arrow--right {
-    left: -52px;
-  } */
-  /* .el-carousel__item:nth-child(2n) {
-    background-color: #99a9bf;
-  }
-  
-  .el-carousel__item:nth-child(2n+1) {
-    background-color: #d3dce6;
-  } */
+  .arrow-div 
+    .el-carousel__arrow {
+      width: 20px;
+      height: 20px;
+      background-color: #222222
+    }
+    .el-carousel__arrow--left {
+      left: calc((100% - 1140px) / 2 - 50px);
+    }
+    .el-carousel__arrow--right {
+      right: calc((100% - 1140px)/2 - 50px);
+    }
   .history-item {
     color: #fff;
-    padding: 20px;
+    padding: 10%;
   }
   .history-item p {
     font-size: 16px;
@@ -104,6 +140,41 @@ export default {
     background: #FFF;
     padding: 10px 15px;
     position:absolute;
-    bottom: 25px;
+    bottom: 10%;
   }
+@media (min-width: 1920px)  {
+  .el-carousel{
+    width: 1560px!important;
+    margin: 0 auto;
+  }
+  .arrow-div
+    .el-carousel__arrow--left {
+      left: calc((100% - 1560px) / 2 - 60px);
+    }
+    .el-carousel__arrow--right {
+      right: calc((100% - 1560px)/2 - 60px);
+    }
+}
+@media (min-width: 1500px) and (max-width: 1920px)  {
+  .el-carousel{
+    width: calc(100% - 360px);
+    min-width: 1140px;
+  }
+  .arrow-div
+    .el-carousel__arrow--left {
+      left: 130px
+    }
+    .el-carousel__arrow--right {
+      right: 130px
+    }
+}
+@media (max-width: 1240px)  {
+  .arrow-div
+    .el-carousel__arrow--left {
+      left: 15px;
+    }
+    .el-carousel__arrow--right {
+      right: 15px
+    }
+}
 </style>

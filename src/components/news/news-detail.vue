@@ -34,14 +34,12 @@ export default {
   },
   async created() {
     await this.getNewsYearList()
-    this._getURLQuery()
-    this._getData()
   },
   data() {
     return {
       newsDetail: {},
       newsId: 3,
-      subNavList: ['2019', '2018'],
+      subNavList: [],
       nowSelYear: '',
     }
   },
@@ -64,7 +62,14 @@ export default {
     },
     getNewsYearList() {
       kpiYears({}, this).then((res) => {
-        this.subNavList = res.data.data
+        this.subNavList = res.data.data.map((el) => {
+          return {
+            name: el,
+            id: el
+          }
+        })
+        this._getURLQuery()
+        this._getData()
       })
     },
     _getNews(year) {
@@ -112,7 +117,7 @@ export default {
     margin: 0 auto;
   }
 }
-@media (min-width: 1400px) and (max-width: 1920px)  {
+@media (min-width: 1500px) and (max-width: 1920px)  {
   .container .other .block {
     width: calc(100% - 360px);
     min-width: 1140px;

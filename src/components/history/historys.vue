@@ -1,13 +1,13 @@
 <template>
   <div class="container">
     <div class="mainBox">
-      <history-carousel></history-carousel>
+      <history-carousel :data="data"></history-carousel>
     </div>
   </div>
 </template>
 <script type="text/ecmascript-6">
 
-import { kpiNews }from 'apx'
+import { kpiHistory }from 'apx'
 import MAnchor from 'components/m-anchor/m-anchor'
 import HistoryCarousel from './history-carousel'
 export default {
@@ -17,12 +17,11 @@ export default {
   },
   created() {
     // this._getURLQuery()
-    // this._getData()
+    this._getData()
   },
   data() {
     return {
-      data: [1,2,3],
-      year: '2019'
+      data: [],
     }
   },
   methods: {
@@ -37,10 +36,9 @@ export default {
     },
     _getData() {
       let param = {
-        year: this.year,
         language: JSON.parse(window.localStorage.getItem('immi_language'))
       }
-      kpiNews(param, this).then((res) => {
+      kpiHistory(param, this).then((res) => {
         this.data = res.data.data
       })
     },
@@ -59,11 +57,11 @@ export default {
     width: 1560px;
   }
   .carousel{
-    width: 1560!important;
+    width: 1560px!important;
     margin: 0 auto;
   }
 }
-@media (min-width: 1400px) and (max-width: 1920px)  {
+@media (min-width: 1500px) and (max-width: 1920px)  {
   .container .other .block {
     width: calc(100% - 360px);
     min-width: 1140px;
