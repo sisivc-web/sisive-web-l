@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="other">
-      <!-- <m-anchor :contentDivClass="'home-anchor-container'" :anchorItem="'anchor-item'" :subNavList="[$t('subNavs.news'), $t('subNavs.awardMember'), $t('subNavs.judges'), $t('subNavs.contestant'), $t('subNavs.artist'), $t('subNavs.partner')]"></m-anchor> -->
+      <sub-nav :subNavList="subNavList" :nowClickYear="nowSelYear" @changeData="_getData()"></sub-nav>
       <div class="home-anchor-container">
         <home-item-solt :itemName="'award-div'" :title="$t('prizeWinners')" :isShowMore="false" :marginBottom="'60px'" v-if="awardUserList.length > 0">
           <div slot="detail">
@@ -46,13 +46,15 @@ import MemberContainer from 'components/commonComponents/member-container'
 import MemberItem from 'components/commonComponents/member-item'
 import HomeItemSolt from 'components/home/home-item-solt'
 import AwardList from 'components/home/award-list'
+import SubNav from 'components/sub-nav/sub-nav'
 export default {
   components: {
     MAnchor,
     MemberContainer,
     MemberItem,
     HomeItemSolt,
-    AwardList
+    AwardList,
+    SubNav
   },
   data() {
     return {
@@ -73,6 +75,8 @@ export default {
         {name: '斯雷滕·克里斯蒂奇', country: '塞尔维亚/德国', imageUrl: 'static/image/sisivc/pingwei/1.jpg'},
       ],
       animationName: '',
+      nowSelYear: '',
+      subNavList: [],
     }
   },
   created() {
@@ -99,9 +103,9 @@ export default {
         this.reviewId = query.reviewId
       }
     },
-    _getData() {
+    _getData(year) {
       let param = {
-        reviewId: this.reviewId,
+        reviewId: year ? year : this.reviewId,
         language: JSON.parse(window.localStorage.getItem('immi_language'))
       }
       kpiHistoryDetail(param, this).then((res) => {

@@ -27,9 +27,7 @@ export default {
     NewsItem
   },
   async created() {
-    this._getURLQuery()
     await this.getNewsYearList()
-    this._getData(this.year)
   },
   data() {
     return {
@@ -39,18 +37,25 @@ export default {
     }
   },
   methods: {
-    _gotoDetails(newsId) {
-      this.$router.push({path: '/newsDetail', query: {newsId: 3, nowSelYear: this.year}})
-    },
+    // _gotoDetails(newsId) {
+    //   this.$router.push({path: '/newsDetail', query: {newsId: 3, nowSelYear: this.year}})
+    // },
     _getURLQuery() {
       const query = this.$route.query
       if(query) {
-        this.year = query.nowSelYear ? query.nowSelYear : this.subNavList[0]
+        this.year = query.nowSelYear ? query.nowSelYear : this.subNavList[0].name
       }
     },
     getNewsYearList() {
       kpiYears({}, this).then((res) => {
-        this.subNavList = res.data.data
+        this.subNavList = res.data.data.map((el) => {
+          return {
+            name: el,
+            id: el
+          }
+        })
+        this._getURLQuery()
+        this._getData(this.year)
       })
     },
     _getData(year) {

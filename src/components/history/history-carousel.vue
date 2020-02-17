@@ -9,7 +9,7 @@
                   <div v-if="index < data.length" class="history-item">
                       <p>{{data[index].year}}</p>
                       <p>{{data[index].competitionName}}</p>
-                      <el-button type="text" class="button">详细信息</el-button>
+                      <el-button type="text" class="button" @click="goHistoryDetail(data[index].id)">详细信息</el-button>
                   </div>
               </div>
           </el-col>
@@ -18,7 +18,7 @@
                   <div v-if="index+1 < data.length" class="history-item">
                       <p>{{data[index+1].year}}</p>
                       <p>{{data[index+1].competitionName}}</p>
-                      <el-button type="text" class="button">详细信息</el-button>
+                      <el-button type="text" class="button" @click="goHistoryDetail(data[index+1].id)">详细信息</el-button>
                   </div>
               </div>
           </el-col>
@@ -36,7 +36,7 @@
                 <div v-if="index+3 < data.length" class="history-item">
                   <p>{{data[index+3].year}}</p>
                   <p>{{data[index+3].competitionName}}</p>
-                  <el-button type="text" class="button" @click="goHistoryDetail()">详细信息</el-button>
+                  <el-button type="text" class="button" @click="goHistoryDetail(data[index+3].id)">详细信息</el-button>
                 </div>  
               </div>
           </el-col>

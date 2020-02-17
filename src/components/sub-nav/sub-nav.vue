@@ -4,7 +4,7 @@
       <div class="sub-nav-container">
         <ul>
             <li v-for="(item, index) in subNavList" :key="index">
-                <a :class="{active: active===index}" @click="handleChange(item, index)">{{item}}</a>
+                <a :class="{active: active===index}" @click="handleChange(item.id, index)">{{item.name}}</a>
             </li>
         </ul>
       </div>
@@ -20,18 +20,19 @@ export default {
       default: () => ['content-0', 'ctttt-1', 'conthhhent-2', 'content-3', 'content-4']
     },
     nowClickYear: {
-      type: [Number, String],
-      default: ''
+      type: [Number, String]
     }
   },
   data() {
     return {
-      active: 0, // 当前激活的导航索引
+      active: -1, // 当前激活的导航索引
       isFixed: false,
     }
   },
   mounted() {
-    this.active = this.nowClickYear
+    this.subNavList.forEach((el, index) => {
+      this.active = el.id === this.nowClickYear ? index : -1
+    })
     // 监听滚动事件
     window.addEventListener('scroll', this.onScroll, false)
   },
