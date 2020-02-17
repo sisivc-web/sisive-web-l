@@ -16,18 +16,18 @@
           </div>
           <div style="padding: 10px 50px;">
             <FullCalendar
-            ref="calendar"
-            defaultView="dayGridMonth"
-            :header="{
-              left: '',
-              center: 'prev title next',
-              right: ''
-            }"
-            locale="zh-cn"
-            :events="calendarEvents"
-            @dateClick="handleDateClick"
-            @eventClick="handleEventClick"
-            :plugins="calendarPlugins" />
+              ref="calendar"
+              defaultView="dayGridMonth"
+              :header="{
+                left: '',
+                center: 'prev title next',
+                right: ''
+              }"
+              locale="zh-cn"
+              :events="calendarEvents"
+              @dateClick="handleDateClick"
+              @eventClick="handleEventClick"
+              :plugins="calendarPlugins" />
               <eventpopover
                 ref="popper"
                 :reference="eventEl"
@@ -36,7 +36,7 @@
                 :themeColor="themeColor"
                 v-model="popoverVisible">
                 <div v-for="player in watchData.players" :key="player.id">
-                  <div style="margin: 12px 0;" class="flex-between">
+                  <div style="margin: 12px 0;color:white;" class="flex-between">
                     <div>{{player.userName}}</div>
                     <div>{{player.nationality}}</div>
                     <div><i class="el-icon-view"></i></div>
@@ -44,15 +44,16 @@
                 </div>
                 <divider :height="1"></divider>
                 <div v-for="artist in watchData.artists" :key="artist.id">
-                  <div style="margin: 12px 0;" class="flex-between">
+                  <div style="margin: 12px 0;color:white;" class="flex-between">
                     <div>{{artist.userName}}</div>
                     <div>{{artist.nationality}}</div>
                     <div><i class="el-icon-view"></i></div>
                   </div>
                 </div>
                 <div v-for="group in watchData.groups" :key="group.id">
-                  <div style="margin: 12px 0;" class="flex-between">
+                  <div style="margin: 12px 0;color:white;" class="flex-between">
                     <span>{{group.orchestraTitle}}</span>
+                    <div>{{group.nationality}}</div>
                     <span>{{group.type || '乐团'}}</span>
                     <div><i class="el-icon-view"></i></div>
                   </div>
@@ -145,7 +146,6 @@
         console.log(evt)
         // evt
         this.popoverVisible = true
-        debugger
         this.eventEl = evt.el // 这里不会更新Popper绑定的reference？
         this.themeColor = evt.event.backgroundColor
         // this.$refs.popper.show()
@@ -161,7 +161,6 @@
         kpiWatchDetail(param, this).then((res) => {
           // console.log(res);
           let data = res.data.data
-          // console.log(_this)
           _this.watchData = data
         })
       },
@@ -266,27 +265,6 @@
   .mainBox .title{color: #1e2022;font-size: 24px;font-weight: 700; padding-bottom: 40px;}
   .item{width: 120px; font-size: 12px;font-weight: bold;margin-right: 54px;}
   .circle{width: 10px;height: 10px;border-radius: 50%;margin-right: 10px;}
-  .quarter{background-color: #46A58F;}
-  .half{background-color: #EB5F53;}
-  .final{background-color: #EF7D30;}
-  .date .dat_list{display: grid;grid-template-columns:repeat(auto-fit,minmax(50px,1fr));  grid-template-rows:repeat(2,40px);}
-  .date .dat_list li{text-align: center; position: relative;}
-  .date .dat_list li:hover i{position: absolute;display: block;width:20px; height: 1px; background: #f49950; left: 50%; bottom: 0; margin-left: -10px;}
-  .date .dat_list li.on span{display: block;width:100%; height: 40px;  background: #f49950; position: absolute;bottom: -40px;left: 0;}
-  .date .dat_list li.on p.ipn{color: #fff;z-index: 999;}
-  .date .dat_list li a{color: #c8c8c8; text-decoration: none;}
-  .date .dat_list li p{border-bottom: 1px solid #e5e5e5; line-height: 40px; position: relative;font-size: 12px; height: 40px;}
-  .date .dat_list li p.first{font-size: 12px;}
-  .date .dat_list li p.last{font-size: 14px;}
-  .date .dat_list li a.orange{color: #f49950;}
-  .date .dat_list li a.grey{color: #bebebe;}
-  .date .dat_list li a.blue{color: #1a3880;}
-  .date .dat_list li a.red{color: #e5354c;}
-  .MinMon{position: relative; height: 45px;}
-  .MinMon .FullYear{position: absolute; left: 30px; top: 0; color: #c8c8c8;}
-  .MinMon .Prev_month{position: absolute; left: 30px; top: 20px; font-weight: 700;}
-  .MinMon .Next_month{position: absolute; right: 30px;top: 20px;font-weight: 700;}
-  .header .mainBox .title,.header .MinMon,.header .MinMon .FullYear{color: #fff;}
   /*----直播地址*/
   .Broad_add{display: grid;grid-template-columns:0.5fr 0.5fr;grid-template-rows:auto;}
   .Broad_add li{border-right: 1px solid #e5e5e5; border-top: 1px solid #e5e5e5; border-bottom: 1px solid #e5e5e5;  height: 140px; position: relative;}
@@ -336,7 +314,6 @@
 	   .panelSecond dl dt,.panelSecond dl dd{float: left;}
 	   .panelSecond dl dt{width: 140px;}
 	   .panelSecond dl dt img{width: 120px; height: 120px; object-fit: cover;}
-	   .panelSecond dl dd{font-size: 14px;margin-bottom: 10px; color: #4c4948; width: 286px; min-height: ;}
 	   .panelSecond dl dd .ItemCoumnsHd{border-bottom: 1px solid #e5e5e5; padding-bottom: 10px;}
 	   .panelSecond dl dd .ItemCoumnsHd .fm{float: right;font-size: 12px; color: rgb(160, 160, 161);font-weight: normal; margin-top: 8px;;}
 	   .panelSecond dl dd h6{font-size: 14px;font-weight: 700; padding:5px 0;color: #222;}
