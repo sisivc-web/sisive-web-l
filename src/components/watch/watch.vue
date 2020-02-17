@@ -16,18 +16,18 @@
           </div>
           <div style="padding: 10px 50px;">
             <FullCalendar
-              ref="calendar"
-              defaultView="dayGridMonth"
-              :header="{
-                left: '',
-                center: 'prev title next',
-                right: ''
-              }"
-              locale="zh-cn"
-              :events="calendarEvents"
-              @dateClick="handleDateClick"
-              @eventClick="handleEventClick"
-              :plugins="calendarPlugins" />
+            ref="calendar"
+            defaultView="dayGridMonth"
+            :header="{
+              left: '',
+              center: 'prev title next',
+              right: ''
+            }"
+            locale="zh-cn"
+            :events="calendarEvents"
+            @dateClick="handleDateClick"
+            @eventClick="handleEventClick"
+            :plugins="calendarPlugins" />
               <eventpopover
                 ref="popper"
                 :reference="eventEl"
@@ -145,6 +145,7 @@
         console.log(evt)
         // evt
         this.popoverVisible = true
+        debugger
         this.eventEl = evt.el // 这里不会更新Popper绑定的reference？
         this.themeColor = evt.event.backgroundColor
         // this.$refs.popper.show()
@@ -246,7 +247,7 @@
         padding-top: 34px;
     }
     }
-    @media (min-width: 1400px) and (max-width: 1920px) {
+    @media (min-width: 1500px) and (max-width: 1920px) {
       .containerA .other .block {
           width: calc(100% - 360px);
           min-width: 1140px;

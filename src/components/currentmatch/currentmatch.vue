@@ -204,7 +204,7 @@ export default {
     display: block;
   }
 }
-@media (min-width: 1400px) and (max-width: 1920px)  {
+@media (min-width: 1500px) and (max-width: 1920px)  {
   .container .other .block {
     width: calc(100% - 360px);
     min-width: 1140px;

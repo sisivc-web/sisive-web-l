@@ -3,12 +3,12 @@
     <div class="other">
       <!-- <m-anchor :contentDivClass="'home-anchor-container'" :anchorItem="'anchor-item'" :subNavList="[$t('subNavs.news'), $t('subNavs.awardMember'), $t('subNavs.judges'), $t('subNavs.contestant'), $t('subNavs.artist'), $t('subNavs.partner')]"></m-anchor> -->
       <div class="home-anchor-container">
-        <home-item-solt :itemName="'award-div'" :title="$t('prizeWinners')" :isShowMore="false" :marginBottom="'60px'">
+        <home-item-solt :itemName="'award-div'" :title="$t('prizeWinners')" :isShowMore="false" :marginBottom="'60px'" v-if="awardUserList.length > 0">
           <div slot="detail">
             <award-list :awardUserList="awardUserList" :awardUserImgUrl="awardUserImgUrl" @handleChange="handleChange"></award-list>
           </div>
         </home-item-solt>
-        <home-item-solt :itemName="'member-div'" :title="$t('judges')" :isShowMore="false" :marginBottom="'30px'">
+        <home-item-solt :itemName="'member-div'" :title="$t('judges')" :isShowMore="false" :marginBottom="'30px'" v-if="judgesListSource.length > 0">
           <div slot="detail">
             <member-container :data="judgesListSource" :typeName="'judges'">
               <template slot="item" slot-scope="props">
@@ -17,7 +17,7 @@
             </member-container>
           </div>
         </home-item-solt>
-        <home-item-solt :itemName="'member-div'" :title="$t('players')" :isShowMore="false" :marginBottom="'30px'">
+        <home-item-solt :itemName="'member-div'" :title="$t('players')" :isShowMore="false" :marginBottom="'30px'" v-if="playersListSource.length > 0">
           <div slot="detail">
             <member-container :data="playersListSource" :typeName="'players'">
               <template slot="item" slot-scope="props">
@@ -26,7 +26,7 @@
             </member-container>
           </div>
         </home-item-solt>
-        <home-item-solt :itemName="'member-div'" :title="$t('artists')" :isShowMore="false" :marginBottom="'30px'">
+        <home-item-solt :itemName="'member-div'" :title="$t('artists')" :isShowMore="false" :marginBottom="'30px'" v-if="artistsListSource.length > 0">
           <div slot="detail">
             <member-container :data="artistsListSource" :typeName="'artists'">
               <template slot="item" slot-scope="props">
@@ -40,7 +40,7 @@
   </div>
 </template>
 <script type="text/ecmascript-6">
-import {kpiLogin, kpiHome} from 'apx'
+import {kpiHistoryDetail} from 'apx'
 import MAnchor from 'components/m-anchor/m-anchor'
 import MemberContainer from 'components/commonComponents/member-container'
 import MemberItem from 'components/commonComponents/member-item'
@@ -62,6 +62,7 @@ export default {
       awardUserImgUrl: 'static/image/sisivc/award/0.jpg',
       nowClickAward: '',
       finalObj: [],
+      reviewId: 0,
       judgesListSource: [
         {name: '大卫·斯特恩', country: '美国', imageUrl: 'static/image/sisivc/pingwei/1.jpg'},
       ],
@@ -75,6 +76,7 @@ export default {
     }
   },
   created() {
+    this._getURLQuery()
     this._getData()
   },
   computed: {
@@ -91,21 +93,23 @@ export default {
       this.nowClickAward = val ? val : this.nowClickAward
       this.awardUserImgUrl = this.nowClickAward ? this.awardUserList[this.nowClickAward - 1].imgUrl : this.finalObj[0].imgUrl
     },
+    _getURLQuery() {
+      const query = this.$route.query
+      if(query) {
+        this.reviewId = query.reviewId
+      }
+    },
     _getData() {
       let param = {
-        competitionId: '1',
+        reviewId: this.reviewId,
         language: JSON.parse(window.localStorage.getItem('immi_language'))
       }
-      kpiHome(param, this).then((res) => {
+      kpiHistoryDetail(param, this).then((res) => {
         let results = res.data.data
-        // let tempBanners = results.banners
-        // let tempNews = results.news
         let tempWinners = results.winners
         let tempPlayers = results.players
         let tempJurys = results.jurys
         let tempArtists = results.artists
-        // let tempPartnerVos = results.partnerVos
-        // let tempEndings = results.endings
 
         
 
@@ -448,7 +452,7 @@ a.hover-animation:hover img
     display: block;
   }
 }
-@media (min-width: 1400px) and (max-width: 1920px)  {
+@media (min-width: 1500px) and (max-width: 1920px)  {
   .container .other .block {
     width: calc(100% - 360px);
     min-width: 1140px;

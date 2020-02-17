@@ -150,9 +150,24 @@ export function kpiQueryNewDetail (params = {}, Vue) {
 }
 
 /**
+ * 回顾列表
+ * @param {*语言(en, zh_CN)} language
+ */
+export function kpiHistory (params = {}, Vue) {
+  return Request('/sisivc/personnal/Reviews', 'get', params, undefined, Vue)
+}
+
+/**
+ * 回顾详情页
+ * @param {*语言(en, zh_CN)} language
+ */
+export function kpiHistoryDetail (params = {}, Vue) {
+  return Request('/sisivc/personnal/ReviewDetails', 'get', params, undefined, Vue)
+}
+
+/**
  * 用户信息
  */
 export function kpiUserInfo (params = {}, Vue) {
   return Request('/rest/userInfo', 'get', params, undefined, Vue)
 }
-
