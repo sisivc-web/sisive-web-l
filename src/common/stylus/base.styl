@@ -10,7 +10,15 @@ body, html
   -webkit-font-smoothing: antialiased // 抗锯齿渲染平滑处理
 *
   box-sizing: border-box
-  
+
+img{
+  display: inline-block;
+}
+/* 清除滚动条样式 */
+::-webkit-scrollbar{width:0px;height:0px;} 
+img{max-width:100%;}/* 清除滚动条样式 */
+::-webkit-scrollbar{width:0px;height:0px;} 
+
 input, select, textarea
   outline:none
 
