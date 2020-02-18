@@ -139,7 +139,7 @@
                 <el-row>
                   <el-col :span="el.levelId === 2 ? 6 : 3" v-for="(item, index) in el.partnerVoList" :key="index">
                     <el-card :body-style="{ padding: '0px', paddingBottom: '40px' }">
-                      <div class="logo" style="background-image: url('static/image/sisivc/hezuo/0.png');">
+                      <div class="logo" :style="{backgroundImage: `${url(require('static/image/sisivc/hezuo/0.png'))}`}">
                         <img :src="item.logoUrl" style="width:100%;height:auto;">
                       </div>
                       <div class="title">{{item.title}}</div>
@@ -153,7 +153,7 @@
       </div>
     </div>
     <div style="width:100%;overflow:hidden;">
-      <video src="static/image/sisivc/SISIVC.mp4" class="vedio-css" width="100%" height="auto" controls="controls" poster="static/image/sisivc/poster.jpg" >您的浏览器不支持 video 标签。</video>
+      <video src="static/image/sisivc/SISIVC.mp4" class="vedio-css" width="100%" height="auto" controls="controls" :poster="require('static/image/sisivc/poster.jpg')" >您的浏览器不支持 video 标签。</video>
     </div>
   </div>
 </template>
@@ -193,13 +193,13 @@ export default {
       nowClickAward: '',
       finalObj: [],
       judgesListSource: [
-        {name: '大卫·斯特恩', country: '美国', imageUrl: 'static/image/sisivc/pingwei/1.jpg'},
+        {name: '大卫·斯特恩', country: '美国', imageUrl: require('static/image/sisivc/pingwei/1.jpg')},
       ],
       artistsListSource: [
-        {name: '大卫·斯特恩', country: '美国', imageUrl: 'static/image/sisivc/pingwei/1.jpg'},
+        {name: '大卫·斯特恩', country: '美国', imageUrl: require('static/image/sisivc/pingwei/1.jpg')},
       ],
       playersListSource: [
-        {name: '斯雷滕·克里斯蒂奇', country: '塞尔维亚/德国', imageUrl: 'static/image/sisivc/pingwei/1.jpg'},
+        {name: '斯雷滕·克里斯蒂奇', country: '塞尔维亚/德国', imageUrl: require('static/image/sisivc/pingwei/1.jpg')},
       ],
       animationName: '',
       parterList: [],
@@ -553,7 +553,27 @@ export default {
             text-overflow: ellipsis;
             display: -webkit-box;
             -webkit-line-clamp: 3;
-            -webkit-box-orient: vertical;  
+            -webkit-box-orient: vertical; 
+            max-height: 30px;
+            >>>div, >>>span, >>>h1, >>>h2, >>>h3, 
+            >>>h4, >>>h5, >>>h6, >>>p, >>>blockquote, >>>pre,
+            >>>a, >>>abbr, >>>acronym, >>>address, >>>big, >>>cite, >>>code,
+            >>>del, >>>dfn, >>>em, >>>img, >>>ins, >>>kbd, >>>q, >>>s, >>>samp,
+            >>>small, >>>strike, >>>strong, >>>sub, >>>sup, >>>tt, >>>var,
+            >>>b, >>>u, >>>i, >>>center,
+            >>>dl, >>>dt, >>>dd, >>>ol, >>>ul, >>>li,
+            >>>fieldset, >>>form, >>>label, >>>legend,
+            >>>table, >>>caption, >>>tbody, >>>tfoot, >>>thead, >>>tr, >>>th, >>>td,
+            >>>article, >>>aside, >>>canvas, >>>details, >>>embed,
+            >>>figure, >>>figcaption, >>>footer, >>>header,
+            >>>menu, >>>nav, >>>output, >>>ruby, >>>section, >>>summary,
+            >>>time, >>>mark, >>>audio, >>>video, >>>input
+              margin: 0
+              padding: 0
+              border: 0
+              font-size: 100%
+              font-weight: normal
+              vertical-align: baseline 
       .right
         .el-card
           margin-bottom: 30px!important;

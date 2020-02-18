@@ -78,13 +78,13 @@ export default {
     return {
       isFixed: false,
       judgesListSource: [
-        {name: '大卫·斯特恩', country: '美国', imageUrl: 'static/image/sisivc/pingwei/1.jpg'},
+        {name: '大卫·斯特恩', country: '美国', imageUrl: require('static/image/sisivc/pingwei/1.jpg')},
       ],
       artistsListSource: [
-        {name: '大卫·斯特恩', country: '美国', imageUrl: 'static/image/sisivc/pingwei/1.jpg'},
+        {name: '大卫·斯特恩', country: '美国', imageUrl: require('static/image/sisivc/pingwei/1.jpg')},
       ],
       playersListSource: [
-        {name: '斯雷滕·克里斯蒂奇', country: '塞尔维亚/德国', imageUrl: 'static/image/sisivc/pingwei/1.jpg'},
+        {name: '斯雷滕·克里斯蒂奇', country: '塞尔维亚/德国', imageUrl: require('static/image/sisivc/pingwei/1.jpg')},
       ],
       animationName: '',
       parterList: [],

@@ -3,16 +3,16 @@
     <div class="foot" id="foot">
       <div class="foot-item">
         <div class="left">
-          <div class="plate" style="background-image: url(../../../static/image/sisivc/foot/address@4x.png);">
+          <div class="plate" :style="{backgroundImage:`url(${require('static/image/sisivc/foot/address@4x.png')})`}">
             <h3>地址</h3>
             <p>中国·上海市徐汇区复兴中路1380号</p>
           </div>
-          <div class="plate" style="background-image: url(../../../static/image/sisivc/foot/email@4x.png);margin-top:40px;">
+          <div class="plate" :style="{backgroundImage:`url(${require('static/image/sisivc/foot/email@4x.png')})`}">
             <h3>邮箱</h3>
             <p>adminoffice@Competition.com</p>
           </div>
         </div>
-        <div class="center plate" style="background-image: url(../../../static/image/sisivc/foot/subway@4x.png);">
+        <div class="center plate" :style="{backgroundImage:`url(${require('static/image/sisivc/foot/subway@4x.png')})`}">
           <h3>地铁</h3>
           <ul>
             <li>
@@ -42,22 +42,22 @@
           </ul>
         </div>
         <div class="right" style="padding-left:60px">
-          <div class="plate" style="background-image: url(../../../static/image/sisivc/foot/bus@4x.png);">
+          <div class="plate" :style="{backgroundImage:`url(${require('static/image/sisivc/foot/bus@4x.png')})`}">
             <h3>公交</h3>
             <p>15/26/42/45/49/96/167/198/315/320<br>327/824/830/911/920/926/927</p>
           </div>
         </div>
       </div>
       <div class="link-div">
-        <a style="background-image: url(../../../static/image/sisivc/foot/w0.png);">
+        <a :style="{backgroundImage:`url(${require('static/image/sisivc/foot/w0.png')})`}">
           <div class="hover-div"></div>
         </a>
-        <a style="background-image: url(../../../static/image/sisivc/foot/b0.png);">
-          <div class="hover-div" style="background-image: url(../../../static/image/sisivc/foot/wechat.jpg);"></div>
+        <a :style="{backgroundImage: `url(${require('static/image/sisivc/foot/b0.png')}`}">
+          <div class="hover-div"></div>
         </a>
-        <a style="background-image: url(../../../static/image/sisivc/foot/f0.png);"></a>
-        <a style="background-image: url(../../../static/image/sisivc/foot/tw0.png);"></a>
-        <a style="background-image: url(../../../static/image/sisivc/foot/ins0.png);"></a>
+        <a :style="{backgroundImage: `url(${require('static/image/sisivc/foot/f0.png')}`}"></a>
+        <a :style="{backgroundImage: `url(${require('static/image/sisivc/foot/w0.png')}`}"></a>
+        <a :style="{backgroundImage: `url(${require('static/image/sisivc/foot/ins0.png')}`}"></a>
       </div>
     </div>
     <div class="foot-black">
