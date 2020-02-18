@@ -35,19 +35,20 @@
       </div>
     </div>
     <div :style="{position:'absolute',bottom:'0px',width:'100%',backgroundColor:themeColor}">
-      <div class="flex-center" :style="{backgroundColor:'#FFFFFF33',height:'30px',color:'white',width:'100%'}">点击购票</div>
+      <div class="flex-center" :style="{backgroundColor:'#FFFFFF33',height:'30px',color:'white',fontWeight:'bold',width:'100%'}">点击购票</div>
     </div>
   </div>
 </template>
 
 <script>
   import divider from '../../base/divider/divider'
+  import { kpiWatchDetail } from 'apx'
   export default({
     name: 'watchitem',
     props: {
-      watchData: {
-        type: Object,
-        default: {}
+      watchId: {
+        type: String,
+        default: ''
       },
       themeColor: {
         type: String,
@@ -59,11 +60,24 @@
     },
     data() {
       return {
+        watchData: {},
         currentEye: ''
       }
     },
+    created () {
+      this.getDetail()
+    },
     methods:{
-      
+      getDetail(){
+        let _this = this
+        let param = {
+          id: this.watchId,
+          language: JSON.parse(window.localStorage.getItem('immi_language'))
+        }
+        kpiWatchDetail(param, this).then((res) => {
+          _this.watchData = res.data.data
+        })
+      },
     }
   })
 </script>

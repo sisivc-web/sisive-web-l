@@ -1,53 +1,46 @@
 <template>
-  <div
-    ref="popper"
-    style="width:220px;"
-    class="item-popover"
-    v-show="showPopper"
-    :style="{backgroundColor: themeColor, borderColor: themeColor}">
-    <slot></slot>
-    <div class="item__arrow" :style="{borderRightColor: themeColor}"></div>
-  </div>
+  <span>
+    <div
+      ref="popper"
+      style="width:220px;"
+      class="item-popover"
+      v-show="showPopper"
+      :style="{backgroundColor: themeColor, borderColor: themeColor}">
+      <watchitem :watchId="watchId" :themeColor="themeColor"></watchitem>
+      <div class="item__arrow" :style="{borderRightColor: themeColor}"></div>
+    </div>
+    <slot name="reference"></slot>
+  </span>
 </template>
 
 <script>
 import Popper from 'element-ui/src/utils/vue-popper'
 import { on, off } from 'element-ui/src/utils/dom'
+import watchitem from './watchitem'
 export default {
   name: 'eventpopover',
   mixins: [Popper],
   props: {
-    // visible: Boolean,
+    watchId: String,
     themeColor: {
       type: String,
       default: '#46A58F'
     }
+  },
+  components: {
+    watchitem
   },
   data () {
     return {
       
     }
   },
-  watch: {
-    showPopper (val) {
-      if (!val) {
-        this.$emit('hide')
-        this.doDestroy()
-      }
-    },
-    reference (val) {
-      // 可以监听到reference有改变，难道需要重新创建Popper？
-      console.log('watch::::', val)
-      // this.updatePopper()
-    }
-  },
   mounted() {
     let reference = this.referenceElm = this.reference || this.$refs.reference
-    const popper = this.popper || this.$refs.popper
+    // const popper = this.popper || this.$refs.popper
     on(document, 'click', this.handleDocumentClick)
   },
   destroyed () {
-    console.log('destroyed--------')
     this.doDestroy()
     off(document, 'click', this.handleDocumentClick)
   },
@@ -66,6 +59,7 @@ export default {
         !popper ||
         popper.contains(e.target)) return
       this.showPopper = false
+      // this.$destroy()
       // this.$emit('hide')
       // this.doDestroy()
     }

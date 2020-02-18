@@ -28,14 +28,15 @@
               @dateClick="handleDateClick"
               @eventClick="handleEventClick"
               :plugins="calendarPlugins" />
-              <eventpopover
+              <!-- <eventpopover
                 ref="eventpopper"
                 :reference="eventEl"
                 placement="right-start"
                 :themeColor="themeColor"
                 v-model="popoverVisible">
                 <watchitem :watchData="watchData" :themeColor="themeColor"></watchitem>
-              </eventpopover>
+              </eventpopover> -->
+              <div ref="popperRef"></div>
           </div>
           <!-- <div class="date"></div> -->
         </div>
@@ -93,6 +94,8 @@
   import eventpopover from './event-popover'
   import divider from '../../base/divider/divider'
   import watchitem from './watchitem'
+  import Vue from 'vue'
+  // import vue from 'vue/dist/vue.js'
   export default({
     components: {
       MAnchor,
@@ -104,8 +107,8 @@
     data() {
       return {
         receiveIndex:0,
-        watchData:'',//观赛详情
-        watchDataIndex:'',//观赛主页
+        watchData: {},//观赛详情
+        watchDataIndex: {},//观赛主页
         date:'2019-11-22',
         eventEl: null,
         themeColor: '',
@@ -127,8 +130,39 @@
         this.popoverVisible = true
         this.eventEl = evt.el // 这里不会更新Popper绑定的reference？
         this.themeColor = evt.event.backgroundColor
+        // console.log(self.watchData)
+        // let cmpt = vue.extend({
+        //   template: `
+        //     <eventpopover
+        //         ref="eventpopper"
+        //         reference="${evt.el}"
+        //         placement="right-start"
+        //         themeColor="${evt.event.backgroundColor}">
+        //         <watchitem watchId="${evt.event.id}" themeColor="${self.themeColor}"></watchitem>
+        //       </eventpopover>
+        //   `,
+        //   components: {
+        //     eventpopover,
+        //     watchitem
+        //   }
+        // })
+        // new cmpt().$mount(this.$refs.popperRef)
+        let cmpt = Vue.extend(eventpopover)
+        let mountEl = this.$refs.popperRef
+        new cmpt({
+          el: mountEl,
+          propsData: {
+            watchId: evt.event.id,
+            reference: evt.el,
+            placement: "right-start",
+            themeColor: evt.event.backgroundColor
+          }
+        }).showPopper = true
+        // let cmptitem = Vue.extend(watchitem)
+        // let watchcmpt = new cmptitem().$mount()
+        // instance.$el.appendChild(watchcmpt.$el)
         // this.$refs.popper.show()
-        this.getEventDetail(evt.event.id)
+        // this.getEventDetail(evt.event.id)
       },
       getEventDetail(idx,date){
         let _this = this
