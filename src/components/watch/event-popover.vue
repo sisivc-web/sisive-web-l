@@ -48,7 +48,6 @@ export default {
     handleDocumentClick(e) {
       let reference = this.reference || this.$refs.reference;
       const popper = this.popper || this.$refs.popper;
-      // console.log('========', popper)
       if (!reference && this.$slots.reference && this.$slots.reference[0]) {
         reference = this.referenceElm = this.$slots.reference[0].elm;
       }
@@ -59,7 +58,7 @@ export default {
         !popper ||
         popper.contains(e.target)) return
       this.showPopper = false
-      // this.$destroy()
+      this.$destroy() // 需要手动destroy
       // this.$emit('hide')
       // this.doDestroy()
     }
