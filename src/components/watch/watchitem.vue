@@ -28,14 +28,14 @@
         <div style="margin: 12px 0;color:white;font-weight:bold;" class="flex-between">
           <span>{{group.orchestraTitle}}</span>
           <div>{{group.nationality}}</div>
-          <span>{{group.type || '乐团'}}</span>
+          <span>{{group.type}}</span>
           <div v-show="currentEye !== 'group'+group.id"><i class="el-icon-view" @click="currentEye='group'+group.id"></i></div>
           <img v-show="currentEye == 'group'+group.id" :src="group.image" style="width:44px;"/>
         </div>
       </div>
     </div>
     <div :style="{position:'absolute',bottom:'0px',width:'100%',backgroundColor:themeColor}">
-      <div class="flex-center" :style="{backgroundColor:'#FFFFFF33',height:'30px',color:'white',fontWeight:'bold',width:'100%'}">点击购票</div>
+      <div class="flex-center" :style="{backgroundColor:'#FFFFFF33',height:'30px',color:'white',fontWeight:'bold',width:'100%'}" @click="_buyTicket">点击购票</div>
     </div>
   </div>
 </template>
@@ -78,6 +78,13 @@
           _this.watchData = res.data.data
         })
       },
+      _buyTicket () {
+        if (this.watchData.ticketAddress) {
+          window.open(this.watchData.ticketAddress)
+        } else {
+          window.open('http://www.baidu.com')
+        }
+      }
     }
   })
 </script>
