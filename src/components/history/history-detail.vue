@@ -121,7 +121,6 @@ export default {
       })
     },
     _getData(year) {
-      debugger
       let param = {
         reviewId: year ? year : this.reviewId,
         language: JSON.parse(window.localStorage.getItem('immi_language'))

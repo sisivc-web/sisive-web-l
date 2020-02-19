@@ -129,7 +129,8 @@
         </home-item-solt>
         <home-item-solt :itemName="'parter-div'" :title="$t('partners')" :isShowMore="false" v-if="judgesListSource.length > 0">
           <div slot="detail">
-            <div class="sub-item" v-for="(el,i) in parterList" :key="i">
+            <partner-list :parterList="parterList"></partner-list>
+            <!-- <div class="sub-item" v-for="(el,i) in parterList" :key="i">
               <h3 class="sub-h3">{{el.level}}</h3>
               <div style="border-top: 1px solid #80808030;padding-top:40px;" v-if="el.levelId === 1">
                 <img :src="el.partnerVoList[0].logoUrl">
@@ -147,7 +148,7 @@
                   </el-col>
                 </el-row>
               </div>
-            </div>
+            </div> -->
           </div>
         </home-item-solt>
       </div>
@@ -163,26 +164,22 @@ import MAnchor from 'components/m-anchor/m-anchor'
 import MemberContainer from 'components/commonComponents/member-container'
 import MemberItem from 'components/commonComponents/member-item'
 import HomeItemSolt from 'components/home/home-item-solt'
-// import Divider from 'base/divider/divider'
 import AwardList from 'components/home/award-list'
+import PartnerList from 'components/home/partner-list'
+// import Divider from 'base/divider/divider'
 export default {
   components: {
     MAnchor,
     MemberContainer,
     MemberItem,
     HomeItemSolt,
-    AwardList
+    AwardList,
+    PartnerList
   },
   data() {
     return {
       carouselHeight: '980',
-      carousellist: [
-        {desp:'你好呀', imageUrl: 'static/image/home/zs/carousel_01.jpeg', targetUrl: ''},
-        {desp:'两只老虎爱跳舞', imageUrl: 'static/image/home/zs/carousel_03.jpeg', targetUrl: ''},
-        {desp:'小屋子乖乖拔萝卜', imageUrl: 'static/image/home/zs/carousel_02.jpeg', targetUrl: ''},
-        {desp:'这首歌很不多哦', imageUrl: 'static/image/home/zs/carousel_04.jpeg', targetUrl: ''},
-        {desp:'童年你的童年我等童年', imageUrl: 'static/image/home/zs/carousel_05.jpeg', targetUrl: ''},
-      ],
+      carousellist: [],
       carousellistIndex: 0,
       isFixed: false,
       newsList: [],
@@ -193,14 +190,10 @@ export default {
       nowClickAward: '',
       finalObj: [],
       judgesListSource: [
-        {name: '大卫·斯特恩', country: '美国', imageUrl: require('static/image/sisivc/pingwei/1.jpg')},
+        // {name: '大卫·斯特恩', country: '美国', imageUrl: require('static/image/sisivc/pingwei/1.jpg')},
       ],
-      artistsListSource: [
-        {name: '大卫·斯特恩', country: '美国', imageUrl: require('static/image/sisivc/pingwei/1.jpg')},
-      ],
-      playersListSource: [
-        {name: '斯雷滕·克里斯蒂奇', country: '塞尔维亚/德国', imageUrl: require('static/image/sisivc/pingwei/1.jpg')},
-      ],
+      artistsListSource: [],
+      playersListSource: [],
       animationName: '',
       parterList: [],
     }

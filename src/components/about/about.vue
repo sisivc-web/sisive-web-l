@@ -1,6 +1,6 @@
 <template>
 <div class="containerA">
-  <m-anchor :contentDivClass="'AboutGame'" :anchorItem="'anchor-item'" :subNavList="[$t('subNavs.aboutUs1'), $t('subNavs.aboutUs2'), $t('subNavs.aboutUs3'), $t('subNavs.aboutUs4'), $t('subNavs.aboutUs5')]"></m-anchor>  
+  <m-anchor :contentDivClass="'AboutGame'" :anchorItem="'anchor-item'" :subNavList="[$t('subNavs.aboutUs1'), $t('subNavs.partner'), $t('subNavs.aboutUs2'), $t('subNavs.aboutUs5'), $t('subNavs.aboutUs6')]"></m-anchor>  
   <div class="AboutGame other">
     <div class="mainBox block clearfix">
       <div class="flexBox anchor-item">
@@ -17,6 +17,11 @@
         </div>
       </div>
       <!--关于比赛-->
+      <home-item-solt :itemName="'parter-div'" :title="$t('partners')" :isShowMore="false">
+        <div slot="detail">
+          <partner-list :parterList="awardsVoList.partnerLevelVoList"></partner-list>
+        </div>
+      </home-item-solt>
       <div class="ItemV anchor-item">
         <h3>织织架构</h3>
         <div class="ItemDl">
@@ -35,7 +40,7 @@
         </div>
       </div>
       <!--组织架构-->
-      <div class="ItemV anchor-item" style="padding-top: 103px;">
+      <!-- <div class="ItemV anchor-item" style="padding-top: 103px;">
         <h3>奖项</h3>
         <div class="ItemDl">
           <ul class="awardList">
@@ -54,12 +59,11 @@
             </li>
           </ul>
         </div>
-      </div>
+      </div> -->
       <!--奖项-->
-      <div class="Point anchor-item">
+      <!-- <div class="Point anchor-item">
         <h2>评分规则</h2>
         <div class="boxPanel">
-          <!-- {{awardsVoList.rulesScheduleVos}} -->
           <div class="fl ItemLst" v-for="(item,index) in awardsVoList.rulesScheduleVos" :key="index">
             <h3>{{item.scheduleName}}</h3>
             <div class="ruleContent">
@@ -72,7 +76,7 @@
           </div>
         </div>
         <div class="downloadPoint"><router-link tag="a" to="/download" class="download"></router-link><p>下载评分规则</p></div>
-      </div>
+      </div> -->
     </div>
     <!--图片-->
     <div class="boxImg">
@@ -87,12 +91,12 @@
             <h3>{{awardsVoList.venueTitle}}</h3>
             <div class="ruleContent" style="padding-top:20px">
                 <p>{{awardsVoList.venueDescription}}</p>
-  
               </div>
           </div>
           </div>
       </div>
     </div>
+    <download-item :title="$t('subNavs.aboutUs6')" :downloadList="awardsVoList.resourceVoList"></download-item>
  </div>
 </div>
 </template>
@@ -100,9 +104,15 @@
 <script>
 import { kpiAboutUs } from 'apx'
 import MAnchor from 'components/m-anchor/m-anchor'
+import HomeItemSolt from 'components/home/home-item-solt'
+import PartnerList from 'components/home/partner-list'
+import DownloadItem from 'components/about/download-item'
 export default {
   components: {
-    MAnchor
+    MAnchor,
+    HomeItemSolt,
+    PartnerList,
+    DownloadItem
   },
   data() {
     return {
@@ -137,21 +147,32 @@ export default {
 <style>
 	.containerA{width: 100%;}
 	.containerA .other .block{width: 1140px; margin: 0 auto; padding: 50px 0 0;}
-	 /* 大屏幕 ：大于等于1200px*/
-	 @media (min-width: 1920px) {
-	 .containerA .other .block {
-	     width: 1560px;
-	     margin: 0 auto;
-	     padding-top: 50px;
-	 }
-	 }
+    /* 大屏幕 ：大于等于1200px*/
+    @media (min-width: 1920px) {
+        .containerA .other .block {
+            width: 1560px;
+            margin: 0 auto;
+            padding-top: 50px;
+        }
+        .containerA .other .parter-div.block {
+          width: 100%;
+        }
+    }
 	 @media (min-width: 1500px) and (max-width: 1920px) {
-	 .containerA .other .block {
-	     width: calc(100% - 360px);
-	     min-width: 1140px;
-	     margin: 0 auto;
-	 }
-	 }
+    .containerA .other .block {
+      width: calc(100% - 360px);
+      min-width: 1140px;
+      margin: 0 auto;
+    }
+
+    .containerA .other .parter-div.block {
+      width: 100%;
+    }
+   }
+   
+    .containerA .other .parter-div.block {
+      width: 100%;
+    }
 	 .clearfix:after {
 	     content: '';
 	     display: block;

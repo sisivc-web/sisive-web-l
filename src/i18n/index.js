@@ -36,6 +36,7 @@ const messages = {
       lawyer: 'Lawyer',
       others: 'Others'
     },
+    name: 'Shanghai Symphony Orchestra',
     home: 'Home',
     aboutus: 'AboutUs',
     view: 'View',
@@ -59,6 +60,7 @@ const messages = {
       aboutUs3: 'Awards',
       aboutUs4: 'Rule',
       aboutUs5: 'Address',
+      aboutUs6: 'Download',
       enroll1: 'Brief Introduction',
       enroll2: 'Competition Schedule',
       enroll3: 'Competition Track',
@@ -227,6 +229,7 @@ const messages = {
       lawyer: '澳洲注册律师',
       others: '其他'
     },
+    name: '上海交响乐团',
     home: '首页',
     aboutus: '关于我们',
     view: '观赛',
@@ -250,6 +253,7 @@ const messages = {
       aboutUs3: '奖项',
       aboutUs4: '评分规则',
       aboutUs5: '比赛场地',
+      aboutUs6: '下载',
       enroll1: '报名链接',
       enroll2: '参赛须知',
       enroll3: '比赛曲目',
