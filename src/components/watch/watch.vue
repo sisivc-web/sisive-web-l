@@ -5,7 +5,7 @@
         <div class="anchor-item">
           <div class="header">
             <div class="mainBox block clearfix">
-              <h3 class="title" style="padding: 10px 0 12px;color:#222222;font-size:16px;font-weight:bold;">比赛日程</h3>
+              <h3 class="title" style="padding: 10px 0 12px;color:#222222;font-size:16px;font-weight:bold;">{{$t('subNavs.watch1')}}</h3>
               <div class="flex-start">
                 <div class="flex-start item" v-for="(item, index) in watchDataIndex.scheduleVoList" :key="index">
                   <div class="circle" :style="{background:item.themeColor}"></div>
@@ -23,7 +23,7 @@
                 center: 'prev title next',
                 right: ''
               }"
-              locale="zh-cn"
+              :locale="locale == 'zh_CN' ? 'zh-cn' : 'en'"
               :events="calendarEvents"
               @eventClick="handleEventClick"
               :plugins="calendarPlugins" />
@@ -33,7 +33,7 @@
         </div>
         <!--直播地址-->
         <div class="mainBox block clearfix anchor-item">
-           <h3 class="title" style="padding-bottom: 33px;">直播地址</h3>
+           <h3 class="title" style="padding-bottom: 33px;">{{$t('subNavs.watch2')}}</h3>
            <ul class="Broad_add">
               <li v-for="(item, index) in watchDataIndex.broadcastAddressVoList" :key="index">
                 <div class="Broad_add_div">
@@ -48,18 +48,18 @@
         </div>
         <!--观赛须知-->
         <div v-if="watchDataIndex.noticeVoList" class="mainBox block clearfix guidelines anchor-item">
-          <h3 class="title" style="padding:80px 0 26px 0;">观赛须知</h3><!--一级标题-->
+          <h3 class="title" style="padding:80px 0 26px 0;">{{$t('subNavs.watch3')}}</h3><!--一级标题-->
           <h4 v-if="watchDataIndex.noticeVoList.length>0">{{watchDataIndex.noticeVoList[0].content}}</h4><!--二级标题-->
           <p v-for="(item, index) in watchDataIndex.noticeVoList.slice(1)" :key="index">{{index+1}}.{{item.content}}</p>
         </div>
         <!--订票方式-->
         <div class="mainBox block clearfix guidelines anchor-item">
-          <h3 class="title" style="padding:63px 0 7px 0;">订票方式</h3><!--一级标题-->
+          <h3 class="title" style="padding:63px 0 7px 0;">{{$t('subNavs.watch4')}}</h3><!--一级标题-->
           <div v-for="(item,index) in watchDataIndex.bookingWayVoList" :key="index">
           <h5 v-if="item.booking">{{item.booking}}</h5><!--二级标题-->
           <p v-if="item.content">{{item.content}}</p>
-          <p v-if="item.date">工作时间：{{item.date}}</p>
-          <p v-if="item.address">地址：{{item.address}}</p>
+          <p v-if="item.date">{{$t('officeTime')}}：{{item.date}}</p>
+          <p v-if="item.address">{{$t('address')}}：{{item.address}}</p>
           <p class="grey" v-if="item.tips">{{item.tips}}</p>
           <!--
           <p>您可登陆上海交响乐团官方网站 www.shsymphony.com 进行在线选座购票。</p>
@@ -99,6 +99,11 @@
         calendarPlugins: [ dayGridPlugin, interactionPlugin ]
       }
     },
+    computed: {
+      locale () {
+        return JSON.parse(window.localStorage.getItem('immi_language'))
+      }
+    },
     mounted () {
       this.showData()
     },
@@ -119,8 +124,7 @@
       showData(){
         let _this = this
         let param = {	
-          // id: '1',			 
-          language: JSON.parse(window.localStorage.getItem('immi_language'))
+          language: this.locale
         }
         kpiWatch(param, this).then((res) => {
           let data = res.data.data
@@ -215,7 +219,7 @@
 	
   .header{background: white;height: 100px;}
   .mainBox .title{color: #1e2022;font-size: 24px;font-weight: 700; padding-bottom: 40px;}
-  .item{width: 120px; font-size: 12px;font-weight: bold;margin-right: 54px;}
+  .item{min-width: 120px; max-width: 160px;font-size: 12px;font-weight: bold;margin-right: 54px;}
   .circle{width: 10px;height: 10px;border-radius: 50%;margin-right: 10px;}
   /*----直播地址*/
   .Broad_add{display: grid;grid-template-columns:0.5fr 0.5fr;grid-template-rows:auto;}
