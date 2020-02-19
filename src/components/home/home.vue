@@ -578,7 +578,7 @@ export default {
         .el-card
           margin-bottom: 30px!important;
       .temp-read
-        margin-top: -62px;
+        margin-top: -68px;
         position: relative;
         .button
           color: $color-item-more;

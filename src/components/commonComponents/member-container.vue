@@ -20,9 +20,9 @@
         </div>
         <el-row v-if="data.length > 8">
             <el-col :span="24">
-            <div :class="['more-div', nowType===typeName && showMoreList?'rotate':'']" @click="moreClick(typeName)">
-                <img :src="require('static/image/sisivc/arrow2.png')">
-            </div>
+                <div :class="['more-div', nowType===typeName && showMoreList?'rotate':'']" @click="moreClick(typeName)">
+                    <img :src="require('static/image/sisivc/arrow2.png')">
+                </div>
             </el-col>
         </el-row>
     </div>

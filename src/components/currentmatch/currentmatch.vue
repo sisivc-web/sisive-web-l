@@ -3,7 +3,47 @@
     <div class="other">
       <m-anchor :contentDivClass="'home-anchor-container'" :anchorItem="'anchor-item'" :subNavList="[$t('subNavs.enroll1'), $t('subNavs.enroll2'), $t('subNavs.enroll3'), $t('subNavs.enroll4'), $t('subNavs.enroll5'), $t('subNavs.enroll6'), $t('subNavs.enroll7'), $t('subNavs.enroll8'), $t('subNavs.enroll9')]"></m-anchor>
       <div class="home-anchor-container">
-        
+        <home-item-solt :itemName="'enroll-div'" :title="$t('subNavs.enroll1')" :isShowMore="false" :marginBottom="'0'">
+          <div slot="detail">
+            <a class="enroll-a">
+              <div class="item">
+                <h2>点击报名</h2>
+              </div>
+              <div class="item">
+                <span>点击进入报名页面</span>
+                <i class="el-icon-edit-outline"></i>
+              </div>
+            </a>
+          </div>
+        </home-item-solt>
+        <div class="">
+          <div>
+            <home-item-solt :itemName="'enroll2-div'" :title="$t('subNavs.enroll2')" :isShowMore="false" :marginBottom="'30px'">
+              <div slot="detail">
+                
+              </div>
+            </home-item-solt>
+          </div>
+          <div>
+            <home-item-solt :itemName="'enroll3-div'" :title="$t('subNavs.enroll3')" :isShowMore="false" :marginBottom="'30px'">
+              <div slot="detail">
+                
+              </div>
+            </home-item-solt>
+
+          </div>
+        </div>
+        <home-item-solt :itemName="'schedul-div'" :title="$t('subNavs.enroll4')" :isShowMore="false" :marginBottom="'30px'">
+          <div slot="detail">
+            <ul class="schedul-ul">
+              <li v-for="(item, index) in schedulDdata" :key="index">
+                <p>{{item.title}}</p>
+                <p>{{item.time}}</p>
+                <p>{{item.remarks}}</p>
+              </li>
+            </ul>
+          </div>
+        </home-item-solt>
         <home-item-solt :itemName="'member-div'" :title="$t('judges')" :isShowMore="false" :marginBottom="'30px'">
           <div slot="detail">
             <member-container :data="judgesListSource" :typeName="'judges'">
@@ -88,6 +128,18 @@ export default {
       ],
       animationName: '',
       parterList: [],
+      schedulDdata: [
+        {title: '在线申请截止时间', time: '2020年1月20日 23:59:00', remarks: '（北京时间）'},
+        {title: '预选视频上传截止时间：', time: '2020年1月20日 23:59:00', remarks: '（北京时间）'},
+        {title: '预选：', time: '2020年3月20日', remarks: ''},
+        {title: '预选结果公布： ', time: '2020年4月', remarks: ''},
+        {title: '选手报到： ', time: '2020年8月1日', remarks: ''},
+        {title: '比赛开幕： ', time: '2020年8月4日', remarks: ''},
+        {title: '四分之一决赛： ', time: '2020年8月5日-7日', remarks: ''},
+        {title: '半决赛： ', time: '2020年8月10日-16日', remarks: ''},
+        {title: '决赛： ', time: '2020年8月21日-23日', remarks: ''},
+        {title: '决闭幕音乐会：  ', time: '2020年8月25日', remarks: ''}
+      ],//比赛日程数据
     }
   },
   created() {
@@ -106,32 +158,32 @@ export default {
         let tempJurys = results.jurys
         let tempArtists = results.artists
 
-        this.judgesListSource = tempJurys.map(el => {
+        this.judgesListSource = tempJurys ? tempJurys.map(el => {
           return {
             id: el.id,
             name: el.userName,
             imageUrl: el.image,
             country: el.nationality,
           }
-        })
+        }) : []
 
-        this.playersListSource = tempPlayers.map(el => {
+        this.playersListSource = tempPlayers ? tempPlayers.map(el => {
           return {
             id: el.id,
             name: el.userName,
             imageUrl: el.image,
             country: el.nationality,
           }
-        })
+        }) : []
 
-        this.artistsListSource = tempArtists.map(el => {
+        this.artistsListSource = tempArtists ? tempArtists.map(el => {
           return {
             id: el.id,
             name: el.userName,
             imageUrl: el.image,
             country: el.nationality,
           }
-        })
+        }) : []
 
 
       })
@@ -148,6 +200,41 @@ export default {
   .other
     @extend .flex
     @extend .flex-column
+    .enroll-a
+      display: -webkit-box
+      display: -webkit-flex
+      display: -ms-flexbox
+      display: flex
+      justify-content: space-between
+      align-items: center
+      height: 80px;
+      line-height: 60px;
+      border-top: 1px solid #E9E9E9;
+      border-bottom: 1px solid #E9E9E9;
+      margin-top: 20px;
+      cursor: pointer; 
+      h2
+        color: $color-item-title;
+        font-size: $font-size-item-title;
+        font-weight: bold;
+      span, i 
+        font-size:12px;
+        color:#a0a0a1;
+      i 
+        color: #BFBFBF;
+        padding-left: 20px;
+
+    .schedul-ul
+      overflow: hidden
+      li
+        width: 20%;
+        display: block;
+        float: left;
+        height: 80px;
+        font-size:12px;
+        color:#a0a0a1;
+        line-height: 20px;
+        padding-top: 20px;
 @-webkit-keyframes myfirst{
     0% {
         transform: translate(0px, 0px);
