@@ -33,17 +33,17 @@
         </div>
         <!--直播地址-->
         <div class="mainBox block clearfix anchor-item">
-           <h3 class="title" style="padding-bottom: 33px;">{{$t('subNavs.watch2')}}</h3>
-           <ul class="Broad_add">
-              <li v-for="(item, index) in watchDataIndex.broadcastAddressVoList" :key="index">
-                <div class="Broad_add_div">
-                  <img :src="item.iconUrl" />
-                  <div class="fl" style="padding-left: 40px;">
-                    <p>{{item.title}}</p>
-                    <p><router-link tag="a" :to ="item.externalLink">{{item.description}}</router-link></p>
-                  </div>
+          <h3 class="title" style="padding-bottom: 33px;">{{$t('subNavs.watch2')}}</h3>
+          <ul class="Broad_add">
+            <li v-for="(item, index) in watchDataIndex.broadcastAddressVoList" :key="index">
+              <div class="Broad_add_div">
+                <img :src="item.iconUrl" style="width:80px;" />
+                <div class="fl" style="padding-left: 40px;">
+                  <p>{{item.title}}</p>
+                  <p><router-link tag="a" :to ="item.externalLink">{{item.description}}</router-link></p>
                 </div>
-              </li>
+              </div>
+            </li>
           </ul>
         </div>
         <!--观赛须知-->
@@ -56,23 +56,14 @@
         <div class="mainBox block clearfix guidelines anchor-item">
           <h3 class="title" style="padding:63px 0 7px 0;">{{$t('subNavs.watch4')}}</h3><!--一级标题-->
           <div v-for="(item,index) in watchDataIndex.bookingWayVoList" :key="index">
-          <h5 v-if="item.booking">{{item.booking}}</h5><!--二级标题-->
-          <p v-if="item.content">{{item.content}}</p>
-          <p v-if="item.date">{{$t('officeTime')}}：{{item.date}}</p>
-          <p v-if="item.address">{{$t('address')}}：{{item.address}}</p>
-          <p class="grey" v-if="item.tips">{{item.tips}}</p>
-          <!--
-          <p>您可登陆上海交响乐团官方网站 www.shsymphony.com 进行在线选座购票。</p>
-          <a href="javascript:void(0)" class="abuyTicket"><i class="buyTicket"></i>点击购票</a>
-          <h5>{{item.booking}}</h5>
-          <p>您也可前往上海交响乐团售票中心购票。</p>
-          <p>工作时间：9:00-20:00。</p>
-          <p>地址：上海市徐汇区复兴中路1380号 售票中心。</p> -->
+            <div v-if="item.booking" v-html="item.booking"></div><!--二级标题-->
+            <p v-if="item.content">{{item.content}}</p>
+            <p v-if="item.date">{{$t('officeTime')}}：{{item.date}}</p>
+            <p v-if="item.address">{{$t('address')}}：{{item.address}}</p>
+            <p class="grey" v-if="item.tips">{{item.tips}}</p>
+          </div>
         </div>
-      </div>
-      
      </div>
-    <!--end-->
   </div>
 </template>
 
@@ -230,7 +221,7 @@
 	   .Broad_add li .Broad_add_div .iconVideo{background-position: left -101px;}
 	   .Broad_add li:hover .Broad_add_div .iconAdd{background-position:-64px -209px;}
 	   .Broad_add li:hover .Broad_add_div .iconVideo{background-position:-64px -99px;} */
-	   .Broad_add li .Broad_add_div img{float: left;margin-top: 41px; margin-left: -50px; display: inline-block;opacity:1;transition:opacity .35s ease-out;background-color:#fff;pointer-events:auto!important;-webkit-transition: all .2s ease-in-out 0s;
+	   .Broad_add li .Broad_add_div img{float: left;margin-top: 41px; margin-left: -50px; display: block;opacity:1;transition:opacity .35s ease-out;background-color:#fff;pointer-events:auto!important;-webkit-transition: all .2s ease-in-out 0s;
 		transition: all .2s ease-in-out 0s}
 	   .Broad_add li:hover .Broad_add_div img{opacity:.75!important;-webkit-transform: scale(1.1) translateZ(0);
 		-webkit-transform-origin: 50%;
@@ -245,9 +236,9 @@
 	   .boxImg{position: relative; width: 100%;height: 100%; margin-bottom: 78px;}
 	   .boxImg img{width: 100%;height: 100%;}
 	   /*----观赛须知*/
-	   .guidelines h4,.guidelines h5{font-size: 15px; color: #222; font-weight: 700; padding:5px 0 34px 0}
+	   .guidelines h4,.guidelines{font-size: 15px; color: #222; font-weight: 700; padding:5px 0 34px 0}
 	   .guidelines p{font-size: 14px; line-height: 24px; padding-bottom: 7px; color: #4c4948;}
-	   .guidelines h5{font-size: 14px; padding:39px 0 8px;color: #4c4948;}
+	   .guidelines div{font-size: 14px; padding:10px 0 8px;color: #4c4948;}
 	   .guidelines .grey{color: #a0a0a1;}
 	   .guidelines .abuyTicket .buyTicket{background: url('~static/image/sisivc/moreAdvisers/icon@2x.png') no-repeat left top; display:block; width: 46px;height: 46px;}
 	   .guidelines .abuyTicket:hover .buyTicket{background-position: -44px top;}
