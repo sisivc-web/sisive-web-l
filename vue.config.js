@@ -9,7 +9,7 @@ module.exports = {
     // assetsPublicPath: '/',
     proxy: {
       '/sisivc': {
-        target: 'http://116.62.103.169:8080/sisivc',
+        target: 'http://116.62.103.169:9527/sisivc',
         changeOrigin: true,
         pathRewrite: {
           '^/sisivc': ''
