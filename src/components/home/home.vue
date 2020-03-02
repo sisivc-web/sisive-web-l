@@ -324,7 +324,13 @@ export default {
         }) : []
         //最后一个元素为封面
         if(this.awardUserList.length > 0) {
-          this.finalObj = this.awardUserList.splice(this.awardUserList.length - 1, 1)
+          let tempIndex = -1
+          this.finalObj = this.awardUserList.filter((el, index) => {
+            el.awardName === '不能删' && (tempIndex = index)
+            return el.awardName === '不能删'
+          })
+          this.awardUserList.splice(tempIndex, 1)
+          // this.finalObj = this.awardUserList.splice(this.awardUserList.length - 1, 1)
           this.$nextTick(() => {
             this.awardUserImgUrl = this.finalObj[0].imgUrl
             // this.awardItemLoad()
@@ -396,7 +402,7 @@ export default {
           font-weight: bold;
           color: #fff;
           position: absolute;
-          bottom: 20%;
+          bottom: 30%;
           text-align: center;
           width: 100%;
         video
