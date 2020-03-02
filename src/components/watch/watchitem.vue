@@ -20,6 +20,7 @@
         <div style="margin: 12px 0;color:white;font-weight:bold;" class="flex-between">
           <div>{{artist.userName}}</div>
           <div>{{artist.nationality}}</div>
+          <span>{{artist.type | personFilter}}</span>
           <div v-show="currentEye !== 'artist'+artist.id"><i class="el-icon-view" @click="currentEye='artist'+artist.id"></i></div>
           <img v-show="currentEye == 'artist'+artist.id" :src="artist.image" style="width:44px;"/>
         </div>
@@ -43,6 +44,17 @@
 <script>
   import divider from '../../base/divider/divider'
   import { kpiWatchDetail } from 'apx'
+  // <!-- 人员类型：1 评委，2：选手，3 艺术家 -->
+  let typeNames = {
+    'zh_CN': {
+      '1': '评委',
+      '2': '艺术家'
+    },
+    'en': {
+      '1': 'Judge',
+      '2': 'Artist'
+    }
+  }
   export default({
     name: 'watchitem',
     props: {
@@ -62,6 +74,12 @@
       return {
         watchData: {},
         currentEye: ''
+      }
+    },
+    filters: {
+      personFilter (val) {
+        let locale = JSON.parse(localStorage.getItem('immi_language'))
+        return typeNames[locale][val]
       }
     },
     created () {
