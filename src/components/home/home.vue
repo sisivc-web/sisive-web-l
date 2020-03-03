@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container home-anchor-container">
     <div class="other">
       <div class="carousel">
         <el-carousel :interval="5000" :height="carouselHeight + 'px'" arrow="never" indicator-position="none" @change="_change" ref="carousel">
@@ -17,16 +17,17 @@
         </div>
       </div>
       <div class="arrow-div" v-show="!isFixed"></div>
-      <!-- <m-anchor :contentDivClass="'home-anchor-container'" :anchorItem="'anchor-item'" :subNavList="[$t('subNavs.news'), $t('subNavs.awardMember'), $t('subNavs.judges'), $t('subNavs.contestant'), $t('subNavs.artist'), $t('subNavs.partner')]"></m-anchor> -->
-      <div class="home-anchor-container">
-        <home-item-solt :itemName="'news-div'" :title="$t('newsList.new')" :isShowMore="true" :more="$t('newsList.more')" @gotoMore="gotoMore" :marginBottom="'60px'" v-if="newsList.length > 0">
+      <!-- <m-anchor :contentDivClass="'home-anchor-container'" :anchorItem="'anchor-item'" :subNavList="[$t('subNavs.news'), awardUserList.length > 0 ? $t('subNavs.awardMember') : '', judgesListSource.length > 0 ? $t('subNavs.judges') : '', playersListSource.length > 0 ? $t('subNavs.contestant') : '', artistsListSource.length > 0 ? $t('subNavs.artist') : '', parterList.length > 0 ? $t('subNavs.partner') : '', 'Ending']"></m-anchor>       -->
+      <m-anchor :contentDivClass="'home-anchor-container'" :anchorItem="'anchor-item'" :subNavList="subNavList"></m-anchor>      
+      <div>
+        <home-item-solt :itemName="'news-div'" :title="$t('newsList.new')" :isShowMore="true" :more="$t('newsList.more')" @gotoMore="gotoMore" :marginBottom="'60px'" v-if="newsList.length > 0" >
           <div slot="detail">
             <div class="details">
               <el-row>
                 <el-col :span="10" v-for="(item, index) in newsList.slice(0, 1)" :key="index" class="left">
                   <el-card :body-style="{ padding: '0px' }">
-                    <a href="javascript:;" class="animation hover-animation"><img :src="item.imageUrl" class="image" style="width:100%;height:auto;"></a>
-                    <div style="padding: 30px 0;padding-bottom:12px;">
+                    <a href="javascript:;" class="animation hover-animation" @click="_gotoNewsDetails(item.id)"><img :src="item.imageUrl" class="image" style="width:100%;height:auto;"></a>
+                    <div style="padding: 30px 0;padding-bottom:12px;" @click="_gotoNewsDetails(item.id)">
                       <span class="title">{{item.title}}</span>
                       <div class="operate">
                         <time class="time">{{item.date}}</time>
@@ -43,8 +44,8 @@
                 <el-col :span="14" class="right">
                   <el-col :span="12" v-for="(item, index) in newsList.slice(1, 5)" :key="index">
                     <el-card :body-style="{ padding: '0px' }">
-                      <a href="javascript:;" class="animation hover-animation"><img :src="item.imageUrl" class="image" style="width:100%;height:auto;"></a>
-                      <div style="padding-top: 10px;">
+                      <a href="javascript:;" class="animation hover-animation" @click="_gotoNewsDetails(item.id)"><img :src="item.imageUrl" class="image" style="width:100%;height:auto;"></a>
+                      <div style="padding-top: 10px;" @click="_gotoNewsDetails(item.id)">
                         <span class="title">{{item.title}}</span>
                         <div class="operate">
                           <time class="time">{{item.date}}</time>
@@ -66,40 +67,6 @@
             <award-list :awardUserList="awardUserList" :awardUserImgUrl="awardUserImgUrl" @handleChange="handleChange"></award-list>
           </div>
         </home-item-solt>
-        <!-- <home-item-solt :itemName="'award-div'" :title="$t('prizeWinners')" :isShowMore="false" :marginBottom="'60px'">
-          <div slot="detail">
-            <div class="details">
-              <el-row>
-                <el-col :span="10" class="left">
-                  <el-collapse accordion @change="handleChange">
-                    <el-collapse-item v-for="(item, index) in awardUserList" :key="index" :name="index + 1" >
-                      <template slot="title">
-                        <el-row ref="awardListItem" :style="{'width' : '100%', 'height' : `${awardItemHeight}` + 'px', 'lineHeight' : `${awardItemHeight}` + 'px'}">
-                          <el-col :span="12" class="left">
-                            <span :title="item.awardName">{{item.awardName}}</span>
-                          </el-col>
-                          <el-col :span="8" class="left">
-                            <span :title="item.userName">{{item.userName}}</span>
-                          </el-col>
-                          <el-col :span="4" class="left">
-                            <span :title="item.country">{{item.country}}</span>
-                          </el-col>
-                        </el-row>
-                      </template>
-                    </el-collapse-item>
-                  </el-collapse>
-                </el-col>
-                <el-col :span="14" class="right">
-                  <transition name="fade">
-                    <a href="javascript:;" class="animation hover-animation" style="display:block;width:calc(100% - 40px);height:auto;overflow:hiddden;margin-left:40px">
-                      <img :src="awardUserImgUrl" :alt="awardUserImgUrl" ref="awardImage" style="width:100%;height:auto;" class="award-img">
-                    </a>
-                  </transition>
-                </el-col>
-              </el-row>
-            </div>
-          </div>
-        </home-item-solt> -->
         <home-item-solt :itemName="'member-div'" :title="$t('judges')" :isShowMore="false" :marginBottom="'30px'" v-if="judgesListSource.length > 0">
           <div slot="detail">
             <member-container :data="judgesListSource" :typeName="'judges'">
@@ -127,33 +94,14 @@
             </member-container>
           </div>
         </home-item-solt>
-        <home-item-solt :itemName="'parter-div'" :title="$t('partners')" :isShowMore="false" v-if="judgesListSource.length > 0">
+        <home-item-solt :itemName="'parter-div'" :title="$t('partners')" :isShowMore="false" v-if="parterList.length > 0">
           <div slot="detail">
             <partner-list :parterList="parterList"></partner-list>
-            <!-- <div class="sub-item" v-for="(el,i) in parterList" :key="i">
-              <h3 class="sub-h3">{{el.level}}</h3>
-              <div style="border-top: 1px solid #80808030;padding-top:40px;" v-if="el.levelId === 1">
-                <img :src="el.partnerVoList[0].logoUrl">
-                <div v-html="el.partnerVoList[0].description" class="desp"></div>
-              </div>
-              <div style="padding-top:0;" v-if="el.levelId > 1">
-                <el-row>
-                  <el-col :span="el.levelId === 2 ? 6 : 3" v-for="(item, index) in el.partnerVoList" :key="index">
-                    <el-card :body-style="{ padding: '0px', paddingBottom: '40px' }">
-                      <div class="logo" :style="{backgroundImage: `${url(require('static/image/sisivc/hezuo/0.png'))}`}">
-                        <img :src="item.logoUrl" style="width:100%;height:auto;">
-                      </div>
-                      <div class="title">{{item.title}}</div>
-                    </el-card>
-                  </el-col>
-                </el-row>
-              </div>
-            </div> -->
           </div>
         </home-item-solt>
       </div>
     </div>
-    <div style="width:100%;overflow:hidden;">
+    <div style="width:100%;overflow:hidden;" class="anchor-item">
       <video src="static/image/sisivc/SISIVC.mp4" class="vedio-css" width="100%" height="auto" controls="controls" :poster="require('static/image/sisivc/poster.jpg')" >您的浏览器不支持 video 标签。</video>
     </div>
   </div>
@@ -182,6 +130,7 @@ export default {
       carousellist: [],
       carousellistIndex: 0,
       isFixed: false,
+      subNavList: [],
       newsList: [],
       // awardItemHeight: 50,
       awardUserList: [],
@@ -364,6 +313,10 @@ export default {
           }
         }) : []
         this.parterList = tempPartnerVos ? tempPartnerVos : []
+        this.subNavList = [this.$i18n.t('subNavs.news'), this.awardUserList.length > 0 ? this.$i18n.t('subNavs.awardMember') : '', this.judgesListSource.length > 0 ? this.$i18n.t('subNavs.judges') : '', this.playersListSource.length > 0 ? this.$i18n.t('subNavs.contestant') : '', this.artistsListSource.length > 0 ? this.$i18n.t('subNavs.artist') : '', this.parterList.length > 0 ? this.$i18n.t('subNavs.partner') : '', 'Ending']
+        this.subNavList = this.subNavList.filter( el => {
+          return el != ''
+        })
       })
     },
   }
@@ -402,7 +355,7 @@ export default {
           font-weight: bold;
           color: #fff;
           position: absolute;
-          bottom: 30%;
+          bottom: 25%;
           text-align: center;
           width: 100%;
         video
@@ -433,7 +386,7 @@ export default {
       width: 80px;
       height: 50px;
       position: fixed;
-      bottom: 5%;
+      bottom: 2%;
       left: calc(50% - 40px);
       background: url('~static/image/home/zs/arrow.png') no-repeat 100% 100%; 
       -webkit-animation: myfirst 2s infinite;

@@ -2,8 +2,8 @@
   <div>
     <div :class="['sub-nav', isFixed ? 'subNavFixed' : '']">
         <ul>
-            <li v-for="(item, index) in subNavList" :key="index">
-                <a :class="{active: active===index}" @click="scrollTo(index)">{{item}}</a>
+            <li v-for="(item, index) in subNavList" :key="index" v-if="item != ''">
+              <a :class="{active: active===index}" @click="scrollTo(index)">{{item}}</a>
             </li>
         </ul>
     </div>
@@ -23,7 +23,7 @@ export default {
     },
     subNavList: {
         type: Array,
-        default: () => ['content-0', 'ctttt-1', 'conthhhent-2', 'content-3', 'content-4']
+        default: () => []
     },
   },
   data() {
