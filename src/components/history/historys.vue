@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div class="mainBox">
+    <div class="mainBox" style="margin-top: 42px">
       <history-carousel :data="data"></history-carousel>
     </div>
   </div>

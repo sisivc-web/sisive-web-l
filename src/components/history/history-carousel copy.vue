@@ -1,10 +1,10 @@
 <template>
   <div style="position:relative">
-    <el-carousel ref="historyCarousel" type="card" arrow="never" :interval="15000" :height="carouselHeight + 'px'" indicator-position="none"> 
-      <el-carousel-item v-for="(item, index) in data" :key="index">
+    <el-carousel ref="historyCarousel" arrow="never" :interval="15000" :height="carouselHeight + 'px'" indicator-position="none"> 
+      <el-carousel-item v-for="(item, index) in data" :key="index" v-if="index%4 == 0">
         <!-- <h3>{{ item }}</h3> -->
-        <!-- <el-row :gutter="10" style="height:100%;">
-          <el-col :span="6" style="height:100%;"> -->
+        <el-row :gutter="10"  v-if="index%4 == 0" style="height:100%;">
+          <el-col :span="6" style="height:100%;">
               <div class="grid-content" :style="{background:index < data.length ? data[index].themeColor : item.bgImg, backgroundSize: '100% auto'}">
                   <div v-if="index < data.length" class="history-item">
                       <p>{{data[index].year}}</p>
@@ -12,8 +12,35 @@
                       <el-button type="text" class="button" @click="goHistoryDetail(data[index].id)">详细信息</el-button>
                   </div>
               </div>
-          <!-- </el-col>
-        </el-row> -->
+          </el-col>
+          <el-col :span="6" style="height:100%;">
+              <div class="grid-content" :style="{background:index+1 < data.length ? data[index+1].themeColor : item.bgImg, backgroundSize: '100% auto'}">
+                  <div v-if="index+1 < data.length" class="history-item">
+                      <p>{{data[index+1].year}}</p>
+                      <p>{{data[index+1].competitionName}}</p>
+                      <el-button type="text" class="button" @click="goHistoryDetail(data[index+1].id)">详细信息</el-button>
+                  </div>
+              </div>
+          </el-col>
+          <el-col :span="6" style="height:100%;">
+              <div class="grid-content" :style="{background:index+2 < data.length ? data[index+2].themeColor : item.bgImg, backgroundSize: '100% auto'}">
+                <div v-if="index+2 < data.length" class="history-item">
+                  <p>{{data[index+2].year}}</p>
+                  <p>{{data[index+2].competitionName}}</p>
+                  <el-button type="text" class="button" @click="goHistoryDetail(data[index+2].id)">详细信息</el-button>
+                </div>  
+              </div>
+          </el-col>
+          <el-col :span="6" style="height:100%;">
+              <div class="grid-content" :style="{background:index+3 < data.length ? data[index+3].themeColor : item.bgImg, backgroundSize: '100% auto'}">
+                <div v-if="index+3 < data.length" class="history-item">
+                  <p>{{data[index+3].year}}</p>
+                  <p>{{data[index+3].competitionName}}</p>
+                  <el-button type="text" class="button" @click="goHistoryDetail(data[index+3].id)">详细信息</el-button>
+                </div>  
+              </div>
+          </el-col>
+        </el-row>
       </el-carousel-item>
     </el-carousel>
     <div class="arrow-div" v-if="this.data.length > 4">
