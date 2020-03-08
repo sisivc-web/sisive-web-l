@@ -33,6 +33,7 @@ function POSTFILE (url, data, Vue, filePath = '', callbackFn) {
           Vue.$loading.close()
           Vue.$toast(ERR_MSG)
         }
+        
         return reject(err)
       })
   })
@@ -43,22 +44,42 @@ function Request (url, method, params, data, Vue, visible = true) {
   // if (visible) Vue.$loading()
   return new Promise(function (resolve, reject) {
     axios(commonRequest(url, method, params, data)).then((res) => {
+      function isIE() {
+        if (!!window.ActiveXObject || "ActiveXObject" in window) {
+            return true;
+          } else {
+              return false;
+        }
+      }
+      if (isIE()) {
+        let temp = res.data
+        res.data = JSON.parse(temp)
+        // var script = document.createElement('script');
+        // script.type = 'text/javaScript';
+        // script.src = 'js/bluebird.min.js';  // bluebird 文件地址
+        // document.getElementsByTagName('head')[0].appendChild(script);
+      }
       Vue.$loading.close()
       if (res.data.statusCode === ERR_OK) {
+        debugger
         resolve(res)
       } else if (res.data.statusCode === ERROR_SERVICE) {
         Vue.$toast(ERR_MSG)
+        debugger
         reject(res)
       } else if (res.data.statusCode === INVALID_TOKEN) {
+        debugger
         if (visible) {
           Vue.$toast(LOG_OUT)
           Vue.$router.push({name: 'login', params: {forward: true}})
         }
       } else {
+        debugger
         Vue.$toast(res.data.message)
         reject(res)
       }
     }).catch(err => {
+      debugger
       Vue.$loading.close()
       Vue.$toast(ERR_MSG)
       reject(err)
