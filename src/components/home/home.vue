@@ -160,7 +160,7 @@ export default {
     // },
   },
   mounted() {
-    this.imgLoad()
+    // this.imgLoad()
     // this.awardItemLoad()
     // 2、挂载 reisze 事件 → 屏幕缩放时监听宽度变化
     window.onresize = () => {

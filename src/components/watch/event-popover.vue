@@ -101,7 +101,7 @@ export default {
   }
 
   .item-popover {
-    margin-left: 12px
+    margin-left: 5px
   }
 
   .item-popover .item__arrow {

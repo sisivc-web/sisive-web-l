@@ -14,7 +14,7 @@
               </div>
             </div>
           </div>
-          <div style="padding: 10px 50px;">
+          <div style="padding-top:10px;">
             <FullCalendar
               ref="calendar"
               defaultView="dayGridMonth"
@@ -143,9 +143,10 @@
 
 .fc-toolbar.fc-header-toolbar {
   background-color: #E9E9E9;
+  margin-bottom: 0;
 }
 .fc-toolbar.fc-header-toolbar h2 {
-  font-size: 1.2em;
+  font-size: 1em;
 }
 .fc-center {
   display: flex;
@@ -178,7 +179,29 @@
   -webkit-box-shadow: none;
   box-shadow: none;
 }
+.fc-unthemed th, .fc-unthemed td, .fc-unthemed thead, .fc-unthemed tbody, .fc-unthemed .fc-divider, .fc-unthemed .fc-row, .fc-unthemed .fc-content, .fc-unthemed .fc-popover, .fc-unthemed .fc-list-view, .fc-unthemed .fc-list-heading td {
+    border-color: #e9e9e9;
+}
 
+.fc-unthemed th, .fc-unthemed thead, .fc-unthemed thead tr {
+  border-color: #fff;
+  color: #ADAFB2;
+  padding: 1rem 0;
+  font-size: 12px;
+  font-weight: 600;
+}
+.fc-unthemed td.fc-head-container {
+  border-color: #fff;
+  border-bottom-color: #e9e9e9
+}
+.fc-dayGrid-view .fc-week-number, .fc-dayGrid-view .fc-day-number {
+    padding: 10px;
+    color: #212b34;
+}
+.fc-view-container {
+  width: 1140px;
+  margin: 0 auto;
+}
 
 </style>
 
@@ -187,17 +210,23 @@
   .containerA .other .block{width: 1140px; margin: 0 auto; padding: 50px 0 0;}
     /* 大屏幕 ：大于等于1200px*/
     @media (min-width: 1920px) {
-    .containerA .other .block {
-        width: 1560px;
-        margin: 0 auto;
-        padding-top: 34px;
-    }
+      .containerA .other .block {
+          width: 1560px;
+          margin: 0 auto;
+          padding-top: 34px;
+      }
+      .Watch >>>.fc-view-container {
+        width: 15600px
+      }
     }
     @media (min-width: 1500px) and (max-width: 1920px) {
       .containerA .other .block {
           width: calc(100% - 360px);
           min-width: 1140px;
           margin: 0 auto;
+      }
+      .Watch >>>.fc-view-container {
+        width: calc(100% - 360px)
       }
     }
   .clearfix:after {
