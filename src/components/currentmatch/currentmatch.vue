@@ -5,7 +5,7 @@
       <div class="home-anchor-container">
         <home-item-solt :itemName="'enroll-div'" :title="$t('subNavs.enroll1')" :isShowMore="false" :marginBottom="'0'">
           <div slot="detail">
-            <a class="enroll-a" href="http://www.baidu.com" target="_blank">
+            <a class="enroll-a" href="data.registrationAddress" target="_blank">
               <div class="item">
                 <h2>点击报名</h2>
               </div>
@@ -16,20 +16,33 @@
             </a>
           </div>
         </home-item-solt>
-        <div class="match-div">
+        <div class="match-div" style="position:relative">
           <div class="match-item anchor-item">
-            <match-item :title="$t('subNavs.enroll2')" :subTitle="year + ' SISIVC参赛须知'"></match-item>
+            <match-item :title="data.entryRequirements.resourceName" :subTitle="year + ' SISIVC' + data.entryRequirements.resourceName" :linkUrl="data.entryRequirements.resourceUrl" @view="view(1)"></match-item>
           </div>
           <div class="match-item anchor-item">
-            <match-item :title="$t('subNavs.enroll3')" :subTitle="year + ' SISIVC参赛曲目'"></match-item>
+            <match-item :title="data.program.resourceName" :subTitle="year + ' SISIVC' + data.program.resourceName" :linkUrl="data.program.resourceUrl" @view="view(2)"></match-item>
+          </div>
+          <div style="position: absolute;top: 0px;left: 0px;width: 100%;background: #fff;z-index: 889">
+            <transition name="draw">   <!--这里的name 和 css 类名第一个字段要一样-->
+              <div class="box" v-show="boxshow" style="height:100%">
+                <match-item :title="title" :subTitle="year + ' SISIVC' + title" :isBottomBorder="false"  :linkUrl="contentPdf"></match-item>
+                <div v-html="content" style="padding:30px 0 50px;"></div>
+                <div style="text-align:center;padding-bottom:60px;" @click="view">
+                  <i class="el-icon-arrow-up" style="font-size: 30px;color: #222;font-weight: 600;"></i>
+                  <br/>
+                  <span style="font-size: 10px;color: #656464;">收起</span>
+                </div>
+              </div>
+            </transition>
           </div>
         </div>
         <home-item-solt :itemName="'schedul-div'" :title="$t('subNavs.enroll4')" :isShowMore="false" :marginBottom="'30px'">
           <div slot="detail">
             <ul class="schedul-ul">
-              <li v-for="(item, index) in schedulDdata" :key="index">
-                <p>{{item.title}}</p>
-                <p>{{item.time}}</p>
+              <li v-for="(item, index) in data.scheduleVoList" :key="index">
+                <p>{{item.scheduleName}}</p>
+                <p>{{item.startDate}} - {{item.endDate}}</p>
                 <p>{{item.remarks}}</p>
               </li>
             </ul>
@@ -80,7 +93,7 @@
         <div class="rule-div anchor-item">
           <h1>{{$t('subNavs.enroll9')}}</h1>
           <div class="downloadPoint ">
-            <router-link tag="a" to="/download" class="download"></router-link><p>详细内容请下载此文档</p>
+            <router-link tag="a" to="data.contestRules" class="download"></router-link><p>详细内容请下载此文档</p>
           </div>
         </div>
       </div>
@@ -88,7 +101,7 @@
   </div>
 </template>
 <script type="text/ecmascript-6">
-import {kpiHistory, kpiHistoryDetail} from 'apx'
+import {kpiHistory, kpiHistoryDetail, kpiCurrentMatch} from 'apx'
 import MAnchor from 'components/m-anchor/m-anchor'
 import MemberContainer from 'components/commonComponents/member-container'
 import MemberItem from 'components/commonComponents/member-item'
@@ -104,7 +117,12 @@ export default {
   },
   data() {
     return {
+      data: [],
       isFixed: false,
+      boxshow: false,//比赛须知展开与否
+      contentPdf: '',
+      title: "",
+      content: "<p>为营造一个良好的观赛氛围，不对选手比赛和评委评审工作造成影响，请观众理解并遵守以下规则：</p><p>1.入场前，请寄存您的手机、数码相机、单反相机、DV机等具有摄影摄像功能的电子设备。</p><p><br></p><p>2.入场前，请寄存女式包袋、双肩包、大型包裹、塑料袋、纸袋等随身包袋。</p><p><br></p><p>3.如迟到，您可以先通过入口处的液晶屏观看厅内演出转播，直至该选手结束所有曲目、并在下一个选手上场前在工作人员引领下尽快入场、就近入座。建议您提前半小时到达剧场，</p><p>如您需现场自助取票则提前至少45分钟到达剧场。</p><p><br></p><p>4.不得携带饮料、食物入场。</p><p><br></p><p>5. 1米2以下儿童谢绝入场。</p>",
       judgesListSource: [],
       artistsListSource: [],
       playersListSource: [],
@@ -127,10 +145,24 @@ export default {
     }
   },
   created() {
-    this._getHistoryData()
+    // this._getHistoryData()
+    this._getData()
+    
   },
   computed: {},
   methods: {
+    view(flag) {
+      this.boxshow = !this.boxshow
+      if(flag === 1) {
+        this.content = this.data.entryRequirements.content
+        this.contentPdf = this.data.entryRequirements.resourceUrl
+        this.title = this.data.entryRequirements.resourceName
+      } else if(flag === 2) {
+        this.content = this.data.program.content
+        this.contentPdf = this.data.program.resourceUrl
+        this.title = this.data.program.resourceName
+      }
+    },
     _getHistoryData() {
       let param = {
         language: JSON.parse(window.localStorage.getItem('immi_language'))
@@ -148,11 +180,13 @@ export default {
         reviewId: id,
         language: JSON.parse(window.localStorage.getItem('immi_language'))
       }
-      kpiHistoryDetail(param, this).then((res) => {
+      kpiCurrentMatch(param, this).then((res) => {
         let results = res.data.data
         let tempPlayers = results.players
         let tempJurys = results.jurys
         let tempArtists = results.artists
+
+        this.data = results
 
         this.judgesListSource = tempJurys ? tempJurys.map(el => {
           return {
@@ -262,7 +296,12 @@ export default {
       .downloadPoint .download{text-align: center;  margin:0 auto; background: url('~static/image/sisivc/about/img1.png') no-repeat -64px 0; width: 64px;height: 64px; display: block; background-size: cover;}
       .downloadPoint .download:hover{background: url('~static/image/sisivc/about/img1.png') no-repeat;}
       .downloadPoint p{padding-top: 8px;font-size: 12px; color: #A0A0A1; line-height: 22px;  text-align: center;}
-    
+.draw-enter-active, .draw-leave-active {
+    transition: all 1s ease;
+}
+.draw-enter, .draw-leave-to /* .fade-leave-active below version 2.1.8 */ {
+    height: 0;
+}    
 @-webkit-keyframes myfirst{
     0% {
         transform: translate(0px, 0px);

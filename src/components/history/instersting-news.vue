@@ -4,7 +4,7 @@
       <el-card :body-style="{ padding: '0px' }" style="width: 100%; margin:0 auto;padding: 40px 0 0;box-shadow: none; border: none;">
         <div style="width:30%; float:left;padding-right:50px;">
           <div style="height:50px;">
-            <span style="color: #222;font-weight: bold;font-size: 16px;">{{newsDetail.highlights}}</span>
+            <span v-html="newsDetail.highlights"></span>
           </div>
           <div style="height:30px;">  
             <span style="color: #a0a0a1;font-size: 14px;">{{newsDetail.year}} SISIVC</span>
@@ -16,7 +16,7 @@
             </a>
           </div>
         </div>
-        <div class="right-content" v-html='newsDetail.review' style="width:70%; float:right; padding:0px 0 20px 50px;">
+        <div class="right-content" v-html="newsDetail.review" style="width:70%; float:right; padding:0px 0 20px 50px;">
 
         </div>
       </el-card>

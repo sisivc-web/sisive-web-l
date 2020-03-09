@@ -25,7 +25,7 @@
             <div class="details">
               <el-row>
                 <el-col :span="10" v-for="(item, index) in newsList.slice(0, 1)" :key="index" class="left">
-                  <el-card :body-style="{ padding: '0px' }">
+                  <!-- <el-card :body-style="{ padding: '0px' }"> -->
                     <a href="javascript:;" class="animation hover-animation" @click="_gotoNewsDetails(item.id)"><img :src="item.imageUrl" class="image" style="width:100%;height:auto;"></a>
                     <div style="padding: 30px 0;padding-bottom:12px;" @click="_gotoNewsDetails(item.id)">
                       <span class="title">{{item.title}}</span>
@@ -39,7 +39,7 @@
                       <div v-html="item.content" class="news-content">
                       </div>
                     </el-card>
-                  </el-card>
+                  <!-- </el-card> -->
                 </el-col>
                 <el-col :span="14" class="right">
                   <el-col :span="12" v-for="(item, index) in newsList.slice(1, 5)" :key="index">

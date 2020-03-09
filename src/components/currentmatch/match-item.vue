@@ -1,15 +1,15 @@
 <template>
   <div class="match-item-div">
     <h1>{{title}}</h1>
-    <a class="container-a" href="http://www.baidu.com" target="_blank">
+    <a :class="['container-a', {'has-border-bbottom': isBottomBorder}]" href="javascript:;">
       <div class="item">
         <i class="el-icon-document" v-show="isFileIcon"></i>
         <h2>{{subTitle}}</h2>
         <span v-show="!isFileIcon">详细内容请下载此文档</span>
       </div>
       <div class="item">
-        <i class="el-icon-view"></i>
-        <i class="el-icon-download"></i>
+        <a><i class="el-icon-view" @click="viewFun"></i></a>
+        <a :href="linkUrl" target="_blank"><i class="el-icon-download"></i></a>
       </div>
     </a>
   </div>
@@ -25,10 +25,18 @@ export default {
       type: String,
       default: '2020 SISIVC参赛须知'
     },
+    linkUrl: {
+      type: String,
+      default: ''
+    },
     isFileIcon: {
       type: Boolean,
       default: false
-    }
+    },
+    isBottomBorder: {
+      type: Boolean,
+      default: true
+    },
   },
   data() {
     return {
@@ -36,6 +44,9 @@ export default {
     }
   },
   methods: {
+    viewFun() {
+      this.$emit('view')
+    },
   }
 }
 </script>
@@ -58,7 +69,6 @@ export default {
     height: 80px;
     line-height: 60px;
     border-top: 1px solid #E9E9E9;
-    border-bottom: 1px solid #E9E9E9;
     margin-top: 20px;
     cursor: pointer; 
     h2
@@ -74,4 +84,6 @@ export default {
       font-size:16px;
       color: #BFBFBF;
       padding-left: 20px;
+  .has-border-bbottom
+    border-bottom: 1px solid #E9E9E9;
 </style>

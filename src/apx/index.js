@@ -61,25 +61,20 @@ function Request (url, method, params, data, Vue, visible = true) {
       }
       Vue.$loading.close()
       if (res.data.statusCode === ERR_OK) {
-        debugger
         resolve(res)
       } else if (res.data.statusCode === ERROR_SERVICE) {
         Vue.$toast(ERR_MSG)
-        debugger
         reject(res)
       } else if (res.data.statusCode === INVALID_TOKEN) {
-        debugger
         if (visible) {
           Vue.$toast(LOG_OUT)
           Vue.$router.push({name: 'login', params: {forward: true}})
         }
       } else {
-        debugger
         Vue.$toast(res.data.message)
         reject(res)
       }
     }).catch(err => {
-      debugger
       Vue.$loading.close()
       Vue.$toast(ERR_MSG)
       reject(err)
@@ -184,6 +179,14 @@ export function kpiHistory (params = {}, Vue) {
  */
 export function kpiHistoryDetail (params = {}, Vue) {
   return Request('/sisivc/personnal/ReviewDetails', 'get', params, undefined, Vue)
+}
+
+/**
+ * 当届比赛
+ * @param {*语言(en, zh_CN)} language
+ */
+export function kpiCurrentMatch (params = {}, Vue) {
+  return Request('/sisivc/competition/advanceNotification', 'get', params, undefined, Vue)
 }
 
 /**
