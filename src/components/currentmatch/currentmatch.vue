@@ -41,9 +41,10 @@
           <div slot="detail">
             <ul class="schedul-ul">
               <li v-for="(item, index) in data.scheduleVoList" :key="index">
-                <p>{{item.scheduleName}}</p>
-                <p>{{item.startDate}} - {{item.endDate}}</p>
-                <p>{{item.remarks}}</p>
+                <p>{{item.scheduleName.split('：')[0]}}</p>
+                <p>{{item.scheduleName.split('：')[1].split('（')[0]}}</p>
+                <!-- <p>{{item.startDate}} - {{item.endDate}}</p> -->
+                <p>{{item.scheduleName.split('（')[1] ? '（' + item.scheduleName.split('（')[1] : ''}}</p>
               </li>
             </ul>
           </div>
@@ -271,10 +272,10 @@ export default {
         width: 20%;
         display: block;
         float: left;
-        height: 80px;
-        font-size:12px;
+        height: 100px;
+        font-size:14px;
         color:#a0a0a1;
-        line-height: 20px;
+        line-height: 25px;
         padding-top: 20px;
     .boxImg, .boxImg img
       width: 100%;

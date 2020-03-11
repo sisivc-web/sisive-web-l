@@ -135,7 +135,7 @@ export default {
       // awardItemHeight: 50,
       awardUserList: [],
       // awardUserImgUrl: '',
-      awardUserImgUrl: 'static/image/sisivc/award/0.jpg',
+      awardUserImgUrl: require('static/image/sisivc/award/0.jpg'),
       nowClickAward: '',
       finalObj: [],
       judgesListSource: [
@@ -275,8 +275,8 @@ export default {
         if(this.awardUserList.length > 0) {
           let tempIndex = -1
           this.finalObj = this.awardUserList.filter((el, index) => {
-            el.awardName === '不能删' && (tempIndex = index)
-            return el.awardName === '不能删'
+            (el.awardName === '不能删' || !el.awardName) && (tempIndex = index)
+            return (el.awardName === '不能删' || !el.awardName)
           })
           this.awardUserList.splice(tempIndex, 1)
           // this.finalObj = this.awardUserList.splice(this.awardUserList.length - 1, 1)
