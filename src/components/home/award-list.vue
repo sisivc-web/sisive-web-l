@@ -37,7 +37,7 @@
               </div>
             </el-col>
             <el-col :span="14" class="right">
-              <a href="javascript:;" class="animation hover-animation" style="display:block;width:calc(100% - 40px);height:auto;overflow:hiddden;margin-left:40px">
+              <a href="javascript:;" @click="_gotoDetails(awardUserId)" class="animation hover-animation" style="display:block;width:calc(100% - 40px);height:auto;overflow:hiddden;margin-left:40px">
                 <img :src="awardUserImgUrl" ref="awardImage" style="width:100%;height:auto;" class="award-img">
               </a>
             </el-col>
@@ -56,6 +56,10 @@ export default {
         type: String,
         default: ''
     },
+    awardUserId: {
+      type: String,
+      default: ''
+    },
   },
   components: {
   },
@@ -73,6 +77,12 @@ export default {
     onClick(val) {
       this.clickIndex = val
       this.$emit('handleChange', val+1)
+    },
+    _gotoDetails(memberId) {
+      debugger
+      if(memberId) {
+        this.$router.push({path: '/memberDetail', query: {memberId: memberId}})
+      }
     },
   }
 }
