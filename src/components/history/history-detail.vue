@@ -468,9 +468,9 @@ a.hover-animation:hover img
   .container .other .block {
     width: 1560px;
   }
-  .sub-nav ul {
-    width: 1560px;
-  }
+  // .sub-nav ul {
+  //   width: 1560px;
+  // }
   .carousel, .vedio-css {
     width: 1920px!important;
     margin: 0 auto!important;
@@ -484,10 +484,10 @@ a.hover-animation:hover img
     width: calc(100% - 360px);
     min-width: 1140px;
   }
-  .sub-nav ul {
-    width: calc(100% - 360px);
-    min-width: 1140px;
-  }
+  // .sub-nav ul {
+  //   width: calc(100% - 360px);
+  //   min-width: 1140px;
+  // }
     
 }
 </style>

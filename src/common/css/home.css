@@ -145,32 +145,6 @@ li {list-style:none}
 .am-slider-default {
     margin: 0;
 }
-.sub-nav {
-  width: 100%;
-  min-width: 1240px;
-  height: 42px;
-  line-height: 42px;
-  background-color: #222;
-}
-.sub-nav ul {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  justify-content: space-between;
-  margin: 0 auto;
-  width: calc(100% - 376px);
-  min-width: 1240px;
-  padding-right: 250px;
-  padding-left: 250px;
-}
-.sub-nav ul a {
-    color: #808080;
-    font-size:14px;
-}
-.sub-nav ul a.active, .sub-nav ul a:hover {
-    color: #fff
-}
 .am-gallery-default .am-gallery-title {font-weight: bold}
 .award-div .am-accordion-content h3 {  
     font-size: 26px;

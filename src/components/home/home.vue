@@ -19,7 +19,7 @@
       <div class="arrow-div" v-show="!isFixed"></div>
       <!-- <m-anchor :contentDivClass="'home-anchor-container'" :anchorItem="'anchor-item'" :subNavList="[$t('subNavs.news'), awardUserList.length > 0 ? $t('subNavs.awardMember') : '', judgesListSource.length > 0 ? $t('subNavs.judges') : '', playersListSource.length > 0 ? $t('subNavs.contestant') : '', artistsListSource.length > 0 ? $t('subNavs.artist') : '', parterList.length > 0 ? $t('subNavs.partner') : '', 'Ending']"></m-anchor>       -->
       <m-anchor :contentDivClass="'home-anchor-container'" :anchorItem="'anchor-item'" :subNavList="subNavList"></m-anchor>      
-      <div>
+      <div style="margin-top:60px;margin-bottom:60px;">
         <home-item-solt :itemName="'news-div'" :title="$t('newsList.new')" :isShowMore="true" :more="$t('newsList.more')" @gotoMore="gotoMore" :marginBottom="'60px'" v-if="newsList.length > 0" >
           <div slot="detail">
             <div class="details">
@@ -281,7 +281,7 @@ export default {
           this.awardUserList.splice(tempIndex, 1)
           // this.finalObj = this.awardUserList.splice(this.awardUserList.length - 1, 1)
           this.$nextTick(() => {
-            this.awardUserImgUrl = this.finalObj[0].imgUrl
+            this.awardUserImgUrl = this.finalObj.length > 0 ? this.finalObj[0].imgUrl : this.awardUserImgUrl
             // this.awardItemLoad()
           })
         }
@@ -684,9 +684,9 @@ a.hover-animation:hover img
   .container .other .block {
     width: 1560px;
   }
-  .sub-nav ul {
-    width: 1560px;
-  }
+  // .sub-nav ul {
+  //   width: 1560px;
+  // }
   .carousel, .vedio-css {
     width: 1920px!important;
     margin: 0 auto!important;
@@ -700,10 +700,10 @@ a.hover-animation:hover img
     width: calc(100% - 360px);
     min-width: 1140px;
   }
-  .sub-nav ul {
-    width: calc(100% - 360px);
-    min-width: 1140px;
-  }
+  // .sub-nav ul {
+  //   width: calc(100% - 360px);
+  //   min-width: 1140px;
+  // }
     
 }
 </style>

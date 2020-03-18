@@ -16,19 +16,21 @@
             </a>
           </div>
         </home-item-solt>
-        <div class="match-div" style="position:relative">
+        <div class="match-div">
           <div class="match-item anchor-item">
-            <match-item :title="data.entryRequirements.resourceName" :subTitle="year + ' SISIVC' + data.entryRequirements.resourceName" :linkUrl="data.entryRequirements.resourceUrl" @view="view(1)"></match-item>
+            <match-item :title="entryRequirements.resourceName" :subTitle="year + ' SISIVC' + entryRequirements.resourceName" :linkUrl="entryRequirements.resourceUrl" @view="view(1)"></match-item>
           </div>
           <div class="match-item anchor-item">
-            <match-item :title="data.program.resourceName" :subTitle="year + ' SISIVC' + data.program.resourceName" :linkUrl="data.program.resourceUrl" @view="view(2)"></match-item>
+            <match-item :title="program.resourceName" :subTitle="year + ' SISIVC' + program.resourceName" :linkUrl="program.resourceUrl" @view="view(2)"></match-item>
           </div>
+        </div>
+        <div class="match-div" style="position:relative;left:0;top:-184px;">
           <div style="position: absolute;top: 0px;left: 0px;width: 100%;background: #fff;z-index: 889">
             <transition name="draw">   <!--这里的name 和 css 类名第一个字段要一样-->
               <div class="box" v-show="boxshow" style="height:100%">
                 <match-item :title="title" :subTitle="year + ' SISIVC' + title" :isBottomBorder="false"  :linkUrl="contentPdf"></match-item>
                 <div v-html="content" style="padding:30px 0 50px;"></div>
-                <div style="text-align:center;padding-bottom:60px;" @click="view">
+                <div style="text-align:center;padding-bottom:60px;cursor:pointer;" @click="view">
                   <i class="el-icon-arrow-up" style="font-size: 30px;color: #222;font-weight: 600;"></i>
                   <br/>
                   <span style="font-size: 10px;color: #656464;">收起</span>
@@ -76,10 +78,10 @@
             </member-container>
           </div>
         </home-item-solt>
-        <div class="boxImg">
+        <div class="boxImg anchor-item">
           <img :src="matchBg">
         </div>
-        <home-item-solt :itemName="'introdution-div'" :title="$t('name')" :isShowMore="false" :marginBottom="'30px'">
+        <home-item-solt :itemName="'introdution-div'" :isAnchorItem="false" :title="$t('name')" :isShowMore="false" :marginBottom="'30px'">
           <div slot="detail">
             <div class="introduce-div">
               <p>作为亚洲地区历史最悠久的交响乐团，上海交响乐团前身为1879年成立的上海公共乐队，1922年改称上海工部局乐队。1956年正式定名为上海交响乐团。这支乐团不仅是最早广泛介绍西方音乐、最早演奏中国管弦乐作品、最早培养中国音乐人才、最早培养中国交响乐听众的乐团，更在而后跨越三个世纪的跌宕起伏中，始终秉持着国际视野和海纳百川的城市精神，逐步成长为一个汇聚全球顶尖演奏家、最能代表中国音乐诠释能力的世界级乐团。</p>
@@ -118,7 +120,9 @@ export default {
   },
   data() {
     return {
-      data: [],
+      data: {},
+      program: {},
+      entryRequirements: {},
       isFixed: false,
       boxshow: false,//比赛须知展开与否
       contentPdf: '',
@@ -188,6 +192,8 @@ export default {
         let tempArtists = results.artists
 
         this.data = results
+        this.entryRequirements = results.entryRequirements
+        this.program = results.program
 
         this.judgesListSource = tempJurys ? tempJurys.map(el => {
           return {
@@ -298,7 +304,7 @@ export default {
       .downloadPoint .download:hover{background: url('~static/image/sisivc/about/img1.png') no-repeat;}
       .downloadPoint p{padding-top: 8px;font-size: 12px; color: #A0A0A1; line-height: 22px;  text-align: center;}
 .draw-enter-active, .draw-leave-active {
-    transition: all 1s ease;
+    transition: all 0.1s ease;
 }
 .draw-enter, .draw-leave-to /* .fade-leave-active below version 2.1.8 */ {
     height: 0;
@@ -348,9 +354,9 @@ export default {
   .container .other .block {
     width: 1560px;
   }
-  .sub-nav ul {
-    width: 1560px;
-  } 
+  // .sub-nav ul {
+  //   width: 1560px;
+  // } 
   .match-div {
     width: 1560px!important;
   }
@@ -363,10 +369,10 @@ export default {
     width: calc(100% - 360px);
     min-width: 1140px;
   }
-  .sub-nav ul {
-    width: calc(100% - 360px);
-    min-width: 1140px;
-  }
+  // .sub-nav ul {
+  //   width: calc(100% - 360px);
+  //   min-width: 1140px;
+  // }
   .match-div {
     width: calc(100% - 360px)!important;
   }

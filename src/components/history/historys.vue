@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div class="mainBox" style="margin-top: 42px">
+    <div class="mainBox" style="margin-top: 102px">
       <history-carousel :data="data"></history-carousel>
     </div>
   </div>
@@ -53,9 +53,9 @@ export default {
   .container .other .block {
     width: 1560px;
   }
-  .sub-nav ul {
-    width: 1560px;
-  }
+  // .sub-nav ul {
+  //   width: 1560px;
+  // }
   .carousel{
     width: 1560px!important;
     margin: 0 auto;
@@ -66,10 +66,10 @@ export default {
     width: calc(100% - 360px);
     min-width: 1140px;
   }
-  .sub-nav ul {
-    width: calc(100% - 360px);
-    min-width: 1140px;
-  }
+  // .sub-nav ul {
+  //   width: calc(100% - 360px);
+  //   min-width: 1140px;
+  // }
   .carousel{
     width: calc(100% - 360px);
     min-width: 1140px;

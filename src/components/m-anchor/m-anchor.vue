@@ -140,17 +140,19 @@ export default {
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    justify-content: space-between;
+    // justify-content: space-between;
     margin: 0 auto;
     width: 1140px;
-    padding-right: 240px;
+    // padding-right: 240px;
     padding-left: 240px;
-    a
-      cursor: pointer;
-      color: #808080;
-      font-size:14px;
-    a.active, a:hover
-      color: #fff
+    li
+      margin-right: 50px
+      a
+        cursor: pointer;
+        color: #808080;
+        font-size:14px;
+      a.active, a:hover
+        color: #fff
   /* 内容区的样式 */
   .tempcontent {
     background-color: white;
@@ -231,6 +233,9 @@ export default {
   .sub-nav ul {
     width: 1560px;
     min-width: 1140px;
+  }
+  .sub-nav ul li {
+    margin-right: 98px;
   }
 }
 @media (min-width: 1500px) and (max-width: 1920px) {

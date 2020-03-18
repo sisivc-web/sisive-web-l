@@ -73,7 +73,6 @@ export default {
   .sub-nav-container
     margin: 0 auto;
     width: 1140px;
-    padding-right: 240px;
     padding-left: 240px;
     overflow: hidden;
     ul
@@ -81,7 +80,6 @@ export default {
       display: -webkit-flex;
       display: -ms-flexbox;
       display: flex;
-      justify-content: flex-start;
       li
         margin-right: 90px
         a

@@ -64,7 +64,6 @@ export default {
   height: 70px
   user-select: none
   background-color $color-back-white_0
-  box-shadow: 0px -3px 7px #000
   .content
     @extend .flex
     @extend .flex-row

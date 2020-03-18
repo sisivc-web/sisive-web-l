@@ -1,5 +1,5 @@
 <template>
-  <div :class="['block', 'anchor-item', itemName]" :style="{marginBottom: marginBottom}">
+  <div :class="['block', isAnchorItem?'anchor-item':'', itemName]" :style="{marginBottom: marginBottom}">
     <div class="header">
       <!-- <p class="little"><span>2018</span>&nbsp;SISIVC</p> -->
       <h3 class="title">{{title}}</h3>
@@ -34,6 +34,10 @@ export default {
       type: String,
       default: '0px',
     },
+    isAnchorItem: {
+      type: Boolean,
+      default: true
+    }
   },
   methods: {
     gotoMore() {

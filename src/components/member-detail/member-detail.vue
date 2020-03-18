@@ -232,9 +232,9 @@ export default {
   .container .other .block {
     width: 1560px;
   }
-  .sub-nav ul {
-    width: 1560px;
-  }
+  // .sub-nav ul {
+  //   width: 1560px;
+  // }
   .carousel{
     width: 1920px!important;
     margin: 0 auto;
@@ -245,9 +245,9 @@ export default {
     width: calc(100% - 360px);
     min-width: 1140px;
   }
-  .sub-nav ul {
-    width: calc(100% - 360px);
-    min-width: 1140px;
-  }
+  // .sub-nav ul {
+  //   width: calc(100% - 360px);
+  //   min-width: 1140px;
+  // }
 }
 </style>
