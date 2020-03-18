@@ -56,7 +56,7 @@
           <div class="hover-div"></div>
         </a>
         <a :style="{backgroundImage: `url(${require('static/image/sisivc/foot/f0.png')}`}"></a>
-        <a :style="{backgroundImage: `url(${require('static/image/sisivc/foot/w0.png')}`}"></a>
+        <a :style="{backgroundImage: `url(${require('static/image/sisivc/foot/tw0.png')}`}"></a>
         <a :style="{backgroundImage: `url(${require('static/image/sisivc/foot/ins0.png')}`}"></a>
       </div>
     </div>

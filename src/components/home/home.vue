@@ -64,7 +64,7 @@
         </home-item-solt>
         <home-item-solt :itemName="'award-div'" :title="$t('prizeWinners')" :isShowMore="false" :marginBottom="'60px'" v-if="awardUserList.length > 0">
           <div slot="detail">
-            <award-list :awardUserList="awardUserList" :awardUserImgUrl="awardUserImgUrl" @handleChange="handleChange"></award-list>
+            <award-list :awardUserList="awardUserList" :awardUserImgUrl="awardUserImgUrl" :awardUserId="awardUserId" @handleChange="handleChange"></award-list>
           </div>
         </home-item-solt>
         <home-item-solt :itemName="'member-div'" :title="$t('judges')" :isShowMore="false" :marginBottom="'30px'" v-if="judgesListSource.length > 0">
@@ -134,7 +134,7 @@ export default {
       newsList: [],
       // awardItemHeight: 50,
       awardUserList: [],
-      // awardUserImgUrl: '',
+      awardUserId: '',
       awardUserImgUrl: require('static/image/sisivc/award/0.jpg'),
       nowClickAward: '',
       finalObj: [],
@@ -212,6 +212,7 @@ export default {
     handleChange(val) {
       this.nowClickAward = val ? val : this.nowClickAward
       this.awardUserImgUrl = this.nowClickAward ? this.awardUserList[this.nowClickAward - 1].imgUrl : this.finalObj[0].imgUrl
+      this.awardUserId = this.nowClickAward ? this.awardUserList[this.nowClickAward - 1].playerId : ''
     },
     moreClick(flag) {
       this[`${flag}List`] = this[`${flag}List`] .length > 8 ? this[`${flag}ListSource`].slice(0,8) : this[`${flag}ListSource`]
@@ -269,6 +270,7 @@ export default {
             imgUrl: el.winnerShow,
             coverImgUrl: el.winnerShow,
             country: el.playerNationality,
+            playerId: el.playerId
           }
         }) : []
         //最后一个元素为封面
@@ -532,6 +534,7 @@ export default {
       .temp-read
         margin-top: -68px;
         position: relative;
+        width: 50%;
         .button
           color: $color-item-more;
           font-size: $font-size-item-little;

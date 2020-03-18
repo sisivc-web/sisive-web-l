@@ -23,7 +23,9 @@ export default {
   },
   methods: { 
     _gotoDetails(memberId) {
-      this.$router.push({path: '/memberDetail', query: {memberId: memberId}})
+      // this.$router.push({path: '/memberDetail', query: {memberId: memberId}})
+      let routeData = this.$router.resolve({path: '/memberDetail', query: {memberId: memberId}});
+      window.open(routeData.href, '_blank');
     },
   }
 }

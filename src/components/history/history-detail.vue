@@ -5,7 +5,7 @@
       <div class="home-anchor-container">
         <home-item-solt :itemName="'award-div'" :title="$t('prizeWinners')" :isShowMore="false" :marginBottom="'60px'" v-if="awardUserList.length > 0">
           <div slot="detail">
-            <award-list :awardUserList="awardUserList" :awardUserImgUrl="awardUserImgUrl" @handleChange="handleChange"></award-list>
+            <award-list :awardUserList="awardUserList" :awardUserImgUrl="awardUserImgUrl" :awardUserId="awardUserId" @handleChange="handleChange"></award-list>
           </div>
         </home-item-solt>
         <home-item-solt :itemName="'member-div'" :title="$t('judges')" :isShowMore="false" :marginBottom="'30px'" v-if="judgesListSource.length > 0">
@@ -64,8 +64,8 @@ export default {
       data: {},
       isFixed: false,
       awardUserList: [],
-      // awardUserImgUrl: '',
-      awardUserImgUrl: 'static/image/sisivc/award/0.jpg',
+      awardUserId: '',
+      awardUserImgUrl: require('static/image/sisivc/award/0.jpg'),
       nowClickAward: '',
       finalObj: [],
       reviewId: 0,
@@ -99,6 +99,7 @@ export default {
   methods: {
     handleChange(val) {
       this.nowClickAward = val ? val : this.nowClickAward
+      this.awardUserId = this.nowClickAward ? this.awardUserList[this.nowClickAward - 1].playerId : ''
       this.awardUserImgUrl = this.nowClickAward ? this.awardUserList[this.nowClickAward - 1].imgUrl : this.finalObj[0].imgUrl
     },
     _getURLQuery() {
@@ -141,6 +142,7 @@ export default {
             imgUrl: el.winnerShow,
             coverImgUrl: el.winnerShow,
             country: el.playerNationality,
+            playerId: el.playerId
           }
         }) : []
         //最后一个元素为封面
@@ -153,7 +155,9 @@ export default {
           this.awardUserList.splice(tempIndex, 1)
           // this.finalObj = this.awardUserList.splice(this.awardUserList.length - 1, 1)
           this.$nextTick(() => {
-            this.awardUserImgUrl = this.finalObj[0].imgUrl
+            if(this.finalObj && this.finalObj.length > 0)
+              this.awardUserImgUrl = this.finalObj[0].imgUrl
+            this.awardUserId = ''
             // this.awardItemLoad()
           })
         }
@@ -313,14 +317,6 @@ export default {
       .right
         .el-card
           margin-bottom: 30px!important;
-      .temp-read
-        margin-top: -62px;
-        position: relative;
-        .button
-          color: $color-item-more;
-          font-size: $font-size-item-little;
-          margin: 0;
-          text-align: right;
     .award-div
       .el-row
         width: 100%
