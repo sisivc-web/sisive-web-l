@@ -27,7 +27,6 @@
           </el-col>
       </el-row>
     </div>
-    <detail-footer v-if="this.GLOBAL.isDetailFoot"></detail-footer>
   </div>
 </template>
 <script type="text/ecmascript-6">

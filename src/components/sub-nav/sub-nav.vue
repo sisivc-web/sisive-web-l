@@ -80,8 +80,9 @@ export default {
       display: -webkit-flex;
       display: -ms-flexbox;
       display: flex;
+      justify-content: space-between;
       li
-        margin-right: 90px
+        // margin-right: 90px
         a
           cursor: pointer;
           color: #808080;

@@ -9,7 +9,7 @@
               <div class="flex-start">
                 <div class="flex-start item" v-for="(item, index) in watchDataIndex.scheduleVoList" :key="index">
                   <div class="circle" :style="{background:item.themeColor}"></div>
-                  <div>{{item.scheduleName}}</div>
+                  <div>{{item.scheduleName.split('：')[0]}}</div>
                 </div>
               </div>
             </div>
@@ -38,7 +38,7 @@
             <li v-for="(item, index) in watchDataIndex.broadcastAddressVoList" :key="index">
               <div class="Broad_add_div">
                 <img :src="item.iconUrl" style="width:80px;" />
-                <div class="fl" style="padding-left: 40px;">
+                <div class="fl" style="padding-left: 120px;">
                   <p>{{item.title}}</p>
                   <p><router-link tag="a" :to ="item.externalLink">{{item.description}}</router-link></p>
                 </div>
@@ -54,7 +54,7 @@
         </div>
         <!--订票方式-->
         <div class="mainBox block clearfix guidelines anchor-item">
-          <h3 class="title" style="padding:63px 0 7px 0;">{{$t('subNavs.watch4')}}</h3><!--一级标题-->
+          <h3 class="title" style="padding:63px 0 23px 0;">{{$t('subNavs.watch4')}}</h3><!--一级标题-->
           <div v-for="(item,index) in watchDataIndex.bookingWayVoList" :key="index">
             <div v-if="item.booking" v-html="item.booking"></div><!--二级标题-->
             <p v-if="item.content">{{item.content}}</p>
@@ -235,22 +235,22 @@
       height: 0;
       clear: both;
       visibility: hidden;
-  }
+  }v
 	
   .header{background: white;height: 100px;}
   .mainBox .title{color: #1e2022;font-size: 24px;font-weight: 700; padding-bottom: 40px;}
   .item{min-width: 120px; max-width: 160px;font-size: 12px;font-weight: bold;margin-right: 54px;}
   .circle{width: 10px;height: 10px;border-radius: 50%;margin-right: 10px;}
   /*----直播地址*/
-  .Broad_add{display: grid;grid-template-columns:0.5fr 0.5fr;grid-template-rows:auto;}
-  .Broad_add li{border-right: 1px solid #e5e5e5; border-top: 1px solid #e5e5e5; border-bottom: 1px solid #e5e5e5;  height: 140px; position: relative;}
+  .Broad_add{display: grid;grid-template-columns:0.4fr 0.6fr;grid-template-rows:auto;}
+  .Broad_add li{/*border-right: 1px solid #e5e5e5; border-top: 1px solid #e5e5e5; border-bottom: 1px solid #e5e5e5;*/  height: 140px; position: relative;}
   .Broad_add li:last-child{border-right: 0;}
 	/*   .Broad_add li .Broad_add_div i{background: url(../assets/img/about/icon@2x.png) no-repeat; float: left; display: inline-block; width: 64px;height: 64px; margin-top: 41px;}
 	   .Broad_add li .Broad_add_div .iconAdd{background-position: left -209px;}
 	   .Broad_add li .Broad_add_div .iconVideo{background-position: left -101px;}
 	   .Broad_add li:hover .Broad_add_div .iconAdd{background-position:-64px -209px;}
 	   .Broad_add li:hover .Broad_add_div .iconVideo{background-position:-64px -99px;} */
-	   .Broad_add li .Broad_add_div img{float: left;margin-top: 41px; margin-left: -50px; display: block;opacity:1;transition:opacity .35s ease-out;background-color:#fff;pointer-events:auto!important;-webkit-transition: all .2s ease-in-out 0s;
+	   .Broad_add li .Broad_add_div img{float: left;margin-top: 30px; margin-left: 0; display: block;opacity:1;transition:opacity .35s ease-out;background-color:#fff;pointer-events:auto!important;-webkit-transition: all .2s ease-in-out 0s;
 		transition: all .2s ease-in-out 0s}
 	   .Broad_add li:hover .Broad_add_div img{opacity:.75!important;-webkit-transform: scale(1.1) translateZ(0);
 		-webkit-transform-origin: 50%;
@@ -258,16 +258,16 @@
 		transform-origin: 50%;
 		image-rendering: -webkit-optimize-contrast;
 		image-rendering: crisp-edges}
-	   .Broad_add li .Broad_add_div{position: absolute;left: 50%; width: 360px; margin-left: -200px; margin:0 auto}
+	   .Broad_add li .Broad_add_div{position: absolute;left: 0; width: 360px; margin:0 auto}
 	   .Broad_add li .Broad_add_div p{padding-top: 50px; text-align: left;color: #4c4849;font-size: 14px;font-weight: 700;}
 	   .Broad_add li a{color: #1E2022;text-decoration: none;}
 	   .Broad_add li .Broad_add_div p:last-child,.Broad_add li .Broad_add_div p:last-child a{padding-top:4px;font-weight: normal; color: #4c4849;font-size: 14px;}
 	   .boxImg{position: relative; width: 100%;height: 100%; margin-bottom: 78px;}
 	   .boxImg img{width: 100%;height: 100%;}
 	   /*----观赛须知*/
-	   .guidelines h4,.guidelines{font-size: 15px; color: #222; font-weight: 700; padding:5px 0 34px 0}
+	   .guidelines h4{font-size: 15px; color: #222; font-weight: 700; padding:5px 0 34px 0}
 	   .guidelines p{font-size: 14px; line-height: 24px; padding-bottom: 7px; color: #4c4948;}
-	   .guidelines div{font-size: 14px; padding:10px 0 8px;color: #4c4948;}
+	   /*.guidelines div{font-size: 14px; padding:10px 0 8px;color: #4c4948;}*/
 	   .guidelines .grey{color: #a0a0a1;}
 	   .guidelines .abuyTicket .buyTicket{background: url('~static/image/sisivc/moreAdvisers/icon@2x.png') no-repeat left top; display:block; width: 46px;height: 46px;}
 	   .guidelines .abuyTicket:hover .buyTicket{background-position: -44px top;}

@@ -3,9 +3,10 @@
     <div class="other">
       <m-anchor :contentDivClass="'home-anchor-container'" :anchorItem="'anchor-item'" :subNavList="[$t('subNavs.enroll1'), $t('subNavs.enroll2'), $t('subNavs.enroll3'), $t('subNavs.enroll4'), $t('subNavs.enroll5'), $t('subNavs.enroll6'), $t('subNavs.enroll7'), $t('subNavs.enroll8'), $t('subNavs.enroll9')]"></m-anchor>
       <div class="home-anchor-container">
-        <home-item-solt :itemName="'enroll-div'" :title="$t('subNavs.enroll1')" :isShowMore="false" :marginBottom="'0'">
+        <!-- <home-item-solt :itemName="'enroll-div'" :title="$t('subNavs.enroll1')" :isShowMore="false" :marginBottom="'0'"> -->
+        <home-item-solt :itemName="'enroll-div'" :title="''" :isShowMore="false" :marginBottom="'0'">
           <div slot="detail">
-            <a class="enroll-a" href="data.registrationAddress" target="_blank">
+            <a class="enroll-a" :href="data.registrationAddress" target="_blank">
               <div class="item">
                 <h2>点击报名</h2>
               </div>
@@ -16,6 +17,17 @@
             </a>
           </div>
         </home-item-solt>
+        <!-- <div class="enroll-div anchor-item block" style="margin: 0 auto;">
+          <a class="enroll-a" href="data.registrationAddress" target="_blank">
+            <div class="item">
+              <h2>点击报名</h2>
+            </div>
+            <div class="item">
+              <span>点击进入报名页面</span>
+              <i class="el-icon-edit-outline"></i>
+            </div>
+          </a>
+        </div> -->
         <div class="match-div">
           <div class="match-item anchor-item">
             <match-item :title="entryRequirements.resourceName" :subTitle="year + ' SISIVC' + entryRequirements.resourceName" :linkUrl="entryRequirements.resourceUrl" @view="view(1)"></match-item>
@@ -248,7 +260,7 @@ export default {
       line-height: 60px;
       border-top: 1px solid #E9E9E9;
       border-bottom: 1px solid #E9E9E9;
-      margin-top: 20px;
+      // margin-top: 20px;
       cursor: pointer; 
       h2
         color: $color-item-title;

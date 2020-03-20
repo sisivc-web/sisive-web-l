@@ -190,6 +190,14 @@ export function kpiCurrentMatch (params = {}, Vue) {
 }
 
 /**
+ * 菜单
+ * @param {*语言(en, zh_CN)} language
+ */
+export function kpiQueryMenues (params = {}, Vue) {
+  return Request('/sisivc/menue/queryMenues', 'get', params, undefined, Vue)
+}
+
+/**
  * 用户信息
  */
 export function kpiUserInfo (params = {}, Vue) {

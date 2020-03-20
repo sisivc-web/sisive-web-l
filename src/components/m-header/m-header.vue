@@ -14,6 +14,7 @@
 // import Notice from './notice/notice'
 // import Avatar from './avatar/avatar'
 import List from './list/list'
+import { kpiQueryMenues } from 'apx'
 export default {
   props: {
     // 目前type: 1 灰色主题 2 白色主题
@@ -31,6 +32,9 @@ export default {
     // Notice,
     // Avatar,
     List
+  },
+  created() {
+    this.getNavList()
   },
   mounted() {
     /**通过给变成固定定位的元素添加一个同等高度的父元素，防止该元素变成固定定位时，脱离文档流导致的页面抖动 */
@@ -53,6 +57,16 @@ export default {
         this.isNavFixed = false
       }
     },
+    getNavList(){
+      let _this = this
+      let param = {
+        parentId: '0',
+        language: JSON.parse(window.localStorage.getItem('immi_language'))
+      }
+      kpiQueryMenues(param, this).then((res) => {
+        console.log('nav---',res.data.data)
+      })
+    }
   }
 }
 </script>
