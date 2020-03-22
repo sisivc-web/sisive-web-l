@@ -8,8 +8,8 @@
         <span v-show="!isFileIcon">详细内容请下载此文档</span>
       </div>
       <div class="item">
-        <a><i class="el-icon-view" @click="viewFun"></i></a>
-        <a :href="linkUrl" target="_blank"><i class="el-icon-download"></i></a>
+        <a v-show="isView"><i class="el-icon-view" @click="viewFun"></i></a>
+        <a href="javascript:;"  @click="downloadFile(linkUrl)"><i class="el-icon-download"></i></a>
       </div>
     </a>
   </div>
@@ -37,6 +37,10 @@ export default {
       type: Boolean,
       default: true
     },
+    isView: {
+      type: Boolean,
+      default: true
+    },
   },
   data() {
     return {
@@ -47,6 +51,12 @@ export default {
     viewFun() {
       this.$emit('view')
     },
+    downloadFile(url) {
+      let fileName = "";
+      let temp = url.split("/");
+      fileName = temp[temp.length - 1]
+      window.open(`/sisivc/resource/downloadFile?fileName=${fileName}`)
+    }
   }
 }
 </script>

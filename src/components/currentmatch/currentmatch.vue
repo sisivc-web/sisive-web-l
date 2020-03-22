@@ -40,7 +40,7 @@
           <div style="position: absolute;top: 0px;left: 0px;width: 100%;background: #fff;z-index: 889">
             <transition name="draw">   <!--这里的name 和 css 类名第一个字段要一样-->
               <div class="box" v-show="boxshow" style="height:100%">
-                <match-item :title="title" :subTitle="year + ' SISIVC' + title" :isBottomBorder="false"  :linkUrl="contentPdf"></match-item>
+                <match-item :title="title" :subTitle="year + ' SISIVC' + title" :isBottomBorder="false"  :linkUrl="contentPdf" @view="view()"></match-item>
                 <div v-html="content" style="padding:30px 0 50px;"></div>
                 <div style="text-align:center;padding-bottom:60px;cursor:pointer;" @click="view">
                   <i class="el-icon-arrow-up" style="font-size: 30px;color: #222;font-weight: 600;"></i>
@@ -107,8 +107,8 @@
         </home-item-solt>
         <div class="rule-div anchor-item">
           <h1>{{$t('subNavs.enroll9')}}</h1>
-          <div class="downloadPoint ">
-            <router-link tag="a" to="data.contestRules" class="download"></router-link><p>详细内容请下载此文档</p>
+          <div class="downloadPoint">
+            <a href="javascript:;" @click="downloadFile(data.contestRules)" class="download"></a><p>详细内容请下载此文档</p>
           </div>
         </div>
       </div>
@@ -168,6 +168,12 @@ export default {
   },
   computed: {},
   methods: {
+    downloadFile(url) {
+      let fileName = "";
+      let temp = url.split("/");
+      fileName = temp[temp.length - 1]
+      window.open(`/sisivc/resource/downloadFile?fileName=${fileName}`)
+    },
     view(flag) {
       this.boxshow = !this.boxshow
       if(flag === 1) {

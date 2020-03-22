@@ -1,5 +1,5 @@
 <template>
-  <div class="download-item-div block">
+  <div class="download-item-div block anchor-item">
     <h1>{{title}}</h1>
     <div class="container-a" v-for="(item, index) in downloadList" :key="index">
       <div class="item">
@@ -8,12 +8,13 @@
       </div>
       <div class="item">
         <a :href="item.resourceUrl" target="_blank"><i class="el-icon-view"></i></a>
-        <a><i class="el-icon-download"></i></a>
+        <a href="javascript:;" @click="downloadFile(item.resourceUrl)"><i class="el-icon-download"></i></a>
       </div>
     </div>
   </div>
 </template>
 <script type="text/ecmascript-6">
+// import {kpiDownloadFile} from 'apx'
 export default {
   props: {
     title: {
@@ -35,6 +36,12 @@ export default {
     }
   },
   methods: {
+    downloadFile(url) {
+      let fileName = "";
+      let temp = url.split("/");
+      fileName = temp[temp.length - 1]
+      window.open(`/sisivc/resource/downloadFile?fileName=${fileName}`)
+    }
   }
 }
 </script>
@@ -47,7 +54,6 @@ export default {
   h1
     color: $color-item-title;
     font-size: $font-size-item-title;
-    padding-top: 60px;
     margin-bottom: 30px;
   .container-a
     display: -webkit-box

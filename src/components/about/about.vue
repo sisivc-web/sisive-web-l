@@ -2,7 +2,7 @@
 <div class="containerA">
   <m-anchor :contentDivClass="'AboutGame'" :anchorItem="'anchor-item'" :subNavList="[$t('subNavs.aboutUs1'), $t('subNavs.partner'), $t('subNavs.aboutUs2'), $t('subNavs.aboutUs5'), $t('subNavs.aboutUs6')]"></m-anchor>  
   <div class="AboutGame other">
-    <div class="mainBox block clearfix">
+    <div class="mainBox block clearfix" style="margin-bottom:60px;">
       <div class="flexBox anchor-item">
         <div class="fl aItemG">
           <h3>关于比赛</h3>
@@ -11,14 +11,14 @@
           </div>
         </div>
         <div class="aInfo">
-          <div class="Desc">
-            <p>{{awardsVoList.description}}</P> 
+          <div class="Desc" style="margin-top:50px;">
+            <p v-html="awardsVoList.description"></P> 
           </div>          
         </div>
       </div>
       <!--关于比赛-->
       <home-item-solt :itemName="'parter-div'" :title="$t('partners')" :isShowMore="false">
-        <div slot="detail">
+        <div slot="detail" style="padding-bottom:20px;">
           <partner-list :parterList="awardsVoList.partnerLevelVoList"></partner-list>
         </div>
       </home-item-solt>
@@ -79,18 +79,18 @@
       </div> -->
     </div>
     <!--图片-->
-    <div class="boxImg">
+    <div class="boxImg anchor-item">
       <img :src="awardsVoList.venueImage">
     </div>
     <!--奖项-->
-    <div class="mainBox block clearfix anchor-item">
+    <div class="mainBox block clearfix">
       <div class="GamePlace">
         <h2>比赛场地</h2>
         <div class="GameTitBox">
           <div class="fl ItemLst">
-            <h3>{{awardsVoList.venueTitle}}</h3>
+            <h3 class="placeTitle">{{awardsVoList.venueTitle}}</h3>
             <div class="ruleContent" style="padding-top:20px">
-                <p>{{awardsVoList.venueDescription}}</p>
+                <div v-html="awardsVoList.venueDescription"></div>
               </div>
           </div>
           </div>
@@ -146,13 +146,13 @@ export default {
 
 <style>
 	.containerA{width: 100%;}
-	.containerA .other .block{width: 1140px; margin: 0 auto; padding: 50px 0 0;}
+	.containerA .other .block{width: 1140px; margin: 0 auto; padding: 60px 0 0;}
     /* 大屏幕 ：大于等于1200px*/
     @media (min-width: 1920px) {
         .containerA .other .block {
             width: 1560px;
             margin: 0 auto;
-            padding-top: 50px;
+            padding-top: 60px;
         }
         .containerA .other .parter-div.block {
           width: 100%;
@@ -184,9 +184,9 @@ export default {
 	.mainBox{width: 100%;}
 	.aItemG{width:500px;margin-right: 80px;}
 	.aItemG .img img{width: 500px;}
-	.aItemG h3,.nInfoNameSpec h3{padding:0 0 158px 0; color: #1e2022;font-size: 24px; font-weight: 700;}
+	.aItemG h3,.nInfoNameSpec h3{padding:0 0 30px 0; color: #1e2022;font-size: 24px; font-weight: 700;}
 	.aInfo{width: 100%}
-	.aInfo p,.boxPanel .ItemLst p,.GamePlace .ItemLst p{font-size: 14px; margin: 1.6rem 0; line-height: 24px; color: #4c4948; text-align: justify;}
+	.aInfo p,.boxPanel .ItemLst p {font-size: 14px; margin: 1.6rem 0; line-height: 24px; color: #4c4948; text-align: justify;}
 	.nInfoNameSpec{margin:8rem 0 0 0}
 	.nInfoNameSpec h3{font-size:20px; padding:0 0 24px 0}
 	
@@ -195,11 +195,11 @@ export default {
 	.downloadPoint .download:hover{background: url('~static/image/sisivc/about/img1.png') no-repeat;}
 	.downloadPoint p{padding-top: 8px;font-size: 12px; color: #A0A0A1; line-height: 22px;  text-align: justify;}
 	/*---织织架构----*/
-	.ItemV{padding:111px 0 0 0}
+	.ItemV{padding:60px 0 0 0}
 	.ItemV h3{color: #1e2022;font-size: 24px; font-weight: 700;padding-bottom: 35px;}
 	.ItemDl .ulLIst{display: grid;grid-template-columns:repeat(auto-fit,minmax(50px,1fr));margin-bottom:0;padding: 35px 0;width: 100%;padding: 35px 0;border-top: 1px solid hsla(0,0%,50%,.19)!important;border-bottom: 1px solid hsla(0,0%,50%,.19)!important;}
 	.ItemDl .ulLIst li{color: #a0a0a1;}
-	.ItemDl .ulLIst li h5{font-size: 18px;color: #222; font-weight: 700; padding:0 0 11px 0;}
+	.ItemDl .ulLIst li h5, .placeTitle{font-size: 18px;color: #222; font-weight: 700; padding:0 0 11px 0;}
 	.ItemDl .ulLIst li p{color: #4c4948;line-height: 24px; font-size: 14px;}
 	/*---奖项*/
 	.ItemDl .awardList{display: grid;grid-template-columns:repeat(auto-fit,minmax(50px,1fr)); margin-bottom: 35px; grid-gap:60px;width: 100%;padding: 35px 0 0; border-top: 1px solid hsla(0,0%,50%,.19)!important; }
@@ -220,7 +220,7 @@ export default {
 	.perArard .awardList li p.firstAr{position: absolute; left: 50%; margin-left: -32px;top: -30px; font-size: 16px; color: #646464;}
 	.perArard .awardList li h5{padding-top: 20px;}
 	/* ----计分规则 */
-	.Point h2,.GamePlace h2{color: #1e2022;font-size: 24px; font-weight: 700;padding-bottom: 30px;}
+	.Point h2,.GamePlace h2 {color: #1e2022;font-size: 24px; font-weight: 700;padding-bottom: 30px;}
 	.boxPanel {display: grid;grid-template-columns:repeat(auto-fit,minmax(50px,1fr));margin-bottom: 55px; grid-gap:60px}
 	.boxPanel .ItemLst h3{color: #222; position: relative;text-align: left; font-size: 18px; font-weight: 700; padding-bottom: 20px; flex: 1; border-bottom: 1px solid hsla(0,0%,50%,.19)!important;}
 	
@@ -228,8 +228,7 @@ export default {
 	.ruleContent dl dd,.ruleContent dl dt{ padding:8px 0 8px 15px; font-size: 14px; color: #4c4948;}
 	.ruleContent dl dt{padding-left:0}
 	/* ----比赛场地 */
-	.GamePlace .ItemLst h3{color: #4c4849; position: relative;text-align: left; font-size: 14px; font-weight: 700;}
-	.GamePlace .ItemLst p{margin-top: 12px;}
+	/* .GamePlace .ItemLst h3{color: #4c4849; position: relative;text-align: left; font-size: 14px; font-weight: 700;} */
 	.boxImg{position: relative; width: 100%;height: 100%;}
 	.boxImg img{width: 100%;height: 100%;}	
 </style>
