@@ -3,7 +3,7 @@
     <div :class="['sub-nav', isFixed ? 'subNavFixed' : '']">
       <div class="sub-nav-container">
         <ul>
-            <li v-for="(item, index) in subNavList" :key="index">
+            <li v-for="(item, index) in nowSubNavList" :key="index">
                 <a :class="{active: active===index}" @click="handleChange(item.id, index)">{{item.name}}</a>
             </li>
         </ul>
@@ -27,12 +27,12 @@ export default {
     return {
       active: -1, // 当前激活的导航索引
       isFixed: false,
+      nowSubNavList: [],
     }
   },
+  created() {
+  },
   mounted() {
-    this.subNavList.forEach((el, index) => {
-      this.active = el.id === this.nowClickYear ? index : -1
-    })
     // 监听滚动事件
     window.addEventListener('scroll', this.onScroll, false)
   },
@@ -40,7 +40,30 @@ export default {
     // 必须移除监听器，不然当该vue组件被销毁了，监听器还在就会出错
     window.removeEventListener('scroll', this.onScroll)
   },
+  watch:{
+    subNavList(newValue,oldValue){
+      this.getSubList();
+    },
+    nowClickYear(newValue,oldValue) {
+      this.subNavList.forEach((el, index) => {
+        this.active = el.id === this.nowClickYear ? index : -1
+      });
+    }
+  },
   methods: {
+    //获取各子菜单
+    getSubList() {
+      let menus = JSON.parse(sessionStorage.getItem('menus'));
+      let currentMatchMenu = menus.find(el => {
+        return el.code === 'currentmatch'
+      })
+      let currentMatchSubNav = currentMatchMenu.menueVoList
+      let currentMenu = menus.find(el => {
+        return el.code === this.parentMenusCode
+      })
+      let temp = new Array(currentMatchSubNav.length - this.subNavList.length).join(",").split(",")
+      this.nowSubNavList = this.subNavList.concat(temp)
+    },
     // 滚动监听器
     onScroll() {
       // 获取当前 offsetTop

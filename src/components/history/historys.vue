@@ -9,6 +9,7 @@
 
 import { kpiHistory }from 'apx'
 import MAnchor from 'components/m-anchor/m-anchor'
+// import HistoryCarousel from './historyCarousel'
 import HistoryCarousel from './history-carousel'
 export default {
   components: {

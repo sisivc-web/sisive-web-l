@@ -1,6 +1,6 @@
 <template>
   <div class="containerA">
-	  <m-anchor :contentDivClass="'Watch'" :anchorItem="'anchor-item'" :subNavList="[$t('subNavs.watch1'), $t('subNavs.watch2'), $t('subNavs.watch3'), $t('subNavs.watch4')]"></m-anchor>  
+	  <m-anchor :contentDivClass="'Watch'" :anchorItem="'anchor-item'" :parentMenusCode="'watch'"></m-anchor>  
       <div class="other Watch">
         <div class="anchor-item">
           <div class="header">

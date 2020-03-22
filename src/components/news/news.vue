@@ -5,7 +5,7 @@
       <div slot="detail">
       </div>
     </home-item-solt>
-    <member-container :data="newsList" :typeName="'news'" :span="24" :count="5">
+    <member-container :data="newsList" :typeName="'news'" :span="24" :count="10">
       <template slot="item" slot-scope="props">
         <news-item :item="props.item"></news-item>
       </template>

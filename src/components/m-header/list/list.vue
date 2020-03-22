@@ -1,6 +1,13 @@
 <template>
   <div class="list">
-    <router-link to="/home">
+    <router-link :to="'/' + item.code"  v-for="(item, index) in menus" :key="index" v-if="item.code != 'Contact Us'">
+      <span
+        class="plate"
+        :style="{color: color}"
+      >{{item.menu}}
+      </span>
+    </router-link>
+    <!-- <router-link to="/home">
       <span
         class="plate"
         :style="{color: color}"
@@ -41,7 +48,7 @@
         :style="{color: color}"
       >{{$t("aboutus")}}
       </span>
-    </router-link>
+    </router-link> -->
     <span
       class="plate"
       :style="{color: color}"
@@ -57,17 +64,24 @@ export default {
     color: {
       type: String,
       default: ''
+    },
+    menus: {
+      type: Array,
+      default: () => []
     }
   },
   methods: {
     _changeLanguage() {
       this.$i18n.locale = this.$i18n.locale === 'en' ? 'zh_CN' : 'en'
       window.localStorage.setItem('immi_language', JSON.stringify(this.$i18n.locale))
-      window.location.reload()
+      this.$emit("getNavList", true)
+      setTimeout(() => {
+        window.location.reload()
+      }, 1000);
     },
     goFootAnchor(selector) {
      var anchor =  document.querySelector(selector)
-     document.documentElement.scrollTop = anchor.offsetTop - 70 - 42
+     document.documentElement.scrollTop = anchor.offsetTop + 1200
   }
   }
 }

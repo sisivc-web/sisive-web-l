@@ -1,6 +1,6 @@
 <template>
 <div class="containerA">
-  <m-anchor :contentDivClass="'AboutGame'" :anchorItem="'anchor-item'" :subNavList="[$t('subNavs.aboutUs1'), $t('subNavs.partner'), $t('subNavs.aboutUs2'), $t('subNavs.aboutUs5'), $t('subNavs.aboutUs6')]"></m-anchor>  
+  <m-anchor :contentDivClass="'AboutGame'" :anchorItem="'anchor-item'" :parentMenusCode="'about'"></m-anchor>  
   <div class="AboutGame other">
     <div class="mainBox block clearfix" style="margin-bottom:60px;">
       <div class="flexBox anchor-item">

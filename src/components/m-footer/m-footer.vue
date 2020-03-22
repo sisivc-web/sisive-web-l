@@ -4,46 +4,46 @@
       <div class="foot-item">
         <div class="left">
           <div class="plate" :style="{backgroundImage:`url(${require('static/image/sisivc/foot/address@4x.png')})`}">
-            <h3>地址</h3>
-            <p>中国·上海市徐汇区复兴中路1380号</p>
+            <h3>{{$t('address')}}</h3>
+            <p>{{$t('addressName')}}</p>
           </div>
           <div class="plate" :style="{backgroundImage:`url(${require('static/image/sisivc/foot/email@4x.png')})`}">
-            <h3>邮箱</h3>
+            <h3>{{$t('email')}}</h3>
             <p>adminoffice@Competition.com</p>
           </div>
         </div>
         <div class="center plate" :style="{backgroundImage:`url(${require('static/image/sisivc/foot/subway@4x.png')})`}">
-          <h3>地铁</h3>
+          <h3>{{$t('subways')}}</h3>
           <ul>
             <li>
               <img src="../../../static/image/sisivc/foot/1@4x.png">
-              <p>1号线</p>
-              <p>常熟路站 </p>
-              <p>4号口</p>
+              <p>{{$t('line1.line')}}1号线</p>
+              <p>{{$t('line1.station')}}常熟路站 </p>
+              <p>{{$t('line1.exit')}}4号口</p>
             </li>        
             <li>
               <img src="../../../static/image/sisivc/foot/7@4x.png">
-              <p>7号线 </p>
-              <p>常熟路站 </p>
-              <p>6/7号口</p>
+              <p>{{$t('line7.line')}} </p>
+              <p>{{$t('line7.station')}} </p>
+              <p>{{$t('line7.exit')}}</p>
             </li>
             <li>
               <img src="../../../static/image/sisivc/foot/10@4x.png">
-              <p>10号线 </p>
-              <p>陕西南路站</p>
-              <p>7号口</p>
+              <p>{{$t('line10.line')}} </p>
+              <p>{{$t('line10.station')}}</p>
+              <p>{{$t('line10.exit')}}</p>
             </li>        
             <li>
               <img src="../../../static/image/sisivc/foot/12@4x.png">
-              <p>12号线 </p>
-              <p>陕西南路站 </p>
-              <p>7号口</p>
+              <p>{{$t('line12.line')}} </p>
+              <p>{{$t('line12.station')}} </p>
+              <p>{{$t('line12.exit')}}</p>
             </li>
           </ul>
         </div>
         <div class="right" style="padding-left:60px">
           <div class="plate" :style="{backgroundImage:`url(${require('static/image/sisivc/foot/bus@4x.png')})`}">
-            <h3>公交</h3>
+            <h3>{{$t('buses')}}</h3>
             <p>15/26/42/45/49/96/167/198/315/320<br>327/824/830/911/920/926/927</p>
           </div>
         </div>
@@ -62,15 +62,33 @@
     </div>
     <div class="foot-black">
       <div>
-        <span>法律声明&nbsp;FAQs&nbsp;&nbsp;</span>
+        <span>{{$t('rule')}}&nbsp;FAQs&nbsp;&nbsp;</span>
         <span>31009102000006号&nbsp;&nbsp;</span>
-        <span>©️&nbsp;上海艾萨克˙斯特恩国际小提琴比赛沪公网安备 </span>
+        <span>©️&nbsp;{{$t('record')}} </span>
       </div>
     </div>
   </div>
 </template>
 <script type="text/ecmascript-6">
+import { kpiQueryContactWayVos }from 'apx'
 export default {
+  created() {
+    // this.showData()
+  },
+  methods: {
+    showData(){
+      let _this = this
+      let param = {
+        pId: '1',
+        language: JSON.parse(window.localStorage.getItem('immi_language'))
+      }
+      kpiQueryContactWayVos(param, this).then((res) => {
+      // axios.get('sisivc/competition/competitionDetails?language=zh&id=1').then(function(res){
+  
+        let data = res.data.data  
+      })
+    }
+  },
 }
 </script>
 <style type="text/css" scoped>
@@ -118,6 +136,7 @@ export default {
   line-height: 30px;
   font-size: 14px;
   color:#a0a0a0;
+  word-wrap: break-word;
 }
 .foot .center ul {
   display: -webkit-box;

@@ -4,41 +4,59 @@
       <el-carousel-item v-for="(item, index) in data" :key="index" v-if="index%4 == 0">
         <!-- <h3>{{ item }}</h3> -->
         <el-row :gutter="10"  v-if="index%4 == 0" style="height:100%;">
-          <el-col :span="6" style="height:100%;">
+          <el-col :span="6" style="height:100%;" class="item-container" v-if="data[index]">
+            <div style="position:relative;width: 100%;height: 100%;">
               <div class="grid-content" :style="{background:index < data.length ? data[index].themeColor : item.bgImg, backgroundSize: '100% auto'}">
+                <img :alt="data[index].image" :src="data[index].image" style="width:100%;height:auto;">
+              </div>      
+              <div class="grid-content item" @click="goHistoryDetail(data[index].id)" :style="{background:index < data.length ? data[index].themeColor : item.bgImg, backgroundSize: '100% auto'}">
                   <div v-if="index < data.length" class="history-item">
-                      <p>{{data[index].year}}</p>
-                      <p>{{data[index].competitionName}}</p>
-                      <el-button type="text" class="button" @click="goHistoryDetail(data[index].id)">详细信息</el-button>
+                    <p>{{data[index].year}}</p>
+                    <p>{{data[index].competitionName}}</p>
+                    <el-button type="text" class="button" @click="goHistoryDetail(data[index].id)">{{$t('details')}}</el-button>
                   </div>
               </div>
+            </div>
           </el-col>
-          <el-col :span="6" style="height:100%;">
-              <div class="grid-content" :style="{background:index+1 < data.length ? data[index+1].themeColor : item.bgImg, backgroundSize: '100% auto'}">
+          <el-col :span="6" style="height:100%;overflow:hidden;" class="item-container" v-if="data[index+1]">
+            <div style="position:relative;width: 100%;height: 100%;">
+              <div class="grid-content" :style="{background:index < data.length ? data[index].themeColor : item.bgImg, backgroundSize: '100% auto'}">
+                <img :src="data[index+1].image" style="width:100%;height:auto;">
+              </div> 
+              <div class="grid-content item" @click="goHistoryDetail(data[index+1].id)" :style="{background:index+1 < data.length ? data[index+1].themeColor : item.bgImg, backgroundSize: '100% auto'}">
                   <div v-if="index+1 < data.length" class="history-item">
                       <p>{{data[index+1].year}}</p>
                       <p>{{data[index+1].competitionName}}</p>
-                      <el-button type="text" class="button" @click="goHistoryDetail(data[index+1].id)">详细信息</el-button>
+                      <el-button type="text" class="button" @click="goHistoryDetail(data[index+1].id)">{{$t('details')}}</el-button>
                   </div>
               </div>
+            </div>
           </el-col>
-          <el-col :span="6" style="height:100%;">
-              <div class="grid-content" :style="{background:index+2 < data.length ? data[index+2].themeColor : item.bgImg, backgroundSize: '100% auto'}">
+          <el-col :span="6" style="height:100%;overflow:hidden;" class="item-container" v-if="data[index+2]">
+            <div style="position:relative;width: 100%;height: 100%;">
+              <div class="grid-content" :style="{background:index < data.length ? data[index].themeColor : item.bgImg, backgroundSize: '100% auto'}">
+                <img :src="data[index+2].image" style="width:100%;height:auto;">
+              </div>  
+              <div class="grid-content item" @click="goHistoryDetail(data[index+2].id)" :style="{background:index+2 < data.length ? data[index+2].themeColor : item.bgImg, backgroundSize: '100% auto'}">
                 <div v-if="index+2 < data.length" class="history-item">
                   <p>{{data[index+2].year}}</p>
                   <p>{{data[index+2].competitionName}}</p>
-                  <el-button type="text" class="button" @click="goHistoryDetail(data[index+2].id)">详细信息</el-button>
+                  <el-button type="text" class="button" @click="goHistoryDetail(data[index+2].id)">{{$t('details')}}</el-button>
                 </div>  
               </div>
+            </div>
           </el-col>
-          <el-col :span="6" style="height:100%;">
-              <div class="grid-content" :style="{background:index+3 < data.length ? data[index+3].themeColor : item.bgImg, backgroundSize: '100% auto'}">
-                <div v-if="index+3 < data.length" class="history-item">
-                  <p>{{data[index+3].year}}</p>
-                  <p>{{data[index+3].competitionName}}</p>
-                  <el-button type="text" class="button" @click="goHistoryDetail(data[index+3].id)">详细信息</el-button>
-                </div>  
-              </div>
+          <el-col :span="6" style="height:100%;overflow:hidden;" class="item-container" v-if="data[index+3]">
+            <div class="grid-content" :style="{background:index < data.length ? data[index].themeColor : item.bgImg, backgroundSize: '100% auto'}">
+              <img :src="data[index+3].image" style="width:100%;height:auto;">
+            </div>
+            <div class="grid-content" @click="goHistoryDetail(data[index+3].id)" :style="{background:index+3 < data.length ? data[index+3].themeColor : item.bgImg, backgroundSize: '100% auto'}">
+              <div v-if="index+3 < data.length" class="history-item">
+                <p>{{data[index+3].year}}</p>
+                <p>{{data[index+3].competitionName}}</p>
+                <el-button type="text" class="button" @click="goHistoryDetail(data[index+3].id)">{{$t('details')}}</el-button>
+              </div>  
+            </div>
           </el-col>
         </el-row>
       </el-carousel-item>
@@ -113,6 +131,19 @@ export default {
     width:100%;
     height: 100%;
     position: relative;
+  }
+  .grid-content.item {
+    position: absolute;
+    top: 100%;
+    left: 0px;
+    -webkit-transition: all 320ms cubic-bezier(0.23, 1, 0.38, 0.98);
+    -moz-transition: all 320ms cubic-bezier(0.23, 1, 0.38, 0.98);
+    -o-transition: all 320ms cubic-bezier(0.23, 1, 0.38, 0.98);
+    transition: all 320ms cubic-bezier(0.23, 1, 0.38, 0.98);
+  }
+  .item-container:hover .item{
+    top: 0%;
+    cursor: pointer;
   }
   .arrow-div 
     .el-carousel__arrow {

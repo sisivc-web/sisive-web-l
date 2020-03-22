@@ -1,6 +1,6 @@
 <template>
   <div style="position:relative">
-    <el-carousel ref="historyCarousel" type="card" arrow="never" :interval="15000" :height="carouselHeight + 'px'" indicator-position="none"> 
+    <el-carousel ref="historyCarousel" arrow="never" :interval="15000" :height="carouselHeight + 'px'" indicator-position="none"> 
       <el-carousel-item v-for="(item, index) in data" :key="index">
         <!-- <h3>{{ item }}</h3> -->
         <!-- <el-row :gutter="10" style="height:100%;">
@@ -9,7 +9,7 @@
                   <div v-if="index < data.length" class="history-item">
                       <p>{{data[index].year}}</p>
                       <p>{{data[index].competitionName}}</p>
-                      <el-button type="text" class="button" @click="goHistoryDetail(data[index].id)">详细信息</el-button>
+                      <el-button type="text" class="button" @click="goHistoryDetail(data[index].id)">{{$t('details')}}</el-button>
                   </div>
               </div>
           <!-- </el-col>
@@ -114,6 +114,9 @@ export default {
     padding: 10px 15px;
     position:absolute;
     bottom: 10%;
+  }
+  >>>.el-carousel__item {
+      width: 25%;
   }
 @media (min-width: 1920px)  {
   .el-carousel{

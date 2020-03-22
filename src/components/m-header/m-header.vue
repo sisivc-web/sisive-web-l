@@ -5,7 +5,7 @@
         <router-link to="/home">
           <div class="logo"></div>
         </router-link>
-        <list></list>
+        <list :menus="menus" @getNavList="getNavList"></list>
       </div>
     </div>
   </div>
@@ -26,6 +26,7 @@ export default {
   data() {
     return {
       isNavFixed: false,
+      menus: []
     }
   },
   components: {
@@ -34,7 +35,8 @@ export default {
     List
   },
   created() {
-    this.getNavList()
+    this.menus = JSON.parse(sessionStorage.getItem('menus'));
+    this.getNavList(false)
   },
   mounted() {
     /**通过给变成固定定位的元素添加一个同等高度的父元素，防止该元素变成固定定位时，脱离文档流导致的页面抖动 */
@@ -57,15 +59,17 @@ export default {
         this.isNavFixed = false
       }
     },
-    getNavList(){
+    getNavList(isChange){
       let _this = this
       let param = {
         parentId: '0',
         language: JSON.parse(window.localStorage.getItem('immi_language'))
       }
-      kpiQueryMenues(param, this).then((res) => {
-        console.log('nav---',res.data.data)
-      })
+      if (isChange || !this.menus || (this.memus && this.menus.length < 1)) 
+        kpiQueryMenues(param, this).then((res) => {
+          this.menus = res.data.data
+          sessionStorage.setItem("menus",JSON.stringify(this.menus));
+        })
     }
   }
 }

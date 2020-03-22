@@ -2,8 +2,8 @@
   <div>
     <div :class="['sub-nav', isFixed ? 'subNavFixed' : '']">
         <ul>
-            <li v-for="(item, index) in subNavList" :key="index" v-if="item != ''">
-              <a :class="{active: active===index}" @click="scrollTo(index)">{{item}}</a>
+            <li v-for="(item, index) in subNavList" :key="index">
+              <a :class="{active: active===index}" @click="scrollTo(index)">{{item.menu}}</a>
             </li>
         </ul>
     </div>
@@ -21,16 +21,24 @@ export default {
         type: String,
         default: 'anchor-item'
     },
-    subNavList: {
-        type: Array,
-        default: () => []
+    // subNavList: {
+    //     type: Array,
+    //     default: () => []
+    // },
+    parentMenusCode:  {
+        type: String,
+        default: 'home'
     },
   },
   data() {
     return {
       active: 0, // 当前激活的导航索引
       isFixed: false,
+      subNavList: []
     }
+  },
+  created() {
+    this.getSubList()
   },
   mounted() {
     // 监听滚动事件
@@ -41,6 +49,25 @@ export default {
     window.removeEventListener('scroll', this.onScroll)
   },
   methods: {
+    //获取各子菜单
+    getSubList() {
+      let menus = JSON.parse(sessionStorage.getItem('menus'));
+      let currentMatchMenu = menus.find(el => {
+        return el.code === 'currentmatch'
+      })
+      let currentMatchSubNav = currentMatchMenu.menueVoList
+      let currentMenu = menus.find(el => {
+        return el.code === this.parentMenusCode
+      })
+      let nowSubNav = this.parentMenusCode === 'currentmatch' ? currentMatchSubNav : currentMenu.menueVoList
+      if(this.parentMenusCode === 'currentmatch') {
+        this.subNavList = nowSubNav
+      } else {
+        let temp = new Array(currentMatchSubNav.length - nowSubNav.length).join(",").split(",")
+        this.subNavList = nowSubNav.concat(temp)
+      }
+
+    },
     // 滚动监听器
     onScroll() {
       // 获取所有锚点元素

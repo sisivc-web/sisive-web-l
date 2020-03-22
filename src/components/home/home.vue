@@ -1,7 +1,7 @@
 <template>
   <div class="container home-anchor-container">
     <div class="other">
-      <div class="carousel">
+      <div class="carousel anchor-item">
         <el-carousel :interval="5000" :height="carouselHeight + 'px'" arrow="never" indicator-position="none" @change="_change" ref="carousel">
           <el-carousel-item v-for="(item, index) in carousellist" :key="index" name="index">
             <div class="carousel_img">
@@ -18,7 +18,7 @@
       </div>
       <div class="arrow-div" v-show="!isFixed"></div>
       <!-- <m-anchor :contentDivClass="'home-anchor-container'" :anchorItem="'anchor-item'" :subNavList="[$t('subNavs.news'), awardUserList.length > 0 ? $t('subNavs.awardMember') : '', judgesListSource.length > 0 ? $t('subNavs.judges') : '', playersListSource.length > 0 ? $t('subNavs.contestant') : '', artistsListSource.length > 0 ? $t('subNavs.artist') : '', parterList.length > 0 ? $t('subNavs.partner') : '', 'Ending']"></m-anchor>       -->
-      <m-anchor :contentDivClass="'home-anchor-container'" :anchorItem="'anchor-item'" :subNavList="subNavList"></m-anchor>      
+      <m-anchor :contentDivClass="'home-anchor-container'" :anchorItem="'anchor-item'" :parentMenusCode="'home'" ></m-anchor>      
       <div style="margin-top:60px;margin-bottom:60px;">
         <home-item-solt :itemName="'news-div'" :title="$t('newsList.new')" :isShowMore="true" :more="$t('newsList.more')" @gotoMore="gotoMore" :marginBottom="'60px'" v-if="newsList.length > 0" >
           <div slot="detail">
@@ -31,7 +31,7 @@
                       <span class="title">{{item.title}}</span>
                       <div class="operate">
                         <time class="time">{{item.date}}</time>
-                        <el-button type="text" class="button" style="opacity:0">阅读全文</el-button>
+                        <el-button type="text" class="button" style="opacity:0">{{$t('reading')}}</el-button>
                       </div>
                     </div>
                     <el-card class="box-card award-list" :body-style="{ padding: '15px 0', paddingLeft: '0px',
@@ -49,7 +49,7 @@
                         <span class="title">{{item.title}}</span>
                         <div class="operate">
                           <time class="time">{{item.date}}</time>
-                          <el-button type="text" class="button" @click="_gotoNewsDetails(item.id)">阅读全文</el-button>
+                          <el-button type="text" class="button" @click="_gotoNewsDetails(item.id)">{{$t('reading')}}</el-button>
                         </div>
                       </div>
                     </el-card>
@@ -58,7 +58,7 @@
               </el-row>
             </div>
             <div class="temp-read">
-              <el-button type="text" class="button" @click="_gotoNewsDetails(newsList[0].id)">阅读全文</el-button>
+              <el-button type="text" class="button" @click="_gotoNewsDetails(newsList[0].id)">{{$t('reading')}}</el-button>
             </div>
           </div>
         </home-item-solt>

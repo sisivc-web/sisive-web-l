@@ -198,6 +198,14 @@ export function kpiQueryMenues (params = {}, Vue) {
 }
 
 /**
+ * 联系我们
+ * @param {*语言(en, zh_CN)} language
+ */
+export function kpiQueryContactWayVos (params = {}, Vue) {
+  return Request('/sisivc/menue/queryContactWayVos', 'get', params, undefined, Vue)
+}
+
+/**
  * 用户信息
  */
 export function kpiUserInfo (params = {}, Vue) {
