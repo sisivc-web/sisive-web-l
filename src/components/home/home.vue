@@ -102,7 +102,7 @@
       <m-anchor :contentDivClass="'home-anchor-container'" :anchorItem="'anchor-item'" :parentMenusCode="'home'" ></m-anchor>      
     </div>
     <div style="width:100%;overflow:hidden;" class="anchor-item">
-      <video src="static/image/sisivc/SISIVC.mp4" class="vedio-css" width="100%" height="auto" controls="controls" :poster="require('static/image/sisivc/poster.jpg')" >您的浏览器不支持 video 标签。</video>
+      <video :src="tempEndings.externalLink" class="vedio-css" width="100%" height="auto" controls="controls" :poster="require('static/image/sisivc/poster.jpg')" >您的浏览器不支持 video 标签。</video>
     </div>
   </div>
 </template>
@@ -145,6 +145,7 @@ export default {
       playersListSource: [],
       animationName: '',
       parterList: [],
+      tempEndings: {}
     }
   },
   created() {
@@ -241,7 +242,7 @@ export default {
         let tempJurys = results.jurys
         let tempArtists = results.artists
         let tempPartnerVos = results.partnerVos
-        let tempEndings = results.endings
+        this.tempEndings = results.endings[0]
 
         this.carousellist = tempBanners ? tempBanners.map(el => {
           return {
