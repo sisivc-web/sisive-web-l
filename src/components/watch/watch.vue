@@ -179,6 +179,7 @@
   -webkit-box-shadow: none;
   box-shadow: none;
 }
+.fc-event-container {cursor: pointer;}
 .fc-unthemed th, .fc-unthemed td, .fc-unthemed thead, .fc-unthemed tbody, .fc-unthemed .fc-divider, .fc-unthemed .fc-row, .fc-unthemed .fc-content, .fc-unthemed .fc-popover, .fc-unthemed .fc-list-view, .fc-unthemed .fc-list-heading td {
     border-color: #e9e9e9;
 }

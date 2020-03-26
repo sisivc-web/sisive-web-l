@@ -55,8 +55,8 @@
           <div slot="detail">
             <ul class="schedul-ul">
               <li v-for="(item, index) in data.scheduleVoList" :key="index">
-                <p>{{item.scheduleName.includes("：")?item.scheduleName.split('：')[0] : item.scheduleName}}</p>
-                <p>{{item.scheduleName.includes("：") && item.scheduleName.includes("（")?item.scheduleName.split('：')[1].split('（')[0]:''}}</p>
+                <p style="font-weight:bold;">{{item.scheduleName.includes("：")?item.scheduleName.split('：')[0] : item.scheduleName}}</p>
+                <p>{{item.scheduleName.includes("：") && item.scheduleName.includes("（")?item.scheduleName.split('：')[1].split('（')[0]:item.scheduleName.split('：')[1]}}</p>
                 <!-- <p>{{item.startDate}} - {{item.endDate}}</p> -->
                 <p>{{item.scheduleName.includes("（")?item.scheduleName.split('（')[1] ? '（' + item.scheduleName.split('（')[1] : '': ''}}</p>
               </li>
@@ -294,8 +294,8 @@ export default {
         display: block;
         float: left;
         height: 100px;
-        font-size:14px;
-        color:#a0a0a1;
+        font-size:13px;
+        color:#4c4948;
         line-height: 25px;
         padding-top: 20px;
     .boxImg, .boxImg img

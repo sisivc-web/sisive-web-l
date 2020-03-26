@@ -53,7 +53,10 @@
       class="plate"
       :style="{color: color}"
       @click="goFootAnchor('#foot')"
-    >{{$t("contactus")}}
+      v-for="(item, index) in menus" 
+      :key="index" 
+      v-if="item.code === 'Contact Us'"
+    >{{item.menu}}
     </span>
     <span class="plate" @click="_changeLanguage" :style="{color: color}">{{$t("message.language")}}</span>
   </div>
@@ -81,7 +84,7 @@ export default {
     },
     goFootAnchor(selector) {
      var anchor =  document.querySelector(selector)
-     document.documentElement.scrollTop = anchor.offsetTop + 1200
+     document.documentElement.scrollTop = anchor.offsetTop - 112
   }
   }
 }
