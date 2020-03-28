@@ -22,7 +22,7 @@
           </div>
           <el-row class="equal-height">
             <el-col :span="10" class="left left-list">
-              <div v-for="(item, index) in awardUserList" :key="index" @click="onClick(index)" :class="['item', {'is-active':clickIndex===index}]">
+              <div v-for="(item, index) in awardUserList" :key="index" @mouseover="onClick(index)" @click="_gotoDetails(item.playerId)" :class="['item', {'is-active':clickIndex===index}]">
                 <el-row>
                     <el-col :span="12" class="item-column">
                         <span :title="item.awardName">{{item.awardName}}</span>
@@ -110,6 +110,7 @@ export default {
         @extend .flex-around
         .item
           width: 100%;
+          cursor: pointer
           .item-column
               padding-right: 5px;
               overflow: hidden;
@@ -117,6 +118,7 @@ export default {
               white-space: nowrap;
               font-size: 13px;
               color: #000;
+              line-height: 50px;
           hr
             margin: 0;
             color: $color-item-more;
