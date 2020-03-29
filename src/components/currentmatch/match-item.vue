@@ -5,7 +5,7 @@
       <div class="item">
         <i class="el-icon-document" v-show="isFileIcon"></i>
         <h2>{{subTitle}}</h2>
-        <span v-show="!isFileIcon">详细内容请下载此文档</span>
+        <span v-show="!isFileIcon">{{$t('description')}}</span>
       </div>
       <div class="item">
         <a v-show="isView"><i class="el-icon-view" @click="viewFun"></i></a>

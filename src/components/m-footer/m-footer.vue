@@ -17,9 +17,9 @@
           <ul>
             <li>
               <img src="../../../static/image/sisivc/foot/1@4x.png">
-              <p>{{$t('line1.line')}}1号线</p>
-              <p>{{$t('line1.station')}}常熟路站 </p>
-              <p>{{$t('line1.exit')}}4号口</p>
+              <p>{{$t('line1.line')}}</p>
+              <p>{{$t('line1.station')}} </p>
+              <p>{{$t('line1.exit')}}</p>
             </li>        
             <li>
               <img src="../../../static/image/sisivc/foot/7@4x.png">
@@ -73,7 +73,13 @@
 import { kpiQueryContactWayVos }from 'apx'
 export default {
   created() {
-    // this.showData()
+    this.contact = JSON.parse(sessionStorage.getItem('contact'));
+    this.showData()
+  },
+  data() {
+    return {
+      contact: []
+    }
   },
   methods: {
     showData(){
@@ -82,11 +88,11 @@ export default {
         pId: '1',
         language: JSON.parse(window.localStorage.getItem('immi_language'))
       }
-      kpiQueryContactWayVos(param, this).then((res) => {
-      // axios.get('sisivc/competition/competitionDetails?language=zh&id=1').then(function(res){
-  
-        let data = res.data.data  
-      })
+      if (!this.contact || (this.contact && this.contact.length < 1)) 
+        kpiQueryContactWayVos(param, this).then((res) => {
+    
+          let contact = res.data.data  
+        })
     }
   },
 }

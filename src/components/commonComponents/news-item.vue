@@ -16,7 +16,7 @@
                 <div style="width: 80%; height: 70px; overflow: hidden;">
                     <p class="news-desp" v-html="item.content"></p>
                 </div>
-                <el-button type="text" class="button">阅读全文</el-button>
+                <el-button type="text" class="button">{{$t('reading')}}</el-button>
             </div>
             </div>
             

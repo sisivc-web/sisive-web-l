@@ -5,7 +5,7 @@
     <div class="mainBox block clearfix" style="margin-bottom:60px;">
       <div class="flexBox anchor-item">
         <div class="fl aItemG">
-          <h3>关于比赛</h3>
+          <h3>{{subNav['About SISIVC ']}}</h3>
           <div class="img">
             <img :src="awardsVoList.image" />
           </div>
@@ -17,26 +17,33 @@
         </div>
       </div>
       <!--关于比赛-->
-      <home-item-solt :itemName="'parter-div'" :title="$t('partners')" :isShowMore="false">
+      <home-item-solt :itemName="'parter-div'" :title="subNav['Sponsors & Partners']" :isShowMore="false">
         <div slot="detail" style="padding-bottom:20px;">
           <partner-list :parterList="awardsVoList.partnerLevelVoList"></partner-list>
         </div>
       </home-item-solt>
       <div class="ItemV anchor-item">
-        <h3>织织架构</h3>
+        <h3>{{subNav['Structure']}}</h3>
         <div class="ItemDl">
           <ul class="ulLIst">
-            <li v-for="(item,index) in awardsVoList.committeeVoList" v-if="item.isUnit == 1 && item.parentId == 0" :key="index">
+            <!-- item.isUnit == 1 && item.parentId == 0 -->
+            <li v-for="(item,index) in awardsVoList.committeeVoList" v-if="item.sort<4" :key="index">
               <h5>{{item.title}}</h5>
               <p v-for="(item1,index) in item.sonCommitteeVos" v-if="item1.parentId == item.id" :key="index">{{item1.title}}</p>
             </li>
           </ul>
         </div>
+        <!-- v-if="item.isUnit == 0 && item.parentId == 0" -->
         <div class="colspanRow">
-          <div class="left" v-for="(item,index) in awardsVoList.committeeVoList" v-if="item.isUnit == 0 && item.parentId == 0" :key="index">
+          <div class="left" v-for="(item,index) in awardsVoList.committeeVoList" :key="index" v-if="item.sort>3">
             <div class="ff"><h5>{{item.title}}</h5></div>
-            <div class="ff" v-for="(item1,index) in item.sonCommitteeVos" v-if="item.id == item1.parentId" :key="index"><label>{{item1.title}}</label><div class="secName"><p v-for="(item2,index) in item1.sonCommitteeVos" v-if="item1.id == item2.parentId">{{item2.title}}</p></div></div>
+            <div class="ff" v-for="(item1,index) in item.sonCommitteeVos" v-if="item.id == item1.parentId" :key="index">
+              <label>{{item1.title}}</label>
+              <div class="secName">
+                <p v-for="(item2,index) in item1.sonCommitteeVos" v-if="item1.id == item2.parentId">{{item2.title}}</p>
+              </div>
             </div>
+          </div>
         </div>
       </div>
       <!--组织架构-->
@@ -85,7 +92,7 @@
     <!--奖项-->
     <div class="mainBox block clearfix">
       <div class="GamePlace">
-        <h2>比赛场地</h2>
+        <h2>{{subNav['Facilities']}}</h2>
         <div class="GameTitBox">
           <div class="fl ItemLst">
             <h3 class="placeTitle">{{awardsVoList.venueTitle}}</h3>
@@ -96,7 +103,7 @@
           </div>
       </div>
     </div>
-    <download-item :title="$t('subNavs.aboutUs6')" :downloadList="awardsVoList.resourceVoList"></download-item>
+    <download-item :title="subNav['Download']" :downloadList="awardsVoList.resourceVoList"></download-item>
  </div>
 </div>
 </template>
@@ -107,6 +114,7 @@ import MAnchor from 'components/m-anchor/m-anchor'
 import HomeItemSolt from 'components/home/home-item-solt'
 import PartnerList from 'components/home/partner-list'
 import DownloadItem from 'components/about/download-item'
+import { getSubNav } from 'apx/util.js'
 export default {
   components: {
     MAnchor,
@@ -118,9 +126,11 @@ export default {
     return {
 		receiveIndex:0,
 		awardsVoList : '',
+    subNav: [],
 	}
   },
   mounted:function(){
+    this.subNav = getSubNav("about");
     this.showData()
   },
   methods:{

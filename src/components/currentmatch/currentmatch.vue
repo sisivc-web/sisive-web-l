@@ -30,40 +30,42 @@
         </div> -->
         <div class="match-div">
           <div class="match-item anchor-item">
-            <match-item :title="entryRequirements.resourceName" :subTitle="year + ' SISIVC' + entryRequirements.resourceName" :linkUrl="entryRequirements.resourceUrl" @view="view(1)"></match-item>
+            <match-item :title="entryRequirements.resourceName" :subTitle="year + ' SISIVC ' + entryRequirements.resourceName" :linkUrl="entryRequirements.resourceUrl" @view="view(1)"></match-item>
           </div>
           <div class="match-item anchor-item">
-            <match-item :title="program.resourceName" :subTitle="year + ' SISIVC' + program.resourceName" :linkUrl="program.resourceUrl" @view="view(2)"></match-item>
+            <match-item :title="program.resourceName" :subTitle="year + ' SISIVC ' + program.resourceName" :linkUrl="program.resourceUrl" @view="view(2)"></match-item>
           </div>
         </div>
         <div class="match-div" style="position:relative;left:0;top:-184px;">
           <div style="position: absolute;top: 0px;left: 0px;width: 100%;background: #fff;z-index: 889">
             <transition name="draw">   <!--这里的name 和 css 类名第一个字段要一样-->
               <div class="box" v-show="boxshow" style="height:100%">
-                <match-item :title="title" :subTitle="year + ' SISIVC' + title" :isBottomBorder="false"  :linkUrl="contentPdf" @view="view()"></match-item>
+                <match-item :title="title" :subTitle="year + ' SISIVC ' + title" :isBottomBorder="false"  :linkUrl="contentPdf" @view="view()"></match-item>
                 <div v-html="content" style="padding:30px 0 50px;"></div>
                 <div style="text-align:center;padding-bottom:60px;cursor:pointer;" @click="view">
                   <i class="el-icon-arrow-up" style="font-size: 30px;color: #222;font-weight: 600;"></i>
                   <br/>
-                  <span style="font-size: 10px;color: #656464;">收起</span>
+                  <span style="font-size: 10px;color: #656464;">{{$t('packUp')}}</span>
                 </div>
               </div>
             </transition>
           </div>
         </div>
-        <home-item-solt :itemName="'schedul-div'" :title="$t('subNavs.enroll4')" :isShowMore="false" :marginBottom="'30px'">
+        <!-- <home-item-solt :itemName="'schedul-div'" :title="$t('subNavs.enroll4')" :isShowMore="false" :marginBottom="'30px'"> -->
+        <home-item-solt :itemName="'schedul-div'" :title="subNav['Schedule']" :isShowMore="false" :marginBottom="'30px'">
           <div slot="detail">
             <ul class="schedul-ul">
               <li v-for="(item, index) in data.scheduleVoList" :key="index">
-                <p style="font-weight:bold;">{{item.scheduleName.includes("：")?item.scheduleName.split('：')[0] : item.scheduleName}}</p>
-                <p>{{item.scheduleName.includes("：") && item.scheduleName.includes("（")?item.scheduleName.split('：')[1].split('（')[0]:item.scheduleName.split('：')[1]}}</p>
+                <p style="font-weight:bold;">{{item.scheduleName.match(/[^:\uff1a]*(?=:|\uff1a){0,1}/)[0]}}</p>
+                <p>{{item.scheduleName.match(/(\:|\uff1a)([^\(\uff08]*)/)?item.scheduleName.match(/(\:|\uff1a)([^\(\uff08]*)/)[2]:item.scheduleName.match(/(\:|\uff1a)([^\(\uff08]*)/)}}</p>
                 <!-- <p>{{item.startDate}} - {{item.endDate}}</p> -->
-                <p>{{item.scheduleName.includes("（")?item.scheduleName.split('（')[1] ? '（' + item.scheduleName.split('（')[1] : '': ''}}</p>
+                <!-- "889000006（6666(60:0(00)99(000)".match(/(\(|\uff08)[^\)\uff09]*/) -->
+                <p>{{item.scheduleName.match(/(?<=\(|\uff08).+(?=\)|\uff09)/)?"("+item.scheduleName.match(/(?<=\(|\uff08).+(?=\)|\uff09)/)[0]+")":''}}</p>
               </li>
             </ul>
           </div>
         </home-item-solt>
-        <home-item-solt :itemName="'member-div'" :title="$t('judges')" :isShowMore="false" :marginBottom="'30px'">
+        <home-item-solt :itemName="'member-div'" :title="subNav['Jurys']" :isShowMore="false" :marginBottom="'30px'">
           <div slot="detail">
             <member-container :data="judgesListSource" :typeName="'judges'">
               <template slot="item" slot-scope="props">
@@ -72,7 +74,7 @@
             </member-container>
           </div>
         </home-item-solt>
-        <home-item-solt :itemName="'member-div'" :title="$t('players')" :isShowMore="false" :marginBottom="'30px'">
+        <home-item-solt :itemName="'member-div'" :title="subNav['Contestants']" :isShowMore="false" :marginBottom="'30px'">
           <div slot="detail">
             <member-container :data="playersListSource" :typeName="'players'">
               <template slot="item" slot-scope="props">
@@ -81,7 +83,7 @@
             </member-container>
           </div>
         </home-item-solt>
-        <home-item-solt :itemName="'member-div'" :title="$t('artists')" :isShowMore="false" :marginBottom="'30px'">
+        <home-item-solt :itemName="'member-div'" :title="subNav['Artists']" :isShowMore="false" :marginBottom="'30px'">
           <div slot="detail">
             <member-container :data="artistsListSource" :typeName="'artists'">
               <template slot="item" slot-scope="props">
@@ -90,7 +92,9 @@
             </member-container>
           </div>
         </home-item-solt>
-        <div class="boxImg anchor-item">
+        <home-item-solt :itemName="'member-div'" :title="subNav['Orchestra']" :isShowMore="false" :marginBottom="'30px'">
+        </home-item-solt>
+        <div class="boxImg">
           <img :src="matchBg">
         </div>
         <home-item-solt :itemName="'introdution-div'" :isAnchorItem="false" :title="$t('name')" :isShowMore="false" :marginBottom="'30px'">
@@ -106,9 +110,9 @@
           </div>
         </home-item-solt>
         <div class="rule-div anchor-item">
-          <h1>{{$t('subNavs.enroll9')}}</h1>
+          <h1>{{subNav['Rules']}}</h1>
           <div class="downloadPoint">
-            <a href="javascript:;" @click="downloadFile(data.contestRules)" class="download"></a><p>详细内容请下载此文档</p>
+            <a href="javascript:;" @click="downloadFile(data.contestRules)" class="download"></a><p>{{$t('description')}}</p>
           </div>
         </div>
       </div>
@@ -122,6 +126,7 @@ import MemberContainer from 'components/commonComponents/member-container'
 import MemberItem from 'components/commonComponents/member-item'
 import HomeItemSolt from 'components/home/home-item-solt'
 import MatchItem from 'components/currentmatch/match-item'
+import { getSubNav } from 'apx/util.js'
 export default {
   components: {
     MAnchor,
@@ -149,10 +154,12 @@ export default {
       scheduleVoList: [],//比赛日程数据
       year: (new Date()).getFullYear() + '',
       matchBg: require('static/image/sisivc/match-bg.png'),
+      subNav: [],
     }
   },
   created() {
     // this._getHistoryData()
+    this.subNav = getSubNav("currentmatch");
     this._getData()
     
   },
@@ -294,7 +301,7 @@ export default {
         display: block;
         float: left;
         height: 100px;
-        font-size:13px;
+        font-size:14px;
         color:#4c4948;
         line-height: 25px;
         padding-top: 20px;

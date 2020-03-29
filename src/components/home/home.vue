@@ -18,7 +18,8 @@
       </div>
       <div class="arrow-div" v-show="!isFixed"></div>
       <div style="margin-top:60px;margin-bottom:60px;">
-        <home-item-solt :itemName="'news-div'" :title="$t('newsList.new')" :isShowMore="true" :more="$t('newsList.more')" @gotoMore="gotoMore" :marginBottom="'60px'" v-if="newsList.length > 0" >
+        <home-item-solt :itemName="'news-div'" :title="subNav['News']" :isShowMore="true" :more="$t('newsList.more')" @gotoMore="gotoMore" :marginBottom="'60px'" v-if="newsList.length > 0" >
+        <!-- <home-item-solt :itemName="'news-div'" :title="$t('newsList.new')" :isShowMore="true" :more="$t('newsList.more')" @gotoMore="gotoMore" :marginBottom="'60px'" v-if="newsList.length > 0" > -->
           <div slot="detail">
             <div class="details">
               <el-row>
@@ -60,7 +61,8 @@
             </div>
           </div>
         </home-item-solt>
-        <home-item-solt :itemName="'award-div'" :title="$t('prizeWinners')" :isShowMore="false" :marginBottom="'60px'" v-if="awardUserList.length > 0">
+        <!-- <home-item-solt :itemName="'award-div'" :title="$t('prizeWinners')" :isShowMore="false" :marginBottom="'60px'" v-if="awardUserList.length > 0"> -->
+        <home-item-solt :itemName="'award-div'" :title="subNav['Winners']" :isShowMore="false" :marginBottom="'60px'" v-if="awardUserList.length > 0">
           <div slot="detail">
             <award-list :awardUserList="awardUserList" :awardUserImgUrl="awardUserImgUrl" :awardUserId="awardUserId" @handleChange="handleChange"></award-list>
           </div>
@@ -114,6 +116,7 @@ import MemberItem from 'components/commonComponents/member-item'
 import HomeItemSolt from 'components/home/home-item-solt'
 import AwardList from 'components/home/award-list'
 import PartnerList from 'components/home/partner-list'
+import { getSubNav } from 'apx/util.js'
 // import Divider from 'base/divider/divider'
 export default {
   components: {
@@ -145,10 +148,12 @@ export default {
       playersListSource: [],
       animationName: '',
       parterList: [],
-      tempEndings: {}
+      tempEndings: {},
+      subNav: [],
     }
   },
   created() {
+    this.subNav = getSubNav("home");
     this._getData()
   },
   computed: {

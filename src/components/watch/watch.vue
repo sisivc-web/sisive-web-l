@@ -5,11 +5,11 @@
         <div class="anchor-item">
           <div class="header">
             <div class="mainBox block clearfix">
-              <h3 class="title" style="padding: 10px 0 12px;color:#222222;font-size:16px;font-weight:bold;">{{$t('subNavs.watch1')}}</h3>
+              <h3 class="title" style="padding: 10px 0 12px;color:#222222;font-size:16px;font-weight:bold;">{{subNav['Schedule']}}</h3>
               <div class="flex-start">
                 <div class="flex-start item" v-for="(item, index) in watchDataIndex.scheduleVoList" :key="index">
                   <div class="circle" :style="{background:item.themeColor}"></div>
-                  <div>{{item.scheduleName.split('：')[0]}}</div>
+                  <div>{{item.scheduleName.match(/[^:\uff1a]*(?=:|\uff1a){0,1}/)[0]}}</div>
                 </div>
               </div>
             </div>
@@ -33,7 +33,7 @@
         </div>
         <!--直播地址-->
         <div class="mainBox block clearfix anchor-item">
-          <h3 class="title" style="padding-bottom: 33px;">{{$t('subNavs.watch2')}}</h3>
+          <h3 class="title" style="padding-bottom: 33px;">{{subNav['Live Broadcast']}}</h3>
           <ul class="Broad_add">
             <li v-for="(item, index) in watchDataIndex.broadcastAddressVoList" :key="index">
               <div class="Broad_add_div">
@@ -48,13 +48,13 @@
         </div>
         <!--观赛须知-->
         <div v-if="watchDataIndex.noticeVoList" class="mainBox block clearfix guidelines anchor-item">
-          <h3 class="title" style="padding:80px 0 26px 0;">{{$t('subNavs.watch3')}}</h3><!--一级标题-->
-          <h4 v-if="watchDataIndex.noticeVoList.length>0">{{watchDataIndex.noticeVoList[0].content}}</h4><!--二级标题-->
-          <p v-for="(item, index) in watchDataIndex.noticeVoList.slice(1)" :key="index">{{index+1}}.{{item.content}}</p>
+          <h3 class="title" style="padding:80px 0 26px 0;">{{subNav['Notes']}}</h3><!--一级标题-->
+          <h4 v-if="watchDataIndex.noticeVoList.length>0" v-html="watchDataIndex.noticeVoList[0].content"></h4><!--二级标题-->
+          <p v-for="(item, index) in watchDataIndex.noticeVoList.slice(1)" :key="index" v-html="item.content"></p>
         </div>
         <!--订票方式-->
-        <div class="mainBox block clearfix guidelines anchor-item">
-          <h3 class="title" style="padding:63px 0 23px 0;">{{$t('subNavs.watch4')}}</h3><!--一级标题-->
+        <div class="mainBox block clearfix guidelines anchor-item" style="line-height:1.75;">
+          <h3 class="title" style="padding:63px 0 23px 0;">{{subNav['To Order Tickets']}}</h3><!--一级标题-->
           <div v-for="(item,index) in watchDataIndex.bookingWayVoList" :key="index">
             <div v-if="item.booking" v-html="item.booking"></div><!--二级标题-->
             <p v-if="item.content">{{item.content}}</p>
@@ -75,6 +75,7 @@
   import interactionPlugin from '@fullcalendar/interaction'
   import eventpopover from './event-popover'
   import Vue from 'vue'
+  import { getSubNav } from 'apx/util.js'
   // import vue from 'vue/dist/vue.js'
   export default({
     components: {
@@ -87,6 +88,7 @@
         watchDataIndex: {},//观赛主页
         date:'2019-11-22',
         calendarEvents: [],
+        subNav: [],
         calendarPlugins: [ dayGridPlugin, interactionPlugin ]
       }
     },
@@ -96,6 +98,7 @@
       }
     },
     mounted () {
+      this.subNav = getSubNav("watch");
       this.showData()
     },
     methods:{

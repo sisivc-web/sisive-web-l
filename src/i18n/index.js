@@ -50,29 +50,31 @@ const messages = {
     buses: 'Buses',
     reading: 'Reading',
     details: 'Details',
-    addressName: '中国·上海市徐汇区复兴中路1380号',
+    addressName: 'No.1380 Middle Fuxing Road (Near Fenyang Road), Shanghai',
+    description: 'Please download this document for details',
+    packUp: 'Pack Up',
     line1: {
-      line: '1号线',
-      station: '常熟路站',
-      exit: '4号口'
+      line: 'Line 1',
+      station: 'Changshu RD.Station',
+      exit: 'Exit 4'
     },
     line7: {
-      line: '7号线',
-      station: '常熟路站',
-      exit: '6/7号口'
+      line: 'Line 7',
+      station: 'Changshu RD.Station',
+      exit: 'Exit 6,7'
     },
     line10: {
-      line: '10号线',
-      station: '陕西南路站',
-      exit: '7号口'
+      line: 'Line 10',
+      station: 'South Shaanxi RD.Station',
+      exit: 'Exit 7'
     },
     line12: {
-      line: '12号线',
-      station: '陕西南路站',
-      exit: '7号口'
+      line: 'Line 12',
+      station: 'South Shaanxi RD.Station',
+      exit: 'Exit 7'
     },
-    record: '上海艾萨克˙斯特恩国际小提琴比赛沪公网安备',
-    rule: '法律声明',
+    record: 'Shanghai Isaac Stem International Violin Competition all rights reserved.',
+    rule: 'Legal terms',
     subNavs: {
       news: 'News',
       awardMember: 'Prize winners',
@@ -253,6 +255,8 @@ const messages = {
     reading: '阅读全文',
     details: '详细信息',
     addressName: '中国·上海市徐汇区复兴中路1380号',
+    description: '详细内容请下载此文档',
+    packUp: '收起',
     line1: {
       line: '1号线',
       station: '常熟路站',
