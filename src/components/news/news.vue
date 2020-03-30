@@ -19,6 +19,7 @@ import SubNav from 'components/sub-nav/sub-nav'
 import HomeItemSolt from 'components/home/home-item-solt'
 import MemberContainer from 'components/commonComponents/member-container'
 import NewsItem from 'components/commonComponents/news-item'
+import { getYearSubList } from 'apx/util.js'
 export default {
   components: {
     SubNav,
@@ -54,6 +55,8 @@ export default {
             id: el
           }
         })
+        let temp = getYearSubList(this.subNavList)
+        this.subNavList = temp
         this._getURLQuery()
         this._getData(this.year)
       })

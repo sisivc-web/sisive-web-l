@@ -10,7 +10,7 @@
             <div :style="{height: nowHeight + 'px', overflow: 'hidden'}" class="more-css">
                 <div ref="moreItems">
                     <el-row>
-                        <el-col :span="6"  v-for="(item, index) in data" :key="index" v-if="index >= count">
+                        <el-col :span="span"  v-for="(item, index) in data" :key="index" v-if="index >= count">
                             <slot name="item" :item="item"></slot>
                             <!-- <member-item :item="item"></member-item> -->
                         </el-col>
@@ -18,7 +18,7 @@
                 </div>
             </div>
         </div>
-        <el-row v-if="data.length > 8">
+        <el-row v-if="data.length > count">
             <el-col :span="24">
                 <div :class="['more-div', nowType===typeName && showMoreList?'rotate':'']" @click="moreClick(typeName)">
                     <img :src="require('static/image/sisivc/arrow2.png')">

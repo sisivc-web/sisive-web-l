@@ -26,8 +26,8 @@
                 <el-col :span="10" v-for="(item, index) in newsList.slice(0, 1)" :key="index" class="left">
                   <!-- <el-card :body-style="{ padding: '0px' }"> -->
                     <a href="javascript:;" class="animation hover-animation" @click="_gotoNewsDetails(item.id)"><img :src="item.imageUrl" class="image" style="width:100%;height:auto;"></a>
-                    <div style="padding: 30px 0;padding-bottom:12px;" @click="_gotoNewsDetails(item.id)">
-                      <span class="title">{{item.title}}</span>
+                    <div style="padding: 30px 0;padding-bottom:12px;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;" @click="_gotoNewsDetails(item.id)">
+                      <span class="title" :title="item.title">{{item.title}}</span>
                       <div class="operate">
                         <time class="time">{{item.date}}</time>
                         <el-button type="text" class="button" style="opacity:0">{{$t('reading')}}</el-button>
@@ -44,8 +44,8 @@
                   <el-col :span="12" v-for="(item, index) in newsList.slice(1, 5)" :key="index">
                     <el-card :body-style="{ padding: '0px' }">
                       <a href="javascript:;" class="animation hover-animation" @click="_gotoNewsDetails(item.id)"><img :src="item.imageUrl" class="image" style="width:100%;height:auto;"></a>
-                      <div style="padding-top: 10px;" @click="_gotoNewsDetails(item.id)">
-                        <span class="title">{{item.title}}</span>
+                      <div style="padding-top: 10px;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;" @click="_gotoNewsDetails(item.id)">
+                        <span class="title" :title="item.title">{{item.title}}</span>
                         <div class="operate">
                           <time class="time">{{item.date}}</time>
                           <el-button type="text" class="button" @click="_gotoNewsDetails(item.id)">{{$t('reading')}}</el-button>
@@ -101,7 +101,7 @@
         </home-item-solt>
       </div>
       <!-- <m-anchor :contentDivClass="'home-anchor-container'" :anchorItem="'anchor-item'" :subNavList="[$t('subNavs.news'), awardUserList.length > 0 ? $t('subNavs.awardMember') : '', judgesListSource.length > 0 ? $t('subNavs.judges') : '', playersListSource.length > 0 ? $t('subNavs.contestant') : '', artistsListSource.length > 0 ? $t('subNavs.artist') : '', parterList.length > 0 ? $t('subNavs.partner') : '', 'Ending']"></m-anchor>       -->
-      <m-anchor :contentDivClass="'home-anchor-container'" :anchorItem="'anchor-item'" :parentMenusCode="'home'" ></m-anchor>      
+      <m-anchor :contentDivClass="'home-anchor-container'" :anchorItem="'anchor-item'" :parentMenusCode="'home'" :subNavList="subNavList"></m-anchor>      
     </div>
     <div style="width:100%;overflow:hidden;" class="anchor-item">
       <video :src="tempEndings.externalLink" class="vedio-css" width="100%" height="auto" controls="controls" :poster="require('static/image/sisivc/poster.jpg')" >您的浏览器不支持 video 标签。</video>
@@ -116,7 +116,7 @@ import MemberItem from 'components/commonComponents/member-item'
 import HomeItemSolt from 'components/home/home-item-solt'
 import AwardList from 'components/home/award-list'
 import PartnerList from 'components/home/partner-list'
-import { getSubNav } from 'apx/util.js'
+import { getSubNav, getSubList } from 'apx/util.js'
 // import Divider from 'base/divider/divider'
 export default {
   components: {
@@ -153,7 +153,6 @@ export default {
     }
   },
   created() {
-    this.subNav = getSubNav("home");
     this._getData()
   },
   computed: {
@@ -248,6 +247,8 @@ export default {
         let tempArtists = results.artists
         let tempPartnerVos = results.partnerVos
         this.tempEndings = results.endings[0]
+        //首页子菜单
+        this.subNav = getSubNav("home");
 
         this.carousellist = tempBanners ? tempBanners.map(el => {
           return {
@@ -321,10 +322,11 @@ export default {
           }
         }) : []
         this.parterList = tempPartnerVos ? tempPartnerVos : []
-        this.subNavList = [this.$i18n.t('subNavs.news'), this.awardUserList.length > 0 ? this.$i18n.t('subNavs.awardMember') : '', this.judgesListSource.length > 0 ? this.$i18n.t('subNavs.judges') : '', this.playersListSource.length > 0 ? this.$i18n.t('subNavs.contestant') : '', this.artistsListSource.length > 0 ? this.$i18n.t('subNavs.artist') : '', this.parterList.length > 0 ? this.$i18n.t('subNavs.partner') : '', 'Ending']
-        this.subNavList = this.subNavList.filter( el => {
-          return el != ''
-        })
+        this.subNavList = getSubList("home");
+        // this.subNavList = [this.$i18n.t('subNavs.news'), this.awardUserList.length > 0 ? this.$i18n.t('subNavs.awardMember') : '', this.judgesListSource.length > 0 ? this.$i18n.t('subNavs.judges') : '', this.playersListSource.length > 0 ? this.$i18n.t('subNavs.contestant') : '', this.artistsListSource.length > 0 ? this.$i18n.t('subNavs.artist') : '', this.parterList.length > 0 ? this.$i18n.t('subNavs.partner') : '', 'Ending']
+        // this.subNavList = this.subNavList.filter( el => {
+        //   return el != ''
+        // })
       })
     },
   }

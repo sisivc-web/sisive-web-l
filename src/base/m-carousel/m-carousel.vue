@@ -50,7 +50,6 @@ export default {
       for (var i = 0, len = data.length; i < len; i += 4) {
         result.push(data.slice(i, i + 4))
       }
-      console.log(result)
       return result
     }
   },

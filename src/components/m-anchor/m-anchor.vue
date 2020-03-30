@@ -21,10 +21,10 @@ export default {
         type: String,
         default: 'anchor-item'
     },
-    // subNavList: {
-    //     type: Array,
-    //     default: () => []
-    // },
+    subNavList: {
+        type: Array,
+        default: () => []
+    },
     parentMenusCode:  {
         type: String,
         default: 'home'
@@ -34,11 +34,13 @@ export default {
     return {
       active: 0, // 当前激活的导航索引
       isFixed: false,
-      subNavList: []
+      // subNavList: []
     }
   },
   created() {
-    this.getSubList()
+    // setTimeout(() => {
+    //   this.getSubList()
+    // }, 300);
   },
   mounted() {
     // 监听滚动事件
@@ -50,24 +52,24 @@ export default {
   },
   methods: {
     //获取各子菜单
-    getSubList() {
-      let menus = JSON.parse(sessionStorage.getItem('menus'));
-      let currentMatchMenu = menus.find(el => {
-        return el.code === 'currentmatch'
-      })
-      let currentMatchSubNav = currentMatchMenu.menueVoList
-      let currentMenu = menus.find(el => {
-        return el.code === this.parentMenusCode
-      })
-      let nowSubNav = this.parentMenusCode === 'currentmatch' ? currentMatchSubNav : currentMenu.menueVoList
-      if(this.parentMenusCode === 'currentmatch') {
-        this.subNavList = nowSubNav
-      } else {
-        let temp = new Array(currentMatchSubNav.length - nowSubNav.length).join(",").split(",")
-        this.subNavList = nowSubNav.concat(temp)
-      }
+    // getSubList() {
+    //   let menus = JSON.parse(sessionStorage.getItem('menus'));
+    //   let currentMatchMenu = menus.find(el => {
+    //     return el.code === 'currentmatch'
+    //   })
+    //   let currentMatchSubNav = currentMatchMenu.menueVoList
+    //   let currentMenu = menus.find(el => {
+    //     return el.code === this.parentMenusCode
+    //   })
+    //   let nowSubNav = this.parentMenusCode === 'currentmatch' ? currentMatchSubNav : currentMenu.menueVoList
+    //   if(this.parentMenusCode === 'currentmatch') {
+    //     this.subNavList = nowSubNav
+    //   } else {
+    //     let temp = new Array(currentMatchSubNav.length - nowSubNav.length).join(",").split(",")
+    //     this.subNavList = nowSubNav.concat(temp)
+    //   }
 
-    },
+    // },
     // 滚动监听器
     onScroll() {
       // 获取所有锚点元素

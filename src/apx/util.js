@@ -26,7 +26,43 @@ function getSubNav(code) {
       temp[key] = el.menu
     }
   })
-  console.log(temp)
   return temp
 }
-export { getSubNav, getHeaders }
+
+//获取各子菜单(非年子导航)
+function getSubList(parentMenusCode) {
+  let subNavList = []
+  let menus = JSON.parse(sessionStorage.getItem('menus'));
+  let currentMatchMenu = menus.find(el => {
+    return el.code === 'currentmatch'
+  })
+  let currentMatchSubNav = currentMatchMenu.menueVoList
+  let currentMenu = menus.find(el => {
+    return el.code === parentMenusCode
+  })
+  let nowSubNav = parentMenusCode === 'currentmatch' ? currentMatchSubNav : currentMenu.menueVoList
+  if(parentMenusCode === 'currentmatch') {
+    subNavList = nowSubNav
+  } else {
+    let temp = new Array(currentMatchSubNav.length - nowSubNav.length).join(",").split(",")
+    subNavList = nowSubNav.concat(temp)
+  }
+  return subNavList
+}
+
+//获取各子菜单(年)
+function getYearSubList(subNavList) {
+  let nowSubNavList = []
+  let menus = JSON.parse(sessionStorage.getItem('menus'));
+  let currentMatchMenu = menus.find(el => {
+    return el.code === 'currentmatch'
+  })
+  let currentMatchSubNav = currentMatchMenu.menueVoList
+  // let currentMenu = menus.find(el => {
+  //   return el.code === this.parentMenusCode
+  // })
+  let temp = new Array(currentMatchSubNav.length - subNavList.length).join(",").split(",")
+  nowSubNavList = subNavList.concat(temp)
+  return nowSubNavList
+}
+export { getSubNav, getHeaders, getSubList, getYearSubList }

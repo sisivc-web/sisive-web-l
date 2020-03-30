@@ -1,6 +1,6 @@
 <template>
   <div class="containerA">
-	  <m-anchor :contentDivClass="'Watch'" :anchorItem="'anchor-item'" :parentMenusCode="'watch'"></m-anchor>  
+	  <m-anchor :contentDivClass="'Watch'" :anchorItem="'anchor-item'" :parentMenusCode="'watch'" :subNavList="subNavList"></m-anchor>  
       <div class="other Watch">
         <div class="anchor-item">
           <div class="header">
@@ -75,7 +75,7 @@
   import interactionPlugin from '@fullcalendar/interaction'
   import eventpopover from './event-popover'
   import Vue from 'vue'
-  import { getSubNav } from 'apx/util.js'
+  import { getSubNav, getSubList } from 'apx/util.js'
   // import vue from 'vue/dist/vue.js'
   export default({
     components: {
@@ -88,7 +88,8 @@
         watchDataIndex: {},//观赛主页
         date:'2019-11-22',
         calendarEvents: [],
-        subNav: [],
+        subNav: {},
+        subNavList: [],
         calendarPlugins: [ dayGridPlugin, interactionPlugin ]
       }
     },
@@ -98,7 +99,6 @@
       }
     },
     mounted () {
-      this.subNav = getSubNav("watch");
       this.showData()
     },
     methods:{
@@ -122,7 +122,8 @@
         }
         kpiWatch(param, this).then((res) => {
           let data = res.data.data
-          console.log(res)
+          _this.subNav = getSubNav("watch");
+          _this.subNavList = getSubList("watch");
           _this.watchDataIndex = data
           data.competitionRoundVoList.forEach(e => {
             _this.calendarEvents.push({

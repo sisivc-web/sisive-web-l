@@ -36,7 +36,7 @@ export default {
   },
   created() {
     this.menus = JSON.parse(sessionStorage.getItem('menus'));
-    this.getNavList(false)
+    this.getNavList(true)
   },
   mounted() {
     /**通过给变成固定定位的元素添加一个同等高度的父元素，防止该元素变成固定定位时，脱离文档流导致的页面抖动 */

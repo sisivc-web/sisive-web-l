@@ -73,8 +73,8 @@
 import { kpiQueryContactWayVos }from 'apx'
 export default {
   created() {
-    this.contact = JSON.parse(sessionStorage.getItem('contact'));
-    this.showData()
+    // this.contact = JSON.parse(sessionStorage.getItem('contact'));
+    // this.showData()
   },
   data() {
     return {

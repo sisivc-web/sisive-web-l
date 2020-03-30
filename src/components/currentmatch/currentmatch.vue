@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="other">
-      <m-anchor :contentDivClass="'home-anchor-container'" :anchorItem="'anchor-item'" :parentMenusCode="'currentmatch'"></m-anchor>
+      <m-anchor :contentDivClass="'home-anchor-container'" :anchorItem="'anchor-item'" :parentMenusCode="'currentmatch'" :subNavList="subNavList"></m-anchor>
       <div class="home-anchor-container">
         <!-- <home-item-solt :itemName="'enroll-div'" :title="$t('subNavs.enroll1')" :isShowMore="false" :marginBottom="'0'"> -->
         <home-item-solt :itemName="'enroll-div'" :title="''" :isShowMore="false" :marginBottom="'0'">
@@ -60,7 +60,8 @@
                 <p>{{item.scheduleName.match(/(\:|\uff1a)([^\(\uff08]*)/)?item.scheduleName.match(/(\:|\uff1a)([^\(\uff08]*)/)[2]:item.scheduleName.match(/(\:|\uff1a)([^\(\uff08]*)/)}}</p>
                 <!-- <p>{{item.startDate}} - {{item.endDate}}</p> -->
                 <!-- "889000006（6666(60:0(00)99(000)".match(/(\(|\uff08)[^\)\uff09]*/) -->
-                <p>{{item.scheduleName.match(/(?<=\(|\uff08).+(?=\)|\uff09)/)?"("+item.scheduleName.match(/(?<=\(|\uff08).+(?=\)|\uff09)/)[0]+")":''}}</p>
+                <!-- <p>{{item.scheduleName.match(/(?<=\(|\uff08).+(?=\)|\uff09)/)?"("+item.scheduleName.match(/(?<=\(|\uff08).+(?=\)|\uff09)/)[0]+")":''}}</p> -->
+                <p>{{item.scheduleName.match(/(\(|\uff08)[^\)\uff09]*/)?item.scheduleName.match(/(\(|\uff08)[^\)\uff09]*/)[0]+"）":''}}</p>
               </li>
             </ul>
           </div>
@@ -126,7 +127,7 @@ import MemberContainer from 'components/commonComponents/member-container'
 import MemberItem from 'components/commonComponents/member-item'
 import HomeItemSolt from 'components/home/home-item-solt'
 import MatchItem from 'components/currentmatch/match-item'
-import { getSubNav } from 'apx/util.js'
+import { getSubNav, getSubList } from 'apx/util.js'
 export default {
   components: {
     MAnchor,
@@ -154,12 +155,12 @@ export default {
       scheduleVoList: [],//比赛日程数据
       year: (new Date()).getFullYear() + '',
       matchBg: require('static/image/sisivc/match-bg.png'),
-      subNav: [],
+      subNav: {},
+      subNavList: [],
     }
   },
   created() {
     // this._getHistoryData()
-    this.subNav = getSubNav("currentmatch");
     this._getData()
     
   },
@@ -205,7 +206,9 @@ export default {
         let tempPlayers = results.players
         let tempJurys = results.jurys
         let tempArtists = results.artists
-
+        
+        this.subNav = getSubNav("currentmatch");
+        this.subNavList = getSubList("currentmatch");
         this.data = results
         this.entryRequirements = results.entryRequirements
         this.program = results.program

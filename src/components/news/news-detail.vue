@@ -28,6 +28,7 @@
 <script type="text/ecmascript-6">
 import {kpiYears, kpiNews, kpiQueryNewDetail} from 'apx'
 import SubNav from 'components/sub-nav/sub-nav'
+import { getYearSubList } from 'apx/util.js'
 export default {
   components: {
     SubNav
@@ -68,6 +69,8 @@ export default {
             id: el
           }
         })
+        let temp = getYearSubList(this.subNavList)
+        this.subNavList = temp
         this._getURLQuery()
         this._getData()
       })

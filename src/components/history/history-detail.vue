@@ -49,6 +49,8 @@ import HomeItemSolt from 'components/home/home-item-solt'
 import AwardList from 'components/home/award-list'
 import SubNav from 'components/sub-nav/sub-nav'
 import InsterstingNews from 'components/history/instersting-news'
+import { getYearSubList } from 'apx/util.js'
+
 export default {
   components: {
     MAnchor,
@@ -119,6 +121,8 @@ export default {
             id: el.id
           }
         })
+        let temp = getYearSubList(this.subNavList)
+        this.subNavList = temp
       })
     },
     _getData(year) {

@@ -79,7 +79,6 @@ export default {
       this.$emit('handleChange', val+1)
     },
     _gotoDetails(memberId) {
-      debugger
       if(memberId) {
         // this.$router.push({path: '/memberDetail', query: {memberId: memberId}})
         let routeData = this.$router.resolve({path: '/memberDetail', query: {memberId: memberId}});

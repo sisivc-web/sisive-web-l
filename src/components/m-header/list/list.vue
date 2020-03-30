@@ -1,6 +1,6 @@
 <template>
-  <div class="list">
-    <router-link :to="'/' + item.code"  v-for="(item, index) in menus" :key="index" v-if="item.code != 'Contact Us'">
+  <div class="contact list">
+    <router-link :to="'/' + item.code"  v-for="(item, index) in menus" :key="index" v-if="item.code != 'Contact Us'" @click.native="event => navClick()">
       <span
         class="plate"
         :style="{color: color}"
@@ -49,6 +49,7 @@
       >{{$t("aboutus")}}
       </span>
     </router-link> -->
+    <a href="javascript:;" ref="contactUs" :class="{'router-link-active': isContactUs}">
     <span
       class="plate"
       :style="{color: color}"
@@ -58,6 +59,7 @@
       v-if="item.code === 'Contact Us'"
     >{{item.menu}}
     </span>
+    </a>
     <span class="plate" @click="_changeLanguage" :style="{color: color}">{{$t("message.language")}}</span>
   </div>
 </template>
@@ -73,6 +75,11 @@ export default {
       default: () => []
     }
   },
+  data() {
+    return {
+      isContactUs: false
+    }
+  },
   methods: {
     _changeLanguage() {
       this.$i18n.locale = this.$i18n.locale === 'en' ? 'zh_CN' : 'en'
@@ -83,9 +90,23 @@ export default {
       }, 1000);
     },
     goFootAnchor(selector) {
-     var anchor =  document.querySelector(selector)
-     document.documentElement.scrollTop = anchor.offsetTop - 112
-  }
+      var anchor =  document.querySelector(selector)
+      document.documentElement.scrollTop = anchor.offsetTop - 200
+      // 获取所有锚点元素
+      var navList = document.querySelectorAll(`.contact.list a`)
+      navList.forEach(el => {
+        el.classList.length > 0 && el.classList.remove("router-link-active")
+      });
+      //联系我们亮
+      this.isContactUs = true
+    },
+    navClick(event) {
+      this.isContactUs = false
+      // if(event.classList.length > 0) {
+      //   document.documentElement.scrollTop = 0
+      //   event.classList.add("router-link-active")
+      // }
+    }
   }
 }
 </script>

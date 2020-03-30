@@ -1,6 +1,6 @@
 <template>
 <div class="containerA">
-  <m-anchor :contentDivClass="'AboutGame'" :anchorItem="'anchor-item'" :parentMenusCode="'about'"></m-anchor>  
+  <m-anchor :contentDivClass="'AboutGame'" :anchorItem="'anchor-item'" :parentMenusCode="'about'" :subNavList="subNavList"></m-anchor>  
   <div class="AboutGame other">
     <div class="mainBox block clearfix" style="margin-bottom:60px;">
       <div class="flexBox anchor-item">
@@ -114,7 +114,7 @@ import MAnchor from 'components/m-anchor/m-anchor'
 import HomeItemSolt from 'components/home/home-item-solt'
 import PartnerList from 'components/home/partner-list'
 import DownloadItem from 'components/about/download-item'
-import { getSubNav } from 'apx/util.js'
+import { getSubNav, getSubList } from 'apx/util.js'
 export default {
   components: {
     MAnchor,
@@ -124,13 +124,13 @@ export default {
   },
   data() {
     return {
-		receiveIndex:0,
-		awardsVoList : '',
-    subNav: [],
-	}
+      receiveIndex:0,
+      awardsVoList : '',
+      subNav: {},
+      subNavList: []
+    }
   },
   mounted:function(){
-    this.subNav = getSubNav("about");
     this.showData()
   },
   methods:{
@@ -148,6 +148,8 @@ export default {
   
         let data = res.data.data        
         _this.awardsVoList = data
+        _this.subNav = getSubNav("about");
+        _this.subNavList = getSubList("about");
       })
     }
   }
