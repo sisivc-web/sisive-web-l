@@ -117,7 +117,7 @@ export default {
               white-space: nowrap;
               font-size: 13px;
               color: #000;
-              line-height: 50px;
+              line-height: 1;
           hr
             margin: 0;
             color: $color-item-more;
