@@ -1,6 +1,6 @@
 <template>
   <div class="contact list">
-    <router-link :to="'/' + item.code"  v-for="(item, index) in menus" :key="index" v-if="item.code != 'Contact Us'" @click.native="event => navClick()">
+    <router-link :to="'/' + item.code"  v-for="(item, index) in menus" :key="index" v-if="item.code != 'Contact Us'" @click.native="navClick($event)">
       <span
         class="plate"
         :style="{color: color}"
@@ -102,10 +102,10 @@ export default {
     },
     navClick(event) {
       this.isContactUs = false
-      // if(event.classList.length > 0) {
-      //   document.documentElement.scrollTop = 0
-      //   event.classList.add("router-link-active")
-      // }
+      if(event.target.parentNode.classList.length > 0) {
+        document.documentElement.scrollTop = 0
+        event.target.parentNode.classList.add("router-link-active")
+      }
     }
   }
 }
