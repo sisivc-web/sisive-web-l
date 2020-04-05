@@ -27,7 +27,7 @@
         <div class="ItemDl">
           <ul class="ulLIst">
             <!-- item.isUnit == 1 && item.parentId == 0 -->
-            <li v-for="(item,index) in awardsVoList.committeeVoList" v-if="item.sort<4" :key="index">
+            <li v-for="(item,index) in awardsVoList.committeeVoList" v-if="index<3" :key="index">
               <h5>{{item.title}}</h5>
               <p v-for="(item1,index) in item.sonCommitteeVos" v-if="item1.parentId == item.id" :key="index">{{item1.title}}</p>
             </li>
@@ -35,12 +35,23 @@
         </div>
         <!-- v-if="item.isUnit == 0 && item.parentId == 0" -->
         <div class="colspanRow">
-          <div class="left" v-for="(item,index) in awardsVoList.committeeVoList" :key="index" v-if="item.sort>3">
-            <div class="ff"><h5>{{item.title}}</h5></div>
-            <div class="ff" v-for="(item1,index) in item.sonCommitteeVos" v-if="item.id == item1.parentId" :key="index">
-              <label>{{item1.title}}</label>
-              <div class="secName">
-                <p v-for="(item2,index) in item1.sonCommitteeVos" v-if="item1.id == item2.parentId">{{item2.title}}</p>
+          <div class="left" v-for="(item,index) in awardsVoList.committeeVoList" :key="index" v-if="index>2 && index != 5">
+            <div>
+              <div class="ff"><h5>{{item.title}}</h5></div>
+              <div class="ff" v-for="(item1,index) in item.sonCommitteeVos" v-if="item.id == item1.parentId" :key="index">
+                <label>{{item1.title}}</label>
+                <div class="secName">
+                  <p v-for="(item2,index) in item1.sonCommitteeVos" v-if="item1.id == item2.parentId">{{item2.title}}</p>
+                </div>
+              </div>
+            </div>
+            <div v-if="index === 3" style="margin-top: 30px">
+              <div class="ff"><h5>{{awardsVoList.committeeVoList[5].title}}</h5></div>
+              <div class="ff" v-for="(item1,index) in awardsVoList.committeeVoList[5].sonCommitteeVos" v-if="awardsVoList.committeeVoList[5].id == item1.parentId" :key="index">
+                <label>{{item1.title}}</label>
+                <div class="secName">
+                  <p v-for="(item2,index) in item1.sonCommitteeVos" v-if="item1.id == item2.parentId">{{item2.title}}</p>
+                </div>
               </div>
             </div>
           </div>
@@ -97,7 +108,7 @@
           <div class="fl ItemLst">
             <h3 class="placeTitle">{{awardsVoList.venueTitle}}</h3>
             <div class="ruleContent" style="padding-top:20px">
-                <div v-html="awardsVoList.venueDescription"></div>
+                <div v-html="awardsVoList.venueDescription" style="line-height:1.75;text-align:justify;font-size: 14px;color: #4c4948;"></div>
               </div>
           </div>
           </div>

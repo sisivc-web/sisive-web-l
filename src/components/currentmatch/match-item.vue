@@ -1,7 +1,7 @@
 <template>
   <div class="match-item-div">
     <h1>{{title}}</h1>
-    <a :class="['container-a', {'has-border-bbottom': isBottomBorder}]" href="javascript:;">
+    <a :class="['container-a', {'has-border-bbottom': isBottomBorder}]" href="javascript:;" @click="viewFun">
       <div class="item">
         <i class="el-icon-document" v-show="isFileIcon"></i>
         <h2>{{subTitle}}</h2>
@@ -9,7 +9,7 @@
       </div>
       <div class="item">
         <a v-show="isView"><i class="el-icon-view" @click="viewFun"></i></a>
-        <a href="javascript:;"  @click="downloadFile(linkUrl)"><i class="el-icon-download"></i></a>
+        <a href="javascript:;"  @click.stop="downloadFile(linkUrl)"><i class="el-icon-download"></i></a>
       </div>
     </a>
   </div>

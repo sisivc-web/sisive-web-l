@@ -5,7 +5,7 @@
                 <img :src="item.imageUrl" class="image" style="width:100%;height:auto">
             </a>
             <div class="operate" style="padding: 10px 0;" @click="_gotoDetails(item.id)">
-                <span style="color: #222;font-weight: bold;font-size: 14px;">{{item.name}}&nbsp;<span style="color:#a0a0a1;">{{item.title}}</span></span>
+                <span style="color: #222;font-weight: bold;font-size: 14px;">{{item.name}}&nbsp;<span style="color:#a0a0a1;font-weight: normal;">{{item.title}}</span></span>
                 <el-button type="text" class="button" style="font-size:12px;color:#a0a0a1;">{{item.country}}</el-button>
             </div>
         </el-card>  

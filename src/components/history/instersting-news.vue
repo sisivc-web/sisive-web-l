@@ -2,21 +2,21 @@
   <div class="container">
     <div class="new-detail">
       <el-card :body-style="{ padding: '0px' }" style="width: 100%; margin:0 auto;padding: 40px 0 0;box-shadow: none; border: none;">
-        <div style="width:30%; float:left;padding-right:50px;">
-          <div style="height:50px;">
+        <div style="width:30%; float:left;padding-right:50px;line-height:1.6;text-align:justify;">
+          <div style="min-height:50px;height:auto;">
             <span v-html="newsDetail.highlights"></span>
           </div>
-          <div style="height:30px;">  
+          <!-- <div style="height:30px;">  
             <span style="color: #a0a0a1;font-size: 14px;">{{newsDetail.year}} SISIVC</span>
-          </div>
+          </div> -->
 
           <div>
             <a :href="newsDetail.externalLink" class="animation hover-animation">
-                <img :src="newsDetail.image" class="image" style="width:100%;height:auto">
+                <img :src="newsDetail.image" class="image" style="width:100%;height:auto;margin-top:20px;">
             </a>
           </div>
         </div>
-        <div class="right-content" v-html="newsDetail.review" style="width:70%; float:right; padding:0px 0 20px 50px;">
+        <div class="right-content" v-html="newsDetail.review" style="width:70%; float:right; padding:0px 0 20px 50px;line-height: 1.6;">
 
         </div>
       </el-card>

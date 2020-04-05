@@ -1,7 +1,7 @@
 //合作伙伴模块
 <template>
   <div>
-    <div class="sub-item" v-for="(el,i) in parterList" :key="i">
+    <div class="sub-item" v-for="(el,i) in parterList" :key="i" v-if="el.partnerVoList.length > 0">
       <h3 class="sub-h3">{{el.level}}</h3>
       <div style="border-top: 1px solid #80808030;padding-top:40px;" v-if="el.levelId === 1">
         <img :src="el.partnerVoList[0].logoUrl">
@@ -57,12 +57,12 @@ export default {
       padding-top: 40px;
       padding-bottom: 40px;
     p, .desp
-      // font-size: 13px;
+      // font-size: 14px;
       // color: #4c4948;
       font-size: $font-size-detail-content;
       color: $color-detail-content;
       margin: 1.6rem 0;
-      line-height: 20px;
+      line-height: 1.6;
       text-align:justify;
     .el-row
       border: none;

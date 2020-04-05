@@ -2,7 +2,7 @@
   <div class="container">
     <sub-nav :subNavList="subNavList" :nowClickYear="nowSelYear" @changeData="_getNews"></sub-nav>
     <div class="new-detail">
-      <el-card :body-style="{ padding: '0px' }" style="width: 100%; margin:0 auto;padding: 40px 0 0;box-shadow: none; border: none;line-height:1.75;">
+      <el-card :body-style="{ padding: '0px' }" style="width: 100%; margin:0 auto;padding: 40px 0 0;box-shadow: none; border: none;line-height:1.75;text-align:justify;">
         <div style="width:30%; float:left;padding-right:50px;">
           <div style="height:50px;">
             <span style="color: #222;font-weight: bold;font-size: 16px;">{{newsDetail.title}}</span>

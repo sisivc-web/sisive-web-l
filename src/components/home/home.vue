@@ -301,6 +301,7 @@ export default {
             name: el.userName,
             imageUrl: el.image,
             country: el.nationality,
+            title: el.title
           }
         }) : []
 
@@ -310,6 +311,7 @@ export default {
             name: el.userName,
             imageUrl: el.image,
             country: el.nationality,
+            title: el.title
           }
         }) : []
 
@@ -319,6 +321,7 @@ export default {
             name: el.userName,
             imageUrl: el.image,
             country: el.nationality,
+            title: el.title
           }
         }) : []
         this.parterList = tempPartnerVos ? tempPartnerVos : []

@@ -9,7 +9,7 @@
               <p class="contry-css">{{userIfo.country}}</p>
               <h3 v-if="userIfo.roleCode === '3'" class="role-css">{{userIfo.roleName}}</h3>
               <a class="vedio-btn" :href="userIfo.vedioUrl" v-if="userIfo.roleCode === '2'">视频播放</a>
-              <span class="little">2018 上海艾萨克 ̇斯特恩国际小提琴比赛</span>
+              <!-- <span class="little">2018 上海艾萨克 ̇斯特恩国际小提琴比赛</span> -->
             </div>
           </el-col>
           <el-col :span="8" v-if="userIfo.roleCode === '2'" class="display-div">
